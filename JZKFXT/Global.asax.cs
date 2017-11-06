@@ -1,5 +1,7 @@
-﻿using System;
+﻿using JZKFXT.DAL;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -18,6 +20,8 @@ namespace JZKFXT
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //模型更改时重新创建数据库 发布时删除
+            Database.SetInitializer<BaseContext>(new BaseInitializer());
         }
     }
 }
