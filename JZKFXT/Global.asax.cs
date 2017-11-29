@@ -20,8 +20,17 @@ namespace JZKFXT
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //模型更改时重新创建数据库 发布时删除
-            Database.SetInitializer<BaseContext>(new BaseInitializer());
+        }
+        protected void Application_BeginRequest()
+        {
+            //处理OPTIONS请求
+            if (Request.Headers.AllKeys.Contains("Origin") && Request.HttpMethod == "OPTIONS")
+            {
+                Response.AppendHeader("Access-Control-Allow-Origin", "*");
+                Response.AppendHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+                Response.AppendHeader("Access-Control-Allow-Headers", "Content-Type");
+                Response.End();
+            }
         }
     }
 }

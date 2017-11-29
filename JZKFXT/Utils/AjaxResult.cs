@@ -45,7 +45,7 @@ namespace JZKFXT.Utils
                 message = msg
             };
         }
-        public static AjaxResult Error(string msg, System.Exception ex)
+        public static AjaxResult Error(System.Exception ex)
         {
             string m = string.Empty;
             m = ex.Message;
@@ -60,8 +60,7 @@ namespace JZKFXT.Utils
             return new AjaxResult()
             {
                 success = false,
-                message = msg,
-                data = m
+                message = m
             };
         }
         #endregion
