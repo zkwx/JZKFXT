@@ -12,50 +12,51 @@ using System.Web.Http.Description;
 using JZKFXT.DAL;
 using JZKFXT.Models;
 
-namespace JZKFXT.Controllers
+namespace JZKFXT.Controllers.API
 {
-    public class NextsController : ApiController
+    public class RolesController : ApiController
     {
         private BaseContext db = new BaseContext();
 
-        // GET: api/Nexts
-        public IHttpActionResult GetNexts()
+        // GET: api/Roles
+        public IHttpActionResult GetRoles()
         {
-            var result = db.Nexts.Select(a => new
+            var result = db.Roles.Select(a => new
             {
                 key = a.ID,
-                value = a.Name
+                value = a.RoleName
             });
             return Ok(result);
         }
-        // GET: api/Nexts/5
-        [ResponseType(typeof(Next))]
-        public async Task<IHttpActionResult> GetNext(int id)
+
+        // GET: api/Roles/5
+        [ResponseType(typeof(Role))]
+        public async Task<IHttpActionResult> GetRole(int id)
         {
-            Next next = await db.Nexts.FindAsync(id);
-            if (next == null)
+            Role role = await db.Roles.FindAsync(id);
+            if (role == null)
             {
                 return NotFound();
             }
 
-            return Ok(next);
+            return Ok(role);
         }
 
-        // PUT: api/Nexts/5
+        // PUT: api/Roles/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutNext(int id, Next next)
+        public async Task<IHttpActionResult> PutRole(int id, Role role)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != next.ID)
+            if (id != role.ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(next).State = EntityState.Modified;
+            db.Entry(role).State = EntityState.Modified;
 
             try
             {
@@ -63,7 +64,7 @@ namespace JZKFXT.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!NextExists(id))
+                if (!RoleExists(id))
                 {
                     return NotFound();
                 }
@@ -76,35 +77,35 @@ namespace JZKFXT.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Nexts
-        [ResponseType(typeof(Next))]
-        public async Task<IHttpActionResult> PostNext(Next next)
+        // POST: api/Roles
+        [ResponseType(typeof(Role))]
+        public async Task<IHttpActionResult> PostRole(Role role)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Nexts.Add(next);
+            db.Roles.Add(role);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = next.ID }, next);
+            return CreatedAtRoute("DefaultApi", new { id = role.ID }, role);
         }
 
-        // DELETE: api/Nexts/5
-        [ResponseType(typeof(Next))]
-        public async Task<IHttpActionResult> DeleteNext(int id)
+        // DELETE: api/Roles/5
+        [ResponseType(typeof(Role))]
+        public async Task<IHttpActionResult> DeleteRole(int id)
         {
-            Next next = await db.Nexts.FindAsync(id);
-            if (next == null)
+            Role role = await db.Roles.FindAsync(id);
+            if (role == null)
             {
                 return NotFound();
             }
 
-            db.Nexts.Remove(next);
+            db.Roles.Remove(role);
             await db.SaveChangesAsync();
 
-            return Ok(next);
+            return Ok(role);
         }
 
         protected override void Dispose(bool disposing)
@@ -116,9 +117,9 @@ namespace JZKFXT.Controllers
             base.Dispose(disposing);
         }
 
-        private bool NextExists(int id)
+        private bool RoleExists(int id)
         {
-            return db.Nexts.Count(e => e.ID == id) > 0;
+            return db.Roles.Count(e => e.ID == id) > 0;
         }
     }
 }

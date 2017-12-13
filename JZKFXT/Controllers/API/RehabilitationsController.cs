@@ -57,11 +57,11 @@ namespace JZKFXT.Controllers
                             IntelligenceList,
                             SpiritList
                         };
-                        return Json(result);
+                        return Ok(result);
                     }
-                    return Json(list);
+                    return Ok(list);
                 }
-                return Json(list);
+                return Ok(list);
             }
             catch (Exception ex)
             {

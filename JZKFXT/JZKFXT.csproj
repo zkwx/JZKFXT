@@ -208,6 +208,7 @@
     <Compile Include="Controllers\API\AnswersController.cs" />
     <Compile Include="Controllers\API\DisabilityReasonsController.cs" />
     <Compile Include="Controllers\API\ExamsController.cs" />
+    <Compile Include="Controllers\API\FileController.cs" />
     <Compile Include="Controllers\API\OptionsController.cs" />
     <Compile Include="Controllers\API\RelationshipsController.cs" />
     <Compile Include="Controllers\API\QuestionsController.cs" />
@@ -216,13 +217,16 @@
     <Compile Include="Controllers\API\DisabledInfoesController.cs" />
     <Compile Include="Controllers\API\NextsController.cs" />
     <Compile Include="Controllers\API\RehabilitationsController.cs" />
+    <Compile Include="Controllers\API\RolesController.cs" />
     <Compile Include="Controllers\API\UsersController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="DAL\BaseContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AssistiveDevices.cs" />
+    <Compile Include="Models\ExamRecord.cs" />
+    <Compile Include="Models\AssistiveDevice.cs" />
     <Compile Include="Models\DisabilityReason.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Degree.cs" />
@@ -236,6 +240,7 @@
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Rehabilitation.cs" />
     <Compile Include="Models\Relationship.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\AjaxResult.cs" />
@@ -298,7 +303,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\avatar\" />
+    <Folder Include="Views\File\" />
     <Folder Include="Views\System\" />
   </ItemGroup>
   <ItemGroup>
@@ -332,7 +338,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54748</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8088/</IISUrl>
+          <IISUrl>http://192.168.180.177:8088/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://192.168.180.177:8088/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -17,7 +17,7 @@ namespace JZKFXT.Models
         /// <summary>
         /// 评估名称
         /// </summary>
-        public string ExamName { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// 题目列表
         /// </summary>

@@ -22,35 +22,7 @@ namespace JZKFXT.Controllers
         public IHttpActionResult GetQuestions(bool loadQuestions = false)
         {
             var list = from a in db.Questions select a;
-            if (loadQuestions)
-            {
-                var result = list.ToDictionary(
-                    a=>a.ID,
-                    a => new
-                    {
-                        ID = a.ID,
-                        QuestionNo = a.QuestionNo,
-                        QuestionText = a.QuestionText,
-                        Multiple = a.Multiple,
-                        IsFirst = a.IsFirst,
-                        IsLast = a.IsLast,
-                        //根据选项查询下一题 键值对 
-                        QueryOptions = a.Options.ToDictionary(
-                            b=>b.ID,
-                            b => new
-                            {
-                                NextQuestionID = b.NextQuestionID,
-                                AssistiveDevices = b.AssistiveDevices
-                            }),
-                            //checklist显示数组 不支持对象数组
-                        Options=a.Options.Select(b => new
-                        {
-                            key = b.ID,
-                            value = b.OptionText + "." + b.ContentText,
-                        })
-                    });
-                return Json(result);
-            }
+            
             return Ok(list);
         }
 

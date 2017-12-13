@@ -31,14 +31,18 @@ namespace JZKFXT.DAL
         public DbSet<Exam> Exams { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Option> Options { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<ExamRecord> ExamRecords { get; set; }
+        public System.Data.Entity.DbSet<JZKFXT.Models.DisabilityReason> DisabilityReasons { get; set; }
+
+
+        public System.Data.Entity.DbSet<JZKFXT.Models.Role> Roles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();//防止生成复数表名
         }
 
-        public System.Data.Entity.DbSet<JZKFXT.Models.DisabilityReason> DisabilityReasons { get; set; }
-
-        public System.Data.Entity.DbSet<JZKFXT.Models.Answer> Answers { get; set; }
+        
     }
 }

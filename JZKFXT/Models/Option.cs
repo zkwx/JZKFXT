@@ -41,6 +41,7 @@ namespace JZKFXT.Models
         /// <summary>
         /// 辅具编码
         /// </summary>
-        public string AssistiveDevices { get; set; }
+        public string AssistiveDeviceID { get; set; }
+        public string AssistiveDeviceName { get; set; }
     }
 }

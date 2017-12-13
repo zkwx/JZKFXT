@@ -19,15 +19,9 @@ namespace JZKFXT.Controllers.API
         private BaseContext db = new BaseContext();
 
         // GET: api/Exams
-        public IQueryable<Exam> GetExams()
+        public async Task<IHttpActionResult> GetExams(string targetExamName = null)
         {
-            return db.Exams;
-        }
-
-        // GET: api/Exams/5
-        public async Task<IHttpActionResult> GetExam(int id)
-        {
-            Exam exam = await db.Exams.FindAsync(id);
+            Exam exam = await db.Exams.Where(a=>a.Name==targetExamName).FirstOrDefaultAsync();
             if (exam == null)
             {
                 return NotFound();
@@ -35,7 +29,7 @@ namespace JZKFXT.Controllers.API
             var result = new
             {
                 ID = exam.ID,
-                ExamName = exam.ExamName,
+                Name = exam.Name,
                 Questions = exam.Questions.ToDictionary(
                     a => a.ID,
                     a => new
@@ -53,7 +47,7 @@ namespace JZKFXT.Controllers.API
                             b => new
                             {
                                 NextQuestionID = b.NextQuestionID,
-                                AssistiveDevices = b.AssistiveDevices
+                                AssistiveDeviceName = b.AssistiveDeviceName
                             }),
                         //checklist显示数组 不支持对象数组
                         Options = a.Options.Select(b => new
@@ -64,7 +58,14 @@ namespace JZKFXT.Controllers.API
                     }
                 )
             };
-            return Json(result);
+            return Ok(result);
+        }
+
+        // GET: api/Exams/5
+        public async Task<IHttpActionResult> GetExam(int id)
+        {
+            Exam exam = await db.Exams.FindAsync(id);
+            return Ok(exam);
         }
         // PUT: api/Exams/5
         [ResponseType(typeof(void))]

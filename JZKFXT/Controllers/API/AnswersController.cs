@@ -96,8 +96,11 @@ namespace JZKFXT.Controllers.API
 
             db.Answers.AddRange(answers);
             var answer = answers[0];
-            var disabledInfo_Detail = db.DisabledInfo_Details.FirstOrDefault(a => a.DisabledInfoID == answer.DisabledInfoID && a.CategoryID == answer.ExamID);
-            disabledInfo_Detail.Next.HasExam = true;
+            ExamRecord record = new ExamRecord {
+                DisabledInfoID= answer.DisabledInfoID,
+                ExamID= answer.ExamID
+            };
+            db.ExamRecords.Add(record);
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);

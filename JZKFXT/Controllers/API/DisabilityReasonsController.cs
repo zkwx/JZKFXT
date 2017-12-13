@@ -28,7 +28,7 @@ namespace JZKFXT.Controllers.API
                     key = a.ID,
                     value = a.Name
                 });
-            return Json(result);
+            return Ok(result);
         }
 
         // GET: api/DisabilityReasons/5

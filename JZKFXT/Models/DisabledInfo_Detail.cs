@@ -17,7 +17,7 @@ namespace JZKFXT.Models
         public int DegreeID { get; set; }//残疾等级
         public int? RehabilitationID { get; set; }//康复需求ID
         public int? NextID { get; set; }//服务走向
-        public int? TargetExamName { get; set; }//目标评估题目
+        public string TargetExamName { get; set; }//目标评估题目
 
         public int DisabledInfoID { get; set; }//残疾人基本信息ID
 

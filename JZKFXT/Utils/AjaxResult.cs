@@ -16,9 +16,9 @@ namespace JZKFXT.Utils
         {
         }
         /// <summary>
-        /// 是否产生错误
+        /// 更改成功数量
         /// </summary>
-        public bool success = false;
+        public int result = 0;
         /// <summary>
         /// 错误信息，或者成功信息
         /// </summary>
@@ -34,14 +34,14 @@ namespace JZKFXT.Utils
         {
             return new AjaxResult()
             {
-                success = false
+                result = 0
             };
         }
         public static AjaxResult Error(string msg)
         {
             return new AjaxResult()
             {
-                success = false,
+                result = 0,
                 message = msg
             };
         }
@@ -59,7 +59,7 @@ namespace JZKFXT.Utils
             }
             return new AjaxResult()
             {
-                success = false,
+                result = 0,
                 message = m
             };
         }
@@ -70,14 +70,14 @@ namespace JZKFXT.Utils
         {
             return new AjaxResult()
             {
-                success = true
+                result = 1
             };
         }
         public static AjaxResult Success(object d)
         {
             return new AjaxResult()
             {
-                success = true,
+                result = 1,
                 data = d
             };
         }
@@ -85,7 +85,7 @@ namespace JZKFXT.Utils
         {
             return new AjaxResult()
             {
-                success = true,
+                result = 1,
                 data = d,
                 message = msg
             };

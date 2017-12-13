@@ -26,7 +26,7 @@ namespace JZKFXT.Controllers
                 key = a.ID,
                 value = a.Name
             });
-            return Json(result);
+            return Ok(result);
         }
 
         // GET: api/Degrees/5

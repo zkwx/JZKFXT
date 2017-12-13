@@ -16,6 +16,10 @@ namespace JZKFXT.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
         public int ID { get; set; }
         /// <summary>
+        /// 残疾类别ID
+        /// </summary>
+        public int CategoryID { get; set; }
+        /// <summary>
         /// 残疾类别
         /// </summary>
         public String Category { get; set; }
