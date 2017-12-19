@@ -12,6 +12,20 @@ namespace JZKFXT.Models
     /// </summary>
     public class Question
     {
+        public Question()
+        {
+        }
+
+        public Question(int iD, string questionNo, string questionText, bool isFirst, bool multiple, ICollection<Option> options)
+        {
+            ID = iD;
+            QuestionNo = questionNo;
+            QuestionText = questionText;
+            IsFirst = isFirst;
+            Multiple = multiple;
+            Options = options;
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
         public int ID { get; set; }
         /// <summary>
@@ -27,17 +41,13 @@ namespace JZKFXT.Models
         /// </summary>
         public string QuestionText { get; set; }
         /// <summary>
-        /// 是否多选
-        /// </summary>
-        public bool Multiple { get; set; }
-        /// <summary>
         /// 是否第一个问题
         /// </summary>
         public bool IsFirst { get; set; }
         /// <summary>
-        /// 是否租最后一个问题
+        /// 是否多选
         /// </summary>
-        public bool IsLast { get; set; }
+        public bool Multiple { get; set; }
         /// <summary>
         /// 选项列表
         /// </summary>

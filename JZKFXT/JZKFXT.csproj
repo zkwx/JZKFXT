@@ -219,8 +219,9 @@
     <Compile Include="Controllers\API\RehabilitationsController.cs" />
     <Compile Include="Controllers\API\RolesController.cs" />
     <Compile Include="Controllers\API\UsersController.cs" />
-    <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\BaseContext.cs" />
+    <Compile Include="Filter\WebApiExceptionFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,7 +236,6 @@
     <Compile Include="Models\Exam.cs" />
     <Compile Include="Models\Next.cs" />
     <Compile Include="Models\Answer.cs" />
-    <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Option.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Rehabilitation.cs" />
@@ -281,6 +281,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="log4net.config" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -303,7 +306,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\avatar\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Logs\" />
     <Folder Include="Views\File\" />
     <Folder Include="Views\System\" />
   </ItemGroup>
@@ -338,9 +342,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54748</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://192.168.180.177:8088/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://192.168.180.177:8088/</IISAppRootUrl>
+          <IISUrl>http://192.168.180.178:8081</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -12,6 +12,20 @@ namespace JZKFXT.Models
     /// </summary>
     public class DisabledInfo_Detail
     {
+        public DisabledInfo_Detail()
+        {
+        }
+
+        public DisabledInfo_Detail(int disabledInfoID, int categoryID, int degreeID, int? rehabilitationID, int? nextID, string targetExamName)
+        {
+            DisabledInfoID = disabledInfoID;
+            CategoryID = categoryID;
+            DegreeID = degreeID;
+            RehabilitationID = rehabilitationID;
+            NextID = nextID;
+            TargetExamName = targetExamName;
+        }
+
         public int ID { get; set; }
         public int CategoryID { get; set; }//残疾类别
         public int DegreeID { get; set; }//残疾等级

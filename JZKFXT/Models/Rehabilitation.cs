@@ -13,6 +13,20 @@ namespace JZKFXT.Models
     /// </summary>
     public class Rehabilitation
     {
+        public Rehabilitation()
+        {
+        }
+
+        public Rehabilitation(int iD, int categoryID, string category, string categoryDetail, string rehabilitationName, bool fuJu)
+        {
+            ID = iD;
+            CategoryID = categoryID;
+            Category = category;
+            CategoryDetail = categoryDetail;
+            RehabilitationName = rehabilitationName;
+            FuJu = fuJu;
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
         public int ID { get; set; }
         /// <summary>

@@ -12,36 +12,48 @@ using System.Web.Http.Description;
 using JZKFXT.DAL;
 using JZKFXT.Models;
 using System.Web.Security;
+using JZKFXT.Filter;
 
 namespace JZKFXT.Controllers
 {
+    [WebApiExceptionFilterAttribute]
     public class UsersController : ApiController
     {
         private BaseContext db = new BaseContext();
 
         // GET: api/Users
-        public IQueryable<User> GetUsers()
+        public async Task<IHttpActionResult> GetUsers(User user,bool login=false)
         {
-            return db.Users;
+            if (login)
+            {
+                User loginuser = await db.Users.FirstOrDefaultAsync(u => u.UserName == user.UserName && u.Password == user.Password);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    FormsAuthentication.SetAuthCookie(user.UserName, false);
+                    loginuser.LastLoginTime = DateTime.Now;
+                    await db.SaveChangesAsync();
+                    return Ok(user);
+                }
+            }
+            var result = db.Users;
+            return Ok(result);
         }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> GetUser(User user)
+        public async Task<IHttpActionResult> GetUser(int id)
         {
-            User loginuser = await db.Users.FirstOrDefaultAsync(u => u.UserName == user.UserName && u.Password == user.Password);
-
+            User user = await db.Users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
-            else
-            {
-                FormsAuthentication.SetAuthCookie(user.UserName, false);
-                loginuser.LastLoginTime = DateTime.Now;
-                await db.SaveChangesAsync();
-                return Ok(user);
-            }
+
+            return Ok(user);
         }
 
         // PUT: api/Users/5

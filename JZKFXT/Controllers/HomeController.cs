@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace JZKFXT.Controllers
 {
-    public class FileController : Controller
+    public class HomeController : Controller
     {
-        // GET: File
-        public JsonResult upload()
+        // GET: Home
+        public ActionResult Index()
         {
-            return Json("");
+            return View();
         }
     }
 }

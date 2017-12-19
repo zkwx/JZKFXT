@@ -13,6 +13,16 @@ namespace JZKFXT.Models
     /// </summary>
     public class DisabilityReason
     {
+        public DisabilityReason()
+        {
+        }
+
+        public DisabilityReason(int categoryID, string name)
+        {
+            CategoryID = categoryID;
+            Name = name;
+        }
+
         public int ID { get; set; }
         public int CategoryID { get; set; }
         public string Name { get; set; }

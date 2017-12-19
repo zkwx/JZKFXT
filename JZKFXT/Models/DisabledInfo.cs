@@ -12,6 +12,25 @@ namespace JZKFXT.Models
     /// </summary>
     public class DisabledInfo
     {
+        public DisabledInfo()
+        {
+        }
+
+        public DisabledInfo(string name, int? sex, string tel, string guardian, int? relationshipID, bool hasCertificate, string certificate, bool need, int? categoryID, int? degreeID, DateTime? createTime)
+        {
+            Name = name;
+            Sex = sex;
+            Tel = tel;
+            Guardian = guardian;
+            RelationshipID = relationshipID;
+            HasCertificate = hasCertificate;
+            Certificate = certificate;
+            Need = need;
+            CategoryID = categoryID;
+            DegreeID = degreeID;
+            CreateTime = createTime;
+        }
+
         public int ID { get; set; }///
         public string Name { get; set; }//姓名
         public int? Sex { get; set; }//性别
@@ -46,10 +65,8 @@ namespace JZKFXT.Models
         public virtual ICollection<DisabledInfo_Detail> DisabledInfo_Details { get; set; }//残疾人康复详情
 
         public int? UserID { get; set; }
-        public int? PatientID { get; set; }
 
         public virtual User User { get; set; }
-        public virtual Patient Patient { get; set; }
 
 
         [JsonIgnore]

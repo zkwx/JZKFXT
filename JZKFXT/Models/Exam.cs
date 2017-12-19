@@ -12,6 +12,17 @@ namespace JZKFXT.Models
     /// </summary>
     public class Exam
     {
+        public Exam()
+        {
+        }
+
+        public Exam(int iD, string name, ICollection<Question> questions)
+        {
+            ID = iD;
+            Name = name;
+            Questions = questions;
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
         public int ID { get; set; }
         /// <summary>

@@ -11,6 +11,19 @@ namespace JZKFXT.Models
     /// </summary>
     public class ExamRecord
     {
+        public ExamRecord()
+        {
+        }
+
+        public ExamRecord(int iD, int examID, int disabledInfoID, Exam exam, DisabledInfo disabledInfo)
+        {
+            ID = iD;
+            ExamID = examID;
+            DisabledInfoID = disabledInfoID;
+            Exam = exam;
+            DisabledInfo = disabledInfo;
+        }
+
         public int ID { get; set; }
         /// <summary>
         /// 评估ID

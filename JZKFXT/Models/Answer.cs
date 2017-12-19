@@ -11,6 +11,20 @@ namespace JZKFXT.Models
     /// </summary>
     public class Answer
     {
+        public Answer()
+        {
+        }
+
+        public Answer(int iD, int examID, int questionID, string optionIDs, int disabledInfoID, string other)
+        {
+            ID = iD;
+            ExamID = examID;
+            QuestionID = questionID;
+            OptionIDs = optionIDs;
+            DisabledInfoID = disabledInfoID;
+            Other = other;
+        }
+
         public int ID { get; set; }
         /// <summary>
         /// 评估ID

@@ -12,6 +12,19 @@ namespace JZKFXT.Models
     /// </summary>
     public class Option
     {
+        public Option()
+        {
+        }
+
+        public Option(string optionText, string contentText,int? nextQuestionID, string assistiveDeviceID, string assistiveDeviceName)
+        {
+            OptionText = optionText;
+            ContentText = contentText;
+            NextQuestionID = nextQuestionID;
+            AssistiveDeviceID = assistiveDeviceID;
+            AssistiveDeviceName = assistiveDeviceName;
+        }
+
         public int ID { get; set; }
         /// <summary>
         /// 问题ID
@@ -31,13 +44,14 @@ namespace JZKFXT.Models
         /// </summary>
         public string ContentText { get; set; }
         /// <summary>
-        /// 分数
-        /// </summary>
-        public double Score { get; set; }
-        /// <summary>
         /// 转到下一问题的ID
         /// </summary>
         public int? NextQuestionID { get; set; }
+        /// <summary>
+        /// 分数
+        /// </summary>
+        public double Score { get; set; }
+        
         /// <summary>
         /// 辅具编码
         /// </summary>

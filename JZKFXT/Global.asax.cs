@@ -1,4 +1,7 @@
 ﻿using JZKFXT.DAL;
+using JZKFXT.Filter;
+using JZKFXT.Utils;
+using log4net.Config;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,6 +18,7 @@ namespace JZKFXT
     {
         protected void Application_Start()
         {
+            XmlConfigurator.Configure();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

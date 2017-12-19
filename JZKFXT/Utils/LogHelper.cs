@@ -18,7 +18,7 @@ namespace JZKFXT.Utils
         public static void Error(Exception ex)
         {
             ILog log = log4net.LogManager.GetLogger(string.Empty);
-            log.Error("error", ex);
+            log.Error(ex);
         }
 
         public static void Info(string info)

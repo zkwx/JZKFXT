@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using JZKFXT.DAL;
 using JZKFXT.Models;
+using JZKFXT.Filter;
 
 namespace JZKFXT.Controllers
 {
@@ -31,6 +32,7 @@ namespace JZKFXT.Controllers
 
         // GET: api/Categories/5
         [ResponseType(typeof(Category))]
+        [WebApiExceptionFilterAttribute]
         public async Task<IHttpActionResult> GetCategory(int id)
         {
             Category category = await db.Categories.FindAsync(id);
