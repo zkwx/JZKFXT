@@ -39,7 +39,6 @@ namespace JZKFXT.Controllers.API
                         QuestionText = a.QuestionText,
                         Multiple = a.Multiple,
                         IsFirst = a.IsFirst,
-                        IsLast = a.IsLast,
                         Answers = new List<Answer>(),
                         //根据选项查询下一题 键值对 
                         QueryOptions = a.Options.ToDictionary(

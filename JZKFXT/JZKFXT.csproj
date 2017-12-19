@@ -282,6 +282,23 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="log4net.config" />
+    <Content Include="App_Data\精准康复系统\功能标签情况说明.doc" />
+    <Content Include="App_Data\精准康复系统\基层精准康复服务移动端系统总体介绍.docx" />
+    <Content Include="App_Data\精准康复系统\残疾人辅助器具测量基础知识20160525.doc" />
+    <Content Include="App_Data\精准康复系统\评估模块\附件2-1网络评估适配系统听力部分-岳2017-9-29（改）.doc" />
+    <Content Include="App_Data\精准康复系统\评估模块\附件2-2网络评估适配系统视力部分-岳2017-9-29（改）.doc" />
+    <Content Include="App_Data\精准康复系统\评估模块\附件2-3-1偏瘫部分网上适配方案-岳2017-9-29（改）.docx" />
+    <Content Include="App_Data\精准康复系统\评估模块\附件2-3-2脑瘫部分网上适配方案-岳2017-9-29（改）.docx" />
+    <Content Include="App_Data\精准康复系统\评估模块\附件2-3-3脊髓损伤部分网上适配方案-岳2017-9-29（改）.docx" />
+    <Content Include="App_Data\精准康复系统\评估模块\附件2-3-4肢体综合残疾网上适配方案-岳2017-9-29%28改）.docx" />
+    <Content Include="App_Data\精准康复系统\评估模块\附件2-3-5假肢子模块评估方案.docx" />
+    <Content Include="App_Data\精准康复系统\评估模块\附件2-3-6无障碍家居环境改造评估方案-岳2017-10-9.docx" />
+    <Content Include="App_Data\精准康复系统\辅具分类目录总库及功能标签-任皓20171010.xls" />
+    <Content Include="App_Data\精准康复系统\附件1-“精准康复入户”模块.docx" />
+    <Content Include="App_Data\精准康复系统\附件2-“辅具上门评估与适配”模块.docx" />
+    <Content Include="App_Data\精准康复系统\附件3-“机构评估与审核”模块.docx" />
+    <Content Include="App_Data\精准康复系统\附件4-“综合康复服务”模块.docx" />
+    <Content Include="App_Data\精准康复系统\附件5-“综合服务回访”模块.docx" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -306,7 +323,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Logs\" />
     <Folder Include="Views\File\" />
     <Folder Include="Views\System\" />
