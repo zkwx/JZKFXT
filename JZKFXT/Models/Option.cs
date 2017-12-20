@@ -42,7 +42,7 @@ namespace JZKFXT.Models
         /// 问题ID
         /// </summary>
         [JsonIgnore]
-        public Question Question { get; set; }
+        public virtual Question Question { get; set; }
         /// <summary>
         /// 选项名 如ABCD
         /// </summary>

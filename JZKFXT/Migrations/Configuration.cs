@@ -17,10 +17,7 @@ namespace JZKFXT.Migrations
         protected override void Seed(JZKFXT.DAL.BaseContext db)
         {
             base.Seed(db);
-            //用户
-            var user = new User("", "", "管理员", 0, DateTime.Today);
-            db.Users.AddOrUpdate(user);
-            db.SaveChanges();
+
             //角色
             List<Role> Roles = new List<Role>
             {
@@ -41,6 +38,12 @@ namespace JZKFXT.Migrations
                 db.Roles.AddOrUpdate(r);
             }
             db.SaveChanges();
+
+            //用户
+            var user = new User("", "", "管理员", 1, DateTime.Today);
+            db.Users.AddOrUpdate(user);
+            db.SaveChanges();
+
             //关系
             List<Relationship> Relationships = new List<Relationship>
         {
@@ -408,6 +411,9 @@ namespace JZKFXT.Migrations
             };
             Exam exam2 = new Exam(2, "听力", questions2);
             db.Exams.AddOrUpdate(exam2);
+
+
+
         }
     }
 }
