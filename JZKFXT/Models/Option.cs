@@ -24,7 +24,15 @@ namespace JZKFXT.Models
             AssistiveDeviceID = assistiveDeviceID;
             AssistiveDeviceName = assistiveDeviceName;
         }
-
+        public Option(string optionText, string contentText, int? nextQuestionID, string NextQuestionNo,string assistiveDeviceID, string assistiveDeviceName)
+        {
+            OptionText = optionText;
+            ContentText = contentText;
+            NextQuestionID = nextQuestionID;
+            NextQuestionNo = NextQuestionNo;
+            AssistiveDeviceID = assistiveDeviceID;
+            AssistiveDeviceName = assistiveDeviceName;
+        }
         public int ID { get; set; }
         /// <summary>
         /// 问题ID
@@ -43,6 +51,8 @@ namespace JZKFXT.Models
         /// 选项描述文字
         /// </summary>
         public string ContentText { get; set; }
+        public string NextQuestionNo { get; set; }
+
         /// <summary>
         /// 转到下一问题的ID
         /// </summary>
