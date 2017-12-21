@@ -15,20 +15,10 @@ namespace JZKFXT.Models
         public Option()
         {
         }
-
-        public Option(string optionText, string contentText,int? nextQuestionID, string assistiveDeviceID, string assistiveDeviceName)
+        public Option(string optionText, string contentText,string nextQuestionNo,string assistiveDeviceID, string assistiveDeviceName)
         {
             OptionText = optionText;
             ContentText = contentText;
-            NextQuestionID = nextQuestionID;
-            AssistiveDeviceID = assistiveDeviceID;
-            AssistiveDeviceName = assistiveDeviceName;
-        }
-        public Option(string optionText, string contentText, int? nextQuestionID, string nextQuestionNo,string assistiveDeviceID, string assistiveDeviceName)
-        {
-            OptionText = optionText;
-            ContentText = contentText;
-            NextQuestionID = nextQuestionID;
             NextQuestionNo = nextQuestionNo;
             AssistiveDeviceID = assistiveDeviceID;
             AssistiveDeviceName = assistiveDeviceName;

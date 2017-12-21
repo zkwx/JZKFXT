@@ -296,112 +296,112 @@ namespace JZKFXT.Migrations
             //评估
 
             //视力
-            List<Question> questions1 = new List<Question> {
-                new Question(1010000, "1", "视力残疾等级", true,false,
-                    new List<Option>{
-                        new Option("A","一级", 1010100,null,null),
-                        new Option("B","二级", 1010100,null,null),
-                        new Option("C","三级", 1010200,null,null),
-                        new Option("D","四级", 1010200,null,null),
-                        new Option("E","未评定或等级不准", 1090000,null,null),
-                    }
-                ),
-                new Question(1090000, "附加题", "能否看见",false,false,
-                    new List<Option>{
-                        new Option("A", "不能（相当于一、二级）", 1010100,null,null),
-                        new Option("B", "能（相当于三、四级）", 1010200,null,null),
-                    }
-                ),
-                new Question(1010100, "1-1", "能否听见",false,false,
-                    new List<Option>{
-                        new Option("A", "能", 1010101,null,null),
-                        new Option("B", "不能", 1010102,null,null),
-                    }
-                ),
-                new Question(1010101, "1-1-1", "希望实现何种功能（多选）", false,true,
-                    new List<Option>{
-                        new Option("A", "引导出行", 1020000, "02 39 03", "盲杖"),
-                        new Option("B", "听书娱乐", 1020000, "05 18 03", "声音记录和播放设备(听书机)"),
-                        new Option("C", "时间提醒", 1020000, "05 27 12", "时钟和计时器(震动闹钟/震动手表)"),
-                        new Option("D", "通讯交流", 1020000, "05 24 06,05 33 15", "移动网络电话(盲人用手机),浏览器软件和沟通软件"),
-                        new Option("E", "生活便捷", 1020000, "05 27 06", "声信号指示器"),
-                        new Option("F", "学习书写", 1020000, "03,05 12 12,05 12 18", "手动式绘画和书写器具,手写盲文书写装置,特制书写纸（塑膜）"),
-                    }
-                ),
-                new Question(1010102, "1-1-2", "希望实现何种功能（多选）", false,true,
-                    new List<Option>{
-                        new Option("A", "引导出行", 1020000, "02 39 03", "盲杖"),
-                        new Option("B", "时间提醒", 1020000, "05 27 12", "时钟和计时器(震动闹钟/震动手表)"),
-                    }
-                ),
-                new Question(1010200, "1-2", "希望看近物还是看远处（多选）", false,true,
-                    new List<Option>{
-                        new Option("A", "看近", 1010201,null,null),
-                        new Option("B", "看远", 1010300, "05 03 12", "双筒望远镜和单筒望远镜"),
-                    }
-                ),
-                new Question(1010201, "1-2-1", "需要光学助视器还是电子助视器",false,false,
-                    new List<Option>{
-                        new Option("A", "光学", 1010300, "05 03 09", "具有放大功能的眼镜、镜片、助视系统（只选其中光学类）"),
-                        new Option("B", "电子", 1010300, "05 03 09", "具有放大功能的眼镜、镜片、助视系统（只选其中电子类）"),
-                    }
-                ),
-                new Question(1010300, "1-3", "希望实现何种功能（多选）", false,true,
-                    new List<Option>{
-                        new Option("A", "阅读学习", 1020000, "05 30 21,05 30 18,05 12 06,05 12 15", "字符阅读器,阅读框和版面限定器,书写板、绘图板和绘画板,打字机"),
-                        new Option("B", "交流通讯", 1020000, "05 24 03", "普通网络电话"),
-                        new Option("C", "数学计算", 1020000, "05 15 03,05 15 06", "手动计算器,计算设备"),
-                        new Option("D", "休闲娱乐", 1020000, "05 21 03", "字母和符号卡、板"),
-                        new Option("E", "计算机使用", 1020000, "05 33 18", "用于计算机和网络的附件"),
-                    }
-                ),
-                new Question(1020000, "2", "是否存在眩光现象",false,false,
-                    new List<Option>{
-                        new Option("A", "是", 1030000, "05 03 03", "滤光器：低视力专用滤光镜"),
-                        new Option("B", "否", 1030000,null,null),
-                    }
-                ),
-                new Question(1030000, "3", "是否能正常说话", false,false,
-                    new List<Option>{
-                        new Option("A", "能",null,null,null),
-                        new Option("B", "不能", 1030100,null,null),
-                    }
-                ),
-                new Question(1030100, "3-1", "是否会写字",false,false,
-                    new List<Option>{
-                        new Option("A", "会", null,"05 12 12,05 09 03", "手写盲文书写装置,语音发生器"),
-                        new Option("B", "不会",null,null,null),
-                    }
-                ),
-            };
-            Exam exam1 = new Exam(1, "视力", questions1);
-            db.Exams.AddOrUpdate(exam1);
+            //List<Question> questions1 = new List<Question> {
+            //    new Question(1010000, "1", "视力残疾等级", true,false,
+            //        new List<Option>{
+            //            new Option("A","一级", 1010100,null,null),
+            //            new Option("B","二级", 1010100,null,null),
+            //            new Option("C","三级", 1010200,null,null),
+            //            new Option("D","四级", 1010200,null,null),
+            //            new Option("E","未评定或等级不准", 1090000,null,null),
+            //        }
+            //    ),
+            //    new Question(1090000, "附加题", "能否看见",false,false,
+            //        new List<Option>{
+            //            new Option("A", "不能（相当于一、二级）", 1010100,null,null),
+            //            new Option("B", "能（相当于三、四级）", 1010200,null,null),
+            //        }
+            //    ),
+            //    new Question(1010100, "1-1", "能否听见",false,false,
+            //        new List<Option>{
+            //            new Option("A", "能", 1010101,null,null),
+            //            new Option("B", "不能", 1010102,null,null),
+            //        }
+            //    ),
+            //    new Question(1010101, "1-1-1", "希望实现何种功能（多选）", false,true,
+            //        new List<Option>{
+            //            new Option("A", "引导出行", 1020000, "02 39 03", "盲杖"),
+            //            new Option("B", "听书娱乐", 1020000, "05 18 03", "声音记录和播放设备(听书机)"),
+            //            new Option("C", "时间提醒", 1020000, "05 27 12", "时钟和计时器(震动闹钟/震动手表)"),
+            //            new Option("D", "通讯交流", 1020000, "05 24 06,05 33 15", "移动网络电话(盲人用手机),浏览器软件和沟通软件"),
+            //            new Option("E", "生活便捷", 1020000, "05 27 06", "声信号指示器"),
+            //            new Option("F", "学习书写", 1020000, "03,05 12 12,05 12 18", "手动式绘画和书写器具,手写盲文书写装置,特制书写纸（塑膜）"),
+            //        }
+            //    ),
+            //    new Question(1010102, "1-1-2", "希望实现何种功能（多选）", false,true,
+            //        new List<Option>{
+            //            new Option("A", "引导出行", 1020000, "02 39 03", "盲杖"),
+            //            new Option("B", "时间提醒", 1020000, "05 27 12", "时钟和计时器(震动闹钟/震动手表)"),
+            //        }
+            //    ),
+            //    new Question(1010200, "1-2", "希望看近物还是看远处（多选）", false,true,
+            //        new List<Option>{
+            //            new Option("A", "看近", 1010201,null,null),
+            //            new Option("B", "看远", 1010300, "05 03 12", "双筒望远镜和单筒望远镜"),
+            //        }
+            //    ),
+            //    new Question(1010201, "1-2-1", "需要光学助视器还是电子助视器",false,false,
+            //        new List<Option>{
+            //            new Option("A", "光学", 1010300, "05 03 09", "具有放大功能的眼镜、镜片、助视系统（只选其中光学类）"),
+            //            new Option("B", "电子", 1010300, "05 03 09", "具有放大功能的眼镜、镜片、助视系统（只选其中电子类）"),
+            //        }
+            //    ),
+            //    new Question(1010300, "1-3", "希望实现何种功能（多选）", false,true,
+            //        new List<Option>{
+            //            new Option("A", "阅读学习", 1020000, "05 30 21,05 30 18,05 12 06,05 12 15", "字符阅读器,阅读框和版面限定器,书写板、绘图板和绘画板,打字机"),
+            //            new Option("B", "交流通讯", 1020000, "05 24 03", "普通网络电话"),
+            //            new Option("C", "数学计算", 1020000, "05 15 03,05 15 06", "手动计算器,计算设备"),
+            //            new Option("D", "休闲娱乐", 1020000, "05 21 03", "字母和符号卡、板"),
+            //            new Option("E", "计算机使用", 1020000, "05 33 18", "用于计算机和网络的附件"),
+            //        }
+            //    ),
+            //    new Question(1020000, "2", "是否存在眩光现象",false,false,
+            //        new List<Option>{
+            //            new Option("A", "是", 1030000, "05 03 03", "滤光器：低视力专用滤光镜"),
+            //            new Option("B", "否", 1030000,null,null),
+            //        }
+            //    ),
+            //    new Question(1030000, "3", "是否能正常说话", false,false,
+            //        new List<Option>{
+            //            new Option("A", "能",null,null,null),
+            //            new Option("B", "不能", 1030100,null,null),
+            //        }
+            //    ),
+            //    new Question(1030100, "3-1", "是否会写字",false,false,
+            //        new List<Option>{
+            //            new Option("A", "会", null,"05 12 12,05 09 03", "手写盲文书写装置,语音发生器"),
+            //            new Option("B", "不会",null,null,null),
+            //        }
+            //    ),
+            //};
+            //Exam exam1 = new Exam(1, "视力", questions1);
+            //db.Exams.AddOrUpdate(exam1);
             //听力
             List<Question> questions2 = new List<Question> {
-                new Question(2010000, "1", "听力残疾等级", true,false,
+                new Question("1", "听力残疾等级", true,false,
                     new List<Option>{
                         ////选A时，结合年龄，系统关联
                         //6岁以下：05 06 助听器-人工耳蜗
                         //6岁-60岁：05 06 助听器(耳背/耳内/耳道/深耳道式助听器)
                         //60岁以上：05 06 06佩戴式（盒式）助听器
-                        new Option("A", "一级", 2020000,"2", "05 06", "助听器-人工耳蜗,助听器(耳背/耳内/耳道/深耳道式助听器),佩戴式（盒式）助听器"),
-                        new Option("B", "二级", 2020000,"2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
-                        new Option("C", "三级", 2020000,"2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
-                        new Option("D", "四级", 2020000,"2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
-                        new Option("E", "未评定或等级不准", 2010100,"1-1",null,null),
+                        new Option("A", "一级","2", "05 06", "助听器-人工耳蜗,助听器(耳背/耳内/耳道/深耳道式助听器),佩戴式（盒式）助听器"),
+                        new Option("B", "二级","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
+                        new Option("C", "三级","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
+                        new Option("D", "四级","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
+                        new Option("E", "未评定或等级不准","1-1",null,null),
                     }
                 ),
-                new Question(2010100, "1-1", "在安静环境下，不带助听设备时，能听到",false,false,
+                new Question("1-1", "在安静环境下，不带助听设备时，能听到",false,false,
                     new List<Option>{
                         //选A时，结合年龄，系统关联
-                        new Option("A", "几乎听不到任何声音（等同于一级）", 2020000,"2", "05 06", "助听器-人工耳蜗,助听器(耳背/耳内/耳道/深耳道式助听器),佩戴式（盒式）助听器"),
-                        new Option("B", "只能听到鞭炮、敲鼓、雷声或用力击掌声（等同于二级）", 2020000,"2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
-                        new Option("C", "只能听到大声说话（等同于三级）", 2020000,"2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
-                        new Option("D", "能听到普通谈话声（等同于四级）", 2020000,"2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
-                        new Option("E", "听清一般言语，能分辨清楚（不配辅助器具）", 2020000,"2",null,null),
+                        new Option("A", "几乎听不到任何声音（等同于一级）","2", "05 06", "助听器-人工耳蜗,助听器(耳背/耳内/耳道/深耳道式助听器),佩戴式（盒式）助听器"),
+                        new Option("B", "只能听到鞭炮、敲鼓、雷声或用力击掌声（等同于二级）","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
+                        new Option("C", "只能听到大声说话（等同于三级）","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
+                        new Option("D", "能听到普通谈话声（等同于四级）","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
+                        new Option("E", "听清一般言语，能分辨清楚（不配辅助器具）","2",null,null),
                     }
                 ),
-                new Question(2020000, "2", "除听声外，希望实现何种功能", false,true,
+                new Question("2", "除听声外，希望实现何种功能", false,true,
                     new List<Option>{
                         new Option("A", "语言交流（无语言者）",null, "05 21 09", "对话装置(电子手写交流板/沟通板)"),
                         new Option("B", "门铃应答", null,"05 27 03", "视觉信号指示器(闪光门铃)"),

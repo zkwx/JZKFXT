@@ -16,9 +16,8 @@ namespace JZKFXT.Models
         {
         }
 
-        public Question(int iD, string questionNo, string questionText, bool isFirst, bool multiple, ICollection<Option> options)
+        public Question(string questionNo, string questionText, bool isFirst, bool multiple, ICollection<Option> options)
         {
-            ID = iD;
             QuestionNo = questionNo;
             QuestionText = questionText;
             IsFirst = isFirst;
@@ -26,7 +25,7 @@ namespace JZKFXT.Models
             Options = options;
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
         public int ID { get; set; }
         /// <summary>
         /// 评估ID
