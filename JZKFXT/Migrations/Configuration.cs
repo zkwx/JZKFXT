@@ -374,7 +374,7 @@ namespace JZKFXT.Migrations
                     }
                 ),
             };
-            Exam exam1 = new Exam(1, "视力", questions1);
+            Exam exam1 = new Exam(1, "辅具上门评估","视力", questions1);
             db.Exams.AddOrUpdate(exam1);
             //听力
             List<Question> questions2 = new List<Question> {
@@ -409,7 +409,7 @@ namespace JZKFXT.Migrations
                     }
                 )
             };
-            Exam exam2 = new Exam(2, "听力", questions2);
+            Exam exam2 = new Exam(2, "辅具上门评估", "听力", questions2);
             db.Exams.AddOrUpdate(exam2);
             //偏瘫
             List<Question> questions3 = new List<Question>
@@ -545,7 +545,7 @@ namespace JZKFXT.Migrations
                 ),
 
             };
-            Exam exam3 = new Exam(3, "偏瘫", questions3);
+            Exam exam3 = new Exam(3, "辅具上门评估", "偏瘫", questions3);
             db.Exams.AddOrUpdate(exam3);
         }
     }
