@@ -21,7 +21,7 @@ namespace JZKFXT.Controllers.API
         // GET: api/Exams
         public async Task<IHttpActionResult> GetExams(string targetExamName = null)
         {
-            Exam exam = await db.Exams.Where(a=>a.Name==targetExamName).FirstOrDefaultAsync();
+            Exam exam = await db.Exams.Where(a => a.Name == targetExamName).FirstOrDefaultAsync();
             if (exam == null)
             {
                 return NotFound();
@@ -31,7 +31,7 @@ namespace JZKFXT.Controllers.API
                 ID = exam.ID,
                 Name = exam.Name,
                 Questions = exam.Questions.ToDictionary(
-                    a => a.ID,
+                    a => a.QuestionNo,
                     a => new
                     {
                         ID = a.ID,
@@ -45,7 +45,8 @@ namespace JZKFXT.Controllers.API
                             b => b.ID,
                             b => new
                             {
-                                NextQuestionID = b.NextQuestionID,
+                                NextQuestionNo = b.NextQuestionNo,
+                                AssistiveDeviceID = b.AssistiveDeviceID,
                                 AssistiveDeviceName = b.AssistiveDeviceName
                             }),
                         //checklist显示数组 不支持对象数组

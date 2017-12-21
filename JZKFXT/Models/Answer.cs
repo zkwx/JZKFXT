@@ -35,6 +35,10 @@ namespace JZKFXT.Models
         /// </summary>
         public int QuestionID { get; set; }
         /// <summary>
+        /// 问题No
+        /// </summary>
+        public int QuestionNo { get; set; }
+        /// <summary>
         /// 选择的选项ID
         /// </summary>
         public string OptionIDs { get; set; }

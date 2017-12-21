@@ -24,12 +24,12 @@ namespace JZKFXT.Models
             AssistiveDeviceID = assistiveDeviceID;
             AssistiveDeviceName = assistiveDeviceName;
         }
-        public Option(string optionText, string contentText, int? nextQuestionID, string NextQuestionNo,string assistiveDeviceID, string assistiveDeviceName)
+        public Option(string optionText, string contentText, int? nextQuestionID, string nextQuestionNo,string assistiveDeviceID, string assistiveDeviceName)
         {
             OptionText = optionText;
             ContentText = contentText;
             NextQuestionID = nextQuestionID;
-            NextQuestionNo = NextQuestionNo;
+            NextQuestionNo = nextQuestionNo;
             AssistiveDeviceID = assistiveDeviceID;
             AssistiveDeviceName = assistiveDeviceName;
         }
