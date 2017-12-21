@@ -23,13 +23,25 @@ namespace JZKFXT.Models
             AssistiveDeviceID = assistiveDeviceID;
             AssistiveDeviceName = assistiveDeviceName;
         }
+        public Option(string optionText, string contentText, int examID,string nextQuestionNo, string assistiveDeviceID, string assistiveDeviceName)
+        {
+            OptionText = optionText;
+            ContentText = contentText;
+            NextQuestionNo = nextQuestionNo;
+            AssistiveDeviceID = assistiveDeviceID;
+            AssistiveDeviceName = assistiveDeviceName;
+        }
         public int ID { get; set; }
+        /// <summary>
+        /// 试卷ID
+        /// </summary>
+        public int ExamID { get; set; }
         /// <summary>
         /// 问题ID
         /// </summary>
         public int QuestionID { get; set; }
         /// <summary>
-        /// 问题ID
+        /// 问题
         /// </summary>
         [JsonIgnore]
         public virtual Question Question { get; set; }
@@ -42,7 +54,6 @@ namespace JZKFXT.Models
         /// </summary>
         public string ContentText { get; set; }
         public string NextQuestionNo { get; set; }
-
         /// <summary>
         /// 转到下一问题的ID
         /// </summary>
@@ -51,7 +62,6 @@ namespace JZKFXT.Models
         /// 分数
         /// </summary>
         public double Score { get; set; }
-        
         /// <summary>
         /// 辅具编码
         /// </summary>
