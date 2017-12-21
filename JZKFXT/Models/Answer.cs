@@ -24,7 +24,6 @@ namespace JZKFXT.Models
             DisabledInfoID = disabledInfoID;
             Other = other;
         }
-
         public int ID { get; set; }
         /// <summary>
         /// 评估ID
@@ -37,7 +36,7 @@ namespace JZKFXT.Models
         /// <summary>
         /// 问题No
         /// </summary>
-        public int QuestionNo { get; set; }
+        public string QuestionNo { get; set; }
         /// <summary>
         /// 选择的选项ID
         /// </summary>

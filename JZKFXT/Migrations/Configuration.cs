@@ -296,86 +296,86 @@ namespace JZKFXT.Migrations
             //评估
 
             //视力
-            //List<Question> questions1 = new List<Question> {
-            //    new Question(1010000, "1", "视力残疾等级", true,false,
-            //        new List<Option>{
-            //            new Option("A","一级", 1010100,null,null),
-            //            new Option("B","二级", 1010100,null,null),
-            //            new Option("C","三级", 1010200,null,null),
-            //            new Option("D","四级", 1010200,null,null),
-            //            new Option("E","未评定或等级不准", 1090000,null,null),
-            //        }
-            //    ),
-            //    new Question(1090000, "附加题", "能否看见",false,false,
-            //        new List<Option>{
-            //            new Option("A", "不能（相当于一、二级）", 1010100,null,null),
-            //            new Option("B", "能（相当于三、四级）", 1010200,null,null),
-            //        }
-            //    ),
-            //    new Question(1010100, "1-1", "能否听见",false,false,
-            //        new List<Option>{
-            //            new Option("A", "能", 1010101,null,null),
-            //            new Option("B", "不能", 1010102,null,null),
-            //        }
-            //    ),
-            //    new Question(1010101, "1-1-1", "希望实现何种功能（多选）", false,true,
-            //        new List<Option>{
-            //            new Option("A", "引导出行", 1020000, "02 39 03", "盲杖"),
-            //            new Option("B", "听书娱乐", 1020000, "05 18 03", "声音记录和播放设备(听书机)"),
-            //            new Option("C", "时间提醒", 1020000, "05 27 12", "时钟和计时器(震动闹钟/震动手表)"),
-            //            new Option("D", "通讯交流", 1020000, "05 24 06,05 33 15", "移动网络电话(盲人用手机),浏览器软件和沟通软件"),
-            //            new Option("E", "生活便捷", 1020000, "05 27 06", "声信号指示器"),
-            //            new Option("F", "学习书写", 1020000, "03,05 12 12,05 12 18", "手动式绘画和书写器具,手写盲文书写装置,特制书写纸（塑膜）"),
-            //        }
-            //    ),
-            //    new Question(1010102, "1-1-2", "希望实现何种功能（多选）", false,true,
-            //        new List<Option>{
-            //            new Option("A", "引导出行", 1020000, "02 39 03", "盲杖"),
-            //            new Option("B", "时间提醒", 1020000, "05 27 12", "时钟和计时器(震动闹钟/震动手表)"),
-            //        }
-            //    ),
-            //    new Question(1010200, "1-2", "希望看近物还是看远处（多选）", false,true,
-            //        new List<Option>{
-            //            new Option("A", "看近", 1010201,null,null),
-            //            new Option("B", "看远", 1010300, "05 03 12", "双筒望远镜和单筒望远镜"),
-            //        }
-            //    ),
-            //    new Question(1010201, "1-2-1", "需要光学助视器还是电子助视器",false,false,
-            //        new List<Option>{
-            //            new Option("A", "光学", 1010300, "05 03 09", "具有放大功能的眼镜、镜片、助视系统（只选其中光学类）"),
-            //            new Option("B", "电子", 1010300, "05 03 09", "具有放大功能的眼镜、镜片、助视系统（只选其中电子类）"),
-            //        }
-            //    ),
-            //    new Question(1010300, "1-3", "希望实现何种功能（多选）", false,true,
-            //        new List<Option>{
-            //            new Option("A", "阅读学习", 1020000, "05 30 21,05 30 18,05 12 06,05 12 15", "字符阅读器,阅读框和版面限定器,书写板、绘图板和绘画板,打字机"),
-            //            new Option("B", "交流通讯", 1020000, "05 24 03", "普通网络电话"),
-            //            new Option("C", "数学计算", 1020000, "05 15 03,05 15 06", "手动计算器,计算设备"),
-            //            new Option("D", "休闲娱乐", 1020000, "05 21 03", "字母和符号卡、板"),
-            //            new Option("E", "计算机使用", 1020000, "05 33 18", "用于计算机和网络的附件"),
-            //        }
-            //    ),
-            //    new Question(1020000, "2", "是否存在眩光现象",false,false,
-            //        new List<Option>{
-            //            new Option("A", "是", 1030000, "05 03 03", "滤光器：低视力专用滤光镜"),
-            //            new Option("B", "否", 1030000,null,null),
-            //        }
-            //    ),
-            //    new Question(1030000, "3", "是否能正常说话", false,false,
-            //        new List<Option>{
-            //            new Option("A", "能",null,null,null),
-            //            new Option("B", "不能", 1030100,null,null),
-            //        }
-            //    ),
-            //    new Question(1030100, "3-1", "是否会写字",false,false,
-            //        new List<Option>{
-            //            new Option("A", "会", null,"05 12 12,05 09 03", "手写盲文书写装置,语音发生器"),
-            //            new Option("B", "不会",null,null,null),
-            //        }
-            //    ),
-            //};
-            //Exam exam1 = new Exam(1, "视力", questions1);
-            //db.Exams.AddOrUpdate(exam1);
+            List<Question> questions1 = new List<Question> {
+                new Question("1", "视力残疾等级", true,false,
+                    new List<Option>{
+                        new Option("A","一级", "1-1-1",null,null),
+                        new Option("B","二级", "1-1-1",null,null),
+                        new Option("C","三级", "1-2",null,null),
+                        new Option("D","四级", "1-2",null,null),
+                        new Option("E","未评定或等级不准", "附加题",null,null),
+                    }
+                ),
+                new Question("附加题", "能否看见",false,false,
+                    new List<Option>{
+                        new Option("A", "不能（相当于一、二级）", "1-1",null,null),
+                        new Option("B", "能（相当于三、四级）", "1-2",null,null),
+                    }
+                ),
+                new Question("1-1", "能否听见",false,false,
+                    new List<Option>{
+                        new Option("A", "能", "1-1-1",null,null),
+                        new Option("B", "不能", "1-1-2",null,null),
+                    }
+                ),
+                new Question("1-1-1", "希望实现何种功能（多选）", false,true,
+                    new List<Option>{
+                        new Option("A", "引导出行", "2", "02 39 03", "盲杖"),
+                        new Option("B", "听书娱乐", "2", "05 18 03", "声音记录和播放设备(听书机)"),
+                        new Option("C", "时间提醒", "2", "05 27 12", "时钟和计时器(震动闹钟/震动手表)"),
+                        new Option("D", "通讯交流", "2", "05 24 06,05 33 15", "移动网络电话(盲人用手机),浏览器软件和沟通软件"),
+                        new Option("E", "生活便捷", "2", "05 27 06", "声信号指示器"),
+                        new Option("F", "学习书写", "2", "03,05 12 12,05 12 18", "手动式绘画和书写器具,手写盲文书写装置,特制书写纸（塑膜）"),
+                    }
+                ),
+                new Question("1-1-2", "希望实现何种功能（多选）", false,true,
+                    new List<Option>{
+                        new Option("A", "引导出行", "2", "02 39 03", "盲杖"),
+                        new Option("B", "时间提醒", "2", "05 27 12", "时钟和计时器(震动闹钟/震动手表)"),
+                    }
+                ),
+                new Question("1-2", "希望看近物还是看远处（多选）", false,true,
+                    new List<Option>{
+                        new Option("A", "看近", "1-2-1",null,null),
+                        new Option("B", "看远", "1-3", "05 03 12", "双筒望远镜和单筒望远镜"),
+                    }
+                ),
+                new Question("1-2-1", "需要光学助视器还是电子助视器",false,false,
+                    new List<Option>{
+                        new Option("A", "光学", "1-3", "05 03 09", "具有放大功能的眼镜、镜片、助视系统（只选其中光学类）"),
+                        new Option("B", "电子", "1-3", "05 03 09", "具有放大功能的眼镜、镜片、助视系统（只选其中电子类）"),
+                    }
+                ),
+                new Question("1-3", "希望实现何种功能（多选）", false,true,
+                    new List<Option>{
+                        new Option("A", "阅读学习", "2", "05 30 21,05 30 18,05 12 06,05 12 15", "字符阅读器,阅读框和版面限定器,书写板、绘图板和绘画板,打字机"),
+                        new Option("B", "交流通讯", "2", "05 24 03", "普通网络电话"),
+                        new Option("C", "数学计算", "2", "05 15 03,05 15 06", "手动计算器,计算设备"),
+                        new Option("D", "休闲娱乐", "2", "05 21 03", "字母和符号卡、板"),
+                        new Option("E", "计算机使用", "2", "05 33 18", "用于计算机和网络的附件"),
+                    }
+                ),
+                new Question("2", "是否存在眩光现象",false,false,
+                    new List<Option>{
+                        new Option("A", "是", "3", "05 03 03", "滤光器：低视力专用滤光镜"),
+                        new Option("B", "否", "3",null,null),
+                    }
+                ),
+                new Question("3", "是否能正常说话", false,false,
+                    new List<Option>{
+                        new Option("A", "能",null,null,null),
+                        new Option("B", "不能", "3-1",null,null),
+                    }
+                ),
+                new Question("3-1", "是否会写字",false,false,
+                    new List<Option>{
+                        new Option("A", "会", null,"05 12 12,05 09 03", "手写盲文书写装置,语音发生器"),
+                        new Option("B", "不会",null,null,null),
+                    }
+                ),
+            };
+            Exam exam1 = new Exam(1, "视力", questions1);
+            db.Exams.AddOrUpdate(exam1);
             //听力
             List<Question> questions2 = new List<Question> {
                 new Question("1", "听力残疾等级", true,false,
@@ -411,9 +411,142 @@ namespace JZKFXT.Migrations
             };
             Exam exam2 = new Exam(2, "听力", questions2);
             db.Exams.AddOrUpdate(exam2);
+            //偏瘫
+            List<Question> questions3 = new List<Question>
+            {
+                new Question("1", "是否卧床", true,false,
+                    new List<Option>{
+                         new Option("A", "是","1-1-1", "05 27 18", "个人紧急报警系统（呼叫器）"),
+                         new Option("B", "否","1-2-1", null, null),
+                    }
+                ),
+                new Question("1-1-1", "能否翻身", false,false,
+                    new List<Option>{
+                        new Option("A", "不能","1-1-2", "04,06 33 06,07 33 09,06 33 04", "家庭和家具-卧式家具（护理床）,保护组织完整性的躺卧辅助器具（防压疮床垫）,个人移动训练辅助器具（翻身床单）,保护组织完整性的靠背垫和小靠背垫（体位垫）"),
+                        new Option("B", "能","1-1-2", "04,06 33 06,06 33 04,04 10 09", "家庭和家具-卧式家具（护理床）,保护组织完整性的躺卧辅助器具（防压疮床垫）,保护组织完整性的靠背垫和小靠背垫（体位垫）,扶手（床旁护栏）"),
+                    }
+                ),
+                new Question("1-1-2", "能否坐起", false,false,
+                    new List<Option>{
+                         new Option("A", "不能","1-1-3", null, null),
+                         new Option("B", "能","1-1-3", "04 10 03,02 22 18", "靠背,护理者操纵的轮椅（高靠背轮椅）"),
+                    }
+                ),
+                new Question("1-1-3", "能否控制大小便", false,false,
+                    new List<Option>{
+                         new Option("A", "不能","2", "07 09 03,03 30 21,03 30 18,03 27 18,03 31 06", "失禁报警器,成人一次性尿布,成人一次性衬垫,尿收集系统,阻便器（肛门插塞）"),
+                         new Option("B", "能","2", "03 24 15,03 24 21,03 12 33", "女用穿戴式软尿壶,男用穿戴式软尿壶,便盆（便携式充气便盆/塑料大便盆）"),
+                    }
+                ),
+                new Question("1-2-1", "能否行走", false,false,
+                    new List<Option>{
+                        new Option("A", "不能","1-2-1-1", null, null),
+                        new Option("B", "能","1-2-2", null, null),
+                    }
+                ),
+                new Question("1-2-1-1", "能否辅助下移动入厕", false,false,
+                    new List<Option>{
+                        new Option("A", "不能","1-2-1-2", "02 22 18", "护理者操纵的轮椅（座便轮椅）"),
+                        new Option("B", "能","1-2-1-2", "02 22 03,02 22 09,02 23 03", "双手驱动轮椅车（功能轮椅）,单手驱动轮椅车(单手轮驱动轮椅/偏瘫轮椅),电动轮椅车（室内型电动轮椅）"),
+                    }
+                ),
+                new Question("1-2-1-2", "是否有压疮", false,false,
+                    new List<Option>{
+                         new Option("A", "无","1-2-1-3", null, null),
+                         new Option("B", "曾经有，已愈合","1-2-1-3", "06 33 03", "保护组织完整性的坐垫和衬垫（防压疮坐垫）"),
+                         new Option("C", "有","1-2-1-3", "06 33 03", "保护组织完整性的坐垫和衬垫（防压疮坐垫）"),
+                    }
+                ),
+                new Question("1-2-1-3", "能否站立进行床-椅转移", false,false,
+                    new List<Option>{
+                         new Option("A", "不能","2", "07 33 09", "个人移动训练辅助器具（移乘带或移乘板）"),
+                         new Option("B", "需要辅助","2", "04 10 09,02 03 03", "扶手,手杖（直形四脚手杖（固定/可调））"),
+                         new Option("C", "独立站立转移","2", null, null),
+                    }
+                ),
+                new Question("1-2-2", "行走时是否需要搀扶", false,false,
+                    new List<Option>{
+                         new Option("A", "全程搀扶","1-2-2-1", null, null),
+                         new Option("B", "部分搀扶","2", "02 03 03", "手杖（单脚手杖）"),
+                         new Option("C", "无需搀扶","2", null, null),
+                    }
+                ),
+                new Question("1-2-2-1", "行走时是否需要搀扶", false,false,
+                    new List<Option>{
+                         new Option("A", "需要","2", "02 03 03,0", "手杖（S形四脚手杖（固定/可调））,单侧操作助行架"),
+                         new Option("B", "不需要","2", "02 03 03", "手杖（直形四脚手杖（固定/可调））"),
+                    }
+                ),
+                new Question("2", "患侧肢体畸形状况", false,true,
+                    new List<Option>{
+                         new Option("A", "肩膀下沉","3", "01 06 21", "肩矫形器-肩部吊带"),
+                         new Option("B", "手指被动伸展","3", "01 06,01 06 07", "上肢矫形器,手-指矫形器-分指板"),
+                         new Option("C", "行走时足拖地","3", "01 12", "下肢矫形器"),
+                    }
+                ),
+                new Question("3", "能否自行进食", false,false,
+                    new List<Option>{
+                         new Option("A", "不能","4", "04 30", "垂直运送辅助器具-桌类（床用餐桌或轮椅桌）"),
+                         new Option("B", "需要辅助","4", "08 18 03,10 09 18,10 09 21,10 09", "抓握装置（万能袖带）,盘子和碗（普通防洒碗/底部带吸盘餐具）,食物挡边(桌上防滑垫),食饮辅助器具"),
+                         new Option("C", "独立进食","4",null, null),
+                    }
+                ),
+                new Question("4", "能否自行洗浴", false,false,
+                    new List<Option>{
+                         new Option("A", "不能","5", "03 33 12,03 33,03 33 15,1", "洗浴床、淋浴桌和更换尿布桌（洗浴床）,清洗、盆浴和淋浴辅助器具（洗浴床单）,洗盆（充气式洗头池）,洗浴躺椅"),
+                         new Option("B", "能","4-1", null,null),
+                    }
+                ),
+                new Question("4-1", "是否站立洗浴", false,false,
+                    new List<Option>{
+                         new Option("A", "是","4-2", "03 33 06", "防滑的浴盆垫、淋浴垫和带子（地面防滑垫）"),
+                         new Option("B", "否","4-2", "03 33 03", "盆浴或淋浴椅、浴室坐板、凳子、靠背和座"),
+                    }
+                ),
+                new Question("4-2", "是否需要洗浴类自助具", false,false,
+                    new List<Option>{
+                         new Option("A", "需要","5", "03 33 30,03 36 06,03 36 09", "带有把手、手柄和握把的洗澡布、海绵和刷子,指甲锉和砂纸板,指甲剪和指甲刀"),
+                         new Option("B", "不需要","5", null, null),
+                    }
+                ),
+                new Question("5", "自行如厕时，是否下蹲", false,false,
+                    new List<Option>{
+                         new Option("A", "能","6", null, null),
+                         new Option("B", "不能","5-1", null, null),
+                    }
+                ),
+                new Question("5-1", "家中是否有坐便器", false,false,
+                    new List<Option>{
+                         new Option("A", "有，且高度合适","6", null, null),
+                         new Option("B", "有，高度较低","6", "03 12 18,03 12 21,04 10 09,03 12 12", "安装在坐便器上加高的坐便器座,内置帮助起身、坐下的升降机构的坐便器座,扶手,框架型加高的坐便器座"),
+                         new Option("C", "无","6", "03 12 03", "坐便椅"),
+                    }
+                ),
+                new Question("6", "能否自行穿脱衣物", false,false,
+                    new List<Option>{
+                         new Option("A", "不能，且高度合适","7", "03 03 18,03 03 42", "夹克衫和长裤,鞋和靴（方便穿脱鞋）"),
+                         new Option("B", "辅助下完成","7", "03 09 12,03 09 03,03 09 06", "穿脱衣钩或穿脱衣棍,穿短袜和穿连裤袜的辅助器具,鞋拔和脱靴器（长柄鞋拔）"),
+                         new Option("C", "独立完成","7", null, null),
+                    }
+                ),
+                new Question("7", "是否经常需要够拾远处物品", false,false,
+                    new List<Option>{
+                         new Option("A", "否","8", null, null),
+                         new Option("B", "是","8", "08 21 03", "手动抓取钳（折叠式长柄取物器/非折叠式长柄取物器）"),
+                    }
+                ),
+                new Question("8", "是否存在其他方面残疾", false,false,
+                    new List<Option>{
+                         new Option("A", "无","9", null, null),
+                         new Option("B", "视力",1,"9", null, null),
+                         new Option("C", "听力",2,"9", null, null),
+                         new Option("D", "其它","9", null, null),
+                    }
+                ),
 
-
-
+            };
+            Exam exam3 = new Exam(3, "偏瘫", questions3);
+            db.Exams.AddOrUpdate(exam3);
         }
     }
 }
