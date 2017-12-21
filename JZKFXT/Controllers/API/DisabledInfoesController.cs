@@ -38,15 +38,14 @@ namespace JZKFXT.Controllers
                             category = a.Category.Name,
                             degree = a.Degree.Name,
                         });
-                    //return Ok(result.OrderByDescending(a => a.id));
-                    return Ok(result);
+                    return Ok(result.OrderByDescending(a => a.id));
                 }
                 if (forListType == "评估" && examName != null)
                 {
                     IEnumerable<ExamRecord> records = db.ExamRecords;
                     if (examName == "上门")
                     {
-                        list = list.Where(a => a.Need && a.DisabledInfo_Details.Any(b => b.Rehabilitation.FuJu && b.Next.ID == 3));
+                        list = list.Where(a => a.ExamRecords.Count(b=>b.Evaluated==false)>0);
                     }
                     var result = list.Select(
                         a => new
@@ -56,16 +55,7 @@ namespace JZKFXT.Controllers
                             sex = a.Sex,
                             category = a.Category.Name,
                             degree = a.Degree.Name,
-                            detials = a.DisabledInfo_Details.Where(b => b.Rehabilitation.FuJu && b.Next.ID == 3)
-                            .Select(b => new
-                            {
-                                id = b.ID,
-                                category = b.Category.Name,
-                                degree = b.Degree.Name,
-                                next = b.Next,
-                                targetExamName = b.TargetExamName,
-                                done = records.Any(r => r.DisabledInfoID == a.ID && r.Exam.Name == b.Category.Name)
-                            })
+                            targetExamName=a.ExamRecords
                         });
                     return Json(result.OrderByDescending(a => a.id));
                 }
@@ -147,7 +137,7 @@ namespace JZKFXT.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-                if (disabledInfo.DisabledInfo_Details.Count()>0)
+                if (disabledInfo.DisabledInfo_Details.Count() > 0)
                 {
                     //康复入户添加
                     if (disabledInfo.Need)
@@ -156,10 +146,10 @@ namespace JZKFXT.Controllers
                         {
                             if (item == null) continue;
                             var r = db.Rehabilitations.Find(item.RehabilitationID);
-                            //条件1：功能障碍者在“精准康复入户”模块中康复需求选择“辅助器具适配及服务”、“辅助器具适配及适应训练”选项，且服务走向为“上门评估”的，其全部数据自动转到“辅具上门评估与适配模块”；
                             if (string.IsNullOrEmpty(item.TargetExamName) && r.FuJu && item.NextID == 3)
                             {
-                                item.TargetExamName = db.Categories.Find(item.CategoryID).Name;
+                                var categoryName = db.Categories.Find(item.CategoryID).Name;
+                                disabledInfo.TargetExamName = categoryName;
                             }
                         }
                     }
@@ -167,20 +157,17 @@ namespace JZKFXT.Controllers
                 else
                 {
                     //辅具上门添加
-                    disabledInfo.Need = true;
-                    Rehabilitation r = db.Rehabilitations.FirstOrDefault(a => a.FuJu && a.CategoryID == disabledInfo.CategoryID);
-                    if (r==null)
+
+                }
+                //更新到下一评估试卷
+                if (disabledInfo.TargetExamName != null)
+                {
+                    Exam exam = await db.Exams.FirstOrDefaultAsync(a => a.Name == disabledInfo.TargetExamName);
+                    bool exist = db.ExamRecords.Count(a => a.ExamID == exam.ID && a.DisabledInfoID == disabledInfo.ID) > 0;
+                    if (!exist)
                     {
-                        throw new Exception("此残疾类型辅具评估正在准备中,请稍后再试");
+                        ExamRecord examRecord = new ExamRecord(exam.ID, disabledInfo.ID);
                     }
-                    DisabledInfo_Detail detail = new DisabledInfo_Detail
-                    {
-                        CategoryID = disabledInfo.CategoryID.Value,
-                        DegreeID = disabledInfo.DegreeID.Value,
-                        NextID = 3,
-                        RehabilitationID=r.ID
-                    };
-                    disabledInfo.DisabledInfo_Details.Add(detail);
                 }
                 db.DisabledInfoes.Add(disabledInfo);
                 await db.SaveChangesAsync();

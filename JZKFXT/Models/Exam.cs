@@ -30,6 +30,10 @@ namespace JZKFXT.Models
         /// </summary>
         public string Name { get; set; }
         /// <summary>
+        /// 评估类型
+        /// </summary>
+        public string Type { get; set; }
+        /// <summary>
         /// 题目列表
         /// </summary>
         public virtual ICollection<Question> Questions { get; set; }

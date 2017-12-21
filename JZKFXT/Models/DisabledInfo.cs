@@ -50,6 +50,7 @@ namespace JZKFXT.Models
         public int Weight { get; set; }//体重
         public string Email { get; set; }//Email
         public string Address { get; set; }//地址
+        public string TargetExamName { get; set; }//目标评估名称
 
 
 
@@ -68,13 +69,17 @@ namespace JZKFXT.Models
 
         public virtual User User { get; set; }
 
-
         [JsonIgnore]
         public virtual Category Category { get; set; }//残疾人康复详情
         [JsonIgnore]
         public virtual Degree Degree { get; set; }//残疾人康复详情
-        //评估
+
+        //评估列表
         [JsonIgnore]
         public virtual ICollection<Answer> Answers { get; set; }//评估选择
+
+        //评估
+        [JsonIgnore]
+        public virtual ICollection<ExamRecord> ExamRecords { get; set; }//评估选择
     }
 }
