@@ -293,8 +293,100 @@ namespace JZKFXT.Migrations
                 db.DisabledInfo_Details.AddOrUpdate(r);
             }
             db.SaveChanges();
-            //评估
 
+
+
+
+
+            //辅具
+            List<AssistiveDevice> AssistiveDevices = new List<AssistiveDevice>
+            {
+                new AssistiveDevice(10217,"替代机动车","轮椅代步"),
+                new AssistiveDevice(10218,"自行车","轮椅代步"),
+                new AssistiveDevice(10222,"手动轮椅车","轮椅代步"),
+                new AssistiveDevice(10223,"动力轮椅车","轮椅代步"),
+
+                new AssistiveDevice(1021703,"爬楼梯装置","轮椅代步"),
+                new AssistiveDevice(1021706,"站驾式机动车","轮椅代步"),
+                new AssistiveDevice(1021806,"单人脚踏三轮车或四轮车","轮椅代步"),
+                new AssistiveDevice(1021809,"手摇三轮车","轮椅代步"),
+                new AssistiveDevice(1022203,"双手驱动轮椅车","轮椅代步"),
+                new AssistiveDevice(1022206,"摆杆驱动轮椅","轮椅代步"),
+                new AssistiveDevice(1022209,"单手驱动轮椅车","轮椅代步"),
+                new AssistiveDevice(1022212,"电力辅助手动轮椅车","轮椅代步"),
+                new AssistiveDevice(1022215,"脚驱动轮椅","轮椅代步"),
+                new AssistiveDevice(1022218,"护理者操纵的轮椅车","轮椅代步"),
+                new AssistiveDevice(1022303,"电动轮椅车","轮椅代步"),
+                new AssistiveDevice(1022315,"爬楼梯轮椅车","轮椅代步"),
+                new AssistiveDevice(1022309,"机动轮椅车","轮椅代步"),
+                new AssistiveDevice(102170301,"爬楼梯座椅","轮椅代步"),
+
+                new AssistiveDevice(102170302,"爬楼梯轮椅运载工具","轮椅代步"),
+                new AssistiveDevice(102170601,"站驾式机动车","轮椅代步"),
+                new AssistiveDevice(102180601,"手摇脚踏驱动式三轮车","轮椅代步"),
+                new AssistiveDevice(102180602,"手摇脚踏驱动式四轮车","轮椅代步"),
+                new AssistiveDevice(102180901,"手摇驱动后轮式三轮车","轮椅代步"),
+                new AssistiveDevice(102180902,"手摇驱动前轮式三轮车","轮椅代步"),
+                new AssistiveDevice(102180903,"平摇式手摇三轮车","轮椅代步"),
+                new AssistiveDevice(102180904,"推拉式手摇三轮车","轮椅代步"),
+                new AssistiveDevice(102220301,"普通轮椅（后轮驱动轮椅）","轮椅代步"),
+                new AssistiveDevice(102220302,"功能轮椅","轮椅代步"),
+                new AssistiveDevice(102220303,"洗浴轮椅","轮椅代步"),
+                new AssistiveDevice(102220304,"前轮驱动轮椅","轮椅代步"),
+                new AssistiveDevice(102220305,"站立式手动轮椅","轮椅代步"),
+                new AssistiveDevice(102220306,"斜躺式手动轮椅","轮椅代步"),
+                new AssistiveDevice(102220307,"倾斜式手动轮椅","轮椅代步"),
+                new AssistiveDevice(102220308,"休闲轮椅","轮椅代步"),
+                new AssistiveDevice(102220309,"运动轮椅","轮椅代步"),
+                new AssistiveDevice(102220310,"篮球轮椅","轮椅代步"),
+                new AssistiveDevice(102220311,"乒乓球轮椅","轮椅代步"),
+                new AssistiveDevice(102220312,"橄榄球轮椅","轮椅代步"),
+                new AssistiveDevice(102220313,"网球轮椅","轮椅代步"),
+                new AssistiveDevice(102220314,"舞蹈轮椅","轮椅代步"),
+                new AssistiveDevice(102220315,"竞速轮椅","轮椅代步"),
+                new AssistiveDevice(102220316,"沙滩轮椅","轮椅代步"),
+                new AssistiveDevice(102220317,"泳池轮椅","轮椅代步"),
+                new AssistiveDevice(102220318,"雪地轮椅","轮椅代步"),
+                new AssistiveDevice(102220319,"定制轮椅","轮椅代步"),
+                new AssistiveDevice(102220601,"双手摆杆驱动轮椅","轮椅代步"),
+                new AssistiveDevice(102220602,"杠杆驱动轮椅","轮椅代步"),
+                new AssistiveDevice(102220901,"单手轮驱动轮椅","轮椅代步"),
+                new AssistiveDevice(102220902,"单手摆杆驱动轮椅","轮椅代步"),
+                new AssistiveDevice(102221201,"电力辅助手动轮椅车","轮椅代步"),
+                new AssistiveDevice(102221501,"脚驱动轮椅","轮椅代步"),
+                new AssistiveDevice(102221801,"高靠背轮椅（带坐便）","轮椅代步"),
+                new AssistiveDevice(102221802,"护理轮椅","轮椅代步"),
+                new AssistiveDevice(102221803,"可趟式轮椅","轮椅代步"),
+                new AssistiveDevice(102221804,"助推式轮椅","轮椅代步"),
+                new AssistiveDevice(102221805,"座便轮椅","轮椅代步"),
+                new AssistiveDevice(102221806,"站立式轮椅","轮椅代步"),
+                new AssistiveDevice(102221807,"体廓形脑瘫儿童轮椅","轮椅代步"),
+                new AssistiveDevice(102221808,"平面型脑瘫儿童轮椅","轮椅代步"),
+                new AssistiveDevice(102221809,"普通儿童轮椅","轮椅代步"),
+                new AssistiveDevice(102230301,"室内型电动轮椅","轮椅代步"),
+                new AssistiveDevice(102230302,"室外型电动轮椅","轮椅代步"),
+                new AssistiveDevice(102230303,"道路型电动轮椅","轮椅代步"),
+                new AssistiveDevice(102230304,"普通电动轮椅","轮椅代步"),
+                new AssistiveDevice(102230305,"站立电动轮椅","轮椅代步"),
+                new AssistiveDevice(102230306,"斜躺式电动轮椅","轮椅代步"),
+                new AssistiveDevice(102230307,"倾斜式电动轮椅","轮椅代步"),
+                new AssistiveDevice(102230308,"电动升降轮椅","轮椅代步"),
+                new AssistiveDevice(102230309,"电动六轮轮椅","轮椅代步"),
+                new AssistiveDevice(102230310,"电动三轮车","轮椅代步"),
+                new AssistiveDevice(102230311,"儿童电动轮椅","轮椅代步"),
+                new AssistiveDevice(102231501,"行星轮系爬楼轮椅","轮椅代步"),
+                new AssistiveDevice(102231502,"履带式爬楼轮椅","轮椅代步"),
+                new AssistiveDevice(102230901,"三轮机动轮椅车","轮椅代步"),
+                new AssistiveDevice(102230902,"四轮机动轮椅车","轮椅代步"),
+
+
+            };
+            foreach (var r in AssistiveDevices)
+            {
+                db.AssistiveDevices.AddOrUpdate(r);
+            }
+            db.SaveChanges();
+            //评估
             //视力
             List<Question> questions1 = new List<Question> {
                 new Question("1", "视力残疾等级", true,false,
@@ -376,7 +468,7 @@ namespace JZKFXT.Migrations
                     }
                 ),
             };
-            Exam exam1 = new Exam(1, "辅具上门评估","视力", questions1);
+            Exam exam1 = new Exam(1, "辅具上门评估", "视力", questions1);
             db.Exams.AddOrUpdate(exam1);
             //听力
             List<Question> questions2 = new List<Question> {
