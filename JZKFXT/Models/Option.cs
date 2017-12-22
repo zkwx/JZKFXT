@@ -20,7 +20,6 @@ namespace JZKFXT.Models
             OptionText = optionText;
             ContentText = contentText;
             NextQuestionNo = nextQuestionNo;
-
             AssistiveDevices = new List<AssistiveDevice>();
             foreach (var item in assistiveDeviceIds)
             {
@@ -28,13 +27,26 @@ namespace JZKFXT.Models
             }
             
         }
-        public Option(string optionText, string contentText, int examID, string nextQuestionNo, ICollection<AssistiveDevice> assistiveDevices)
+        public Option(string optionText, string contentText, int examID, string nextQuestionNo, params int[] assistiveDeviceIds)
         {
             OptionText = optionText;
             ContentText = contentText;
-            ExamID = examID;
             NextQuestionNo = nextQuestionNo;
-            AssistiveDevices = assistiveDevices;
+            ExamID = examID;
+            AssistiveDevices = new List<AssistiveDevice>();
+            foreach (var item in assistiveDeviceIds)
+            {
+                AssistiveDevices.Add(new AssistiveDevice(item));
+            }
+
+        }
+        public Option(string optionText, string contentText, string nextQuestionNo, string a, string b)
+        {
+
+        }
+        public Option(string optionText, string contentText, int examID, string nextQuestionNo, string a,string b)
+        {
+
         }
         public int ID { get; set; }
         /// <summary>
