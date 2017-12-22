@@ -27,9 +27,19 @@ namespace JZKFXT.Controllers
             try
             {
                 var list = db.DisabledInfoes.AsQueryable();
-                if (forListType == "入户")
+                if (forListType == "精准康复入户")
                 {
-                    var result = list.Select(
+                    
+                }
+                if (forListType == "辅具上门评估")
+                {
+                    list = list.Where(a => a.ExamRecords.Count(b => b.Exam.Type == "辅具上门评估" && b.Evaluated == false) > 0);
+                }
+                if (forListType == "辅具上门评估")
+                {
+                    list = list.Where(a => a.ExamRecords.Count(b => b.Exam.Type == "辅具上门评估" && b.Evaluated == false) > 0);
+                }
+                var result = list.Select(
                         a => new
                         {
                             id = a.ID,
@@ -37,29 +47,9 @@ namespace JZKFXT.Controllers
                             sex = a.Sex,
                             category = a.Category.Name,
                             degree = a.Degree.Name,
+                            targetExamName = a.ExamRecords
                         });
-                    return Ok(result.OrderByDescending(a => a.id));
-                }
-                if (forListType == "评估" && examName != null)
-                {
-                    IEnumerable<ExamRecord> records = db.ExamRecords;
-                    if (examName == "上门")
-                    {
-                        list = list.Where(a => a.ExamRecords.Count(b=>b.Evaluated==false)>0);
-                    }
-                    var result = list.Select(
-                        a => new
-                        {
-                            id = a.ID,
-                            name = a.Name,
-                            sex = a.Sex,
-                            category = a.Category.Name,
-                            degree = a.Degree.Name,
-                            targetExamName=a.ExamRecords
-                        });
-                    return Json(result.OrderByDescending(a => a.id));
-                }
-                return Json(list.OrderByDescending(a => a.ID));
+                return Ok(result.OrderByDescending(a => a.id));
             }
             catch (Exception ex)
             {
@@ -162,11 +152,19 @@ namespace JZKFXT.Controllers
                 //更新到下一评估试卷
                 if (disabledInfo.TargetExamName != null)
                 {
+                    bool exist;
                     Exam exam = await db.Exams.FirstOrDefaultAsync(a => a.Name == disabledInfo.TargetExamName);
-                    bool exist = db.ExamRecords.Count(a => a.ExamID == exam.ID && a.DisabledInfoID == disabledInfo.ID) > 0;
+                    if (exam != null)
+                    {
+                        bool exist = db.ExamRecords.Count(a => a.ExamID == exam.ID && a.DisabledInfoID == disabledInfo.ID) > 0;
+                    }
+                    else
+                    {
+                        bool exist = db.ExamRecords.Count(a => a.ExamName == disabledInfo.TargetExamName && a.DisabledInfoID == disabledInfo.ID) > 0;
+                    }
                     if (!exist)
                     {
-                        ExamRecord examRecord = new ExamRecord(exam.ID, disabledInfo.ID);
+                        ExamRecord examRecord = new ExamRecord(exam.ID, disabledInfo.TargetExamName, disabledInfo.ID);
                     }
                 }
                 db.DisabledInfoes.Add(disabledInfo);
