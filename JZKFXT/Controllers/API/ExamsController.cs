@@ -46,8 +46,7 @@ namespace JZKFXT.Controllers.API
                             b => new
                             {
                                 NextQuestionNo = b.NextQuestionNo,
-                                AssistiveDeviceID = b.AssistiveDeviceID,
-                                AssistiveDeviceName = b.AssistiveDeviceName
+                                AssistiveDevices = b.AssistiveDevices,
                             }),
                         //checklist显示数组 不支持对象数组
                         Options = a.Options.Select(b => new

@@ -1427,7 +1427,7 @@ namespace JZKFXT.Migrations
             List<Question> questions1 = new List<Question> {
                 new Question("1", "视力残疾等级", true,false,
                     new List<Option>{
-                        new Option("A","一级", "1-1-1"),
+                        new Option("A","一级", "1-1-1",1001010,1001010),
                         new Option("B","二级", "1-1-1",null,null),
                         new Option("C","三级", "1-2",null,null),
                         new Option("D","四级", "1-2",null,null),
@@ -1436,14 +1436,14 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("附加题", "能否看见",false,false,
                     new List<Option>{
-                        new Option("A", "不能（相当于一、二级）", "1-1",null,null),
-                        new Option("B", "能（相当于三、四级）", "1-2",null,null),
+                        new Option("A", "不能（相当于一、二级）", "1-1"),
+                        new Option("B", "能（相当于三、四级）", "1-2"),
                     }
                 ),
                 new Question("1-1", "能否听见",false,false,
                     new List<Option>{
-                        new Option("A", "能", "1-1-1",null,null),
-                        new Option("B", "不能", "1-1-2",null,null),
+                        new Option("A", "能", "1-1-1"),
+                        new Option("B", "不能", "1-1-2"),
                     }
                 ),
                 new Question("1-1-1", "希望实现何种功能（多选）", false,true,
@@ -1464,7 +1464,7 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("1-2", "希望看近物还是看远处（多选）", false,true,
                     new List<Option>{
-                        new Option("A", "看近", "1-2-1",null,null),
+                        new Option("A", "看近", "1-2-1"),
                         new Option("B", "看远", "1-3", "05 03 12", "双筒望远镜和单筒望远镜"),
                     }
                 ),
@@ -1486,19 +1486,19 @@ namespace JZKFXT.Migrations
                 new Question("2", "是否存在眩光现象",false,false,
                     new List<Option>{
                         new Option("A", "是", "3", "05 03 03", "滤光器：低视力专用滤光镜"),
-                        new Option("B", "否", "3",null,null),
+                        new Option("B", "否", "3"),
                     }
                 ),
                 new Question("3", "是否能正常说话", false,false,
                     new List<Option>{
-                        new Option("A", "能",null,null,null),
-                        new Option("B", "不能", "3-1",null,null),
+                        new Option("A", "能",null),
+                        new Option("B", "不能", "3-1"),
                     }
                 ),
                 new Question("3-1", "是否会写字",false,false,
                     new List<Option>{
                         new Option("A", "会", null,"05 12 12,05 09 03", "手写盲文书写装置,语音发生器"),
-                        new Option("B", "不会",null,null,null),
+                        new Option("B", "不会",null),
                     }
                 ),
             };
@@ -1516,7 +1516,7 @@ namespace JZKFXT.Migrations
                         new Option("B", "二级","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
                         new Option("C", "三级","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
                         new Option("D", "四级","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
-                        new Option("E", "未评定或等级不准","1-1",null,null),
+                        new Option("E", "未评定或等级不准","1-1"),
                     }
                 ),
                 new Question("1-1", "在安静环境下，不带助听设备时，能听到",false,false,
@@ -1526,7 +1526,7 @@ namespace JZKFXT.Migrations
                         new Option("B", "只能听到鞭炮、敲鼓、雷声或用力击掌声（等同于二级）","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
                         new Option("C", "只能听到大声说话（等同于三级）","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
                         new Option("D", "能听到普通谈话声（等同于四级）","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
-                        new Option("E", "听清一般言语，能分辨清楚（不配辅助器具）","2",null,null),
+                        new Option("E", "听清一般言语，能分辨清楚（不配辅助器具）","2"),
                     }
                 ),
                 new Question("2", "除听声外，希望实现何种功能", false,true,
@@ -1545,7 +1545,7 @@ namespace JZKFXT.Migrations
                 new Question("1", "是否卧床", true,false,
                     new List<Option>{
                          new Option("A", "是","1-1-1", "05 27 18", "个人紧急报警系统（呼叫器）"),
-                         new Option("B", "否","1-2-1", null, null),
+                         new Option("B", "否","1-2-1"),
                     }
                 ),
                 new Question("1-1-1", "能否翻身", false,false,
@@ -1556,7 +1556,7 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("1-1-2", "能否坐起", false,false,
                     new List<Option>{
-                         new Option("A", "不能","1-1-3", null, null),
+                         new Option("A", "不能","1-1-3"),
                          new Option("B", "能","1-1-3", "04 10 03,02 22 18", "靠背,护理者操纵的轮椅（高靠背轮椅）"),
                     }
                 ),
@@ -1568,8 +1568,8 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("1-2-1", "能否行走", false,false,
                     new List<Option>{
-                        new Option("A", "不能","1-2-1-1", null, null),
-                        new Option("B", "能","1-2-2", null, null),
+                        new Option("A", "不能","1-2-1-1"),
+                        new Option("B", "能","1-2-2"),
                     }
                 ),
                 new Question("1-2-1-1", "能否辅助下移动入厕", false,false,
@@ -1580,7 +1580,7 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("1-2-1-2", "是否有压疮", false,false,
                     new List<Option>{
-                         new Option("A", "无","1-2-1-3", null, null),
+                         new Option("A", "无","1-2-1-3"),
                          new Option("B", "曾经有，已愈合","1-2-1-3", "06 33 03", "保护组织完整性的坐垫和衬垫（防压疮坐垫）"),
                          new Option("C", "有","1-2-1-3", "06 33 03", "保护组织完整性的坐垫和衬垫（防压疮坐垫）"),
                     }
@@ -1589,14 +1589,14 @@ namespace JZKFXT.Migrations
                     new List<Option>{
                          new Option("A", "不能","2", "07 33 09", "个人移动训练辅助器具（移乘带或移乘板）"),
                          new Option("B", "需要辅助","2", "04 10 09,02 03 03", "扶手,手杖（直形四脚手杖（固定/可调））"),
-                         new Option("C", "独立站立转移","2", null, null),
+                         new Option("C", "独立站立转移","2"),
                     }
                 ),
                 new Question("1-2-2", "行走时是否需要搀扶", false,false,
                     new List<Option>{
-                         new Option("A", "全程搀扶","1-2-2-1", null, null),
+                         new Option("A", "全程搀扶","1-2-2-1"),
                          new Option("B", "部分搀扶","2", "02 03 03", "手杖（单脚手杖）"),
-                         new Option("C", "无需搀扶","2", null, null),
+                         new Option("C", "无需搀扶","2"),
                     }
                 ),
                 new Question("1-2-2-1", "行走时是否需要搀扶", false,false,
@@ -1616,13 +1616,13 @@ namespace JZKFXT.Migrations
                     new List<Option>{
                          new Option("A", "不能","4", "04 30", "垂直运送辅助器具-桌类（床用餐桌或轮椅桌）"),
                          new Option("B", "需要辅助","4", "08 18 03,10 09 18,10 09 21,10 09", "抓握装置（万能袖带）,盘子和碗（普通防洒碗/底部带吸盘餐具）,食物挡边(桌上防滑垫),食饮辅助器具"),
-                         new Option("C", "独立进食","4",null, null),
+                         new Option("C", "独立进食","4"),
                     }
                 ),
                 new Question("4", "能否自行洗浴", false,false,
                     new List<Option>{
                          new Option("A", "不能","5", "03 33 12,03 33,03 33 15,1", "洗浴床、淋浴桌和更换尿布桌（洗浴床）,清洗、盆浴和淋浴辅助器具（洗浴床单）,洗盆（充气式洗头池）,洗浴躺椅"),
-                         new Option("B", "能","4-1", null,null),
+                         new Option("B", "能","4-1"),
                     }
                 ),
                 new Question("4-1", "是否站立洗浴", false,false,
@@ -1634,18 +1634,18 @@ namespace JZKFXT.Migrations
                 new Question("4-2", "是否需要洗浴类自助具", false,false,
                     new List<Option>{
                          new Option("A", "需要","5", "03 33 30,03 36 06,03 36 09", "带有把手、手柄和握把的洗澡布、海绵和刷子,指甲锉和砂纸板,指甲剪和指甲刀"),
-                         new Option("B", "不需要","5", null, null),
+                         new Option("B", "不需要","5"),
                     }
                 ),
                 new Question("5", "自行如厕时，是否下蹲", false,false,
                     new List<Option>{
-                         new Option("A", "能","6", null, null),
-                         new Option("B", "不能","5-1", null, null),
+                         new Option("A", "能","6"),
+                         new Option("B", "不能","5-1"),
                     }
                 ),
                 new Question("5-1", "家中是否有坐便器", false,false,
                     new List<Option>{
-                         new Option("A", "有，且高度合适","6", null, null),
+                         new Option("A", "有，且高度合适","6"),
                          new Option("B", "有，高度较低","6", "03 12 18,03 12 21,04 10 09,03 12 12", "安装在坐便器上加高的坐便器座,内置帮助起身、坐下的升降机构的坐便器座,扶手,框架型加高的坐便器座"),
                          new Option("C", "无","6", "03 12 03", "坐便椅"),
                     }
@@ -1654,21 +1654,21 @@ namespace JZKFXT.Migrations
                     new List<Option>{
                          new Option("A", "不能，且高度合适","7", "03 03 18,03 03 42", "夹克衫和长裤,鞋和靴（方便穿脱鞋）"),
                          new Option("B", "辅助下完成","7", "03 09 12,03 09 03,03 09 06", "穿脱衣钩或穿脱衣棍,穿短袜和穿连裤袜的辅助器具,鞋拔和脱靴器（长柄鞋拔）"),
-                         new Option("C", "独立完成","7", null, null),
+                         new Option("C", "独立完成","7"),
                     }
                 ),
                 new Question("7", "是否经常需要够拾远处物品", false,false,
                     new List<Option>{
-                         new Option("A", "否","8", null, null),
+                         new Option("A", "否","8"),
                          new Option("B", "是","8", "08 21 03", "手动抓取钳（折叠式长柄取物器/非折叠式长柄取物器）"),
                     }
                 ),
                 new Question("8", "是否存在其他方面残疾", false,false,
                     new List<Option>{
-                         new Option("A", "无","9", null, null),
-                         new Option("B", "视力",1,"9", null, null),
-                         new Option("C", "听力",2,"9", null, null),
-                         new Option("D", "其它","9", null, null),
+                         new Option("A", "无","9"),
+                         new Option("B", "视力",1,"9"),
+                         new Option("C", "听力",2,"9"),
+                         new Option("D", "其它","9"),
                     }
                 ),
                 new Question("9", "最希望解决什么问题（最多选择三个）", false,true,
@@ -1701,20 +1701,20 @@ namespace JZKFXT.Migrations
             {
                 new Question("1", "年龄", true,false,
                     new List<Option>{
-                         new Option("A", "≤7岁","2-1", null, null),
-                         new Option("B", ">7岁","3-1", null, null),
+                         new Option("A", "≤7岁","2-1"),
+                         new Option("B", ">7岁","3-1"),
                     }
                 ),
                 new Question("2-1", "能否完成“坐起”动作", false,false,
                     new List<Option>{
-                         new Option("A", "完全不能","2-1-1", null, null),
-                         new Option("B", "需要辅助完成","2-1-2", null, null),
-                         new Option("C", "无需辅助能独立完成","2-1-2", null, null),
+                         new Option("A", "完全不能","2-1-1"),
+                         new Option("B", "需要辅助完成","2-1-2"),
+                         new Option("C", "无需辅助能独立完成","2-1-2"),
                     }
                 ),
                 new Question("2-1-1", "能否翻身", false,false,
                     new List<Option>{
-                         new Option("A", "完全不能","2-1-1-1", null, null),
+                         new Option("A", "完全不能","2-1-1-1"),
                          new Option("B", "需要辅助","2-2", "06 33 04,02 22 18", "保护组织完整性的靠背垫和小靠背垫(楔形垫),护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)"),
                          new Option("C", "无需辅助独立完成","2-2", "04 09 21,02 22 18", "特殊坐具（0-3岁为儿童三角椅，4-7岁为儿童坐姿椅）,护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)"),
                     }
