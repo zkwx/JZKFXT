@@ -29,15 +29,15 @@ namespace JZKFXT.Controllers
                 var list = db.DisabledInfoes.AsQueryable();
                 if (forListType == "精准康复入户")
                 {
-                    
+
                 }
-                if (forListType == "辅具上门评估")
+                else if (forListType == "辅具上门评估")
                 {
                     list = list.Where(a => a.ExamRecords.Count(b => b.Exam.Type == "辅具上门评估" && b.Evaluated == false) > 0);
                 }
-                if (forListType == "辅具上门评估")
+                else if (forListType == "机构评估审核")
                 {
-                    list = list.Where(a => a.ExamRecords.Count(b => b.Exam.Type == "辅具上门评估" && b.Evaluated == false) > 0);
+                    list = list.Where(a => a.ExamRecords.Count(b => b.Exam.Type == "机构评估审核" && b.Evaluated == false) > 0);
                 }
                 var result = list.Select(
                         a => new
@@ -47,7 +47,8 @@ namespace JZKFXT.Controllers
                             sex = a.Sex,
                             category = a.Category.Name,
                             degree = a.Degree.Name,
-                            targetExamName = a.ExamRecords
+                            currentExam=a.ExamRecords.FirstOrDefault(b => b.Exam.Type == "辅具上门评估" && b.Evaluated == false),
+                            examRecords = a.ExamRecords
                         });
                 return Ok(result.OrderByDescending(a => a.id));
             }
@@ -93,7 +94,8 @@ namespace JZKFXT.Controllers
                         //条件1：功能障碍者在“精准康复入户”模块中康复需求选择“辅助器具适配及服务”、“辅助器具适配及适应训练”选项，且服务走向为“上门评估”的，其全部数据自动转到“辅具上门评估与适配模块”；
                         if (string.IsNullOrEmpty(item.TargetExamName) && item.Rehabilitation.FuJu && item.NextID == 3)
                         {
-                            item.TargetExamName = item.Category.Name;
+                            var categoryName = db.Categories.Find(item.CategoryID).Name;
+                            disabledInfo.TargetExamName = categoryName;
                         }
                         EntityStateHelper.BindEntityState(db, item);
                         item.DisabledInfoID = disabledInfo.ID;
@@ -127,48 +129,24 @@ namespace JZKFXT.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-                if (disabledInfo.DisabledInfo_Details.Count() > 0)
+                //康复入户添加
+                if (disabledInfo.Need)
                 {
-                    //康复入户添加
-                    if (disabledInfo.Need)
+                    foreach (var item in disabledInfo.DisabledInfo_Details)
                     {
-                        foreach (var item in disabledInfo.DisabledInfo_Details)
+                        if (item == null) continue;
+                        var r = db.Rehabilitations.Find(item.RehabilitationID);
+                        if (string.IsNullOrEmpty(item.TargetExamName) && r.FuJu && item.NextID == 3)
                         {
-                            if (item == null) continue;
-                            var r = db.Rehabilitations.Find(item.RehabilitationID);
-                            if (string.IsNullOrEmpty(item.TargetExamName) && r.FuJu && item.NextID == 3)
-                            {
-                                var categoryName = db.Categories.Find(item.CategoryID).Name;
-                                disabledInfo.TargetExamName = categoryName;
-                            }
+                            var categoryName = db.Categories.Find(item.CategoryID).Name;
+                            disabledInfo.TargetExamName = categoryName;
                         }
                     }
                 }
-                else
-                {
-                    //辅具上门添加
-
-                }
                 //更新到下一评估试卷
-                if (disabledInfo.TargetExamName != null)
-                {
-                    bool exist;
-                    Exam exam = await db.Exams.FirstOrDefaultAsync(a => a.Name == disabledInfo.TargetExamName);
-                    if (exam != null)
-                    {
-                        bool exist = db.ExamRecords.Count(a => a.ExamID == exam.ID && a.DisabledInfoID == disabledInfo.ID) > 0;
-                    }
-                    else
-                    {
-                        bool exist = db.ExamRecords.Count(a => a.ExamName == disabledInfo.TargetExamName && a.DisabledInfoID == disabledInfo.ID) > 0;
-                    }
-                    if (!exist)
-                    {
-                        ExamRecord examRecord = new ExamRecord(exam.ID, disabledInfo.TargetExamName, disabledInfo.ID);
-                    }
-                }
                 db.DisabledInfoes.Add(disabledInfo);
                 await db.SaveChangesAsync();
+                SaveTargetExam(disabledInfo);
             }
             catch (Exception ex)
             {
@@ -229,6 +207,21 @@ namespace JZKFXT.Controllers
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+        private void SaveTargetExam(DisabledInfo disabledInfo)
+        {
+
+            if (string.IsNullOrEmpty(disabledInfo.TargetExamName))
+            {
+                Exam exam = db.Exams.FirstOrDefault(a => a.Name == disabledInfo.TargetExamName);
+                bool exist = db.ExamRecords.Count(a => a.ExamName == disabledInfo.TargetExamName && a.DisabledInfoID == disabledInfo.ID) > 0;
+                if (!exist)
+                {
+                    ExamRecord examRecord = new ExamRecord(exam?.ID, disabledInfo.TargetExamName, disabledInfo.ID);
+                    db.ExamRecords.Add(examRecord);
+                    db.SaveChanges();
+                }
             }
         }
     }

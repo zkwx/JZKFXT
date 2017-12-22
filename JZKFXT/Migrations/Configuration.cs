@@ -301,6 +301,7 @@ namespace JZKFXT.Migrations
             //辅具
             List<AssistiveDevice> AssistiveDevices = new List<AssistiveDevice>
             {
+                //轮椅代步
                 new AssistiveDevice(10217,"替代机动车","轮椅代步"),
                 new AssistiveDevice(10218,"自行车","轮椅代步"),
                 new AssistiveDevice(10222,"手动轮椅车","轮椅代步"),
@@ -378,6 +379,14 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(102231502,"履带式爬楼轮椅","轮椅代步"),
                 new AssistiveDevice(102230901,"三轮机动轮椅车","轮椅代步"),
                 new AssistiveDevice(102230902,"四轮机动轮椅车","轮椅代步"),
+
+                //辅助行走
+                new AssistiveDevice(10203,"单臂操作助行器","辅助行走"),
+                new AssistiveDevice(10206,"双臂操作助行器","辅助行走"),
+                new AssistiveDevice(10207,"助行器附件","辅助行走"),
+                new AssistiveDevice(10239,"定位辅助器具","辅助行走"),
+
+
 
 
             };
