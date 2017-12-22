@@ -15,9 +15,10 @@ namespace JZKFXT.Models
         {
         }
 
-        public ExamRecord(int examID, int disabledInfoID)
+        public ExamRecord(int examID,string examName, int disabledInfoID)
         {
             ExamID = examID;
+            ExamName = examName;
             DisabledInfoID = disabledInfoID;
         }
 
@@ -26,6 +27,10 @@ namespace JZKFXT.Models
         /// 评估ID
         /// </summary>
         public int ExamID { get; set; }
+        /// <summary>
+        /// 评估名称
+        /// </summary>
+        public string ExamName { get; set; }
         /// <summary>
         /// 评估对象ID
         /// </summary>

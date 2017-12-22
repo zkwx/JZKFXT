@@ -15,21 +15,20 @@ namespace JZKFXT.Models
         public Option()
         {
         }
-        public Option(string optionText, string contentText,string nextQuestionNo,string assistiveDeviceID, string assistiveDeviceName)
+        public Option(string optionText, string contentText, string nextQuestionNo, ICollection<AssistiveDevice> assistiveDevices)
         {
             OptionText = optionText;
             ContentText = contentText;
             NextQuestionNo = nextQuestionNo;
-            AssistiveDeviceID = assistiveDeviceID;
-            AssistiveDeviceName = assistiveDeviceName;
+            AssistiveDevices = assistiveDevices;
         }
-        public Option(string optionText, string contentText, int examID,string nextQuestionNo, string assistiveDeviceID, string assistiveDeviceName)
+        public Option(string optionText, string contentText, int examID, string nextQuestionNo, ICollection<AssistiveDevice> assistiveDevices)
         {
             OptionText = optionText;
             ContentText = contentText;
+            ExamID = examID;
             NextQuestionNo = nextQuestionNo;
-            AssistiveDeviceID = assistiveDeviceID;
-            AssistiveDeviceName = assistiveDeviceName;
+            AssistiveDevices = assistiveDevices;
         }
         public int ID { get; set; }
         /// <summary>
@@ -63,9 +62,9 @@ namespace JZKFXT.Models
         /// </summary>
         public double Score { get; set; }
         /// <summary>
-        /// 辅具编码
+        /// 辅具集合
         /// </summary>
-        public string AssistiveDeviceID { get; set; }
-        public string AssistiveDeviceName { get; set; }
+        public virtual ICollection<AssistiveDevice> AssistiveDevices { get; set; }
+
     }
 }

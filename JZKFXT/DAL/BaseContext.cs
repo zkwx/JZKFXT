@@ -44,6 +44,6 @@ namespace JZKFXT.DAL
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();//防止生成复数表名
         }
 
-        
+        public System.Data.Entity.DbSet<JZKFXT.Models.AssistiveDevice> AssistiveDevices { get; set; }
     }
 }
