@@ -15,12 +15,18 @@ namespace JZKFXT.Models
         public Option()
         {
         }
-        public Option(string optionText, string contentText, string nextQuestionNo, ICollection<AssistiveDevice> assistiveDevices)
+        public Option(string optionText, string contentText, string nextQuestionNo, params int[] assistiveDeviceIds)
         {
             OptionText = optionText;
             ContentText = contentText;
             NextQuestionNo = nextQuestionNo;
-            AssistiveDevices = assistiveDevices;
+
+            AssistiveDevices = new List<AssistiveDevice>();
+            foreach (var item in assistiveDeviceIds)
+            {
+                AssistiveDevices.Add(new AssistiveDevice(item));
+            }
+            
         }
         public Option(string optionText, string contentText, int examID, string nextQuestionNo, ICollection<AssistiveDevice> assistiveDevices)
         {
