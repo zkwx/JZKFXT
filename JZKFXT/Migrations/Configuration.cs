@@ -543,10 +543,65 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","9", null, null),
                     }
                 ),
-
+                new Question("9", "最希望解决什么问题（最多选择三个）", false,true,
+                    new List<Option>{
+                         new Option("A", "轮椅代步",null, null, null),
+                         new Option("B", "辅助行走",null, null, null),
+                         new Option("C", "饮食",null, null, null),
+                         new Option("D", "个人护理",null, null, null),
+                         new Option("E", "如厕",null, null, null),
+                         new Option("F", "信息交流",null, null, null),
+                         new Option("G", "康复训练",null, null, null),
+                         new Option("H", "防护功能",null, null, null),
+                         new Option("I", "无障碍环境",8,null, null, null),
+                         new Option("J", "操作和使用",null, null, null),
+                         new Option("K", "位置转移",null, null, null),
+                         new Option("L", "纠正姿势",null, null, null),
+                         new Option("M", "假肢",7,null, null, null),
+                         new Option("N", "矫形器",null, null, null),
+                         new Option("O", "助听类",null, null, null),
+                         new Option("P", "助视类",null, null, null),
+                         new Option("Q", "洗漱类",null, null, null),
+                         new Option("R", "穿衣类",null, null, null),
+                    }
+                ),
             };
             Exam exam3 = new Exam(3, "偏瘫", questions3);
             db.Exams.AddOrUpdate(exam3);
+            //脑瘫
+            List<Question> questions4 = new List<Question>
+            {
+                new Question("1", "年龄", true,false,
+                    new List<Option>{
+                         new Option("A", "≤7岁","2-1", null, null),
+                         new Option("B", ">7岁","3-1", null, null),
+                    }
+                ),
+                new Question("2-1", "能否完成“坐起”动作", false,false,
+                    new List<Option>{
+                         new Option("A", "完全不能","2-1-1", null, null),
+                         new Option("B", "需要辅助完成","2-1-2", null, null),
+                         new Option("C", "无需辅助能独立完成","2-1-2", null, null),
+                    }
+                ),
+                new Question("2-1-1", "能否翻身", false,false,
+                    new List<Option>{
+                         new Option("A", "完全不能","2-1-1-1", null, null),
+                         new Option("B", "需要辅助","2-2", "06 33 04,02 22 18", "保护组织完整性的靠背垫和小靠背垫(楔形垫),护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)"),
+                         new Option("C", "无需辅助独立完成","2-2", "04 09 21,02 22 18", "特殊坐具（0-3岁为儿童三角椅，4-7岁为儿童坐姿椅）,护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)"),
+                    }
+                ),
+                new Question("2-1-1-1", "能否抬头", false,false,
+                    new List<Option>{
+                         new Option("A", "完全不能","2-2", "06 33 04", "保护组织完整性的靠背垫和小靠背垫（体位变换组合垫）"),
+                         new Option("B", "短暂抬头，不能维持","2-2", "06 33 04", "保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)"),
+                         new Option("C", "能抬头且能维持","2-2", "06 33 04", "保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)"),
+                    }
+                ),
+
+            };
+            Exam exam4 = new Exam(4, "脑瘫", questions4);
+            db.Exams.AddOrUpdate(exam4);
         }
     }
 }
