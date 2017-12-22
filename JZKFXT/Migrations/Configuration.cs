@@ -400,9 +400,7 @@ namespace JZKFXT.Migrations
             List<Question> questions1 = new List<Question> {
                 new Question("1", "视力残疾等级", true,false,
                     new List<Option>{
-                        new Option("A","一级", "1-1-1",new List<AssistiveDevice>{
-                            new AssistiveDevice(1001010),
-                        }),
+                        new Option("A","一级", "1-1-1",1001010,1001010),
                         new Option("B","二级", "1-1-1",null,null),
                         new Option("C","三级", "1-2",null,null),
                         new Option("D","四级", "1-2",null,null),
