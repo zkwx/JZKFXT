@@ -17,7 +17,6 @@ namespace JZKFXT.DAL
             //Database.SetInitializer<PetDbContext>(null);
             //模型更改时重新创建数据库 发布时替换
             Database.SetInitializer<BaseContext>(new CreateDatabaseIfNotExists<BaseContext>());
-            Database.SetInitializer<BaseContext>(new MigrateDatabaseToLatestVersion<BaseContext, Configuration>());
             Database.Log = new Action<string>(q => Debug.WriteLine(q));
             //Database.Log = Console.WriteLine;
         }

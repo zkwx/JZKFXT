@@ -1,5 +1,6 @@
 ﻿using JZKFXT.DAL;
 using JZKFXT.Filter;
+using JZKFXT.Migrations;
 using JZKFXT.Utils;
 using log4net.Config;
 using System;
@@ -24,6 +25,8 @@ namespace JZKFXT
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Database.SetInitializer<BaseContext>(new MigrateDatabaseToLatestVersion<BaseContext, Configuration>(true));
+
         }
         protected void Application_BeginRequest()
         {

@@ -16,9 +16,10 @@ namespace JZKFXT.Models
         {
         }
 
-        public Exam(int iD, string name, ICollection<Question> questions)
+        public Exam(int iD, string type, string name, ICollection<Question> questions)
         {
             ID = iD;
+            Type = type;
             Name = name;
             Questions = questions;
         }
@@ -29,6 +30,10 @@ namespace JZKFXT.Models
         /// 评估名称
         /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// 评估类型
+        /// </summary>
+        public string Type { get; set; }
         /// <summary>
         /// 题目列表
         /// </summary>
