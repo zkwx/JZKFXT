@@ -694,7 +694,7 @@ namespace JZKFXT.Migrations
                 ),
 
             };
-            Exam exam4 = new Exam(4, "ƒ‘Ã±", questions4);
+            Exam exam4 = new Exam(4, "∏®æﬂ…œ√≈∆¿π¿", "ƒ‘Ã±", questions4);
             db.Exams.AddOrUpdate(exam4);
         }
     }
