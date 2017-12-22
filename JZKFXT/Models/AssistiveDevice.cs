@@ -30,7 +30,7 @@ namespace JZKFXT.Models
         public string Name { get; set; }
         public string Type { get; set; }
 
-        [JsonIgnore]
-        public virtual AssistiveDevice ParentAssistiveDevice { get; set; }//残疾人康复详情
+        //[JsonIgnore]
+        //public virtual AssistiveDevice ParentAssistiveDevice { get; set; }//残疾人康复详情
     }
 }

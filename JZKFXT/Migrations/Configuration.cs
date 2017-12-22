@@ -18,7 +18,7 @@ namespace JZKFXT.Migrations
         {
             base.Seed(db);
 
-            //角色
+            #region 角色
             List<Role> Roles = new List<Role>
             {
                 new Role( 1, "社区工作人员","社区负责残疾人工作的人员：残疾人专干、残疾人康复协调员。","使用移动端对辖区指定或全部功能障碍者的基本信息、残疾信息进行输入；对辖区指定或全部功能障碍者进行“精准康复入户模块”和“辅具上门评估与适配模块”的评估；对“综合服务回访”模块进行“假肢矫形器回访”、“无障碍回访”和“辅具回访”和其“康复服务”的跟踪。",""),
@@ -33,269 +33,248 @@ namespace JZKFXT.Migrations
                 new Role( 10, "康复服务机构","本地区开展除辅具评估适配业务以外的服务机构，涉及康复治疗与训练、手术、支持性服务，等的服务。", "在“综合康复服务”模块的“康复服务”子模块，对功能障碍者开展康复治疗与训练、手术、支持性服务，等的服务。",""),
                 new Role( 11, "辅具服务机构","本地区开展辅具服务的机构。", "在“综合康复服务”模块的“辅具服务”子模块，对功能障碍者开展辅具配发、假肢矫形器和无障碍等的服务。","")
             };
-            foreach (var r in Roles)
+            db.Roles.AddRange(Roles);
+            #endregion
+
+            #region 关系
+            List<Relationship> Relationships = new List<Relationship>
             {
-                db.Roles.AddOrUpdate(r);
-            }
+                new Relationship(1, "父母"),
+                new Relationship(2, "配偶"),
+                new Relationship(3, "兄弟姐妹"),
+                new Relationship(4, "祖父母"),
+                new Relationship(5, "其他")
+            };
+            db.Relationships.AddRange(Relationships);
+            #endregion
+
+            #region 残疾类别
+            List<Category> Categories = new List<Category>
+            {
+                new Category(1, "视力"),
+                new Category(2, "听力"),
+                new Category(3, "言语"),
+                new Category(4, "肢体"),
+                new Category(5, "智力"),
+                new Category(6, "精神"),
+                new Category(7, "多重"),
+            };
+            db.Categories.AddRange(Categories);
+            #endregion
+
+            #region 残疾等级
+            List<Degree> Degrees = new List<Degree>
+            {
+                new Degree(1, "一级"),
+                new Degree(2, "二级"),
+                new Degree(3, "三级"),
+                new Degree(4, "四级"),
+                new Degree(5, "未定级")
+            };
+            db.Degrees.AddRange(Degrees);
+            #endregion
+
+            #region 服务走向
+            List<Next> Nexts = new List<Next>
+            {
+                new Next(1, "转介评估机构"),
+                new Next(2, "转介服务机构"),
+                new Next(3, "上门评估")
+            };
+            db.Nexts.AddRange(Nexts);
+            #endregion
+
+            #region 致残原因
+            List<DisabilityReason> DisabilityReasons = new List<DisabilityReason>
+            {
+                new DisabilityReason(1, "外伤"),
+                new DisabilityReason(1, "青光眼"),
+                new DisabilityReason(1, "角膜病"),
+                new DisabilityReason(1, "视网膜"),
+                new DisabilityReason(1, "色素膜变性"),
+                new DisabilityReason(1, "屈光不正/弱视"),
+                new DisabilityReason(1, "白内障"),
+                new DisabilityReason(1, "黄斑变性"),
+                new DisabilityReason(1, "视神经萎缩"),
+                new DisabilityReason(1, "其他"),
+                new DisabilityReason(2, "先天性"),
+                new DisabilityReason(2, "药物性"),
+                new DisabilityReason(2, "老年性"),
+                new DisabilityReason(2, "其他"),
+            };
+            db.DisabilityReasons.AddRange(DisabilityReasons);
+            #endregion
+
+            #region 康复需求
+            List<Rehabilitation> Rehabilitations = new List<Rehabilitation>
+            {
+                //视力
+                new Rehabilitation(1010101, 1, "视力", "盲人","白内障复明手术",false),
+                new Rehabilitation(1010102, 1, "视力", "盲人","辅助器具适配及服务", true),
+                new Rehabilitation(1010103, 1, "视力", "盲人","定向行走及适应训练",false),
+                new Rehabilitation(1010104, 1, "视力", "盲人","支持性服务",false),
+                new Rehabilitation(1010201, 1, "视力", "低视力","辅助器具适配及服务", true),
+                new Rehabilitation(1010202, 1, "视力", "低视力","视功能训练",false),
+                //听力
+                new Rehabilitation(1020101, 2, "听力", "0-6岁儿童","人工耳蜗植入手术",false),
+                new Rehabilitation(1020102, 2, "听力", "0-6岁儿童","辅助器具适配及服务", true),
+                new Rehabilitation(1020103, 2, "听力", "0-6岁儿童","听觉言语功能训练",false),
+                new Rehabilitation(1020104, 2, "听力", "0-6岁儿童","支持性服务",false),
+                new Rehabilitation(1020201, 2, "听力", "7—17岁儿童","辅助器具适配及适应训练", true),
+                new Rehabilitation(1020202, 2, "听力", "7—17岁儿童","支持性服务",false),
+                new Rehabilitation(1020301, 2, "听力", "成人","辅助器具适配及适应训练", true),
+                //言语
+                new Rehabilitation(1030101, 3, "言语", "成人","",false),
+                //肢体 
+                new Rehabilitation(1040101, 4, "肢体", "0-6岁儿童","矫治手术",false),
+                new Rehabilitation(1040102, 4, "肢体", "0-6岁儿童","运动及适应训练",false),
+                new Rehabilitation(1040103, 4, "肢体", "0-6岁儿童","辅助器具适配及服务", true),
+                new Rehabilitation(1040104, 4, "肢体", "0-6岁儿童","支持性服务",false),
+                new Rehabilitation(1040201, 4, "肢体", "7-17儿童及成人","康复治疗及训练",false),
+                new Rehabilitation(1040202, 4, "肢体", "7-17儿童及成人","辅助器具适配及服务", true),
+                new Rehabilitation(1040203, 4, "肢体", "7-17儿童及成人","支持性服务",false),
+                //智力
+                new Rehabilitation(1050101, 5, "智力", "0-6岁儿童","认知及适应训练",false),
+                new Rehabilitation(1050102, 5, "智力", "0-6岁儿童","支持性服务",false),
+                new Rehabilitation(1050201, 5, "智力", "7-17儿童及成人","认知及适应训练",false),
+                new Rehabilitation(1050202, 5, "智力", "7-17儿童及成人","支持性服务",false),
+                //精神
+                new Rehabilitation(1060101, 6, "精神", "0-6岁孤独症儿童","沟通及适应训练",false),
+                new Rehabilitation(1060102, 6, "精神", "0-6岁孤独症儿童","支持性服务",false),
+                new Rehabilitation(1060201, 6, "精神", "7-17孤独症","沟通及适应训练",false),
+                new Rehabilitation(1060202, 6, "精神", "7-17孤独症","支持性服务",false),
+                new Rehabilitation(1060301, 6, "精神", "成年精神残疾人","精神疾病药物治疗",false),
+                new Rehabilitation(1060302, 6, "精神", "成年精神残疾人","精神障碍作业疗法训练",false),
+                new Rehabilitation(1060303, 6, "精神", "成年精神残疾人","支持性服务",false),
+            };
+            db.Rehabilitations.AddRange(Rehabilitations);
+            #endregion
             db.SaveChanges();
 
-            //用户
+            #region 用户
             var user = new User("", "", "管理员", 1, DateTime.Today);
             db.Users.AddOrUpdate(user);
+            #endregion
+
+            #region 残疾人信息
+            List<DisabledInfo> disabledInfoes = new List<DisabledInfo> {
+                new DisabledInfo
+                (
+                    "权子豪",
+                    1,
+                    "13800000000",
+                   "权子豪爸",
+                    1,
+                    true,
+                    "32030219911010101011",
+                    true,
+                    1,
+                    1,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "唐莎莎",
+                    2,
+                    "13800000000",
+                   "莎莎妈",
+                    2,
+                    true,
+                    "32030219911010101022",
+                    true,
+                    2,
+                    2,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "周正一",
+                    1,
+                    "13800000000",
+                   "周正一妈",
+                    2,
+                    true,
+                    "32030219911010101033",
+                    true,
+                    3,
+                    3,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "谢琦",
+                    1,
+                    "13800000000",
+                   "谢琦妈",
+                    2,
+                    true,
+                    "32030219911010101044",
+                    true,
+                    4,
+                    4,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "韩冰",
+                    2,
+                    "13800000000",
+                   "韩冰妈",
+                    2,
+                    true,
+                    "32030219911010101054",
+                    true,
+                    5,
+                    4,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "韩儒",
+                    1,
+                    "13800000000",
+                   "韩儒妈",
+                    2,
+                    true,
+                    "32030219911010101064",
+                    true,
+                    6,
+                    4,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "孙永",
+                    1,
+                    "13800000000",
+                   "孙永妈",
+                    2,
+                    true,
+                    "32030219911010101074",
+                    true,
+                    7,
+                    4,
+                    DateTime.Today,
+                    "辅具上门评估"
+                )
+            };
+            db.DisabledInfoes.AddRange(disabledInfoes);
+            #endregion
             db.SaveChanges();
-
-            //关系
-            List<Relationship> Relationships = new List<Relationship>
-        {
-            new Relationship(1, "父母"),
-            new Relationship(2, "配偶"),
-            new Relationship(3, "兄弟姐妹"),
-            new Relationship(4, "祖父母"),
-            new Relationship(5, "其他")
-        };
-            foreach (var r in Relationships)
-            {
-                db.Relationships.AddOrUpdate(r);
-            }
-            db.SaveChanges();
-
-            //残疾类别
-            List<Category> Categories = new List<Category>
-        {
-            new Category(1, "视力"),
-            new Category(2, "听力"),
-            new Category(3, "言语"),
-            new Category(4, "肢体"),
-            new Category(5, "智力"),
-            new Category(6, "精神"),
-            new Category(7, "多重"),
-
-        };
-            foreach (var r in Categories)
-            {
-                db.Categories.AddOrUpdate(r);
-            }
-            db.SaveChanges();
-
-            //残疾等级
-            List<Degree> Degrees = new List<Degree>
-        {
-            new Degree(1, "一级"),
-            new Degree(2, "二级"),
-            new Degree(3, "三级"),
-            new Degree(4, "四级"),
-            new Degree(5, "未定级")
-        };
-            foreach (var r in Degrees)
-            {
-                db.Degrees.AddOrUpdate(r);
-            }
-            db.SaveChanges();
-
-            //残疾等级
-            List<Next> Nexts = new List<Next>
-        {
-            new Next(1, "转介评估机构"),
-            new Next(2, "转介服务机构"),
-            new Next(3, "上门评估")
-        };
-            foreach (var r in Nexts)
-            {
-                db.Nexts.AddOrUpdate(r);
-            }
-
-            //致残原因
-            List<DisabilityReason> DisabilityReasons = new List<DisabilityReason>
-        {
-            new DisabilityReason(1, "外伤"),
-            new DisabilityReason(1, "青光眼"),
-            new DisabilityReason(1, "角膜病"),
-            new DisabilityReason(1, "视网膜"),
-            new DisabilityReason(1, "色素膜变性"),
-            new DisabilityReason(1, "屈光不正/弱视"),
-            new DisabilityReason(1, "白内障"),
-            new DisabilityReason(1, "黄斑变性"),
-            new DisabilityReason(1, "视神经萎缩"),
-            new DisabilityReason(1, "其他"),
-            new DisabilityReason(2, "先天性"),
-            new DisabilityReason(2, "药物性"),
-            new DisabilityReason(2, "老年性"),
-            new DisabilityReason(2, "其他"),
-        };
-            foreach (var r in DisabilityReasons)
-            {
-                db.DisabilityReasons.AddOrUpdate(r);
-            }
-            db.SaveChanges();
+            
             //康复需求
-            List<Rehabilitation> RehabilitationList = new List<Rehabilitation>
-        {
-            //视力
-            new Rehabilitation(1010101, 1, "视力", "盲人","白内障复明手术",false),
-            new Rehabilitation(1010102, 1, "视力", "盲人","辅助器具适配及服务", true),
-            new Rehabilitation(1010103, 1, "视力", "盲人","定向行走及适应训练",false),
-            new Rehabilitation(1010104, 1, "视力", "盲人","支持性服务",false),
-            new Rehabilitation(1010201, 1, "视力", "低视力","辅助器具适配及服务", true),
-            new Rehabilitation(1010202, 1, "视力", "低视力","视功能训练",false),
-            //听力
-            new Rehabilitation(1020101, 2, "听力", "0-6岁儿童","人工耳蜗植入手术",false),
-            new Rehabilitation(1020102, 2, "听力", "0-6岁儿童","辅助器具适配及服务", true),
-            new Rehabilitation(1020103, 2, "听力", "0-6岁儿童","听觉言语功能训练",false),
-            new Rehabilitation(1020104, 2, "听力", "0-6岁儿童","支持性服务",false),
-            new Rehabilitation(1020201, 2, "听力", "7—17岁儿童","辅助器具适配及适应训练", true),
-            new Rehabilitation(1020202, 2, "听力", "7—17岁儿童","支持性服务",false),
-            new Rehabilitation(1020301, 2, "听力", "成人","辅助器具适配及适应训练", true),
-            //言语
-            new Rehabilitation(1030101, 3, "言语", "成人","",false),
-            //肢体 
-            new Rehabilitation(1040101, 4, "肢体", "0-6岁儿童","矫治手术",false),
-            new Rehabilitation(1040102, 4, "肢体", "0-6岁儿童","运动及适应训练",false),
-            new Rehabilitation(1040103, 4, "肢体", "0-6岁儿童","辅助器具适配及服务", true),
-            new Rehabilitation(1040104, 4, "肢体", "0-6岁儿童","支持性服务",false),
-            new Rehabilitation(1040201, 4, "肢体", "7-17儿童及成人","康复治疗及训练",false),
-            new Rehabilitation(1040202, 4, "肢体", "7-17儿童及成人","辅助器具适配及服务", true),
-            new Rehabilitation(1040203, 4, "肢体", "7-17儿童及成人","支持性服务",false),
-            //智力
-            new Rehabilitation(1050101, 5, "智力", "0-6岁儿童","认知及适应训练",false),
-            new Rehabilitation(1050102, 5, "智力", "0-6岁儿童","支持性服务",false),
-            new Rehabilitation(1050201, 5, "智力", "7-17儿童及成人","认知及适应训练",false),
-            new Rehabilitation(1050202, 5, "智力", "7-17儿童及成人","支持性服务",false),
-            //精神
-            new Rehabilitation(1060101, 6, "精神", "0-6岁孤独症儿童","沟通及适应训练",false),
-            new Rehabilitation(1060102, 6, "精神", "0-6岁孤独症儿童","支持性服务",false),
-            new Rehabilitation(1060201, 6, "精神", "7-17孤独症","沟通及适应训练",false),
-            new Rehabilitation(1060202, 6, "精神", "7-17孤独症","支持性服务",false),
-            new Rehabilitation(1060301, 6, "精神", "成年精神残疾人","精神疾病药物治疗",false),
-            new Rehabilitation(1060302, 6, "精神", "成年精神残疾人","精神障碍作业疗法训练",false),
-            new Rehabilitation(1060303, 6, "精神", "成年精神残疾人","支持性服务",false),
-        };
-            foreach (var r in RehabilitationList)
-            {
-                db.Rehabilitations.AddOrUpdate(r);
-            }
-            db.SaveChanges();
-
-
-            //康复入户信息
-            DisabledInfo disabledInfo = new DisabledInfo
-            (
-                "权子豪",
-                1,
-                "13800000000",
-               "权子豪爸",
-                1,
-                true,
-                "32030219911010101011",
-                true,
-                1,
-                1,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "唐莎莎",
-                2,
-                "13800000000",
-               "莎莎妈",
-                2,
-                true,
-                "32030219911010101022",
-                true,
-                2,
-                2,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "周正一",
-                1,
-                "13800000000",
-               "周正一妈",
-                2,
-                true,
-                "32030219911010101033",
-                true,
-                3,
-                3,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "谢琦",
-                1,
-                "13800000000",
-               "谢琦妈",
-                2,
-                true,
-                "32030219911010101044",
-                true,
-                4,
-                4,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "韩冰",
-                2,
-                "13800000000",
-               "韩冰妈",
-                2,
-                true,
-                "32030219911010101054",
-                true,
-                5,
-                4,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "韩儒",
-                1,
-                "13800000000",
-               "韩儒妈",
-                2,
-                true,
-                "32030219911010101064",
-                true,
-                6,
-                4,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "孙永",
-                1,
-                "13800000000",
-               "孙永妈",
-                2,
-                true,
-                "32030219911010101074",
-                true,
-                7,
-                4,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            db.SaveChanges();
-
             List<DisabledInfo_Detail> disabledInfo_Details = new List<DisabledInfo_Detail> {
                 new DisabledInfo_Detail(1, 1, 1, 1010102, 3, "视力"),
                 new DisabledInfo_Detail(2, 2, 2, 1020102, 3, "听力"),
             };
-            foreach (var r in disabledInfo_Details)
-            {
-                db.DisabledInfo_Details.AddOrUpdate(r);
-            }
+            db.DisabledInfo_Details.AddRange(disabledInfo_Details);
             db.SaveChanges();
-
-
-
 
 
             //辅具
@@ -1730,6 +1709,15 @@ namespace JZKFXT.Migrations
             };
             Exam exam4 = new Exam(4, "辅具上门评估", "脑瘫", questions4);
             db.Exams.AddOrUpdate(exam4);
+
+            List<ExamRecord> examRecords = new List<ExamRecord>
+            {
+                new ExamRecord(1, 1),
+                new ExamRecord(2, 2),
+                new ExamRecord(3, 3),
+                new ExamRecord(4, 4),
+            };
+            db.ExamRecords.AddRange(examRecords);
         }
     }
 }

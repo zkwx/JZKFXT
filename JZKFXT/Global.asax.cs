@@ -25,8 +25,7 @@ namespace JZKFXT
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer<BaseContext>(new MigrateDatabaseToLatestVersion<BaseContext, Configuration>(true));
-
+            
         }
         protected void Application_BeginRequest()
         {
