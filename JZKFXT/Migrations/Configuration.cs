@@ -2349,10 +2349,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(103091501, "拉链器", "穿衣类"),
                 new AssistiveDevice(103091801, "系扣器", "穿衣类"),
             };
-            foreach (var r in AssistiveDevices)
-            {
-                db.AssistiveDevices.AddOrUpdate(r);
-            }
+            //db.AssistiveDevices.AddRange(AssistiveDevices);
             db.SaveChanges();
             //评估
             //视力

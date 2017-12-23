@@ -37,6 +37,7 @@ namespace JZKFXT.Models
         /// <summary>
         /// 题目列表
         /// </summary>
+        [JsonIgnore]
         public virtual ICollection<Question> Questions { get; set; }
 
     }

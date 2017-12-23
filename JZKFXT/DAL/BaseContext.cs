@@ -15,8 +15,8 @@ namespace JZKFXT.DAL
     {
         public BaseContext() : base("ConnectString")
         {
-            Database.SetInitializer<BaseContext>(new DropCreateDatabaseIfModelChanges<BaseContext>());
-            Database.SetInitializer<BaseContext>(new MigrateDatabaseToLatestVersion<BaseContext, Configuration>());
+            Database.SetInitializer<BaseContext>(new CreateDatabaseIfNotExists<BaseContext>());
+            //Database.SetInitializer<BaseContext>(new MigrateDatabaseToLatestVersion<BaseContext, Configuration>());
             Database.Log = new Action<string>(q => Debug.WriteLine(q));
         }
 
