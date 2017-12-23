@@ -2470,9 +2470,9 @@ namespace JZKFXT.Migrations
                     }
                 ),
             };
-            #endregion
             Exam exam1 = new Exam(1, "辅具上门评估", "视力", questions1);
             db.Exams.AddOrUpdate(exam1);
+            #endregion
 
             #region 听力试题
             List<Question> questions2 = new List<Question> {
@@ -2510,9 +2510,9 @@ namespace JZKFXT.Migrations
                     }
                 )
             };
-            #endregion
             Exam exam2 = new Exam(2, "辅具上门评估", "听力", questions2);
             db.Exams.AddOrUpdate(exam2);
+            #endregion
 
             #region 偏瘫试题
             List<Question> questions3 = new List<Question>
@@ -2696,9 +2696,9 @@ namespace JZKFXT.Migrations
                     }
                 ),
             };
-            #endregion
             Exam exam3 = new Exam(3, "辅具上门评估", "偏瘫", questions3);
             db.Exams.AddOrUpdate(exam3);
+            #endregion
 
             #region 脑瘫试题
             List<Question> questions4 = new List<Question>
@@ -2960,9 +2960,9 @@ namespace JZKFXT.Migrations
                     }
                 ),
             };
-            #endregion
             Exam exam4 = new Exam(4, "辅具上门评估", "脑瘫", questions4);
             db.Exams.AddOrUpdate(exam4);
+            #endregion
 
             #region 脊髓试题
             List<Question> questions5 = new List<Question>
@@ -2997,13 +2997,148 @@ namespace JZKFXT.Migrations
                          new Option("B", "不能","2",1070903,1033021,1033018,1032718,103310602),
                     }
                 ),
-
-
-
+                new Question("1-4", "双手支撑能否使臀部离开椅面", false,false,
+                    new List<Option>{
+                         new Option("A", "能","1-5"),
+                         //07 33 09个人移动训练辅助器具（移乘板或移乘带）
+                         new Option("B", "不能","1-5",1073309),
+                    }
+                ),
+               new Question("1-5", "能否经常自行远距离出行", false,false,
+                    new List<Option>{
+                         //02 18 09手摇三轮车，选配02 23 09机动轮椅车
+                         new Option("A", "能","1-6",1021809,1022309),
+                         new Option("B", "不能","1-6"),
+                    }
+                ),
+               new Question("1-6", "是否有站立需求", false,false,
+                    new List<Option>{
+                        //脊柱矫形器
+                         new Option("A", "有","1-6-1",1010327),
+                         new Option("B", "无","1-7"),
+                    }
+                ),
+               new Question("1-6-1", "能否自行站立", false,false,
+                    new List<Option>{
+                        //下肢矫形器
+                         new Option("A", "是","1-6-1-1",10112),
+                         //选配02 23 03电动轮椅车（站立电动轮椅）
+                         new Option("B", "否","1-7",102230305),
+                    }
+                ),
+               new Question("1-6-1-1", "是否能行走", false,false,
+                    new List<Option>{
+                        //02 06 03框式助行架；或02 03 12腋拐，选配02 03 06肘拐
+                         new Option("A", "能","1-7",1020603,1020312,1020306),
+                         //02 06 03框式助行架
+                         new Option("B", "不能","1-7",1020603),
+                    }
+                ),
+               new Question("1-7", "能否控制大小便", false,false,
+                    new List<Option>{
+                         new Option("A", "能","1-7-1"),
+                         //03 30 21成人一次性尿布(成人纸尿裤)；03 27 18尿收集系统
+                         new Option("B", "不能","2",103302101,1032718),
+                    }
+                ),
+               new Question("1-7-1", "能否自行如厕", false,false,
+                    new List<Option>{
+                         new Option("A", "能","1-7-1-1"),
+                         //03 12 03坐便椅
+                         new Option("B", "不能","2",1031203),
+                    }
+                ),
+               new Question("1-7-1-1", "家中是否有坐便器（单选）", false,false,
+                    new List<Option>{
+                         new Option("A", "有","2"),
+                         //03 12 03坐便椅
+                         new Option("B", "无","2",1031203),
+                    }
+                ),
+               new Question("2", "能否自主进食", false,false,
+                    new List<Option>{
+                        //选配10 09 27喂食器械（电动喂食机）
+                         new Option("A", "不能","3",110092701),
+                         //08 18 03抓握装置（万能袖带），选配10 09食饮辅助器具(叉、勺、筷子)；10 09 18盘子和碗；10 09食饮辅助器具-杯子(斜口杯/吸管杯/大耳杯)；10 09 21食物挡边(桌上防滑垫)
+                         new Option("B", "辅助下完成","2-1",108180301,1100922,1100923,1100924,1100918,110092502,110092503,110092504,110092102),
+                         new Option("C", "独立完成","3"),
+                    }
+                ),
+               new Question("2-1", "手部是否有畸形", false,false,
+                    new List<Option>{
+                        //上肢矫形器
+                         new Option("A", "有","3",10106),
+                         new Option("B", "无","3"),
+                    }
+                ),
+               new Question("3", "能否自主洗浴", false,false,
+                    new List<Option>{
+                        //03 33 03盆浴或淋浴椅（有轮和无轮）-洗浴躺椅，选配03 33 12洗浴床（洗浴床）或03 33清洗、盆浴和淋浴辅助器具-洗浴床单（洗浴床单）；03 33 15洗盆（充气式洗头池）
+                         new Option("A", "不能","4",103330301,1033312,103332201,103331501),
+                         //03 33 03盆浴或淋浴椅（有轮和无轮)-洗浴椅；选配03 33 06防滑的淋浴垫和带子（地面防滑垫）；03 33 30带有把手、手柄和握把的洗澡布、海绵和刷子
+                         new Option("B", "辅助下完成","4",103330302,103330303,103330304,103330305,103330601,1033330),
+                         //03 33 03盆浴或淋浴椅（有轮和无轮)-洗浴椅；选配03 33 06防滑的淋浴垫和带子（地面防滑垫）
+                         new Option("C", "独立完成","4",103330302,103330303,103330304,103330305,103330601),
+                    }
+                ),
+               new Question("4", "能否自行穿脱衣物", false,false,
+                    new List<Option>{
+                        //选配03 03 18夹克衫和长裤
+                         new Option("A", "不能","5",1030318),
+                         //选配03 09 18系扣钩（系扣器），03 09 03穿短袜和穿连裤袜的辅助器具（穿袜器），03 09 15拉动拉链的装置（拉链器）
+                         new Option("B", "辅助下完成","5",103091801,103090301,103091501),
+                         new Option("C", "独立完成","5"),
+                    }
+                ),
+                new Question("5", "是否存在其他方面残疾", false,false,
+                    new List<Option>{
+                         new Option("A", "无","6"),
+                         new Option("B", "视力",1,"6"),
+                         new Option("C", "听力",2,"6"),
+                         new Option("D", "其它","6"),
+                    }
+                ),
+                 new Question("6", "最希望解决什么问题（最多选择三个）", false,true,
+                    new List<Option>{
+                         new Option("A", "轮椅代步",null),
+                         new Option("B", "辅助行走",null),
+                         new Option("C", "饮食",null),
+                         new Option("D", "个人护理",null),
+                         new Option("E", "如厕",null),
+                         new Option("F", "信息交流",null),
+                         new Option("G", "康复训练",null),
+                         new Option("H", "防护功能",null),
+                         new Option("I", "无障碍环境",8,null),
+                         new Option("J", "操作和使用",null),
+                         new Option("K", "位置转移",null),
+                         new Option("L", "纠正姿势",null),
+                         new Option("M", "假肢",7,null),
+                         new Option("N", "矫形器",null),
+                         new Option("O", "助听类",null),
+                         new Option("P", "助视类",null),
+                         new Option("Q", "洗漱类",null),
+                         new Option("R", "穿衣类",null),
+                    }
+                ),
             };
-            #endregion
             Exam exam5 = new Exam(5, "辅具上门评估", "脊髓", questions5);
             db.Exams.AddOrUpdate(exam5);
+            #endregion
+
+            #region 肢体试题
+            List<Question> questions6 = new List<Question>
+            {
+                new Question("1", "肢体是否有残缺", true,false,
+                    new List<Option>{
+                         new Option("A", "有","2"),
+                         new Option("B", "无","2"),
+                    }
+                ),
+
+            };
+            Exam exam6 = new Exam(6, "辅具上门评估", "肢体", questions6);
+            db.Exams.AddOrUpdate(exam6);
+            #endregion
 
             List<ExamRecord> examRecords = new List<ExamRecord>
             {
