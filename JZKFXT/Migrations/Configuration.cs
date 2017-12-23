@@ -267,7 +267,7 @@ namespace JZKFXT.Migrations
             db.DisabledInfoes.AddRange(disabledInfoes);
             #endregion
             db.SaveChanges();
-            
+
             //康复需求
             List<DisabledInfo_Detail> disabledInfo_Details = new List<DisabledInfo_Detail> {
                 new DisabledInfo_Detail(1, 1, 1, 1010102, 3, "视力"),
@@ -277,10 +277,10 @@ namespace JZKFXT.Migrations
             db.SaveChanges();
 
 
-            //辅具
+            #region 辅具列表
             List<AssistiveDevice> AssistiveDevices = new List<AssistiveDevice>
             {
-                //轮椅代步
+                #region 轮椅代步
                 new AssistiveDevice(10217,"替代机动车","轮椅代步"),
                 new AssistiveDevice(10218,"自行车","轮椅代步"),
                 new AssistiveDevice(10222,"手动轮椅车","轮椅代步"),
@@ -358,8 +358,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(102231502,"履带式爬楼轮椅","轮椅代步"),
                 new AssistiveDevice(102230901,"三轮机动轮椅车","轮椅代步"),
                 new AssistiveDevice(102230902,"四轮机动轮椅车","轮椅代步"),
+                #endregion
 
-                //辅助行走
+                #region 辅助行走
                 new AssistiveDevice(10203,"单臂操作助行器","辅助行走"),
                 new AssistiveDevice(10206,"双臂操作助行器","辅助行走"),
                 new AssistiveDevice(10207,"助行器附件","辅助行走"),
@@ -487,8 +488,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(102390308,"收缩式盲杖","辅助行走"),
                 new AssistiveDevice(102390309,"盲聋杖","辅助行走"),
                 new AssistiveDevice(102390601,"电子导盲器","辅助行走"),
+                #endregion
 
-                //饮食
+                #region 饮食
                 new AssistiveDevice(11003,"准备食物和饮料的辅助器具","饮食"),
                 new AssistiveDevice(11006,"清洗餐具辅助器具","饮食"),
                 new AssistiveDevice(11009,"食饮辅助器具","饮食"),
@@ -567,8 +569,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(110092701, "电动喂食机", "饮食"),
                 new AssistiveDevice(110093001, "喂食泵", "饮食"),
                 new AssistiveDevice(110093101, "生活自助具", "饮食"),
+                #endregion
 
-                //个人护理
+                #region 个人护理
                 new AssistiveDevice(10315,"气管造口护理辅助器具","个人护理"),
                 new AssistiveDevice(10318,"肠造口护理辅助器具","个人护理"),
                 new AssistiveDevice(10321,"护肤和洁肤产品","个人护理"),
@@ -729,8 +732,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(104101503, "椅座上限位搁脚板", "个人护理"),
                 new AssistiveDevice(104101801, "椅座上骨盆托", "个人护理"),
                 new AssistiveDevice(104101802, "椅座上躯干托", "个人护理"),
+                #endregion
 
-                //如厕
+                #region 如厕
                 new AssistiveDevice(10312,"如厕辅助器具","如厕"),
                 new AssistiveDevice(10324,"排尿装置","如厕"),
                 new AssistiveDevice(10327,"尿便收集器","如厕"),
@@ -838,8 +842,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(103310305, "可膨胀的夹紧导尿管的气球", "如厕"),
                 new AssistiveDevice(103310601, "肛门插闩", "如厕"),
                 new AssistiveDevice(103310602, "肛门插塞", "如厕"),
+                #endregion
 
-                //信息交流
+                #region 信息交流
                 new AssistiveDevice(10527,"报警、指示、提醒和讯号辅助器具","信息交流"),
                 new AssistiveDevice(10509,"发声辅助器具","信息交流"),
                 new AssistiveDevice(10515,"计算辅助器具","信息交流"),
@@ -1035,8 +1040,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(105390601, "盲文打印机", "信息交流"),
                 new AssistiveDevice(105390701, "可听计算机显示器", "信息交流"),
                 new AssistiveDevice(105391201, "光标定位的屏幕放大程序", "信息交流"),
+                #endregion
 
-                //康复训练
+                #region 康复训练
                 new AssistiveDevice(10636,"知觉训练辅助器具","康复训练"),
                 new AssistiveDevice(10645,"脊柱牵引辅助器具","康复训练"),
                 new AssistiveDevice(10648,"运动、肌力和平衡训练的设备","康复训练"),
@@ -1142,7 +1148,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(106480701, "减重步行训练器", "康复训练"),
                 new AssistiveDevice(106480702, "步行训练用平行杠和行走支撑台", "康复训练"),
                 new AssistiveDevice(106480703, "步行阶梯", "康复训练"),
-                new AssistiveDevice(106480801, "儿童用直立型站立架", "康复训练"),
+                new AssistiveDevice(106480801, "儿童用直立式站立架", "康复训练"),
                 new AssistiveDevice(106480802, "儿童用仰卧式站立架", "康复训练"),
                 new AssistiveDevice(106480803, "儿童用俯卧式站立架", "康复训练"),
                 new AssistiveDevice(106480804, "成人用直立型站立架", "康复训练"),
@@ -1261,8 +1267,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(107331202,"饮食用具使用训练器具","康复训练"),
                 new AssistiveDevice(107331203,"清扫用具使用训练器具","康复训练"),
                 new AssistiveDevice(107331204, "家庭缝纫使用训练器具", "康复训练"),
+                #endregion
 
-                //防护功能
+                #region 防护功能
                 new AssistiveDevice(10603,"呼吸辅助器具","防护功能"),
                 new AssistiveDevice(10606,"循环治疗辅助器具","防护功能"),
                 new AssistiveDevice(10607,"预防瘢痕形成的辅助器具","防护功能"),
@@ -1378,8 +1385,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(106330606, "凝胶海绵复合防压疮床垫", "防护功能"),
                 new AssistiveDevice(106330901, "压力测量床垫", "防护功能"),
                 new AssistiveDevice(106330902, "防褥疮喷气床垫", "防护功能"),
+                #endregion
 
-                //无障碍环境
+                #region 无障碍环境
                 new AssistiveDevice(10420,"无障碍改造","无障碍环境"),
                 new AssistiveDevice(10433,"家庭和其他场所的安全设施","无障碍环境"),
                 new AssistiveDevice(10903,"改善环境辅助器具","无障碍环境"),
@@ -1404,8 +1412,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(109031501, "照明控制辅助器具", "无障碍环境"),
                 new AssistiveDevice(109031801, "水净化器", "无障碍环境"),
                 new AssistiveDevice(109031802, "水软化器", "无障碍环境"),
+                #endregion
 
-                //操作和使用
+                #region 操作和使用
                 new AssistiveDevice(10806,"操作容器的辅助器具","操作和使用"),
                 new AssistiveDevice(10809,"操控设备的辅助器具","操作和使用"),
                 new AssistiveDevice(10813,"远程控制辅助器具","操作和使用"),
@@ -1580,8 +1589,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(112181506, "笔洗", "操作和使用"),
                 new AssistiveDevice(112181507, "镇纸", "操作和使用"),
                 new AssistiveDevice(112181801,"其它材料的手工工艺的工具、材料和设备","操作和使用"),
+                #endregion
 
-                //位置转移
+                #region 位置转移
                 new AssistiveDevice(10236,"升降人的辅助器具","位置转移"),
                 new AssistiveDevice(10430,"垂直运送辅助器具","位置转移"),
                 new AssistiveDevice(10733,"日常生活活动训练的辅助器具","位置转移"),
@@ -1634,8 +1644,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(107330905, "翻身床单", "位置转移"),
                 new AssistiveDevice(107330906, "移乘板", "位置转移"),
                 new AssistiveDevice(107330907, "起身绳梯", "位置转移"),
+                #endregion
 
-                //纠正姿势
+                #region 纠正姿势
                 new AssistiveDevice(10409,"坐式家具","纠正姿势"),
 
                 new AssistiveDevice(1040921,"特殊坐具","纠正姿势"),
@@ -1646,8 +1657,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(104092104,"儿童安全椅","纠正姿势"),
                 new AssistiveDevice(104092105,"儿童船形摇椅","纠正姿势"),
                 new AssistiveDevice(104092106,"儿童鞍型可调座椅","纠正姿势"),
+                #endregion
 
-                //假肢
+                #region 假肢
                 new AssistiveDevice(10118,"上肢假肢","假肢"),
                 new AssistiveDevice(10124,"下肢假肢","假肢"),
                 new AssistiveDevice(10130,"不同于假肢的假体","假肢"),
@@ -1837,8 +1849,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(101303301, "假腭", "假肢"),
                 new AssistiveDevice(101303601, "单颗牙", "假肢"),
                 new AssistiveDevice(101303602, "全口牙", "假肢"),
+                #endregion
 
-                //矫形器
+                #region 矫形器
                 new AssistiveDevice(10103,"脊柱和颅部矫形器","矫形器"),
                 new AssistiveDevice(10104,"腹部矫形器","矫形器"),
                 new AssistiveDevice(10106,"上肢矫形器系统","矫形器"),
@@ -2104,8 +2117,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(101333002,"跟骨刺免荷鞋","矫形器"),
                 new AssistiveDevice(101333301,"外科鞋","矫形器"),
                 new AssistiveDevice(101333302,"糖尿病鞋","矫形器"),
+                #endregion
 
-                //助听类
+                #region 助听类
                 new AssistiveDevice(10506,"助听器","助听类"),
 
                 new AssistiveDevice(1050606,"佩戴式（盒式）助听器","助听类"),
@@ -2127,8 +2141,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(105061701,"人工耳蜗","助听类"),
                 new AssistiveDevice(105061801,"骨导式助听器","助听类"),
                 new AssistiveDevice(105062701,"助听器配件","助听类"),
+                #endregion
 
-                //助视类
+                #region 助视类
                 new AssistiveDevice(10503,"视力辅助器具","助视类"),
                 new AssistiveDevice(10512,"绘画和书写辅助器具","助视类"),
 
@@ -2205,8 +2220,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(105122401, "盲文计算机编辑排版软件", "助视类"),
                 new AssistiveDevice(105122402,"视觉控制计算机软件","助视类"),
                 new AssistiveDevice(105122701, "盲文绘图程序", "助视类"),
+                #endregion
 
-                //洗漱类
+                #region 洗漱类
                 new AssistiveDevice(10333,"清洗、盆浴和淋浴辅助器具","洗漱类"),
 
                 new AssistiveDevice(1033303,"盆浴或淋浴椅（有轮和无轮）","洗漱类"),
@@ -2258,8 +2274,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(103333103, "带吸盘浴刷", "洗漱类"),
                 new AssistiveDevice(103333201, "带有把手的洗澡布", "洗漱类"),
                 new AssistiveDevice(103334501, "浴缸温度计", "洗漱类"),
+                #endregion
 
-                //穿衣类
+                #region 穿衣类
                 new AssistiveDevice(10303,"衣服和鞋","穿衣类"),
                 new AssistiveDevice(10306,"穿着式身体防护辅助器具","穿衣类"),
                 new AssistiveDevice(10307,"稳定身体的辅助器具","穿衣类"),
@@ -2348,11 +2365,15 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(103091203, "穿脱衣钩", "穿衣类"),
                 new AssistiveDevice(103091501, "拉链器", "穿衣类"),
                 new AssistiveDevice(103091801, "系扣器", "穿衣类"),
+                #endregion
+
             };
-            //db.AssistiveDevices.AddRange(AssistiveDevices);
+            #endregion
+            db.AssistiveDevices.AddRange(AssistiveDevices);
             db.SaveChanges();
             //评估
-            //视力
+
+            #region 视力试题
             List<Question> questions1 = new List<Question> {
                 new Question("1", "视力残疾等级", true,false,
                     new List<Option>{
@@ -2451,8 +2472,9 @@ namespace JZKFXT.Migrations
             };
             Exam exam1 = new Exam(1, "辅具上门评估", "视力", questions1);
             db.Exams.AddOrUpdate(exam1);
+            #endregion
 
-            //听力
+            #region 听力试题
             List<Question> questions2 = new List<Question> {
                 new Question("1", "听力残疾等级", true,false,
                     new List<Option>{
@@ -2490,8 +2512,9 @@ namespace JZKFXT.Migrations
             };
             Exam exam2 = new Exam(2, "辅具上门评估", "听力", questions2);
             db.Exams.AddOrUpdate(exam2);
+            #endregion
 
-            //偏瘫
+            #region 偏瘫试题
             List<Question> questions3 = new List<Question>
             {
                 new Question("1", "是否卧床", true,false,
@@ -2639,7 +2662,7 @@ namespace JZKFXT.Migrations
                     new List<Option>{
                          new Option("A", "否","8"),
                          //08 21 03手动抓取钳（折叠式长柄取物器/非折叠式长柄取物器）
-                         new Option("B", "是","8",1082103),
+                         new Option("B", "是","8",108210301,108210302),
                     }
                 ),
                 new Question("8", "是否存在其他方面残疾", false,false,
@@ -2675,8 +2698,9 @@ namespace JZKFXT.Migrations
             };
             Exam exam3 = new Exam(3, "辅具上门评估", "偏瘫", questions3);
             db.Exams.AddOrUpdate(exam3);
+            #endregion
 
-            //脑瘫
+            #region 脑瘫试题
             List<Question> questions4 = new List<Question>
             {
                 new Question("1", "年龄", true,false,
@@ -2685,6 +2709,7 @@ namespace JZKFXT.Migrations
                          new Option("B", ">7岁","3-1"),
                     }
                 ),
+                #region 年龄（<= 7）岁
                 new Question("2-1", "能否完成“坐起”动作", false,false,
                     new List<Option>{
                          new Option("A", "完全不能","2-1-1"),
@@ -2748,9 +2773,9 @@ namespace JZKFXT.Migrations
                 new Question("2-1-2-1-1-1-1", "能否维持站立", false,false,
                     new List<Option>{
                          //06 48 08站立架和站立支撑台(儿童用仰卧式站立架)
-                         new Option("A", "完全不能","2-2",1064808),
+                         new Option("A", "完全不能","2-2",106480802),
                          //06 48 08站立架和站立支撑台(儿童用直立式站立架)、儿童助行架
-                         new Option("B", "需要辅助","2-2",1064808),
+                         new Option("B", "需要辅助","2-2",106480801),
                          //02 06 06轮式助行器(后置四轮助行器)
                          new Option("C", "无需辅助可独站","2-2",102060607),
                     }
@@ -2761,10 +2786,359 @@ namespace JZKFXT.Migrations
                          new Option("B", "存在畸形","2-2-1"),
                     }
                 ),
-
+                new Question("2-2-1", "存在畸形部位（多选）", false,true,
+                    new List<Option>{
+                         //上肢矫形器
+                         new Option("A", "上肢畸形","2-3",10106),
+                         //躯干矫形器
+                         new Option("B", "躯干畸形","2-3",10103,10104),
+                         //下肢矫形器
+                         new Option("C", "下肢畸形","2-3",10112,10133),
+                    }
+                ),
+                new Question("2-3", "能否够独立进食、饮水", false,false,
+                    new List<Option>{
+                         new Option("A", "不能","2-3-1"),
+                         new Option("B", "能","2-4"),
+                    }
+                ),
+                new Question("2-3-1", "双手是否能够抓握", false,false,
+                    new List<Option>{
+                         //08 18 03抓握装置(万能袖带)；10 09杯子(大耳杯，改为大耳杯架)；10 09 18碗(防洒碗)；10 09 21食物挡边(桌上防滑垫)；10 09叉（粗柄叉）、勺(粗柄勺)
+                         new Option("A", "完全不能","2-4",108180301,110092503,1100918,110092102,110092201,110092303),
+                         //08 18 03抓握装置(万能袖带)；10 09杯子(大耳杯，改为大耳杯架)；10 09 18碗(防洒碗)；10 09 21食物挡边(桌上防滑垫)；10 09叉（粗柄叉）、勺(粗柄勺)
+                         new Option("B", "短暂抓握，不能维持","2-4",108180301,110092503,1100918,110092102,110092201,110092303),
+                         new Option("C", "能抓握且维持","2-4"),
+                    }
+                ),
+                new Question("2-4", "能否独立上厕所", false,false,
+                    new List<Option>{
+                         //03 30 12儿童用一次性失禁用品(儿童尿不湿)；03 12 33便盆
+                         new Option("A", "不能","6",103301201,1031233),
+                         new Option("B", "能","6"),
+                    }
+                ),
+                #endregion
+                #region 年龄（>7）岁
+                new Question("3-1", "能否完成“坐起”动作", false,false,
+                    new List<Option>{
+                         new Option("A", "完全不能","3-1-1"),
+                         new Option("B", "需要辅助完成","3-1-2"),
+                         new Option("C", "无需辅助能独立完成","3-1-2"),
+                    }
+                ),
+                new Question("3-1-1", "能否翻身", false,false,
+                    new List<Option>{
+                         new Option("A", "完全不能","3-1-1-1"),
+                         //06 33 04保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(脑瘫轮椅)；04家庭和家具-卧式家具（护理床）；06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）
+                         new Option("B", "需要辅助","3-2",106330402,1022218,1040801,1063306),
+                         //02 22 18护理者操纵的轮椅车-高靠背轮椅（带坐便/带轮椅桌）
+                         new Option("C", "无需辅助独立完成","3-2",102221801),
+                    }
+                ),
+                new Question("3-1-1-1", "是否能抬头", false,false,
+                    new List<Option>{
+                         //06 33 04保护组织完整性的靠背垫和小靠背垫（体位变换组合垫）；04家庭和家具-卧式家具（护理床）；06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）
+                         new Option("A", "完全不能","3-2",106330401,1040801,1063306),
+                         //06 33 04保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(脑瘫轮椅)；04家庭和家具-卧式家具（护理床）；06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）；04 10 09扶手(床旁护栏)
+                         new Option("B", "短暂抬头，不能维持","3-2",106330402,1022218,1040801,1063306,104100901),
+                         //06 33 04保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(脑瘫轮椅)；04家庭和家具-卧式家具（护理床）；06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）；04 10 09扶手(床旁护栏)
+                         new Option("C", "能抬头且能维持","3-2",106330402,1022218,1040801,1063306,104100901),
+                    }
+                ),
+                new Question("3-1-2", "能否维持坐位", false,false,
+                    new List<Option>{
+                         //02 22 18护理者操纵的轮椅车(脑瘫轮椅)；04 10 03靠背（可调靠背）
+                         new Option("A", "完全不能","3-2",1022218,104100301),
+                         //02 22 18护理者操纵的轮椅车(脑瘫轮椅)；04 10 03靠背（可调靠背）
+                         new Option("B", "辅助下可维持","3-2",1022218,104100301),
+                         new Option("C", "无需辅助可独坐","3-1-2-1"),
+                    }
+                ),
+                new Question("3-1-2-1", "能否完成“站起”动作", false,false,
+                    new List<Option>{
+                        //02 22 03双手驱动轮椅车(普通轮椅)；07 33 09个人移动训练辅助器具（转移腰带、移乘带，改为移乘带）
+                         new Option("A", "完全不能","3-2",102220301,1073309),
+                         //06 48 08站立架和站立支撑台(站立架)、02 06 03框式助行架(阶梯框式助行器)；07 33 09个人移动训练辅助器具（转移腰带、移乘带，改为移乘带）
+                         new Option("B", "需要辅助","3-2",1064808,102060303,1073309),
+                         new Option("C", "无需辅助独立完成","3-1-2-1-1"),
+                    }
+                ),
+                new Question("3-1-2-1-1", "能否维持站立", false,false,
+                    new List<Option>{
+                        //06 48 08站立架和站立支撑台(站立架)
+                         new Option("A", "完全不能","3-2",1064808),
+                         //06 48 08站立架和站立支撑台(站立架)、02 06 06轮式助行器(后置四轮助行器)
+                         new Option("B", "需要辅助","3-2",1064808,102060607),
+                         new Option("C", "无需辅助可独站","3-1-2-1-1-1"),
+                    }
+                ),
+                new Question("3-1-2-1-1-1", "能否行走", false,false,
+                    new List<Option>{
+                         new Option("A", "完全不能","3-2"),
+                         //02 06 06轮式助行器(后置四轮助行器)
+                         new Option("B", "需要较多辅助","3-2",102060607),
+                         //02 03 12腋拐(儿童腋拐)
+                         new Option("C", "需要较少辅助","3-2",102031207),
+                         new Option("D", "无需辅助独立行走","3-2"),
+                    }
+                ),
+                new Question("3-2", "是否存在畸形", false,false,
+                    new List<Option>{
+                         new Option("A", "不存在畸形","3-3"),
+                         new Option("B", "存在畸形","3-2-1"),
+                    }
+                ),
+                new Question("3-2-1", "存在畸形部位（多选）", false,true,
+                    new List<Option>{
+                         //上肢矫形器
+                         new Option("A", "上肢畸形","3-3",10106),
+                         //躯干矫形器
+                         new Option("B", "躯干畸形","3-3",10103,10104),
+                         //下肢矫形器
+                         new Option("B", "下肢畸形","3-3",10112,10133),
+                    }
+                ),
+                new Question("3-3", "能否够独立进食、饮水", false,false,
+                    new List<Option>{
+                         new Option("A", "不能","3-3-1"),
+                         new Option("B", "能","3-4"),
+                    }
+                ),
+                new Question("3-3-1", "双手是否能够抓握（单选）", false,false,
+                    new List<Option>{
+                        //08 18 03抓握装置(万能袖带)；10 09杯子(大耳杯，改为大耳杯架)；10 09 18碗(防洒碗)；10 09 21食物挡边(桌上防滑垫)；10 09叉（粗柄叉）、勺(粗柄勺)
+                         new Option("A", "完全不能","3-4",108180301,110092503,1100918,110092102,110092201,110092303),
+                         //08 18 03抓握装置(万能袖带)；10 09杯子(大耳杯，改为大耳杯架)；10 09 18碗(防洒碗)；10 09 21食物挡边(桌上防滑垫)；10 09叉（粗柄叉）、勺(粗柄勺)
+                         new Option("B", "短暂抓握，不能维持","3-4",108180301,110092503,1100918,110092102,110092201,110092303),
+                         new Option("C", "能抓握且维持","3-4"),
+                    }
+                ),
+                new Question("3-4", "能否独立上厕所", false,false,
+                    new List<Option>{
+                        //03 30 21成人一次性尿布(成人纸尿裤)；03 30 18成人一次性衬垫(纸质尿衬垫)；03 12 33便盆；
+                         new Option("A", "不能","3-5",103302101,103301801,1031233),
+                         new Option("B", "能","3-5"),
+                    }
+                ),
+                new Question("3-5", "洗浴时是否能站立", false,false,
+                    new List<Option>{
+                        //03 33 03盆浴或淋浴椅（有轮和无轮)-洗浴椅
+                         new Option("A", "不能","6",103330302,103330303,103330304,103330305),
+                         new Option("B", "能","6"),
+                    }
+                ),
+                #endregion
+                new Question("6", "是否存在其他方面残疾", false,false,
+                    new List<Option>{
+                         new Option("A", "无","7"),
+                         new Option("B", "视力",1,"7"),
+                         new Option("C", "听力",2,"7"),
+                         new Option("D", "其它","7"),
+                    }
+                ),
+                 new Question("7", "最希望解决什么问题（最多选择三个）", false,true,
+                    new List<Option>{
+                         new Option("A", "轮椅代步",null),
+                         new Option("B", "辅助行走",null),
+                         new Option("C", "饮食",null),
+                         new Option("D", "个人护理",null),
+                         new Option("E", "如厕",null),
+                         new Option("F", "信息交流",null),
+                         new Option("G", "康复训练",null),
+                         new Option("H", "防护功能",null),
+                         new Option("I", "无障碍环境",8,null),
+                         new Option("J", "操作和使用",null),
+                         new Option("K", "位置转移",null),
+                         new Option("L", "纠正姿势",null),
+                         new Option("M", "假肢",7,null),
+                         new Option("N", "矫形器",null),
+                         new Option("O", "助听类",null),
+                         new Option("P", "助视类",null),
+                         new Option("Q", "洗漱类",null),
+                         new Option("R", "穿衣类",null),
+                    }
+                ),
             };
             Exam exam4 = new Exam(4, "辅具上门评估", "脑瘫", questions4);
             db.Exams.AddOrUpdate(exam4);
+            #endregion
+
+            #region 脊髓试题
+            List<Question> questions5 = new List<Question>
+            {
+                new Question("1", "是否卧床", true,false,
+                    new List<Option>{
+                        //04家庭和家具-卧式家具（护理床）、06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）；06 33 04保护组织完整性的靠背垫和小靠背垫（体位垫）；07 33 09个人移动训练辅助器具（翻身床单）；05 27 18 个人紧急报警系统（呼叫器）；03 03 18夹克衫和长裤
+                         new Option("A", "是","1-1",1040801,1063306,106330401,107330905,105271801,1030318),
+                         //02 22 03双手驱动轮椅车（功能轮椅），选配02 23 03电动轮椅车（普通电动轮椅）；06 33 03保护组织完整性的座垫和衬垫（防压疮坐垫）08 21 03手动抓取钳（折叠式长柄取物器/非折叠式长柄取物器）
+                         new Option("B", "否","1-4",102220302,102230304,1063303,108210301,108210302),
+                    }
+                ),
+                new Question("1-1", "双手是否具有抓握能力", false,false,
+                    new List<Option>{
+                        //04 10 09扶手（床护栏杆/床旁护栏）；07 33 09个人移动训练辅助器具（起身绳梯）；08 21 03手动抓取钳（折叠式长柄取物器/非折叠式长柄取物器）
+                         new Option("A", "是","1-2",104100901,107330907,108210301,108210302),
+                         new Option("B", "否","1-2"),
+                    }
+                ),
+                new Question("1-2", "能否保持坐位", false,false,
+                    new List<Option>{
+                        //02 22 18护理者操纵的轮椅车-高靠背轮椅（带坐便/带轮椅桌）；选配（不选床的情况下）：04 10 03靠背（可调靠背/架）；04 30 垂直运送辅助器具-桌类（床用餐桌）
+                         new Option("A", "能","1-3",102221801,104100301,104301901),
+                         new Option("B", "不能","1-3"),
+                    }
+                ),
+                new Question("1-3", "能否控制大小便", false,false,
+                    new List<Option>{
+                        //03 24排尿装置(03 24 15女用穿戴式软尿壶/03 24 21男用穿戴式软尿壶)；03 12 33便盆
+                         new Option("A", "能","2",1032415,1032421,1031233),
+                         //07 09 03失禁报警器；03 30 21成人一次性尿布或03 30 18成人一次性衬垫；03 27 18尿收集系统；03 31 06阻便器（肛门插塞）
+                         new Option("B", "不能","2",1070903,1033021,1033018,1032718,103310602),
+                    }
+                ),
+                new Question("1-4", "双手支撑能否使臀部离开椅面", false,false,
+                    new List<Option>{
+                         new Option("A", "能","1-5"),
+                         //07 33 09个人移动训练辅助器具（移乘板或移乘带）
+                         new Option("B", "不能","1-5",1073309),
+                    }
+                ),
+               new Question("1-5", "能否经常自行远距离出行", false,false,
+                    new List<Option>{
+                         //02 18 09手摇三轮车，选配02 23 09机动轮椅车
+                         new Option("A", "能","1-6",1021809,1022309),
+                         new Option("B", "不能","1-6"),
+                    }
+                ),
+               new Question("1-6", "是否有站立需求", false,false,
+                    new List<Option>{
+                        //脊柱矫形器
+                         new Option("A", "有","1-6-1",1010327),
+                         new Option("B", "无","1-7"),
+                    }
+                ),
+               new Question("1-6-1", "能否自行站立", false,false,
+                    new List<Option>{
+                        //下肢矫形器
+                         new Option("A", "是","1-6-1-1",10112),
+                         //选配02 23 03电动轮椅车（站立电动轮椅）
+                         new Option("B", "否","1-7",102230305),
+                    }
+                ),
+               new Question("1-6-1-1", "是否能行走", false,false,
+                    new List<Option>{
+                        //02 06 03框式助行架；或02 03 12腋拐，选配02 03 06肘拐
+                         new Option("A", "能","1-7",1020603,1020312,1020306),
+                         //02 06 03框式助行架
+                         new Option("B", "不能","1-7",1020603),
+                    }
+                ),
+               new Question("1-7", "能否控制大小便", false,false,
+                    new List<Option>{
+                         new Option("A", "能","1-7-1"),
+                         //03 30 21成人一次性尿布(成人纸尿裤)；03 27 18尿收集系统
+                         new Option("B", "不能","2",103302101,1032718),
+                    }
+                ),
+               new Question("1-7-1", "能否自行如厕", false,false,
+                    new List<Option>{
+                         new Option("A", "能","1-7-1-1"),
+                         //03 12 03坐便椅
+                         new Option("B", "不能","2",1031203),
+                    }
+                ),
+               new Question("1-7-1-1", "家中是否有坐便器（单选）", false,false,
+                    new List<Option>{
+                         new Option("A", "有","2"),
+                         //03 12 03坐便椅
+                         new Option("B", "无","2",1031203),
+                    }
+                ),
+               new Question("2", "能否自主进食", false,false,
+                    new List<Option>{
+                        //选配10 09 27喂食器械（电动喂食机）
+                         new Option("A", "不能","3",110092701),
+                         //08 18 03抓握装置（万能袖带），选配10 09食饮辅助器具(叉、勺、筷子)；10 09 18盘子和碗；10 09食饮辅助器具-杯子(斜口杯/吸管杯/大耳杯)；10 09 21食物挡边(桌上防滑垫)
+                         new Option("B", "辅助下完成","2-1",108180301,1100922,1100923,1100924,1100918,110092502,110092503,110092504,110092102),
+                         new Option("C", "独立完成","3"),
+                    }
+                ),
+               new Question("2-1", "手部是否有畸形", false,false,
+                    new List<Option>{
+                        //上肢矫形器
+                         new Option("A", "有","3",10106),
+                         new Option("B", "无","3"),
+                    }
+                ),
+               new Question("3", "能否自主洗浴", false,false,
+                    new List<Option>{
+                        //03 33 03盆浴或淋浴椅（有轮和无轮）-洗浴躺椅，选配03 33 12洗浴床（洗浴床）或03 33清洗、盆浴和淋浴辅助器具-洗浴床单（洗浴床单）；03 33 15洗盆（充气式洗头池）
+                         new Option("A", "不能","4",103330301,1033312,103332201,103331501),
+                         //03 33 03盆浴或淋浴椅（有轮和无轮)-洗浴椅；选配03 33 06防滑的淋浴垫和带子（地面防滑垫）；03 33 30带有把手、手柄和握把的洗澡布、海绵和刷子
+                         new Option("B", "辅助下完成","4",103330302,103330303,103330304,103330305,103330601,1033330),
+                         //03 33 03盆浴或淋浴椅（有轮和无轮)-洗浴椅；选配03 33 06防滑的淋浴垫和带子（地面防滑垫）
+                         new Option("C", "独立完成","4",103330302,103330303,103330304,103330305,103330601),
+                    }
+                ),
+               new Question("4", "能否自行穿脱衣物", false,false,
+                    new List<Option>{
+                        //选配03 03 18夹克衫和长裤
+                         new Option("A", "不能","5",1030318),
+                         //选配03 09 18系扣钩（系扣器），03 09 03穿短袜和穿连裤袜的辅助器具（穿袜器），03 09 15拉动拉链的装置（拉链器）
+                         new Option("B", "辅助下完成","5",103091801,103090301,103091501),
+                         new Option("C", "独立完成","5"),
+                    }
+                ),
+                new Question("5", "是否存在其他方面残疾", false,false,
+                    new List<Option>{
+                         new Option("A", "无","6"),
+                         new Option("B", "视力",1,"6"),
+                         new Option("C", "听力",2,"6"),
+                         new Option("D", "其它","6"),
+                    }
+                ),
+                 new Question("6", "最希望解决什么问题（最多选择三个）", false,true,
+                    new List<Option>{
+                         new Option("A", "轮椅代步",null),
+                         new Option("B", "辅助行走",null),
+                         new Option("C", "饮食",null),
+                         new Option("D", "个人护理",null),
+                         new Option("E", "如厕",null),
+                         new Option("F", "信息交流",null),
+                         new Option("G", "康复训练",null),
+                         new Option("H", "防护功能",null),
+                         new Option("I", "无障碍环境",8,null),
+                         new Option("J", "操作和使用",null),
+                         new Option("K", "位置转移",null),
+                         new Option("L", "纠正姿势",null),
+                         new Option("M", "假肢",7,null),
+                         new Option("N", "矫形器",null),
+                         new Option("O", "助听类",null),
+                         new Option("P", "助视类",null),
+                         new Option("Q", "洗漱类",null),
+                         new Option("R", "穿衣类",null),
+                    }
+                ),
+            };
+            Exam exam5 = new Exam(5, "辅具上门评估", "脊髓", questions5);
+            db.Exams.AddOrUpdate(exam5);
+            #endregion
+
+            #region 肢体试题
+            List<Question> questions6 = new List<Question>
+            {
+                new Question("1", "肢体是否有残缺", true,false,
+                    new List<Option>{
+                         new Option("A", "有","2"),
+                         new Option("B", "无","2"),
+                    }
+                ),
+
+            };
+            Exam exam6 = new Exam(6, "辅具上门评估", "肢体", questions6);
+            db.Exams.AddOrUpdate(exam6);
+            #endregion
 
             List<ExamRecord> examRecords = new List<ExamRecord>
             {
