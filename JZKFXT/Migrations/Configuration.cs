@@ -2785,7 +2785,7 @@ namespace JZKFXT.Migrations
                          new Option("B", "存在畸形","2-2-1"),
                     }
                 ),
-
+                //开始 2-2-1
             };
             Exam exam4 = new Exam(4, "辅具上门评估", "脑瘫", questions4);
             db.Exams.AddOrUpdate(exam4);
