@@ -22,14 +22,14 @@ namespace JZKFXT.Controllers
         private BaseContext db = new BaseContext();
 
         // GET: api/DisabledInfoes
-        public IHttpActionResult GetDisabledInfoes(string examType = null, string examName = null, string listType = null)
+        public IHttpActionResult GetDisabledInfoes(string examBy = null, string name = null, string listType = null)
         {
             try
             {
                 var list = db.DisabledInfoes.AsQueryable();
-                if (examType != null)
+                if (examBy == "type")
                 {
-                    var disabledInfoIds = db.ExamRecords.Where(a => a.Exam.Type == examType && a.Evaluated == false).Select(a => a.DisabledInfoID);
+                    var disabledInfoIds = db.ExamRecords.Where(a => a.Exam.Type == name && a.Evaluated == false).Select(a => a.DisabledInfoID);
                     list = list.Where(a => disabledInfoIds.Contains(a.ID));
                     var result = list.Select(
                     a => new
@@ -39,13 +39,13 @@ namespace JZKFXT.Controllers
                         Sex = a.Sex,
                         Category = a.Category.Name,
                         Degree = a.Degree.Name,
-                        CurrentExam = a.ExamRecords.FirstOrDefault(b => b.Exam.Type == examType)
+                        CurrentExam = a.ExamRecords.FirstOrDefault(b => b.Exam.Type == name)
                     });
                     return Ok(result.OrderByDescending(a => a.ID));
                 }
-                else if (examName != null)
+                else if (examBy == "name")
                 {
-                    var disabledInfoIds = db.ExamRecords.Where(a => a.Exam.Name == examName && a.Evaluated == false).Select(a => a.DisabledInfoID);
+                    var disabledInfoIds = db.ExamRecords.Where(a => a.Exam.Name == name && a.Evaluated == false).Select(a => a.DisabledInfoID);
                     list = list.Where(a => disabledInfoIds.Contains(a.ID));
                     var result = list.Select(
                     a => new
@@ -55,7 +55,7 @@ namespace JZKFXT.Controllers
                         Sex = a.Sex,
                         Category = a.Category.Name,
                         Degree = a.Degree.Name,
-                        CurrentExam = a.ExamRecords.FirstOrDefault(b => b.Exam.Name == examName)
+                        CurrentExam = a.ExamRecords.FirstOrDefault(b => b.Exam.Name == name)
                     });
                     return Ok(result.OrderByDescending(a => a.ID));
                 }

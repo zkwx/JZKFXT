@@ -170,8 +170,7 @@ namespace JZKFXT.Migrations
                     true,
                     1,
                     1,
-                    DateTime.Today,
-                    "辅具上门评估"
+                    DateTime.Today
                 ),
                 new DisabledInfo
                 (
@@ -185,8 +184,7 @@ namespace JZKFXT.Migrations
                     true,
                     2,
                     2,
-                    DateTime.Today,
-                    "辅具上门评估"
+                    DateTime.Today
                 ),
                 new DisabledInfo
                 (
@@ -201,7 +199,6 @@ namespace JZKFXT.Migrations
                     3,
                     3,
                     DateTime.Today,
-                    "辅具上门评估"
                 ),
                 new DisabledInfo
                 (
@@ -215,8 +212,7 @@ namespace JZKFXT.Migrations
                     true,
                     4,
                     4,
-                    DateTime.Today,
-                    "辅具上门评估"
+                    DateTime.Today
                 ),
                 new DisabledInfo
                 (
@@ -230,8 +226,7 @@ namespace JZKFXT.Migrations
                     true,
                     5,
                     4,
-                    DateTime.Today,
-                    "辅具上门评估"
+                    DateTime.Today
                 ),
                 new DisabledInfo
                 (
@@ -245,8 +240,7 @@ namespace JZKFXT.Migrations
                     true,
                     6,
                     4,
-                    DateTime.Today,
-                    "辅具上门评估"
+                    DateTime.Today
                 ),
                 new DisabledInfo
                 (
@@ -260,8 +254,7 @@ namespace JZKFXT.Migrations
                     true,
                     7,
                     4,
-                    DateTime.Today,
-                    "辅具上门评估"
+                    DateTime.Today
                 )
             };
             db.DisabledInfoes.AddRange(disabledInfoes);
@@ -2470,7 +2463,7 @@ namespace JZKFXT.Migrations
                     }
                 ),
             };
-            Exam exam1 = new Exam(1, "辅具上门评估", "视力", questions1);
+            Exam exam1 = new Exam(1, "FuJuPingGu", "视力", questions1);
             db.Exams.AddOrUpdate(exam1);
             #endregion
 
@@ -2510,7 +2503,7 @@ namespace JZKFXT.Migrations
                     }
                 )
             };
-            Exam exam2 = new Exam(2, "辅具上门评估", "听力", questions2);
+            Exam exam2 = new Exam(2, "FuJuPingGu", "听力", questions2);
             db.Exams.AddOrUpdate(exam2);
             #endregion
 
@@ -2696,7 +2689,7 @@ namespace JZKFXT.Migrations
                     }
                 ),
             };
-            Exam exam3 = new Exam(3, "辅具上门评估", "偏瘫", questions3);
+            Exam exam3 = new Exam(3, "FuJuPingGu", "偏瘫", questions3);
             db.Exams.AddOrUpdate(exam3);
             #endregion
 
@@ -2960,7 +2953,7 @@ namespace JZKFXT.Migrations
                     }
                 ),
             };
-            Exam exam4 = new Exam(4, "辅具上门评估", "脑瘫", questions4);
+            Exam exam4 = new Exam(4, "FuJuPingGu", "脑瘫", questions4);
             db.Exams.AddOrUpdate(exam4);
             #endregion
 
@@ -3121,7 +3114,7 @@ namespace JZKFXT.Migrations
                     }
                 ),
             };
-            Exam exam5 = new Exam(5, "辅具上门评估", "脊髓", questions5);
+            Exam exam5 = new Exam(5, "FuJuPingGu", "脊髓", questions5);
             db.Exams.AddOrUpdate(exam5);
             #endregion
 
@@ -3188,7 +3181,7 @@ namespace JZKFXT.Migrations
                 ),
 
             };
-            Exam exam6 = new Exam(6, "辅具上门评估", "肢体", questions6);
+            Exam exam6 = new Exam(6, "FuJuPingGu", "肢体", questions6);
             db.Exams.AddOrUpdate(exam6);
             #endregion
 

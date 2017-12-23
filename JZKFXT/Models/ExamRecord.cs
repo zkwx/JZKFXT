@@ -38,7 +38,7 @@ namespace JZKFXT.Models
         /// 已机构评估
         /// </summary>
         public bool Evaluated { get; set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual Exam Exam { get; set; }
         [JsonIgnore]
         public virtual DisabledInfo DisabledInfo { get; set; }
