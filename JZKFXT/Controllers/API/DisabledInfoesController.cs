@@ -22,35 +22,54 @@ namespace JZKFXT.Controllers
         private BaseContext db = new BaseContext();
 
         // GET: api/DisabledInfoes
-        public IHttpActionResult GetDisabledInfoes(string forListType = null, string examName = null)
+        public IHttpActionResult GetDisabledInfoes(string examType = null, string examName = null, string listType = null)
         {
             try
             {
                 var list = db.DisabledInfoes.AsQueryable();
-                if (forListType == "精准康复入户")
+                if (examType != null)
                 {
-
+                    var disabledInfoIds = db.ExamRecords.Where(a => a.Exam.Type == examType && a.Evaluated == false).Select(a => a.DisabledInfoID);
+                    list = list.Where(a => disabledInfoIds.Contains(a.ID));
+                    var result = list.Select(
+                    a => new
+                    {
+                        ID = a.ID,
+                        Name = a.Name,
+                        Sex = a.Sex,
+                        Category = a.Category.Name,
+                        Degree = a.Degree.Name,
+                        CurrentExam = a.ExamRecords.FirstOrDefault(b => b.Exam.Type == examType)
+                    });
+                    return Ok(result.OrderByDescending(a => a.ID));
                 }
-                else if (forListType == "辅具上门评估")
+                else if (examName != null)
                 {
-                    list = list.Where(a => a.ExamRecords.Count(b => b.Exam.Type == "辅具上门评估" && b.Evaluated == false) > 0);
+                    var disabledInfoIds = db.ExamRecords.Where(a => a.Exam.Name == examName && a.Evaluated == false).Select(a => a.DisabledInfoID);
+                    list = list.Where(a => disabledInfoIds.Contains(a.ID));
+                    var result = list.Select(
+                    a => new
+                    {
+                        ID = a.ID,
+                        Name = a.Name,
+                        Sex = a.Sex,
+                        Category = a.Category.Name,
+                        Degree = a.Degree.Name,
+                        CurrentExam = a.ExamRecords.FirstOrDefault(b => b.Exam.Name == examName)
+                    });
+                    return Ok(result.OrderByDescending(a => a.ID));
                 }
-                else if (forListType == "机构评估审核")
-                {
-                    list = list.Where(a => a.ExamRecords.Count(b => b.Exam.Type == "机构评估审核" && b.Evaluated == false) > 0);
-                }
-                var result = list.Select(
-                        a => new
-                        {
-                            id = a.ID,
-                            name = a.Name,
-                            sex = a.Sex,
-                            category = a.Category.Name,
-                            degree = a.Degree.Name,
-                            currentExam=a.ExamRecords.FirstOrDefault(b => b.Exam.Type == "辅具上门评估" && b.Evaluated == false),
-                            examRecords = a.ExamRecords
-                        });
-                return Ok(result.OrderByDescending(a => a.id));
+                var result2 = list.Select(
+                    a => new
+                    {
+                        ID = a.ID,
+                        Name = a.Name,
+                        Sex = a.Sex,
+                        Category = a.Category.Name,
+                        Degree = a.Degree.Name,
+                        ExamRecords = a.ExamRecords
+                    });
+                return Ok(result2.OrderByDescending(a => a.ID));
             }
             catch (Exception ex)
             {
@@ -214,11 +233,11 @@ namespace JZKFXT.Controllers
 
             if (string.IsNullOrEmpty(disabledInfo.TargetExamName))
             {
-                Exam exam = db.Exams.FirstOrDefault(a => a.Name == disabledInfo.TargetExamName);
-                bool exist = db.ExamRecords.Count(a => a.ExamName == disabledInfo.TargetExamName && a.DisabledInfoID == disabledInfo.ID) > 0;
+                Exam exam = db.Exams.Single(a => a.Name == disabledInfo.TargetExamName);
+                bool exist = db.ExamRecords.Count(a => a.Exam.Name == disabledInfo.TargetExamName && a.DisabledInfoID == disabledInfo.ID) > 0;
                 if (!exist)
                 {
-                    ExamRecord examRecord = new ExamRecord(exam?.ID, disabledInfo.TargetExamName, disabledInfo.ID);
+                    ExamRecord examRecord = new ExamRecord(exam.ID, disabledInfo.ID);
                     db.ExamRecords.Add(examRecord);
                     db.SaveChanges();
                 }

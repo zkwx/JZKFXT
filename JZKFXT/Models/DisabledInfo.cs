@@ -16,7 +16,7 @@ namespace JZKFXT.Models
         {
         }
 
-        public DisabledInfo(string name, int? sex, string tel, string guardian, int? relationshipID, bool hasCertificate, string certificate, bool need, int? categoryID, int? degreeID, DateTime? createTime)
+        public DisabledInfo(string name, int? sex, string tel, string guardian, int? relationshipID, bool hasCertificate, string certificate, bool need, int? categoryID, int? degreeID, DateTime? createTime, string targetExamName)
         {
             Name = name;
             Sex = sex;
@@ -29,6 +29,7 @@ namespace JZKFXT.Models
             CategoryID = categoryID;
             DegreeID = degreeID;
             CreateTime = createTime;
+            TargetExamName = targetExamName;
         }
 
         public int ID { get; set; }///

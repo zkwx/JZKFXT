@@ -18,7 +18,7 @@ namespace JZKFXT.Migrations
         {
             base.Seed(db);
 
-            //角色
+            #region 角色
             List<Role> Roles = new List<Role>
             {
                 new Role( 1, "社区工作人员","社区负责残疾人工作的人员：残疾人专干、残疾人康复协调员。","使用移动端对辖区指定或全部功能障碍者的基本信息、残疾信息进行输入；对辖区指定或全部功能障碍者进行“精准康复入户模块”和“辅具上门评估与适配模块”的评估；对“综合服务回访”模块进行“假肢矫形器回访”、“无障碍回访”和“辅具回访”和其“康复服务”的跟踪。",""),
@@ -33,275 +33,254 @@ namespace JZKFXT.Migrations
                 new Role( 10, "康复服务机构","本地区开展除辅具评估适配业务以外的服务机构，涉及康复治疗与训练、手术、支持性服务，等的服务。", "在“综合康复服务”模块的“康复服务”子模块，对功能障碍者开展康复治疗与训练、手术、支持性服务，等的服务。",""),
                 new Role( 11, "辅具服务机构","本地区开展辅具服务的机构。", "在“综合康复服务”模块的“辅具服务”子模块，对功能障碍者开展辅具配发、假肢矫形器和无障碍等的服务。","")
             };
-            foreach (var r in Roles)
+            db.Roles.AddRange(Roles);
+            #endregion
+
+            #region 关系
+            List<Relationship> Relationships = new List<Relationship>
             {
-                db.Roles.AddOrUpdate(r);
-            }
+                new Relationship(1, "父母"),
+                new Relationship(2, "配偶"),
+                new Relationship(3, "兄弟姐妹"),
+                new Relationship(4, "祖父母"),
+                new Relationship(5, "其他")
+            };
+            db.Relationships.AddRange(Relationships);
+            #endregion
+
+            #region 残疾类别
+            List<Category> Categories = new List<Category>
+            {
+                new Category(1, "视力"),
+                new Category(2, "听力"),
+                new Category(3, "言语"),
+                new Category(4, "肢体"),
+                new Category(5, "智力"),
+                new Category(6, "精神"),
+                new Category(7, "多重"),
+            };
+            db.Categories.AddRange(Categories);
+            #endregion
+
+            #region 残疾等级
+            List<Degree> Degrees = new List<Degree>
+            {
+                new Degree(1, "一级"),
+                new Degree(2, "二级"),
+                new Degree(3, "三级"),
+                new Degree(4, "四级"),
+                new Degree(5, "未定级")
+            };
+            db.Degrees.AddRange(Degrees);
+            #endregion
+
+            #region 服务走向
+            List<Next> Nexts = new List<Next>
+            {
+                new Next(1, "转介评估机构"),
+                new Next(2, "转介服务机构"),
+                new Next(3, "上门评估")
+            };
+            db.Nexts.AddRange(Nexts);
+            #endregion
+
+            #region 致残原因
+            List<DisabilityReason> DisabilityReasons = new List<DisabilityReason>
+            {
+                new DisabilityReason(1, "外伤"),
+                new DisabilityReason(1, "青光眼"),
+                new DisabilityReason(1, "角膜病"),
+                new DisabilityReason(1, "视网膜"),
+                new DisabilityReason(1, "色素膜变性"),
+                new DisabilityReason(1, "屈光不正/弱视"),
+                new DisabilityReason(1, "白内障"),
+                new DisabilityReason(1, "黄斑变性"),
+                new DisabilityReason(1, "视神经萎缩"),
+                new DisabilityReason(1, "其他"),
+                new DisabilityReason(2, "先天性"),
+                new DisabilityReason(2, "药物性"),
+                new DisabilityReason(2, "老年性"),
+                new DisabilityReason(2, "其他"),
+            };
+            db.DisabilityReasons.AddRange(DisabilityReasons);
+            #endregion
+
+            #region 康复需求
+            List<Rehabilitation> Rehabilitations = new List<Rehabilitation>
+            {
+                //视力
+                new Rehabilitation(1010101, 1, "视力", "盲人","白内障复明手术",false),
+                new Rehabilitation(1010102, 1, "视力", "盲人","辅助器具适配及服务", true),
+                new Rehabilitation(1010103, 1, "视力", "盲人","定向行走及适应训练",false),
+                new Rehabilitation(1010104, 1, "视力", "盲人","支持性服务",false),
+                new Rehabilitation(1010201, 1, "视力", "低视力","辅助器具适配及服务", true),
+                new Rehabilitation(1010202, 1, "视力", "低视力","视功能训练",false),
+                //听力
+                new Rehabilitation(1020101, 2, "听力", "0-6岁儿童","人工耳蜗植入手术",false),
+                new Rehabilitation(1020102, 2, "听力", "0-6岁儿童","辅助器具适配及服务", true),
+                new Rehabilitation(1020103, 2, "听力", "0-6岁儿童","听觉言语功能训练",false),
+                new Rehabilitation(1020104, 2, "听力", "0-6岁儿童","支持性服务",false),
+                new Rehabilitation(1020201, 2, "听力", "7—17岁儿童","辅助器具适配及适应训练", true),
+                new Rehabilitation(1020202, 2, "听力", "7—17岁儿童","支持性服务",false),
+                new Rehabilitation(1020301, 2, "听力", "成人","辅助器具适配及适应训练", true),
+                //言语
+                new Rehabilitation(1030101, 3, "言语", "成人","",false),
+                //肢体 
+                new Rehabilitation(1040101, 4, "肢体", "0-6岁儿童","矫治手术",false),
+                new Rehabilitation(1040102, 4, "肢体", "0-6岁儿童","运动及适应训练",false),
+                new Rehabilitation(1040103, 4, "肢体", "0-6岁儿童","辅助器具适配及服务", true),
+                new Rehabilitation(1040104, 4, "肢体", "0-6岁儿童","支持性服务",false),
+                new Rehabilitation(1040201, 4, "肢体", "7-17儿童及成人","康复治疗及训练",false),
+                new Rehabilitation(1040202, 4, "肢体", "7-17儿童及成人","辅助器具适配及服务", true),
+                new Rehabilitation(1040203, 4, "肢体", "7-17儿童及成人","支持性服务",false),
+                //智力
+                new Rehabilitation(1050101, 5, "智力", "0-6岁儿童","认知及适应训练",false),
+                new Rehabilitation(1050102, 5, "智力", "0-6岁儿童","支持性服务",false),
+                new Rehabilitation(1050201, 5, "智力", "7-17儿童及成人","认知及适应训练",false),
+                new Rehabilitation(1050202, 5, "智力", "7-17儿童及成人","支持性服务",false),
+                //精神
+                new Rehabilitation(1060101, 6, "精神", "0-6岁孤独症儿童","沟通及适应训练",false),
+                new Rehabilitation(1060102, 6, "精神", "0-6岁孤独症儿童","支持性服务",false),
+                new Rehabilitation(1060201, 6, "精神", "7-17孤独症","沟通及适应训练",false),
+                new Rehabilitation(1060202, 6, "精神", "7-17孤独症","支持性服务",false),
+                new Rehabilitation(1060301, 6, "精神", "成年精神残疾人","精神疾病药物治疗",false),
+                new Rehabilitation(1060302, 6, "精神", "成年精神残疾人","精神障碍作业疗法训练",false),
+                new Rehabilitation(1060303, 6, "精神", "成年精神残疾人","支持性服务",false),
+            };
+            db.Rehabilitations.AddRange(Rehabilitations);
+            #endregion
             db.SaveChanges();
 
-            //用户
+            #region 用户
             var user = new User("", "", "管理员", 1, DateTime.Today);
             db.Users.AddOrUpdate(user);
+            #endregion
+
+            #region 残疾人信息
+            List<DisabledInfo> disabledInfoes = new List<DisabledInfo> {
+                new DisabledInfo
+                (
+                    "权子豪",
+                    1,
+                    "13800000000",
+                   "权子豪爸",
+                    1,
+                    true,
+                    "32030219911010101011",
+                    true,
+                    1,
+                    1,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "唐莎莎",
+                    2,
+                    "13800000000",
+                   "莎莎妈",
+                    2,
+                    true,
+                    "32030219911010101022",
+                    true,
+                    2,
+                    2,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "周正一",
+                    1,
+                    "13800000000",
+                   "周正一妈",
+                    2,
+                    true,
+                    "32030219911010101033",
+                    true,
+                    3,
+                    3,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "谢琦",
+                    1,
+                    "13800000000",
+                   "谢琦妈",
+                    2,
+                    true,
+                    "32030219911010101044",
+                    true,
+                    4,
+                    4,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "韩冰",
+                    2,
+                    "13800000000",
+                   "韩冰妈",
+                    2,
+                    true,
+                    "32030219911010101054",
+                    true,
+                    5,
+                    4,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "韩儒",
+                    1,
+                    "13800000000",
+                   "韩儒妈",
+                    2,
+                    true,
+                    "32030219911010101064",
+                    true,
+                    6,
+                    4,
+                    DateTime.Today,
+                    "辅具上门评估"
+                ),
+                new DisabledInfo
+                (
+                    "孙永",
+                    1,
+                    "13800000000",
+                   "孙永妈",
+                    2,
+                    true,
+                    "32030219911010101074",
+                    true,
+                    7,
+                    4,
+                    DateTime.Today,
+                    "辅具上门评估"
+                )
+            };
+            db.DisabledInfoes.AddRange(disabledInfoes);
+            #endregion
             db.SaveChanges();
-
-            //关系
-            List<Relationship> Relationships = new List<Relationship>
-        {
-            new Relationship(1, "父母"),
-            new Relationship(2, "配偶"),
-            new Relationship(3, "兄弟姐妹"),
-            new Relationship(4, "祖父母"),
-            new Relationship(5, "其他")
-        };
-            foreach (var r in Relationships)
-            {
-                db.Relationships.AddOrUpdate(r);
-            }
-            db.SaveChanges();
-
-            //残疾类别
-            List<Category> Categories = new List<Category>
-        {
-            new Category(1, "视力"),
-            new Category(2, "听力"),
-            new Category(3, "言语"),
-            new Category(4, "肢体"),
-            new Category(5, "智力"),
-            new Category(6, "精神"),
-            new Category(7, "多重"),
-
-        };
-            foreach (var r in Categories)
-            {
-                db.Categories.AddOrUpdate(r);
-            }
-            db.SaveChanges();
-
-            //残疾等级
-            List<Degree> Degrees = new List<Degree>
-        {
-            new Degree(1, "一级"),
-            new Degree(2, "二级"),
-            new Degree(3, "三级"),
-            new Degree(4, "四级"),
-            new Degree(5, "未定级")
-        };
-            foreach (var r in Degrees)
-            {
-                db.Degrees.AddOrUpdate(r);
-            }
-            db.SaveChanges();
-
-            //残疾等级
-            List<Next> Nexts = new List<Next>
-        {
-            new Next(1, "转介评估机构"),
-            new Next(2, "转介服务机构"),
-            new Next(3, "上门评估")
-        };
-            foreach (var r in Nexts)
-            {
-                db.Nexts.AddOrUpdate(r);
-            }
-
-            //致残原因
-            List<DisabilityReason> DisabilityReasons = new List<DisabilityReason>
-        {
-            new DisabilityReason(1, "外伤"),
-            new DisabilityReason(1, "青光眼"),
-            new DisabilityReason(1, "角膜病"),
-            new DisabilityReason(1, "视网膜"),
-            new DisabilityReason(1, "色素膜变性"),
-            new DisabilityReason(1, "屈光不正/弱视"),
-            new DisabilityReason(1, "白内障"),
-            new DisabilityReason(1, "黄斑变性"),
-            new DisabilityReason(1, "视神经萎缩"),
-            new DisabilityReason(1, "其他"),
-            new DisabilityReason(2, "先天性"),
-            new DisabilityReason(2, "药物性"),
-            new DisabilityReason(2, "老年性"),
-            new DisabilityReason(2, "其他"),
-        };
-            foreach (var r in DisabilityReasons)
-            {
-                db.DisabilityReasons.AddOrUpdate(r);
-            }
-            db.SaveChanges();
+            
             //康复需求
-            List<Rehabilitation> RehabilitationList = new List<Rehabilitation>
-        {
-            //视力
-            new Rehabilitation(1010101, 1, "视力", "盲人","白内障复明手术",false),
-            new Rehabilitation(1010102, 1, "视力", "盲人","辅助器具适配及服务", true),
-            new Rehabilitation(1010103, 1, "视力", "盲人","定向行走及适应训练",false),
-            new Rehabilitation(1010104, 1, "视力", "盲人","支持性服务",false),
-            new Rehabilitation(1010201, 1, "视力", "低视力","辅助器具适配及服务", true),
-            new Rehabilitation(1010202, 1, "视力", "低视力","视功能训练",false),
-            //听力
-            new Rehabilitation(1020101, 2, "听力", "0-6岁儿童","人工耳蜗植入手术",false),
-            new Rehabilitation(1020102, 2, "听力", "0-6岁儿童","辅助器具适配及服务", true),
-            new Rehabilitation(1020103, 2, "听力", "0-6岁儿童","听觉言语功能训练",false),
-            new Rehabilitation(1020104, 2, "听力", "0-6岁儿童","支持性服务",false),
-            new Rehabilitation(1020201, 2, "听力", "7—17岁儿童","辅助器具适配及适应训练", true),
-            new Rehabilitation(1020202, 2, "听力", "7—17岁儿童","支持性服务",false),
-            new Rehabilitation(1020301, 2, "听力", "成人","辅助器具适配及适应训练", true),
-            //言语
-            new Rehabilitation(1030101, 3, "言语", "成人","",false),
-            //肢体 
-            new Rehabilitation(1040101, 4, "肢体", "0-6岁儿童","矫治手术",false),
-            new Rehabilitation(1040102, 4, "肢体", "0-6岁儿童","运动及适应训练",false),
-            new Rehabilitation(1040103, 4, "肢体", "0-6岁儿童","辅助器具适配及服务", true),
-            new Rehabilitation(1040104, 4, "肢体", "0-6岁儿童","支持性服务",false),
-            new Rehabilitation(1040201, 4, "肢体", "7-17儿童及成人","康复治疗及训练",false),
-            new Rehabilitation(1040202, 4, "肢体", "7-17儿童及成人","辅助器具适配及服务", true),
-            new Rehabilitation(1040203, 4, "肢体", "7-17儿童及成人","支持性服务",false),
-            //智力
-            new Rehabilitation(1050101, 5, "智力", "0-6岁儿童","认知及适应训练",false),
-            new Rehabilitation(1050102, 5, "智力", "0-6岁儿童","支持性服务",false),
-            new Rehabilitation(1050201, 5, "智力", "7-17儿童及成人","认知及适应训练",false),
-            new Rehabilitation(1050202, 5, "智力", "7-17儿童及成人","支持性服务",false),
-            //精神
-            new Rehabilitation(1060101, 6, "精神", "0-6岁孤独症儿童","沟通及适应训练",false),
-            new Rehabilitation(1060102, 6, "精神", "0-6岁孤独症儿童","支持性服务",false),
-            new Rehabilitation(1060201, 6, "精神", "7-17孤独症","沟通及适应训练",false),
-            new Rehabilitation(1060202, 6, "精神", "7-17孤独症","支持性服务",false),
-            new Rehabilitation(1060301, 6, "精神", "成年精神残疾人","精神疾病药物治疗",false),
-            new Rehabilitation(1060302, 6, "精神", "成年精神残疾人","精神障碍作业疗法训练",false),
-            new Rehabilitation(1060303, 6, "精神", "成年精神残疾人","支持性服务",false),
-        };
-            foreach (var r in RehabilitationList)
-            {
-                db.Rehabilitations.AddOrUpdate(r);
-            }
-            db.SaveChanges();
-
-
-            //康复入户信息
-            DisabledInfo disabledInfo = new DisabledInfo
-            (
-                "权子豪",
-                1,
-                "13800000000",
-               "权子豪爸",
-                1,
-                true,
-                "32030219911010101011",
-                true,
-                1,
-                1,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "唐莎莎",
-                2,
-                "13800000000",
-               "莎莎妈",
-                2,
-                true,
-                "32030219911010101022",
-                true,
-                2,
-                2,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "周正一",
-                1,
-                "13800000000",
-               "周正一妈",
-                2,
-                true,
-                "32030219911010101033",
-                true,
-                3,
-                3,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "谢琦",
-                1,
-                "13800000000",
-               "谢琦妈",
-                2,
-                true,
-                "32030219911010101044",
-                true,
-                4,
-                4,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "韩冰",
-                2,
-                "13800000000",
-               "韩冰妈",
-                2,
-                true,
-                "32030219911010101054",
-                true,
-                5,
-                4,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "韩儒",
-                1,
-                "13800000000",
-               "韩儒妈",
-                2,
-                true,
-                "32030219911010101064",
-                true,
-                6,
-                4,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            disabledInfo = new DisabledInfo
-            (
-                "孙永",
-                1,
-                "13800000000",
-               "孙永妈",
-                2,
-                true,
-                "32030219911010101074",
-                true,
-                7,
-                4,
-                DateTime.Today
-            );
-            db.DisabledInfoes.AddOrUpdate(disabledInfo);
-            db.SaveChanges();
-
             List<DisabledInfo_Detail> disabledInfo_Details = new List<DisabledInfo_Detail> {
                 new DisabledInfo_Detail(1, 1, 1, 1010102, 3, "视力"),
                 new DisabledInfo_Detail(2, 2, 2, 1020102, 3, "听力"),
             };
-            foreach (var r in disabledInfo_Details)
-            {
-                db.DisabledInfo_Details.AddOrUpdate(r);
-            }
+            db.DisabledInfo_Details.AddRange(disabledInfo_Details);
             db.SaveChanges();
-
-
-
 
 
             //辅具
             List<AssistiveDevice> AssistiveDevices = new List<AssistiveDevice>
             {
-                //轮椅代步
+                //A 轮椅代步
                 new AssistiveDevice(10217,"替代机动车","轮椅代步"),
                 new AssistiveDevice(10218,"自行车","轮椅代步"),
                 new AssistiveDevice(10222,"手动轮椅车","轮椅代步"),
@@ -380,7 +359,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(102230901,"三轮机动轮椅车","轮椅代步"),
                 new AssistiveDevice(102230902,"四轮机动轮椅车","轮椅代步"),
 
-                //辅助行走
+                //B 辅助行走
                 new AssistiveDevice(10203,"单臂操作助行器","辅助行走"),
                 new AssistiveDevice(10206,"双臂操作助行器","辅助行走"),
                 new AssistiveDevice(10207,"助行器附件","辅助行走"),
@@ -509,7 +488,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(102390309,"盲聋杖","辅助行走"),
                 new AssistiveDevice(102390601,"电子导盲器","辅助行走"),
 
-                //饮食
+                //C 饮食
                 new AssistiveDevice(11003,"准备食物和饮料的辅助器具","饮食"),
                 new AssistiveDevice(11006,"清洗餐具辅助器具","饮食"),
                 new AssistiveDevice(11009,"食饮辅助器具","饮食"),
@@ -589,7 +568,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(110093001, "喂食泵", "饮食"),
                 new AssistiveDevice(110093101, "生活自助具", "饮食"),
 
-                //个人护理
+                //D 个人护理
                 new AssistiveDevice(10315,"气管造口护理辅助器具","个人护理"),
                 new AssistiveDevice(10318,"肠造口护理辅助器具","个人护理"),
                 new AssistiveDevice(10321,"护肤和洁肤产品","个人护理"),
@@ -751,7 +730,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(104101801, "椅座上骨盆托", "个人护理"),
                 new AssistiveDevice(104101802, "椅座上躯干托", "个人护理"),
 
-                //如厕
+                //E.如厕
                 new AssistiveDevice(10312,"如厕辅助器具","如厕"),
                 new AssistiveDevice(10324,"排尿装置","如厕"),
                 new AssistiveDevice(10327,"尿便收集器","如厕"),
@@ -860,7 +839,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(103310601, "肛门插闩", "如厕"),
                 new AssistiveDevice(103310602, "肛门插塞", "如厕"),
 
-                //信息交流
+                //F.信息交流
                 new AssistiveDevice(10527,"报警、指示、提醒和讯号辅助器具","信息交流"),
                 new AssistiveDevice(10509,"发声辅助器具","信息交流"),
                 new AssistiveDevice(10515,"计算辅助器具","信息交流"),
@@ -916,6 +895,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(1053015,"书支撑架和书固定架","信息交流"),
                 new AssistiveDevice(1053021,"字符阅读器","信息交流"),
                 new AssistiveDevice(1053018,"阅读框和版面限定器","信息交流"),
+                new AssistiveDevice(1053021,"字符阅读器","信息交流"),
                 new AssistiveDevice(1053024,"触摸阅读材料","信息交流"),
                 new AssistiveDevice(1053027,"特殊多媒体演示软件","信息交流"),
                 new AssistiveDevice(1053303,"台式计算机","信息交流"),
@@ -1025,9 +1005,9 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(105302104, "智能中国电子语音地图", "信息交流"),
                 new AssistiveDevice(105302105, "盲文显形器", "信息交流"),
                 new AssistiveDevice(105302106, "一键式智能阅读器", "信息交流"),
-                new AssistiveDevice(105302107, "点读机", "信息交流"),
                 new AssistiveDevice(105301801, "阅读标尺", "信息交流"),
                 new AssistiveDevice(105301802, "便捷式版面限定器", "信息交流"),
+                new AssistiveDevice(105302101, "点读机", "信息交流"),
                 new AssistiveDevice(105302401, "盲文教材", "信息交流"),
                 new AssistiveDevice(105302701, "智力障碍者用多媒体输出软件", "信息交流"),
                 new AssistiveDevice(105302702,"视觉障碍者用多媒体输出软件","信息交流"),
@@ -1057,7 +1037,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(105390701, "可听计算机显示器", "信息交流"),
                 new AssistiveDevice(105391201, "光标定位的屏幕放大程序", "信息交流"),
 
-                //康复训练
+                //G.康复训练
                 new AssistiveDevice(10636,"知觉训练辅助器具","康复训练"),
                 new AssistiveDevice(10645,"脊柱牵引辅助器具","康复训练"),
                 new AssistiveDevice(10648,"运动、肌力和平衡训练的设备","康复训练"),
@@ -1071,6 +1051,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(10727,"社交技能训练辅助器具","康复训练"),
                 new AssistiveDevice(10730,"输入器件及操作产品和货物的训练控制辅助器具","康复训练"),
                 new AssistiveDevice(10733,"日常生活活动训练的辅助器具","康复训练"),
+
 
                 new AssistiveDevice(1063603,"知觉辨别和知觉匹配训练辅助器具","康复训练"),
                 new AssistiveDevice(1063606,"知觉协调训练辅助器具","康复训练"),
@@ -1283,7 +1264,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(107331203,"清扫用具使用训练器具","康复训练"),
                 new AssistiveDevice(107331204, "家庭缝纫使用训练器具", "康复训练"),
 
-                //防护功能
+                //H.防护功能
                 new AssistiveDevice(10603,"呼吸辅助器具","防护功能"),
                 new AssistiveDevice(10606,"循环治疗辅助器具","防护功能"),
                 new AssistiveDevice(10607,"预防瘢痕形成的辅助器具","防护功能"),
@@ -1400,7 +1381,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(106330901, "压力测量床垫", "防护功能"),
                 new AssistiveDevice(106330902, "防褥疮喷气床垫", "防护功能"),
 
-                //无障碍环境
+                //I.无障碍环境
                 new AssistiveDevice(10420,"无障碍改造","无障碍环境"),
                 new AssistiveDevice(10433,"家庭和其他场所的安全设施","无障碍环境"),
                 new AssistiveDevice(10903,"改善环境辅助器具","无障碍环境"),
@@ -1412,963 +1393,8 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(1090315,"照明控制辅助器具","无障碍环境"),
                 new AssistiveDevice(1090318,"水净化器和软化器","无障碍环境"),
 
-                new AssistiveDevice(104200101,"门的改造","无障碍环境"),
-                new AssistiveDevice(104200102,"卫生间改造","无障碍环境"),
-                new AssistiveDevice(104331501,"地面盲道砖","无障碍环境"),
-                new AssistiveDevice(104331502,"转角防护垫","无障碍环境"),
-                new AssistiveDevice(104331503,"墙壁防护板","无障碍环境"),
-                new AssistiveDevice(109030901, "噪音吸收器", "无障碍环境"),
-                new AssistiveDevice(109030902, "噪音吸收板", "无障碍环境"),
-                new AssistiveDevice(109030903, "隔音板", "无障碍环境"),
-                new AssistiveDevice(109031201, "减震器", "无障碍环境"),
-                new AssistiveDevice(109031202, "减震垫", "无障碍环境"),
-                new AssistiveDevice(109031501, "照明控制辅助器具", "无障碍环境"),
-                new AssistiveDevice(109031801, "水净化器", "无障碍环境"),
-                new AssistiveDevice(109031802, "水软化器", "无障碍环境"),
 
-                //操作和使用
-                new AssistiveDevice(10806,"操作容器的辅助器具","操作和使用"),
-                new AssistiveDevice(10809,"操控设备的辅助器具","操作和使用"),
-                new AssistiveDevice(10813,"远程控制辅助器具","操作和使用"),
-                new AssistiveDevice(10818,"协助或代替臂、手或手指功能或他们组合功能的辅助器具","操作和使用"),
-                new AssistiveDevice(10821,"延伸取物辅助器具","操作和使用"),
-                new AssistiveDevice(10824,"定位辅助器具","操作和使用"),
-                new AssistiveDevice(10827,"固定用辅助器具","操作和使用"),
-                new AssistiveDevice(10836,"搬运和运输辅助器具","操作和使用"),
-                new AssistiveDevice(11103,"工作场所的家具和装饰元素","操作和使用"),
-                new AssistiveDevice(11112,"工作场所固定、探取、抓握物品的辅助器具","操作和使用"),
-                new AssistiveDevice(11124,"工作场所健康保护和安全的辅助器具","操作和使用"),
-                new AssistiveDevice(11203,"玩耍辅助器具","操作和使用"),
-                new AssistiveDevice(11209,"运动辅助器具","操作和使用"),
-                new AssistiveDevice(11218,"手工工艺工具、材料和设备","操作和使用"),
 
-                new AssistiveDevice(1080603,"开启器","操作和使用"),
-                new AssistiveDevice(1080606,"挤管器","操作和使用"),
-                new AssistiveDevice(1080903,"按钮","操作和使用"),
-                new AssistiveDevice(1080906,"固定把手和固定球形手柄","操作和使用"),
-                new AssistiveDevice(1080909,"旋转把手和旋转球形手柄","操作和使用"),
-                new AssistiveDevice(1080912,"脚踏板（机械）","操作和使用"),
-                new AssistiveDevice(1080915,"手轮和曲柄把手","操作和使用"),
-                new AssistiveDevice(1080918,"电器开关","操作和使用"),
-                new AssistiveDevice(1080924,"配电盘","操作和使用"),
-                new AssistiveDevice(1080928,"可调电源","操作和使用"),
-                new AssistiveDevice(1080930,"定时开关","操作和使用"),
-                new AssistiveDevice(1081303,"环境控制系统","操作和使用"),
-                new AssistiveDevice(1081306,"个人环境控制软件","操作和使用"),
-                new AssistiveDevice(1081803,"抓握装置","操作和使用"),
-                new AssistiveDevice(1081806,"握持适配件和附件","操作和使用"),
-                new AssistiveDevice(1081809,"穿戴式抓握器","操作和使用"),
-                new AssistiveDevice(1081812,"物品稳定器","操作和使用"),
-                new AssistiveDevice(1081815,"操纵杆","操作和使用"),
-                new AssistiveDevice(1081818,"指向灯","操作和使用"),
-                new AssistiveDevice(1081821,"送纸夹","操作和使用"),
-                new AssistiveDevice(1081824,"手稿夹持架","操作和使用"),
-                new AssistiveDevice(1081827,"手工活动用的前臂支撑托","操作和使用"),
-                new AssistiveDevice(1081828,"剪刀类","操作和使用"),
-                new AssistiveDevice(1082103,"手动抓取钳","操作和使用"),
-                new AssistiveDevice(1082109,"无抓握功能的延伸器","操作和使用"),
-                new AssistiveDevice(1082403,"固定位置系统","操作和使用"),
-                new AssistiveDevice(1082406,"转动和滑动系统","操作和使用"),
-                new AssistiveDevice(1082409,"升降和倾斜系统","操作和使用"),
-                new AssistiveDevice(1082703,"吸盘","操作和使用"),
-                new AssistiveDevice(1082706,"防滑垫","操作和使用"),
-                new AssistiveDevice(1082712,"夹子和弹簧夹","操作和使用"),
-                new AssistiveDevice(1082718,"磁铁、磁条和磁夹","操作和使用"),
-                new AssistiveDevice(1083603,"搬运辅助器具","操作和使用"),
-                new AssistiveDevice(1083606,"脚轮装置","操作和使用"),
-                new AssistiveDevice(1083609,"行李车和购物推车","操作和使用"),
-                new AssistiveDevice(1083615,"与自行车或轮椅一起使用的运输辅助器具","操作和使用"),
-                new AssistiveDevice(1110303,"工作桌","操作和使用"),
-                new AssistiveDevice(1110306,"作业台","操作和使用"),
-                new AssistiveDevice(1110312,"工作场所用高脚凳和站立辅助器具","操作和使用"),
-                new AssistiveDevice(1110318,"工作场所用垫子","操作和使用"),
-                new AssistiveDevice(1111203,"运送和夹持工件和工具的辅助器具","操作和使用"),
-                new AssistiveDevice(1111206,"固定和定位工件和工具的辅助器具","操作和使用"),
-                new AssistiveDevice(1112403,"工作场所个人防护设备","操作和使用"),
-                new AssistiveDevice(1112418,"工作场所及工作周围区域的安全设备","操作和使用"),
-                new AssistiveDevice(1120303,"玩具","操作和使用"),
-                new AssistiveDevice(1120309,"游戏用具","操作和使用"),
-                new AssistiveDevice(1120903,"团队球类运动辅助器具","操作和使用"),
-                new AssistiveDevice(1120906,"箭术辅助器具","操作和使用"),
-                new AssistiveDevice(1120909,"划船辅助器具","操作和使用"),
-                new AssistiveDevice(1120912,"保龄球辅助器具","操作和使用"),
-                new AssistiveDevice(1120918,"击剑辅助器具","操作和使用"),
-                new AssistiveDevice(1120927,"球拍和球板类运动辅助器具","操作和使用"),
-                new AssistiveDevice(1120930,"射击辅助器具","操作和使用"),
-                new AssistiveDevice(1120933,"游泳和水上运动辅助器具","操作和使用"),
-                new AssistiveDevice(1120936,"冬季运动辅助器具","操作和使用"),
-                new AssistiveDevice(1120939,"其它运动辅助器具","操作和使用"),
-                new AssistiveDevice(1121803,"纺织手工艺工具、材料和设备","操作和使用"),
-                new AssistiveDevice(1121806,"制陶工艺工具、材料和设备","操作和使用"),
-                new AssistiveDevice(1121809,"木工工艺工具、材料和设备","操作和使用"),
-                new AssistiveDevice(1121812,"金属加工工具、材料和设备","操作和使用"),
-                new AssistiveDevice(1121815,"图案设计工具、材料和设备","操作和使用"),
-                new AssistiveDevice(1121818,"其它材料的手工工艺的工具、材料和设备","操作和使用"),
-
-                new AssistiveDevice(108060301,"开瓶器","操作和使用"),
-                new AssistiveDevice(108060601,"自动牙膏挤压器","操作和使用"),
-                new AssistiveDevice(108090301,"按钮式水龙头","操作和使用"),
-                new AssistiveDevice(108090601,"塑料固定把手","操作和使用"),
-                new AssistiveDevice(108090602,"塑料球形手柄","操作和使用"),
-                new AssistiveDevice(108090901,"L型门把手","操作和使用"),
-                new AssistiveDevice(108090902,"万能把手","操作和使用"),
-                new AssistiveDevice(108091201,"单足自行车脚踏板","操作和使用"),
-                new AssistiveDevice(108091202,"脚踏气泵","操作和使用"),
-                new AssistiveDevice(108091501,"手轮和曲柄把手","操作和使用"),
-                new AssistiveDevice(108091801,"声光延时开关","操作和使用"),
-                new AssistiveDevice(108091802,"眼控开关","操作和使用"),
-                new AssistiveDevice(108092401,"配电盘","操作和使用"),
-                new AssistiveDevice(108092801,"可调电源","操作和使用"),
-                new AssistiveDevice(108093001,"震动提醒定时器","操作和使用"),
-                new AssistiveDevice(108130301,"信号警示系统","操作和使用"),
-                new AssistiveDevice(108130302,"环境控制装置","操作和使用"),
-                new AssistiveDevice(108130601,"环境控制装置程序","操作和使用"),
-                new AssistiveDevice(108180301,"万能袖带","操作和使用"),
-                new AssistiveDevice(108180601,"执笔辅助器","操作和使用"),
-                new AssistiveDevice(108180602,"笔握持器","操作和使用"),
-                new AssistiveDevice(108180901,"电话听筒抓握器","操作和使用"),
-                new AssistiveDevice(108181201,"杯子稳定器","操作和使用"),
-                new AssistiveDevice(108181202,"盲人用盒装大头针","操作和使用"),
-                new AssistiveDevice(108181203,"大耳杯架","操作和使用"),
-                new AssistiveDevice(108181204,"掌套式杯架","操作和使用"),
-                new AssistiveDevice(108181501,"头部控制杆","操作和使用"),
-                new AssistiveDevice(108181502,"口含器","操作和使用"),
-                new AssistiveDevice(108181801,"头部指向灯","操作和使用"),
-                new AssistiveDevice(108182101,"送纸夹","操作和使用"),
-                new AssistiveDevice(108182401,"文稿固定架","操作和使用"),
-                new AssistiveDevice(108182701,"前臂支撑架","操作和使用"),
-                new AssistiveDevice(108182801,"带弹簧剪刀","操作和使用"),
-                new AssistiveDevice(108210301,"折叠式长柄取物器","操作和使用"),
-                new AssistiveDevice(108210302,"非折叠式长柄取物器","操作和使用"),
-                new AssistiveDevice(108210901,"无抓握功能的延伸器","操作和使用"),
-                new AssistiveDevice(108240301,"固定位置系统","操作和使用"),
-                new AssistiveDevice(108240601,"转动和滑动系统","操作和使用"),
-                new AssistiveDevice(108240901,"升降和倾斜系统","操作和使用"),
-                new AssistiveDevice(108270301,"吸盘","操作和使用"),
-                new AssistiveDevice(108270601,"防滑垫","操作和使用"),
-                new AssistiveDevice(108271201,"夹子和弹簧夹","操作和使用"),
-                new AssistiveDevice(108271801,"磁性贴","操作和使用"),
-                new AssistiveDevice(108360301,"搬运辅助器具","操作和使用"),
-                new AssistiveDevice(108360601,"脚轮装置","操作和使用"),
-                new AssistiveDevice(108360901,"行李车和购物推车","操作和使用"),
-                new AssistiveDevice(108361501,"轮椅车背包","操作和使用"),
-                new AssistiveDevice(111030301,"工作桌","操作和使用"),
-                new AssistiveDevice(111030601,"作业台","操作和使用"),
-                new AssistiveDevice(111031201,"凳子","操作和使用"),
-                new AssistiveDevice(111031202,"站立椅","操作和使用"),
-                new AssistiveDevice(111031801,"工作场所用垫子","操作和使用"),
-                new AssistiveDevice(111120301,"手持式磁铁","操作和使用"),
-                new AssistiveDevice(111120302,"抓持式磁铁","操作和使用"),
-                new AssistiveDevice(111120601,"弹簧夹","操作和使用"),
-                new AssistiveDevice(111120602,"工作台用防滑垫","操作和使用"),
-                new AssistiveDevice(111120603,"带格子的旋转桌","操作和使用"),
-                new AssistiveDevice(111240301, "安全靴", "操作和使用"),
-                new AssistiveDevice(111240302, "防护工作服", "操作和使用"),
-                new AssistiveDevice(111241801, "防滑地板", "操作和使用"),
-                new AssistiveDevice(111241802, "道路标识", "操作和使用"),
-                new AssistiveDevice(112030301, "数学算盘文字类玩具", "操作和使用"),
-                new AssistiveDevice(112030302, "工具类玩具", "操作和使用"),
-                new AssistiveDevice(112030303, "益智组合类玩具", "操作和使用"),
-                new AssistiveDevice(112030304, "交通类玩具", "操作和使用"),
-                new AssistiveDevice(112030901, "棋盘", "操作和使用"),
-                new AssistiveDevice(112090301, "轮椅篮球", "操作和使用"),
-                new AssistiveDevice(112090302, "盲人足球", "操作和使用"),
-                new AssistiveDevice(112090303, "坐式排球", "操作和使用"),
-                new AssistiveDevice(112090304, "轮椅乒乓球", "操作和使用"),
-                new AssistiveDevice(112090601, "箭术辅助器具", "操作和使用"),
-                new AssistiveDevice(112090901, "划船辅助器具", "操作和使用"),
-                new AssistiveDevice(112091201, "保龄球辅助器具", "操作和使用"),
-                new AssistiveDevice(112091801, "击剑辅助器具", "操作和使用"),
-                new AssistiveDevice(112092701, "网球拍", "操作和使用"),
-                new AssistiveDevice(112092702, "乒乓球拍", "操作和使用"),
-                new AssistiveDevice(112092703, "羽毛球拍", "操作和使用"),
-                new AssistiveDevice(112093001, "射击辅助器具", "操作和使用"),
-                new AssistiveDevice(112093301, "游泳和水上运动辅助器具", "操作和使用"),
-                new AssistiveDevice(112093601, "冬季运动辅助器具", "操作和使用"),
-                new AssistiveDevice(112093901, "其它运动辅助器具", "操作和使用"),
-                new AssistiveDevice(112180301, "刺绣针", "操作和使用"),
-                new AssistiveDevice(112180302, "花绷子", "操作和使用"),
-                new AssistiveDevice(112180303, "绣架", "操作和使用"),
-                new AssistiveDevice(112180304,"钩针编织模具","操作和使用"),
-                new AssistiveDevice(112180601,"制陶工艺工具、材料和设备","操作和使用"),
-                new AssistiveDevice(112180901,"木工工艺工具、材料和设备","操作和使用"),
-                new AssistiveDevice(112181201,"金属加工工具、材料和设备","操作和使用"),
-                new AssistiveDevice(112181501, "画板", "操作和使用"),
-                new AssistiveDevice(112181502, "画架", "操作和使用"),
-                new AssistiveDevice(112181503, "画夹", "操作和使用"),
-                new AssistiveDevice(112181504, "调色盘", "操作和使用"),
-                new AssistiveDevice(112181505,"调色板","操作和使用"),
-                new AssistiveDevice(112181506, "笔洗", "操作和使用"),
-                new AssistiveDevice(112181507, "镇纸", "操作和使用"),
-                new AssistiveDevice(112181801,"其它材料的手工工艺的工具、材料和设备","操作和使用"),
-
-                //位置转移
-                new AssistiveDevice(10236,"升降人的辅助器具","位置转移"),
-                new AssistiveDevice(10430,"垂直运送辅助器具","位置转移"),
-                new AssistiveDevice(10733,"日常生活活动训练的辅助器具","位置转移"),
-
-                new AssistiveDevice(1023603,"带吊兜的移位机","位置转移"),
-                new AssistiveDevice(1023606,"带硬座的移位机","位置转移"),
-                new AssistiveDevice(1023612,"安装在墙上、地板或天花板上的固定移位机","位置转移"),
-                new AssistiveDevice(1023615,"固定、安置在另一个产品上的固定移位机","位置转移"),
-                new AssistiveDevice(1023618,"固定自立式移位机","位置转移"),
-                new AssistiveDevice(1023621,"移位机的身体支撑部分","位置转移"),
-                new AssistiveDevice(1043005,"固定式升降台","位置转移"),
-                new AssistiveDevice(1043008,"便携式升降台","位置转移"),
-                new AssistiveDevice(1043010,"楼梯升降椅","位置转移"),
-                new AssistiveDevice(1043011,"平台楼梯升降机","位置转移"),
-                new AssistiveDevice(1043015,"可移动坡道","位置转移"),
-                new AssistiveDevice(1043018,"固定坡道","位置转移"),
-                new AssistiveDevice(1043019,"桌类","位置转移"),
-                new AssistiveDevice(1073309,"个人移动训练辅助器具","位置转移"),
-
-                new AssistiveDevice(102360301,"地面吊兜式移位机","位置转移"),
-                new AssistiveDevice(102360302,"带导轨装置的吊兜式移位机","位置转移"),
-                new AssistiveDevice(102360303, "站立式移位机", "位置转移"),
-                new AssistiveDevice(102360601, "带硬座的移位机", "位置转移"),
-                new AssistiveDevice(102361201, "顶置式移位机", "位置转移"),
-                new AssistiveDevice(102361501, "浴缸移位机", "位置转移"),
-                new AssistiveDevice(102361502, "水疗提升装置", "位置转移"),
-                new AssistiveDevice(102361801, "垂直平台", "位置转移"),
-                new AssistiveDevice(102362101, "吊索", "位置转移"),
-                new AssistiveDevice(102362102, "吊兜", "位置转移"),
-                new AssistiveDevice(104300501, "轮椅升降台", "位置转移"),
-                new AssistiveDevice(104300502, "固定式升降台", "位置转移"),
-                new AssistiveDevice(104300503,"平台升降机","位置转移"),
-                new AssistiveDevice(104300504, "斜挂式轮椅升降平台", "位置转移"),
-                new AssistiveDevice(104300505,"垂直式轮椅升降平台","位置转移"),
-                new AssistiveDevice(104300801, "便携式轮椅升降机", "位置转移"),
-                new AssistiveDevice(104301001, "座椅式楼梯机", "位置转移"),
-                new AssistiveDevice(104301101, "轮椅用楼梯升降机", "位置转移"),
-                new AssistiveDevice(104301102, "轮椅用滚梯", "位置转移"),
-                new AssistiveDevice(104301501, "可拆装的简易坡道", "位置转移"),
-                new AssistiveDevice(104301502, "便携式斜坡板", "位置转移"),
-                new AssistiveDevice(104301503, "模块式组合坡道", "位置转移"),
-                new AssistiveDevice(104301801, "普通固定坡道、", "位置转移"),
-                new AssistiveDevice(104301802,"安全挡台","位置转移"),
-                new AssistiveDevice(104301803, "轮椅缓冲地带", "位置转移"),
-                new AssistiveDevice(104301901, "床用餐桌", "位置转移"),
-                new AssistiveDevice(107330901, "辅助起身带", "位置转移"),
-                new AssistiveDevice(107330902, "简易移乘带", "位置转移"),
-                new AssistiveDevice(107330903, "双人移乘带", "位置转移"),
-                new AssistiveDevice(107330904, "保护腰带", "位置转移"),
-                new AssistiveDevice(107330905, "翻身床单", "位置转移"),
-                new AssistiveDevice(107330906, "移乘板", "位置转移"),
-                new AssistiveDevice(107330907, "起身绳梯", "位置转移"),
-
-                //纠正姿势
-                new AssistiveDevice(10409,"坐式家具","纠正姿势"),
-
-                new AssistiveDevice(1040921,"特殊坐具","纠正姿势"),
-
-                new AssistiveDevice(104092101,"儿童三角椅","纠正姿势"),
-                new AssistiveDevice(104092102,"儿童姿势矫正椅","纠正姿势"),
-                new AssistiveDevice(104092103,"儿童梯背训练椅","纠正姿势"),
-                new AssistiveDevice(104092104,"儿童安全椅","纠正姿势"),
-                new AssistiveDevice(104092105,"儿童船形摇椅","纠正姿势"),
-                new AssistiveDevice(104092106,"儿童鞍型可调座椅","纠正姿势"),
-
-                //假肢
-                new AssistiveDevice(10118,"上肢假肢","假肢"),
-                new AssistiveDevice(10124,"下肢假肢","假肢"),
-                new AssistiveDevice(10130,"不同于假肢的假体","假肢"),
-
-                new AssistiveDevice(1011803,"部分手假肢","假肢"),
-                new AssistiveDevice(1011806,"腕离断假肢","假肢"),
-                new AssistiveDevice(1011809,"前臂假肢","假肢"),
-                new AssistiveDevice(1011812,"肘离断假肢","假肢"),
-                new AssistiveDevice(1011815,"上臂假肢","假肢"),
-                new AssistiveDevice(1011818,"肩离断假肢","假肢"),
-                new AssistiveDevice(1011821,"肩胛胸廓假肢","假肢"),
-                new AssistiveDevice(1011824,"假手","假肢"),
-                new AssistiveDevice(1011825,"钩状手","假肢"),
-                new AssistiveDevice(1011826,"工具手及工具","假肢"),
-                new AssistiveDevice(1011830,"腕关节","假肢"),
-                new AssistiveDevice(1011833,"肘关节","假肢"),
-                new AssistiveDevice(1011836,"肩关节","假肢"),
-                new AssistiveDevice(1011840,"肱骨旋转装置","假肢"),
-                new AssistiveDevice(1011841,"屈肘倍增器","假肢"),
-                new AssistiveDevice(1012403,"部分足假肢","假肢"),
-                new AssistiveDevice(1012406,"踝部假肢","假肢"),
-                new AssistiveDevice(1012409,"小腿假肢","假肢"),
-                new AssistiveDevice(1012412,"膝离断假肢","假肢"),
-                new AssistiveDevice(1012415,"大腿假肢","假肢"),
-                new AssistiveDevice(1012418,"髋离断假肢","假肢"),
-                new AssistiveDevice(1012421,"半骨盆切除假肢","假肢"),
-                new AssistiveDevice(1012424,"半体假肢","假肢"),
-                new AssistiveDevice(1012427,"踝足装置","假肢"),
-                new AssistiveDevice(1012430,"扭矩缓冲器","假肢"),
-                new AssistiveDevice(1012431,"缓冲器","假肢"),
-                new AssistiveDevice(1012433,"膝关节","假肢"),
-                new AssistiveDevice(1012436,"髋关节","假肢"),
-                new AssistiveDevice(1012440,"内衬套","假肢"),
-                new AssistiveDevice(1012441,"预制接受腔","假肢"),
-                new AssistiveDevice(1012445,"下肢假肢的对线装置","假肢"),
-                new AssistiveDevice(1012448,"下肢临时假肢","假肢"),
-                new AssistiveDevice(1013003,"假发","假肢"),
-                new AssistiveDevice(1013018,"假乳房","假肢"),
-                new AssistiveDevice(1013021,"假眼","假肢"),
-                new AssistiveDevice(1013024,"假耳","假肢"),
-                new AssistiveDevice(1013027,"假鼻","假肢"),
-                new AssistiveDevice(1013030,"面部合成假体","假肢"),
-                new AssistiveDevice(1013033,"假腭","假肢"),
-                new AssistiveDevice(1013036,"假牙","假肢"),
-
-                new AssistiveDevice(101180301,"掌骨截肢假肢","假肢"),
-                new AssistiveDevice(101180302,"掌骨截肢肌电手","假肢"),
-                new AssistiveDevice(101180303,"装饰性部分手假肢","假肢"),
-                new AssistiveDevice(101180304,"装饰性假手指","假肢"),
-                new AssistiveDevice(101180601,"索控手腕离断假肢","假肢"),
-                new AssistiveDevice(101180602,"单自由度肌电手腕离断假肢","假肢"),
-                new AssistiveDevice(101180603, "工具手腕离断假肢", "假肢"),
-                new AssistiveDevice(101180604, "装饰性腕离断假肢", "假肢"),
-                new AssistiveDevice(101180901, "索控手前臂假肢", "假肢"),
-                new AssistiveDevice(101180902, "单自由度肌电手前臂假肢", "假肢"),
-                new AssistiveDevice(101180903, "双自由度肌电手前臂假肢", "假肢"),
-                new AssistiveDevice(101180904, "工具手前臂假肢", "假肢"),
-                new AssistiveDevice(101180905, "装饰性前臂假肢", "假肢"),
-                new AssistiveDevice(101181201, "索控手肘离断假肢", "假肢"),
-                new AssistiveDevice(101181202,"单自由度肌电手肘离断假肢","假肢"),
-                new AssistiveDevice(101181203, "双自由度肌电手肘离断假肢", "假肢"),
-                new AssistiveDevice(101181204,"工具手肘离断假肢","假肢"),
-                new AssistiveDevice(101181205, "装饰性肘离断假肢", "假肢"),
-                new AssistiveDevice(101181501, "索控手上臂假肢", "假肢"),
-                new AssistiveDevice(101181502, "单自由度肌电手上臂假肢", "假肢"),
-                new AssistiveDevice(101181503, "双自由度肌电手上臂假肢", "假肢"),
-                new AssistiveDevice(101181504,"双自由度混合式电动手上臂假肢","假肢"),
-                new AssistiveDevice(101181505, "三自由度肌电手上臂假肢", "假肢"),
-                new AssistiveDevice(101181506,"工具手上臂假肢","假肢"),
-                new AssistiveDevice(101181507, "装饰性上臂假肢", "假肢"),
-                new AssistiveDevice(101181801, "索控手肩离断假肢", "假肢"),
-                new AssistiveDevice(101181802,"双自由度肌电手肩离断假肢","假肢"),
-                new AssistiveDevice(101181803, "装饰性肩离断假肢", "假肢"),
-                new AssistiveDevice(101182101, "装饰性肩胛胸廓假肢", "假肢"),
-                new AssistiveDevice(101182401, "壳式索控手", "假肢"),
-                new AssistiveDevice(101182402, "骨架式索控手", "假肢"),
-                new AssistiveDevice(101182403, "单自由度肌电手", "假肢"),
-                new AssistiveDevice(101182404, "双自由度肌电手", "假肢"),
-                new AssistiveDevice(101182405, "装饰手", "假肢"),
-                new AssistiveDevice(101182406, "掌骨截肢肌电手", "假肢"),
-                new AssistiveDevice(101182501, "万能型钩状手", "假肢"),
-                new AssistiveDevice(101182502, "侧钩型钩状手", "假肢"),
-                new AssistiveDevice(101182601, "劳动用钩状工具手", "假肢"),
-                new AssistiveDevice(101182602, "劳动用夹持工具手", "假肢"),
-                new AssistiveDevice(101182603,"专用工具","假肢"),
-                new AssistiveDevice(101183001, "摩擦式可旋腕关节", "假肢"),
-                new AssistiveDevice(101183002, "被动式腕关节", "假肢"),
-                new AssistiveDevice(101183003,"换装手头式腕关节","假肢"),
-                new AssistiveDevice(101183004, "工具手连接器", "假肢"),
-                new AssistiveDevice(101183301, "单轴自由肘关节铰链", "假肢"),
-                new AssistiveDevice(101183302, "双轴自由肘关节铰链", "假肢"),
-                new AssistiveDevice(101183303, "锁定式肘关节铰链", "假肢"),
-                new AssistiveDevice(101183304, "挠性肘关节铰链", "假肢"),
-                new AssistiveDevice(101183305,"电动肘关节","假肢"),
-                new AssistiveDevice(101183601, "隔板式肩关节", "假肢"),
-                new AssistiveDevice(101183602, "外展式肩关节", "假肢"),
-                new AssistiveDevice(101183603, "万向肩关节", "假肢"),
-                new AssistiveDevice(101184001, "肱骨旋转装置", "假肢"),
-                new AssistiveDevice(101184101, "三杆结构倍增式肘铰链", "假肢"),
-                new AssistiveDevice(101184102,"四杆结构倍增式肘铰链","假肢"),
-                new AssistiveDevice(101240301, "皮套式假足趾", "假肢"),
-                new AssistiveDevice(101240302, "硅胶套式假足趾", "假肢"),
-                new AssistiveDevice(101240303,"硅胶足套式假半足","假肢"),
-                new AssistiveDevice(101240304, "树脂成型小腿式假半足", "假肢"),
-                new AssistiveDevice(101240601, "皮制赛姆假肢", "假肢"),
-                new AssistiveDevice(101240602, "树脂成型赛姆假肢", "假肢"),
-                new AssistiveDevice(101240901, "壳式小腿假肢", "假肢"),
-                new AssistiveDevice(101240902, "组件式单轴脚小腿假肢", "假肢"),
-                new AssistiveDevice(101240903,"组件式SACH 脚小腿假肢","假肢"),
-                new AssistiveDevice(101240904,"组件式万向踝单轴脚小腿假肢","假肢"),
-                new AssistiveDevice(101240905, "组件式储能脚小腿假肢", "假肢"),
-                new AssistiveDevice(101241201, "不锈钢组件膝离断假肢", "假肢"),
-                new AssistiveDevice(101241202,"铝合金组件膝离断假肢","假肢"),
-                new AssistiveDevice(101241203, "钛合金组件膝离断假肢", "假肢"),
-                new AssistiveDevice(101241204,"气压控制膝离断假肢","假肢"),
-                new AssistiveDevice(101241205, "液压控制膝离断假肢", "假肢"),
-                new AssistiveDevice(101241206,"智能控制膝离断假肢","假肢"),
-                new AssistiveDevice(101241501, "不锈钢组件大腿假肢", "假肢"),
-                new AssistiveDevice(101241502, "铝合金组件大腿假肢", "假肢"),
-                new AssistiveDevice(101241503, "钛合金组件大腿假肢", "假肢"),
-                new AssistiveDevice(101241504, "气压控制大腿假肢", "假肢"),
-                new AssistiveDevice(101241505,"液压控制大腿假肢","假肢"),
-                new AssistiveDevice(101241506, "智能控制大腿假肢", "假肢"),
-                new AssistiveDevice(101241801, "不锈钢组件髋离断假肢", "假肢"),
-                new AssistiveDevice(101241802,"铝合金组件髋离断假肢","假肢"),
-                new AssistiveDevice(101241803, "钛合金组件髋离断假肢", "假肢"),
-                new AssistiveDevice(101241804,"气压控制髋离断假肢","假肢"),
-                new AssistiveDevice(101241805, "液压控制髋离断假肢", "假肢"),
-                new AssistiveDevice(101242101, "半骨盆切除假肢", "假肢"),
-                new AssistiveDevice(101242102, "特制半骨盆切除假肢", "假肢"),
-                new AssistiveDevice(101242401, "短桩半体假肢", "假肢"),
-                new AssistiveDevice(101242402, "特制半体假肢", "假肢"),
-                new AssistiveDevice(101242701, "单轴脚", "假肢"),
-                new AssistiveDevice(101242702, "单轴低踝脚", "假肢"),
-                new AssistiveDevice(101242703, "静踝脚", "假肢"),
-                new AssistiveDevice(101242704, "多轴脚", "假肢"),
-                new AssistiveDevice(101242705,"储能脚","假肢"),
-                new AssistiveDevice(101242706, "方锥静踝", "假肢"),
-                new AssistiveDevice(101242707, "单轴动踝", "假肢"),
-                new AssistiveDevice(101242708, "万向踝", "假肢"),
-                new AssistiveDevice(101243001, "弹簧扭矩缓冲器", "假肢"),
-                new AssistiveDevice(101243002, "橡胶扭矩缓冲器", "假肢"),
-                new AssistiveDevice(101243101, "膝伸展缓冲器", "假肢"),
-                new AssistiveDevice(101243102, "足前缓冲器", "假肢"),
-                new AssistiveDevice(101243103, "足后缓冲器", "假肢"),
-                new AssistiveDevice(101243301, "单轴膝关节", "假肢"),
-                new AssistiveDevice(101243302, "承重自锁膝关节", "假肢"),
-                new AssistiveDevice(101243303,"手动锁单轴膝关节","假肢"),
-                new AssistiveDevice(101243304, "四连杆膝关节", "假肢"),
-                new AssistiveDevice(101243305, "气压膝关节", "假肢"),
-                new AssistiveDevice(101243306,"液压膝关节","假肢"),
-                new AssistiveDevice(101243307, "智能膝关节", "假肢"),
-                new AssistiveDevice(101243308, "四连杆膝离断膝关节", "假肢"),
-                new AssistiveDevice(101243309,"气压膝离断膝关节","假肢"),
-                new AssistiveDevice(101243310, "液压膝离断膝关节", "假肢"),
-                new AssistiveDevice(101243601, "前置式单轴髋关节", "假肢"),
-                new AssistiveDevice(101243602, "下置式单轴髋关节", "假肢"),
-                new AssistiveDevice(101243603,"四连杆髋关节","假肢"),
-                new AssistiveDevice(101244001, "接受腔内衬套", "假肢"),
-                new AssistiveDevice(101244002, "无锁凝胶残肢套", "假肢"),
-                new AssistiveDevice(101244003,"有锁凝胶残肢套","假肢"),
-                new AssistiveDevice(101244004, "无锁硅胶残肢套", "假肢"),
-                new AssistiveDevice(101244005, "有锁硅胶残肢套", "假肢"),
-                new AssistiveDevice(101244101, "预制接受腔", "假肢"),
-                new AssistiveDevice(101244501, "小腿假肢装配对线连接盘", "假肢"),
-                new AssistiveDevice(101244502,"临时接受腔可调连接架","假肢"),
-                new AssistiveDevice(101244503, "可调连接盘", "假肢"),
-                new AssistiveDevice(101244504, "三爪连接盘", "假肢"),
-                new AssistiveDevice(101244505, "四爪连接盘", "假肢"),
-                new AssistiveDevice(101244506, "锁紧管接头", "假肢"),
-                new AssistiveDevice(101244507, "双向接头", "假肢"),
-                new AssistiveDevice(101244801, "石膏接受腔临时假肢", "假肢"),
-                new AssistiveDevice(101244802,"采用接受腔调节架的临时假肢","假肢"),
-                new AssistiveDevice(101244803, "树脂接受腔临时假肢", "假肢"),
-                new AssistiveDevice(101244804, "短桩临时假肢", "假肢"),
-                new AssistiveDevice(101300301, "假发", "假肢"),
-                new AssistiveDevice(101301801, "胸罩式假乳房", "假肢"),
-                new AssistiveDevice(101301802, "仿真假乳房", "假肢"),
-                new AssistiveDevice(101302101, "配制硬性假眼", "假肢"),
-                new AssistiveDevice(101302102, "定制硬性假眼", "假肢"),
-                new AssistiveDevice(101302103, "软性假眼", "假肢"),
-                new AssistiveDevice(101302104,"薄体假眼","假肢"),
-                new AssistiveDevice(101302105, "特制活动假眼", "假肢"),
-                new AssistiveDevice(101302401, "硅胶假耳", "假肢"),
-                new AssistiveDevice(101302701, "硅胶假鼻", "假肢"),
-                new AssistiveDevice(101303001, "面部合成假体", "假肢"),
-                new AssistiveDevice(101303301, "假腭", "假肢"),
-                new AssistiveDevice(101303601, "单颗牙", "假肢"),
-                new AssistiveDevice(101303602, "全口牙", "假肢"),
-
-                //矫形器
-                new AssistiveDevice(10103,"脊柱和颅部矫形器","矫形器"),
-                new AssistiveDevice(10104,"腹部矫形器","矫形器"),
-                new AssistiveDevice(10106,"上肢矫形器系统","矫形器"),
-                new AssistiveDevice(10112,"下肢矫形器","矫形器"),
-                new AssistiveDevice(10133,"矫形鞋","矫形器"),
-
-                new AssistiveDevice(1010303,"骶髂矫形器","矫形器"),
-                new AssistiveDevice(1010304,"腰部矫形器","矫形器"),
-                new AssistiveDevice(1010306,"腰骶矫形器","矫形器"),
-                new AssistiveDevice(1010307,"胸部矫形器","矫形器"),
-                new AssistiveDevice(1010308,"胸腰矫形器","矫形器"),
-                new AssistiveDevice(1010309,"胸腰骶矫形器","矫形器"),
-                new AssistiveDevice(1010312,"颈部矫形器","矫形器"),
-                new AssistiveDevice(1010315,"颈胸矫形器","矫形器"),
-                new AssistiveDevice(1010318,"颈胸腰骶矫形器","矫形器"),
-                new AssistiveDevice(1010321,"颅部矫形器","矫形器"),
-                new AssistiveDevice(1010326,"脊柱侧弯矫形器","矫形器"),
-                new AssistiveDevice(1010327,"脊柱矫形器铰链","矫形器"),
-                new AssistiveDevice(1010403,"腹肌托","矫形器"),
-                new AssistiveDevice(1010404,"胃（下垂）托","矫形器"),
-                new AssistiveDevice(1010405,"肾（下垂）托","矫形器"),
-                new AssistiveDevice(1010603,"指矫形器","矫形器"),
-                new AssistiveDevice(1010606,"手矫形器","矫形器"),
-                new AssistiveDevice(1010607,"手-指矫形器","矫形器"),
-                new AssistiveDevice(1010612,"腕手矫形器","矫形器"),
-                new AssistiveDevice(1010613,"腕手-手指矫形器","矫形器"),
-                new AssistiveDevice(1010614,"夹持矫形器","矫形器"),
-                new AssistiveDevice(1010615,"肘矫形器","矫形器"),
-                new AssistiveDevice(1010619,"肘腕手矫形器","矫形器"),
-                new AssistiveDevice(1010620,"前臂矫形器","矫形器"),
-                new AssistiveDevice(1010621,"肩矫形器","矫形器"),
-                new AssistiveDevice(1010624,"肩肘矫形器","矫形器"),
-                new AssistiveDevice(1010625,"上臂矫形器","矫形器"),
-                new AssistiveDevice(1010630,"肩肘腕手矫形器","矫形器"),
-                new AssistiveDevice(1010630,"手-指关节铰链","矫形器"),
-                new AssistiveDevice(1010633,"腕铰链","矫形器"),
-                new AssistiveDevice(1010636,"肘铰链","矫形器"),
-                new AssistiveDevice(1010639,"肩铰链","矫形器"),
-                new AssistiveDevice(1011203,"足矫形器","矫形器"),
-                new AssistiveDevice(1011206,"踝足矫形器","矫形器"),
-                new AssistiveDevice(1011209,"膝矫形器","矫形器"),
-                new AssistiveDevice(1011212,"膝踝足矫形器","矫形器"),
-                new AssistiveDevice(1011213,"小腿矫形器","矫形器"),
-                new AssistiveDevice(1011215,"髋矫形器","矫形器"),
-                new AssistiveDevice(1011216,"髋膝矫形器","矫形器"),
-                new AssistiveDevice(1011217,"大腿矫形器","矫形器"),
-                new AssistiveDevice(1011218,"髋膝踝足矫形器","矫形器"),
-                new AssistiveDevice(1011219,"胸腰(腰)骶髋膝踝足矫形器","矫形器"),
-                new AssistiveDevice(1011220,"足-趾铰链","矫形器"),
-                new AssistiveDevice(1011221,"踝关节铰链","矫形器"),
-                new AssistiveDevice(1011224,"膝关节铰链","矫形器"),
-                new AssistiveDevice(1011227,"髋关节铰链","矫形器"),
-                new AssistiveDevice(1013307,"控制畸形的矫形鞋","矫形器"),
-                new AssistiveDevice(1013318,"补高鞋","矫形器"),
-                new AssistiveDevice(1013321,"补缺鞋","矫形器"),
-                new AssistiveDevice(1013330,"免荷鞋","矫形器"),
-                new AssistiveDevice(1013333,"保护用矫形鞋","矫形器"),
-
-                new AssistiveDevice(101030301,"塑模成型骶髂矫形器","矫形器"),
-                new AssistiveDevice(101030302,"骶髂带","矫形器"),
-                new AssistiveDevice(101030303,"大转子带","矫形器"),
-                new AssistiveDevice(101030401,"弹力腰围","矫形器"),
-                new AssistiveDevice(101030402,"加强型弹力腰围","矫形器"),
-                new AssistiveDevice(101030403,"内置支条式弹力腰围","矫形器"),
-                new AssistiveDevice(101030404,"硬托式腰围","矫形器"),
-                new AssistiveDevice(101030405,"皮腰围","矫形器"),
-                new AssistiveDevice(101030406,"帆布腰围","矫形器"),
-                new AssistiveDevice(101030407,"保温型腰围","矫形器"),
-                new AssistiveDevice(101030408,"硬性腰围","矫形器"),
-                new AssistiveDevice(101030601,"塑模成型腰骶矫形器","矫形器"),
-                new AssistiveDevice(101030602,"腰骶屈曲（伸展限制矫形器）","矫形器"),
-                new AssistiveDevice(101030603,"腰椎牵引带","矫形器"),
-                new AssistiveDevice(101030604,"家用腰椎牵引器","矫形器"),
-                new AssistiveDevice(101030701,"胸部矫形器","矫形器"),
-                new AssistiveDevice(101030801,"内置支条弹力高腰围腰","矫形器"),
-                new AssistiveDevice(101030802,"内置帆布弹力高腰围腰","矫形器"),
-                new AssistiveDevice(101030803,"内置支条皮革高腰围腰","矫形器"),
-                new AssistiveDevice(101030804,"腹背托式高腰围腰","矫形器"),
-                new AssistiveDevice(101030805,"背姿矫形带","矫形器"),
-                new AssistiveDevice(101030901,"泰勒型胸腰骶矫形器","矫形器"),
-                new AssistiveDevice(101030902,"奈特-泰勒型胸腰骶矫形器","矫形器"),
-                new AssistiveDevice(101030903,"脊柱过伸矫形器","矫形器"),
-                new AssistiveDevice(101030904,"支条固定式胸腰骶矫形器","矫形器"),
-                new AssistiveDevice(101030905,"模塑夹克式胸腰骶矫形器","矫形器"),
-                new AssistiveDevice(101030906,"可调夹克式胸腰骶矫形器","矫形器"),
-                new AssistiveDevice(101030907,"带胸背托可调夹克式胸腰骶矫形器","矫形器"),
-                new AssistiveDevice(101030908,"带胸托围腰式胸腰骶矫形器","矫形器"),
-                new AssistiveDevice(101031201,"围领式颈托","矫形器"),
-                new AssistiveDevice(101031202,"费城颈托","矫形器"),
-                new AssistiveDevice(101031203,"模塑成型固定式颈托","矫形器"),
-                new AssistiveDevice(101031204,"高度可调式颈托","矫形器"),
-                new AssistiveDevice(101031205,"充气式颈托","矫形器"),
-                new AssistiveDevice(101031206,"三片组合式颈托","矫形器"),
-                new AssistiveDevice(101031207,"颈椎牵引器","矫形器"),
-                new AssistiveDevice(101031501,"索米型颈胸矫形器","矫形器"),
-                new AssistiveDevice(101031502,"支杆加强型颈胸矫形器","矫形器"),
-                new AssistiveDevice(101031503,"头匝式颈胸矫形器","矫形器"),
-                new AssistiveDevice(101031504,"头环式颈胸矫形器","矫形器"),
-                new AssistiveDevice(101031505,"模塑成型颈胸矫形器","矫形器"),
-                new AssistiveDevice(101031506,"框架式颈胸矫形器","矫形器"),
-                new AssistiveDevice(101031801,"模塑成型胸腰骶矫形器","矫形器"),
-                new AssistiveDevice(101031802,"框架式胸腰骶矫形器","矫形器"),
-                new AssistiveDevice(101031803,"颈腰椎牵引器","矫形器"),
-                new AssistiveDevice(101032101,"保护性头盔","矫形器"),
-                new AssistiveDevice(101032102,"颅骨护罩","矫形器"),
-                new AssistiveDevice(101032601,"密尔沃基型侧凸矫形器","矫形器"),
-                new AssistiveDevice(101032602,"波士顿型侧凸矫形器","矫形器"),
-                new AssistiveDevice(101032603,"里昂型侧凸矫形器","矫形器"),
-                new AssistiveDevice(101032604,"色努型侧凸矫形器","矫形器"),
-                new AssistiveDevice(101032605,"CBW 型侧凸矫形器","矫形器"),
-                new AssistiveDevice(101032606,"OMC（大阪医大）型侧凸矫形器","矫形器"),
-                new AssistiveDevice(101032701,"脊柱矫形器铰链","矫形器"),
-                new AssistiveDevice(101040301,"束腹带","矫形器"),
-                new AssistiveDevice(101040401,"普通胃托","矫形器"),
-                new AssistiveDevice(101040402,"可调式胃托","矫形器"),
-                new AssistiveDevice(101040501,"单侧肾托","矫形器"),
-                new AssistiveDevice(101040502,"双侧肾托","矫形器"),
-                new AssistiveDevice(101060301,"指间关节固定托","矫形器"),
-                new AssistiveDevice(101060302,"槌状指矫正托","矫形器"),
-                new AssistiveDevice(101060303,"鹅颈变形指矫正托","矫形器"),
-                new AssistiveDevice(101060304,"扣眼变形指矫形托","矫形器"),
-                new AssistiveDevice(101060305,"硬胶指套","矫形器"),
-                new AssistiveDevice(101060306,"指护托","矫形器"),
-                new AssistiveDevice(101060307,"弹力屈指器","矫形器"),
-                new AssistiveDevice(101060308,"弹力伸指器","矫形器"),
-                new AssistiveDevice(101060601,"掌指关节固定矫形器","矫形器"),
-                new AssistiveDevice(101060602,"掌指关节伸展辅助矫形器","矫形器"),
-                new AssistiveDevice(101060603,"尺神经麻痹矫形器","矫形器"),
-                new AssistiveDevice(101060604,"短对掌矫形器","矫形器"),
-                new AssistiveDevice(101060701,"可调分指板","矫形器"),
-                new AssistiveDevice(101060702,"手掌肌膜挛缩矫形器","矫形器"),
-                new AssistiveDevice(101060703,"正中神经麻痹用矫形器","矫形器"),
-                new AssistiveDevice(101061201,"弹力护腕","矫形器"),
-                new AssistiveDevice(101061202,"加固型护腕","矫形器"),
-                new AssistiveDevice(101061203,"腕关节定位托板","矫形器"),
-                new AssistiveDevice(101061204,"模塑成型腕手固定矫形器","矫形器"),
-                new AssistiveDevice(101061205,"抗痉挛腕手矫形器","矫形器"),
-                new AssistiveDevice(101061206,"动态腕手矫形器","矫形器"),
-                new AssistiveDevice(101061207,"长对掌矫形器","矫形器"),
-                new AssistiveDevice(101061301,"带MP伸展限位的长对掌矫形器","矫形器"),
-                new AssistiveDevice(101061302,"带IP伸展辅助和MP伸展限位的长对掌矫形器","矫形器"),
-                new AssistiveDevice(101061303,"带MP屈曲辅助的长对掌矫形器","矫形器"),
-                new AssistiveDevice(101061304,"带MP伸展辅助的长对掌矫形器","矫形器"),
-                new AssistiveDevice(101061305,"带IP伸展辅助的长对掌矫形器","矫形器"),
-                new AssistiveDevice(101061401,"恩根型夹持矫形器","矫形器"),
-                new AssistiveDevice(101061402,"兰乔型夹持矫形器","矫形器"),
-                new AssistiveDevice(101061501,"弹力护肘","矫形器"),
-                new AssistiveDevice(101061502,"网球肘护肘","矫形器"),
-                new AssistiveDevice(101061503,"肘过伸限制矫形器","矫形器"),
-                new AssistiveDevice(101061504,"肘固定矫形器","矫形器"),
-                new AssistiveDevice(101061505,"可调肘矫形器","矫形器"),
-                new AssistiveDevice(101061901,"前臂（肘腕手）矫形器","矫形器"),
-                new AssistiveDevice(101062001,"前臂固定护托","矫形器"),
-                new AssistiveDevice(101062002,"模塑成型前臂固定托","矫形器"),
-                new AssistiveDevice(101062101,"弹力护肩","矫形器"),
-                new AssistiveDevice(101062102,"锁骨带","矫形器"),
-                new AssistiveDevice(101062103,"肩关节固定矫形器","矫形器"),
-                new AssistiveDevice(101062104,"肩外展矫形器","矫形器"),
-                new AssistiveDevice(101062105,"肩关节脱位矫形器","矫形器"),
-                new AssistiveDevice(101062106,"肩锁关节脱位矫形器","矫形器"),
-                new AssistiveDevice(101062107,"臂吊带","矫形器"),
-                new AssistiveDevice(101062401,"肩肘固定垫","矫形器"),
-                new AssistiveDevice(101062402,"屈肘辅助铰链式动态肩肘矫形器","矫形器"),
-                new AssistiveDevice(101062501,"上臂固定护托","矫形器"),
-                new AssistiveDevice(101062502,"模塑成型上臂固定托","矫形器"),
-                new AssistiveDevice(101063001,"功能性上肢矫形器","矫形器"),
-                new AssistiveDevice(101063002,"平衡式前臂矫形器(BFO)","矫形器"),
-                new AssistiveDevice(101063001,"手-指关节铰链","矫形器"),
-                new AssistiveDevice(101063301,"腕铰链","矫形器"),
-                new AssistiveDevice(101063601,"单轴肘关节铰链","矫形器"),
-                new AssistiveDevice(101063602,"定位盘锁定式肘关节铰链","矫形器"),
-                new AssistiveDevice(101063603,"克伦扎克式肘关节铰链","矫形器"),
-                new AssistiveDevice(101063604,"挠性肘关节铰链","矫形器"),
-                new AssistiveDevice(101063901,"挠性肩关节铰链","矫形器"),
-                new AssistiveDevice(101120301,"拇指外翻矫形器（垫）","矫形器"),
-                new AssistiveDevice(101120302,"硅胶分趾垫","矫形器"),
-                new AssistiveDevice(101120303,"槌状趾垫","矫形器"),
-                new AssistiveDevice(101120304,"鸡眼垫","矫形器"),
-                new AssistiveDevice(101120305,"跖骨垫","矫形器"),
-                new AssistiveDevice(101120306,"足掌垫","矫形器"),
-                new AssistiveDevice(101120307,"跟骨垫","矫形器"),
-                new AssistiveDevice(101120308,"跟骨骨刺垫","矫形器"),
-                new AssistiveDevice(101120309,"横弓垫","矫形器"),
-                new AssistiveDevice(101120310,"平足垫","矫形器"),
-                new AssistiveDevice(101120311,"弓形足垫","矫形器"),
-                new AssistiveDevice(101120312,"足内/外翻矫正垫","矫形器"),
-                new AssistiveDevice(101120313,"足弓托","矫形器"),
-                new AssistiveDevice(101120314,"补高垫","矫形器"),
-                new AssistiveDevice(101120315,"足外侧楔形垫","矫形器"),
-                new AssistiveDevice(101120316,"缓冲性鞋垫","矫形器"),
-                new AssistiveDevice(101120601,"弹力护踝","矫形器"),
-                new AssistiveDevice(101120602,"韧带型护踝","矫形器"),
-                new AssistiveDevice(101120603,"踝足固定矫形器","矫形器"),
-                new AssistiveDevice(101120604,"靴型踝足矫形器","矫形器"),
-                new AssistiveDevice(101120605,"动态踝足矫形器","矫形器"),
-                new AssistiveDevice(101120606,"塑料踝足矫形器","矫形器"),
-                new AssistiveDevice(101120607,"螺旋式踝足矫形器","矫形器"),
-                new AssistiveDevice(101120608,"半螺旋式踝足矫形器","矫形器"),
-                new AssistiveDevice(101120609,"全免荷PTB踝足矫形器","矫形器"),
-                new AssistiveDevice(101120610,"部分免荷PTB踝足矫形器","矫形器"),
-                new AssistiveDevice(101120611,"丹尼斯·布朗支架","矫形器"),
-                new AssistiveDevice(101120901,"弹性护膝","矫形器"),
-                new AssistiveDevice(101120902,"带膝铰链护膝","矫形器"),
-                new AssistiveDevice(101120903,"髌骨护托","矫形器"),
-                new AssistiveDevice(101120904,"髌骨脱臼矫形器","矫形器"),
-                new AssistiveDevice(101120905,"瑞典式膝反屈矫形器","矫形器"),
-                new AssistiveDevice(101120906,"前（后）十字韧带损伤用矫形器","矫形器"),
-                new AssistiveDevice(101120907,"内外侧副韧带损伤用护膝","矫形器"),
-                new AssistiveDevice(101120908,"膝关节固定矫形器","矫形器"),
-                new AssistiveDevice(101120909,"可调膝矫形器","矫形器"),
-                new AssistiveDevice(101120910,"带膝压垫金属支条型膝矫形器","矫形器"),
-                new AssistiveDevice(101120911,"模塑膝矫形器","矫形器"),
-                new AssistiveDevice(101121201,"膝踝足固定矫形器","矫形器"),
-                new AssistiveDevice(101121202,"金属支条式膝踝足矫形器","矫形器"),
-                new AssistiveDevice(101121203,"X型腿矫形器","矫形器"),
-                new AssistiveDevice(101121204,"O型腿矫形器","矫形器"),
-                new AssistiveDevice(101121205,"全免荷坐骨承重大腿矫形器","矫形器"),
-                new AssistiveDevice(101121206,"部分免荷坐骨承重大腿矫形器","矫形器"),
-                new AssistiveDevice(101121207,"佩特兹病用矫形器","矫形器"),
-                new AssistiveDevice(101121301,"弹力小腿护腿","矫形器"),
-                new AssistiveDevice(101121302,"小腿固定护套","矫形器"),
-                new AssistiveDevice(101121303,"模塑成型小腿固定托","矫形器"),
-                new AssistiveDevice(101121501,"髋固定矫形器","矫形器"),
-                new AssistiveDevice(101121502,"锁定式髋外展矫形器","矫形器"),
-                new AssistiveDevice(101121503,"可调内收外展的髋固定矫形器","矫形器"),
-                new AssistiveDevice(101121504,"蛙式支架","矫形器"),
-                new AssistiveDevice(101121505,"儿童先天性髋脱位矫形器","矫形器"),
-                new AssistiveDevice(101121601,"髋膝矫形器","矫形器"),
-                new AssistiveDevice(101121701,"弹力大腿护腿","矫形器"),
-                new AssistiveDevice(101121702,"大腿固定护套","矫形器"),
-                new AssistiveDevice(101121703,"模塑成型大腿固定托","矫形器"),
-                new AssistiveDevice(101121801,"金属支条式髋大腿矫形器","矫形器"),
-                new AssistiveDevice(101121802,"模塑成型髋大腿矫形器","矫形器"),
-                new AssistiveDevice(101121803,"坐骨承重髋大腿矫形器","矫形器"),
-                new AssistiveDevice(101121901,"带腰骶矫形器的髋大腿矫形器","矫形器"),
-                new AssistiveDevice(101121902,"带胸腰骶矫形器的髋大腿矫形器","矫形器"),
-                new AssistiveDevice(101121903,"下肢扭转矫形器","矫形器"),
-                new AssistiveDevice(101121904,"交替摆动式截瘫行走矫形器（RGO）","矫形器"),
-                new AssistiveDevice(101121905,"高位截瘫行走矫形器（ARGO）","矫形器"),
-                new AssistiveDevice(101122001,"足-趾铰链","矫形器"),
-                new AssistiveDevice(101122101,"带足蹬自由式踝铰链","矫形器"),
-                new AssistiveDevice(101122102,"带足蹬单向可调踝铰链","矫形器"),
-                new AssistiveDevice(101122103,"带足蹬单向助动式踝铰链","矫形器"),
-                new AssistiveDevice(101122104,"带足蹬双向可调外（内）侧支条式踝铰链","矫形器"),
-                new AssistiveDevice(101122401,"自由式单轴膝铰链","矫形器"),
-                new AssistiveDevice(101122402,"落环锁膝铰链","矫形器"),
-                new AssistiveDevice(101122403,"棘爪锁膝铰链","矫形器"),
-                new AssistiveDevice(101122404,"限位盘式锁膝铰链","矫形器"),
-                new AssistiveDevice(101122701,"自由式单轴髋铰链","矫形器"),
-                new AssistiveDevice(101122702,"落环锁髋铰链","矫形器"),
-                new AssistiveDevice(101122703,"棘爪锁髋铰链","矫形器"),
-                new AssistiveDevice(101330701,"带有各种矫形跟的矫正鞋","矫形器"),
-                new AssistiveDevice(101330702,"带有各种矫形掌的矫正鞋","矫形器"),
-                new AssistiveDevice(101330703,"扁平足矫正鞋","矫形器"),
-                new AssistiveDevice(101330704,"弓形足矫正鞋","矫形器"),
-                new AssistiveDevice(101330705,"内（外）翻足矫正鞋","矫形器"),
-                new AssistiveDevice(101330706,"马蹄足矫正鞋","矫形器"),
-                new AssistiveDevice(101331801,"矫形鞋（单鞋）","矫形器"),
-                new AssistiveDevice(101331802,"矫形鞋（棉鞋）","矫形器"),
-                new AssistiveDevice(101332101,"低腰补缺鞋","矫形器"),
-                new AssistiveDevice(101332102,"中腰不缺鞋","矫形器"),
-                new AssistiveDevice(101333001,"跖骨小头免荷鞋","矫形器"),
-                new AssistiveDevice(101333002,"跟骨刺免荷鞋","矫形器"),
-                new AssistiveDevice(101333301,"外科鞋","矫形器"),
-                new AssistiveDevice(101333302,"糖尿病鞋","矫形器"),
-
-                //助听类
-                new AssistiveDevice(10506,"助听器","助听类"),
-
-                new AssistiveDevice(1050606,"佩戴式（盒式）助听器","助听类"),
-                new AssistiveDevice(1050609,"眼镜式助听器","助听类"),
-                new AssistiveDevice(1050615,"耳背式助听器","助听类"),
-                new AssistiveDevice(1050612,"耳内式助听器","助听类"),
-                new AssistiveDevice(1050613,"耳道式助听器","助听类"),
-                new AssistiveDevice(1050614,"深耳道式助听器","助听类"),
-                new AssistiveDevice(1050617,"人工耳蜗","助听类"),
-                new AssistiveDevice(1050618,"骨导式助听器","助听类"),
-                new AssistiveDevice(1050627,"助听器配件","助听类"),
-
-                new AssistiveDevice(105060601,"盒式助听器","助听类"),
-                new AssistiveDevice(105060901,"眼镜式助听器","助听类"),
-                new AssistiveDevice(105061501,"耳背式助听器","助听类"),
-                new AssistiveDevice(105061201,"耳内式助听器","助听类"),
-                new AssistiveDevice(105061301,"耳道式助听器","助听类"),
-                new AssistiveDevice(105061401,"深耳道式助听器","助听类"),
-                new AssistiveDevice(105061701,"人工耳蜗","助听类"),
-                new AssistiveDevice(105061801,"骨导式助听器","助听类"),
-                new AssistiveDevice(105062701,"助听器配件","助听类"),
-
-                //助视类
-                new AssistiveDevice(10503,"视力辅助器具","助视类"),
-                new AssistiveDevice(10512,"绘画和书写辅助器具","助视类"),
-
-                new AssistiveDevice(1050303,"滤光器","助视类"),
-                new AssistiveDevice(1050306,"眼镜和隐形眼镜","助视类"),
-                new AssistiveDevice(1050309,"具有放大功能的眼镜、镜片、助视系统","助视类"),
-                new AssistiveDevice(1050312,"双筒望远镜和单筒望远镜","助视类"),
-                new AssistiveDevice(1051203,"手动式绘画和书写器具","助视类"),
-                new AssistiveDevice(1051206,"书写板、绘图板和绘画板","助视类"),
-                new AssistiveDevice(1051209,"签字导向槽、印章和书写框","助视类"),
-                new AssistiveDevice(1051212,"手写盲文书写装置","助视类"),
-                new AssistiveDevice(1051215,"打字机","助视类"),
-                new AssistiveDevice(1051218,"特制书写纸（塑膜）","助视类"),
-                new AssistiveDevice(1051221,"便携式盲文记录装置","助视类"),
-                new AssistiveDevice(1051224,"文字处理软件","助视类"),
-                new AssistiveDevice(1051227,"绘图和绘画软件","助视类"),
-
-                new AssistiveDevice(105030301,"低视力专用滤光镜","助视类"),
-                new AssistiveDevice(105030302,"滤光器","助视类"),
-                new AssistiveDevice(105030601,"眼镜和隐形眼镜","助视类"),
-                new AssistiveDevice(105030901,"手持式放大镜","助视类"),
-                new AssistiveDevice(105030902,"台灯式放大镜","助视类"),
-                new AssistiveDevice(105030903,"折叠式放大镜","助视类"),
-                new AssistiveDevice(105030904,"便携式放大镜","助视类"),
-                new AssistiveDevice(105030905,"镇纸式助视器","助视类"),
-                new AssistiveDevice(105030906,"可调座式放大镜","助视类"),
-                new AssistiveDevice(105030907,"怀表式放大镜","助视类"),
-                new AssistiveDevice(105030908,"柱面放大镜","助视类"),
-                new AssistiveDevice(105030909,"照明放大镜","助视类"),
-                new AssistiveDevice(105030910,"非球面镜片立式放大镜","助视类"),
-                new AssistiveDevice(105030911,"立式放大镜","助视类"),
-                new AssistiveDevice(105030912,"单筒放大镜","助视类"),
-                new AssistiveDevice(105030913,"双目眼镜","助视类"),
-                new AssistiveDevice(105030914,"单镜片夹式放大镜 ","助视类"),
-                new AssistiveDevice(105030915,"球形便携式视觉读写放大镜","助视类"),
-                new AssistiveDevice(105030916,"立式读写可旋式放大镜","助视类"),
-                new AssistiveDevice(105030917,"滑动袖珍放大镜","助视类"),
-                new AssistiveDevice(105030918,"胸挂式带灯放大镜","助视类"),
-                new AssistiveDevice(105030919,"便携式电子助视器","助视类"),
-                new AssistiveDevice(105030920,"手持式电子助视器","助视类"),
-                new AssistiveDevice(105030921,"手持式远近两用电子助视器","助视类"),
-                new AssistiveDevice(105030922,"随身看","助视类"),
-                new AssistiveDevice(105030923,"便携式远近两用电子助视器","助视类"),
-                new AssistiveDevice(105030924,"台式便携远近两用电子助视器","助视类"),
-                new AssistiveDevice(105030925,"台式电子助视器","助视类"),
-                new AssistiveDevice(105030926,"一键式智能阅读器","助视类"),
-                new AssistiveDevice(105030927,"夹持三片眼镜式放大镜","助视类"),
-                new AssistiveDevice(105030928,"眼镜式助视器","助视类"),
-                new AssistiveDevice(105030929,"便携式眼镜电视放大镜","助视类"),
-                new AssistiveDevice(105031201,"眼镜式望远镜","助视类"),
-                new AssistiveDevice(105031202,"指环望远镜","助视类"),
-                new AssistiveDevice(105031203,"单筒望远镜","助视类"),
-                new AssistiveDevice(105031204,"双筒望远镜","助视类"),
-                new AssistiveDevice(105120301,"盲人专用文具","助视类"),
-                new AssistiveDevice(105120302,"盲人学习用直尺","助视类"),
-                new AssistiveDevice(105120303,"盲人学习用三角尺","助视类"),
-                new AssistiveDevice(105120304,"盲人学习用量角器(组合式)","助视类"),
-                new AssistiveDevice(105120305,"盲人学习用圆规","助视类"),
-                new AssistiveDevice(105120306,"小写字笔","助视类"),
-                new AssistiveDevice(105120307,"盲文记事本","助视类"),
-                new AssistiveDevice(105120601,"低视力助写板","助视类"),
-                new AssistiveDevice(105120602,"盲人用绘图板","助视类"),
-                new AssistiveDevice(105120603,"盲人用绘画板","助视类"),
-                new AssistiveDevice(105120901,"盲人用书写框","助视类"),
-                new AssistiveDevice(105120902, "盲人用印章", "助视类"),
-                new AssistiveDevice(105120903, "盲人用签字导向槽", "助视类"),
-                new AssistiveDevice(105121201, "易适塑料写字板4行", "助视类"),
-                new AssistiveDevice(105121202, "铝合金写字板6行", "助视类"),
-                new AssistiveDevice(105121203, "塑料写字板27行", "助视类"),
-                new AssistiveDevice(105121204, "盲人刻字垫板", "助视类"),
-                new AssistiveDevice(105121501, "盲文手动打字机", "助视类"),
-                new AssistiveDevice(105121801, "特制书写纸（塑膜）", "助视类"),
-                new AssistiveDevice(105122101, "便携式盲文记录装置", "助视类"),
-                new AssistiveDevice(105122401, "盲文计算机编辑排版软件", "助视类"),
-                new AssistiveDevice(105122402,"视觉控制计算机软件","助视类"),
-                new AssistiveDevice(105122701, "盲文绘图程序", "助视类"),
-
-                //洗漱类
-                new AssistiveDevice(10333,"清洗、盆浴和淋浴辅助器具","洗漱类"),
-
-                new AssistiveDevice(1033303,"盆浴或淋浴椅（有轮和无轮）","洗漱类"),
-                new AssistiveDevice(1033303,"浴室坐板","洗漱类"),
-                new AssistiveDevice(1033303,"洗浴凳子、靠背和座","洗漱类"),
-                new AssistiveDevice(1033306,"防滑的淋浴垫和带子","洗漱类"),
-                new AssistiveDevice(1033306,"防滑的浴盆垫","洗漱类"),
-                new AssistiveDevice(1033309,"淋浴器及其元件","洗漱类"),
-                new AssistiveDevice(1033312,"洗浴床","洗漱类"),
-                new AssistiveDevice(1033312,"淋浴桌和更换尿布桌","洗漱类"),
-                new AssistiveDevice(1033315,"洗盆","洗漱类"),
-                new AssistiveDevice(1033318,"坐浴盆","洗漱类"),
-                new AssistiveDevice(1033321,"浴缸","洗漱类"),
-                new AssistiveDevice(1033322,"洗浴床单","洗漱类"),
-                new AssistiveDevice(1033327,"用于减少浴缸的长度或深度的辅助器具","洗漱类"),
-                new AssistiveDevice(1033330,"带有把手、手柄和握把的海绵","洗漱类"),
-                new AssistiveDevice(1033330,"带有把手、手柄和握把的刷子","洗漱类"),
-                new AssistiveDevice(1033330,"带有把手、手柄和握把的洗澡布","洗漱类"),
-                new AssistiveDevice(1033345,"浴缸温度计","洗漱类"),
-
-                new AssistiveDevice(103330301,"洗浴躺椅","洗漱类"),
-                new AssistiveDevice(103330302,"无扶手洗浴椅","洗漱类"),
-                new AssistiveDevice(103330303,"带扶手洗浴椅","洗漱类"),
-                new AssistiveDevice(103330304,"无轮洗浴椅","洗漱类"),
-                new AssistiveDevice(103330305,"带轮洗浴椅","洗漱类"),
-                new AssistiveDevice(103330401,"无扶手洗浴板","洗漱类"),
-                new AssistiveDevice(103330402,"带扶手洗浴板","洗漱类"),
-                new AssistiveDevice(103330501,"洗浴凳","洗漱类"),
-                new AssistiveDevice(103330601,"地面防滑垫","洗漱类"),
-                new AssistiveDevice(103330701,"浴缸防滑垫","洗漱类"),
-                new AssistiveDevice(103330901,"调节淋浴头位置的固定元件","洗漱类"),
-                new AssistiveDevice(103331101,"洗浴床","洗漱类"),
-                new AssistiveDevice(103331201,"洗浴台","洗漱类"),
-                new AssistiveDevice(103331501,"充气式洗头池","洗漱类"),
-                new AssistiveDevice(103331502,"固定式洗盆","洗漱类"),
-                new AssistiveDevice(103331503,"便携式洗盆","洗漱类"),
-                new AssistiveDevice(103331504,"高度可调节的洗盆支架","洗漱类"),
-                new AssistiveDevice(103331505,"高度可调节的洗盆底座和支架","洗漱类"),
-                new AssistiveDevice(103331801, "固定坐浴盆", "洗漱类"),
-                new AssistiveDevice(103331802, "便携式坐浴盆", "洗漱类"),
-                new AssistiveDevice(103332101, "开门浴缸", "洗漱类"),
-                new AssistiveDevice(103332201, "洗浴床单", "洗漱类"),
-                new AssistiveDevice(103332701, "浴缸用一级踏板", "洗漱类"),
-                new AssistiveDevice(103332702, "浴缸用二级踏板", "洗漱类"),
-                new AssistiveDevice(103333001, "带有把手的海绵", "洗漱类"),
-                new AssistiveDevice(103333002, "掌套式洗浴海绵", "洗漱类"),
-                new AssistiveDevice(103333101, "长柄洗澡刷", "洗漱类"),
-                new AssistiveDevice(103333102, "弯柄擦背刷", "洗漱类"),
-                new AssistiveDevice(103333103, "带吸盘浴刷", "洗漱类"),
-                new AssistiveDevice(103333201, "带有把手的洗澡布", "洗漱类"),
-                new AssistiveDevice(103334501, "浴缸温度计", "洗漱类"),
-
-                //穿衣类
-                new AssistiveDevice(10303,"衣服和鞋","穿衣类"),
-                new AssistiveDevice(10306,"穿着式身体防护辅助器具","穿衣类"),
-                new AssistiveDevice(10307,"稳定身体的辅助器具","穿衣类"),
-                new AssistiveDevice(10309,"穿脱衣服的辅助器具","穿衣类"),
-
-                new AssistiveDevice(1030305,"外衣","穿衣类"),
-                new AssistiveDevice(1030309,"帽子","穿衣类"),
-                new AssistiveDevice(1030312,"分指手套和不分指手套","穿衣类"),
-                new AssistiveDevice(1030315,"短外套和衬衫","穿衣类"),
-                new AssistiveDevice(1030318,"夹克衫和长裤","穿衣类"),
-                new AssistiveDevice(1030321,"半身裙和连衣裙","穿衣类"),
-                new AssistiveDevice(1030324,"内衣","穿衣类"),
-                new AssistiveDevice(1030327,"长筒袜和短袜","穿衣类"),
-                new AssistiveDevice(1030330,"睡衣","穿衣类"),
-                new AssistiveDevice(1030333,"浴衣","穿衣类"),
-                new AssistiveDevice(1030339,"围嘴和围裙","穿衣类"),
-                new AssistiveDevice(1030342,"鞋和靴","穿衣类"),
-                new AssistiveDevice(1030345,"鞋和靴的防滑辅助器具","穿衣类"),
-                new AssistiveDevice(1030348,"钉扣装置和纽扣","穿衣类"),
-                new AssistiveDevice(1030351,"特殊系戴方式的领带","穿衣类"),
-                new AssistiveDevice(1030603,"头部防护辅助器具","穿衣类"),
-                new AssistiveDevice(1030606,"眼睛防护和面部防护辅助器具","穿衣类"),
-                new AssistiveDevice(1030609,"耳防护和听觉防护辅助器具","穿衣类"),
-                new AssistiveDevice(1030612,"肘防护或臂防护辅助器具","穿衣类"),
-                new AssistiveDevice(1030615,"手部防护辅助器具","穿衣类"),
-                new AssistiveDevice(1030618,"膝防护或腿防护辅助器具","穿衣类"),
-                new AssistiveDevice(1030621,"足跟防护或足趾防护或足部防护辅助器具","穿衣类"),
-                new AssistiveDevice(1030624,"躯干防护或全身防护辅助器具","穿衣类"),
-                new AssistiveDevice(1030627,"气道防护辅助器具","穿衣类"),
-                new AssistiveDevice(1030701,"稳定身体的辅助器具","穿衣类"),
-                new AssistiveDevice(1030903,"穿短袜和穿连裤袜的辅助器具","穿衣类"),
-                new AssistiveDevice(1030906,"鞋拔和脱靴器","穿衣类"),
-                new AssistiveDevice(1030909,"穿衣架","穿衣类"),
-                new AssistiveDevice(1030912,"穿脱衣钩或穿脱衣棍","穿衣类"),
-                new AssistiveDevice(1030915,"拉动拉链的装置","穿衣类"),
-                new AssistiveDevice(1030918,"系扣钩","穿衣类"),
-
-                new AssistiveDevice(103030501,"乘坐轮椅的雨衣","穿衣类"),
-                new AssistiveDevice(103030502,"裹身式雨衣","穿衣类"),
-                new AssistiveDevice(103030901,"帽子","穿衣类"),
-                new AssistiveDevice(103031201,"分指手套","穿衣类"),
-                new AssistiveDevice(103031202,"不分指手套","穿衣类"),
-                new AssistiveDevice(103031501, "侧开拉链式或侧开搭扣式衬衫", "穿衣类"),
-                new AssistiveDevice(103031502,"侧开拉链式或侧开搭扣式外套","穿衣类"),
-                new AssistiveDevice(103031801, "侧开拉链式夹克衫", "穿衣类"),
-                new AssistiveDevice(103031802, "侧开拉链式长裤", "穿衣类"),
-                new AssistiveDevice(103031803,"侧开搭扣式夹克衫","穿衣类"),
-                new AssistiveDevice(103031804, "侧开搭扣式长裤", "穿衣类"),
-                new AssistiveDevice(103031805, "侧开拉链式长裤", "穿衣类"),
-                new AssistiveDevice(103032101, "半身裙", "穿衣类"),
-                new AssistiveDevice(103032102, "连衣裙", "穿衣类"),
-                new AssistiveDevice(103032401, "一次性内裤", "穿衣类"),
-                new AssistiveDevice(103032402, "带假乳的文胸", "穿衣类"),
-                new AssistiveDevice(103032701, "长筒袜", "穿衣类"),
-                new AssistiveDevice(103032702, "短袜", "穿衣类"),
-                new AssistiveDevice(103033001, "睡衣", "穿衣类"),
-                new AssistiveDevice(103033301, "浴衣", "穿衣类"),
-                new AssistiveDevice(103033901, "围嘴", "穿衣类"),
-                new AssistiveDevice(103033902, "围裙", "穿衣类"),
-                new AssistiveDevice(103034201, "防护鞋", "穿衣类"),
-                new AssistiveDevice(103034202, "方便穿脱鞋", "穿衣类"),
-                new AssistiveDevice(103034501,"鞋和靴的防滑辅助器具","穿衣类"),
-                new AssistiveDevice(103034801, "钉扣装置和纽扣", "穿衣类"),
-                new AssistiveDevice(103035101,"特殊系戴方式的领带","穿衣类"),
-                new AssistiveDevice(103060301, "保护头盔", "穿衣类"),
-                new AssistiveDevice(103060601, "防护面罩", "穿衣类"),
-                new AssistiveDevice(103060602, "护目镜", "穿衣类"),
-                new AssistiveDevice(103060901, "耳套", "穿衣类"),
-                new AssistiveDevice(103060902, "耳塞", "穿衣类"),
-                new AssistiveDevice(103060903, "降噪耳机", "穿衣类"),
-                new AssistiveDevice(103061201,"肘防护或臂防护辅助器具","穿衣类"),
-                new AssistiveDevice(103061501, "操纵轮椅的手套", "穿衣类"),
-                new AssistiveDevice(103061801, "加厚长筒袜", "穿衣类"),
-                new AssistiveDevice(103062101, "硬帮鞋", "穿衣类"),
-                new AssistiveDevice(103062102, "加厚袜", "穿衣类"),
-                new AssistiveDevice(103062401,"躯干防护或全身防护辅助器具","穿衣类"),
-                new AssistiveDevice(103062701, "导气管", "穿衣类"),
-                new AssistiveDevice(103070101, "稳定身体的辅助器具", "穿衣类"),
-                new AssistiveDevice(103090301, "穿袜器", "穿衣类"),
-                new AssistiveDevice(103090302, "多功能穿衣、穿鞋辅助器", "穿衣类"),
-                new AssistiveDevice(103090601, "脱靴器", "穿衣类"),
-                new AssistiveDevice(103090602, "长柄鞋拔", "穿衣类"),
-                new AssistiveDevice(103090901, "穿衣架", "穿衣类"),
-                new AssistiveDevice(103091201, "穿衣杆", "穿衣类"),
-                new AssistiveDevice(103091202, "带鞋拔穿衣杆", "穿衣类"),
-                new AssistiveDevice(103091203, "穿脱衣钩", "穿衣类"),
-                new AssistiveDevice(103091501, "拉链器", "穿衣类"),
-                new AssistiveDevice(103091801, "系扣器", "穿衣类"),
             };
             foreach (var r in AssistiveDevices)
             {
@@ -2380,11 +1406,11 @@ namespace JZKFXT.Migrations
             List<Question> questions1 = new List<Question> {
                 new Question("1", "视力残疾等级", true,false,
                     new List<Option>{
-                        new Option("A","一级", "1-1-1"),
-                        new Option("B","二级", "1-1-1"),
-                        new Option("C","三级", "1-2"),
-                        new Option("D","四级", "1-2"),
-                        new Option("E","未评定或等级不准", "附加题"),
+                        new Option("A","一级", "1-1-1",1001010,1001010),
+                        new Option("B","二级", "1-1-1",null,null),
+                        new Option("C","三级", "1-2",null,null),
+                        new Option("D","四级", "1-2",null,null),
+                        new Option("E","未评定或等级不准", "附加题",null,null),
                     }
                 ),
                 new Question("附加题", "能否看见",false,false,
@@ -2401,61 +1427,44 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("1-1-1", "希望实现何种功能（多选）", false,true,
                     new List<Option>{
-                        //02 39 03盲杖
-                        new Option("A", "引导出行", "2",1023903),
-                        //05 18 03声音记录和播放设备(听书机)
-                        new Option("B", "听书娱乐", "2",105180301),
-                        //05 27 12时钟和计时器(震动闹钟/震动手表)
-                        new Option("C", "时间提醒", "2", 105271204,105271205),
-                        //05 24 06移动网络电话(盲人用手机) 05 33 15浏览器软件和沟通软件
-                        new Option("D", "通讯交流", "2", 105240601,1053315),
-                        //05 27 06声信号指示器
-                        new Option("E", "生活便捷", "2", 1052706),
-                        //03手动式绘画和书写器具；05 12 12手写盲文书写装置；05 12 18特制书写纸（塑膜）
-                        new Option("F", "学习书写", "2", 1051203, 1051212,1051218),
+                        new Option("A", "引导出行", "2", "02 39 03", "盲杖"),
+                        new Option("B", "听书娱乐", "2", "05 18 03", "声音记录和播放设备(听书机)"),
+                        new Option("C", "时间提醒", "2", "05 27 12", "时钟和计时器(震动闹钟/震动手表)"),
+                        new Option("D", "通讯交流", "2", "05 24 06,05 33 15", "移动网络电话(盲人用手机),浏览器软件和沟通软件"),
+                        new Option("E", "生活便捷", "2", "05 27 06", "声信号指示器"),
+                        new Option("F", "学习书写", "2", "03,05 12 12,05 12 18", "手动式绘画和书写器具,手写盲文书写装置,特制书写纸（塑膜）"),
                     }
                 ),
                 new Question("1-1-2", "希望实现何种功能（多选）", false,true,
                     new List<Option>{
-                        //02 39 03盲杖
-                        new Option("A", "引导出行", "2", 1023903),
-                        //05 27 12时钟和计时器(震动闹钟/震动手表)
-                        new Option("B", "时间提醒", "2", 105271204,105271205),
+                        new Option("A", "引导出行", "2", "02 39 03", "盲杖"),
+                        new Option("B", "时间提醒", "2", "05 27 12", "时钟和计时器(震动闹钟/震动手表)"),
                     }
                 ),
                 new Question("1-2", "希望看近物还是看远处（多选）", false,true,
                     new List<Option>{
                         new Option("A", "看近", "1-2-1"),
-                        //05 03 12双筒望远镜和单筒望远镜
-                        new Option("B", "看远", "1-3", 1050312),
+                        new Option("B", "看远", "1-3", "05 03 12", "双筒望远镜和单筒望远镜"),
                     }
                 ),
                 new Question("1-2-1", "需要光学助视器还是电子助视器",false,false,
                     new List<Option>{
-                        //05 03 09具有放大功能的眼镜、镜片、助视系统（只选其中光学类）
-                        new Option("A", "光学", "1-3", 105030901,105030903,105030904,105030905,105030906,105030907,105030908,105030909,105030910,105030911,105030912,105030913,105030914,105030915,105030916,105030917,105030927,105030928,105030929),
-                        //05 03 09具有放大功能的眼镜、镜片、助视系统（只选其中电子类）
-                        new Option("B", "电子", "1-3", 105030902,105030918,105030919,105030920,105030921,105030922,105030923,105030924,105030925,105030926),
+                        new Option("A", "光学", "1-3", "05 03 09", "具有放大功能的眼镜、镜片、助视系统（只选其中光学类）"),
+                        new Option("B", "电子", "1-3", "05 03 09", "具有放大功能的眼镜、镜片、助视系统（只选其中电子类）"),
                     }
                 ),
                 new Question("1-3", "希望实现何种功能（多选）", false,true,
                     new List<Option>{
-                        //05 30 21 字符阅读器；05 30 18阅读框和版面限定器；05 12 06书写板、绘图板和绘画板；05 12 15打字机
-                        new Option("A", "阅读学习", "2", 1053021,1053018,1051206,1051215),
-                        //05 24 03普通网络电话
-                        new Option("B", "交流通讯", "2", 1052403),
-                        //05 15 03手动计算器；05 15 06计算设备
-                        new Option("C", "数学计算", "2", 1051503,1051506),
-                        //05 21 03字母和符号卡、板
-                        new Option("D", "休闲娱乐", "2", 1052103),
-                        //05 33 18 用于计算机和网络的附件
-                        new Option("E", "计算机使用", "2", 1053318),
+                        new Option("A", "阅读学习", "2", "05 30 21,05 30 18,05 12 06,05 12 15", "字符阅读器,阅读框和版面限定器,书写板、绘图板和绘画板,打字机"),
+                        new Option("B", "交流通讯", "2", "05 24 03", "普通网络电话"),
+                        new Option("C", "数学计算", "2", "05 15 03,05 15 06", "手动计算器,计算设备"),
+                        new Option("D", "休闲娱乐", "2", "05 21 03", "字母和符号卡、板"),
+                        new Option("E", "计算机使用", "2", "05 33 18", "用于计算机和网络的附件"),
                     }
                 ),
                 new Question("2", "是否存在眩光现象",false,false,
                     new List<Option>{
-                        //05 03 03滤光器：低视力专用滤光镜
-                        new Option("A", "是", "3", 105030301),
+                        new Option("A", "是", "3", "05 03 03", "滤光器：低视力专用滤光镜"),
                         new Option("B", "否", "3"),
                     }
                 ),
@@ -2467,15 +1476,13 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("3-1", "是否会写字",false,false,
                     new List<Option>{
-                        //05 12 12手写盲文书写装置；05 09 03语音发生器
-                        new Option("A", "会", null,1051212,1050903),
+                        new Option("A", "会", null,"05 12 12,05 09 03", "手写盲文书写装置,语音发生器"),
                         new Option("B", "不会",null),
                     }
                 ),
             };
             Exam exam1 = new Exam(1, "辅具上门评估", "视力", questions1);
             db.Exams.AddOrUpdate(exam1);
-
             //听力
             List<Question> questions2 = new List<Question> {
                 new Question("1", "听力残疾等级", true,false,
@@ -2484,67 +1491,58 @@ namespace JZKFXT.Migrations
                         //6岁以下：05 06 助听器-人工耳蜗
                         //6岁-60岁：05 06 助听器(耳背/耳内/耳道/深耳道式助听器)
                         //60岁以上：05 06 06佩戴式（盒式）助听器
-                        new Option("A", "一级","2", 105061501,105061201,105061301,105061401,105061701,105060601),
-                        new Option("B", "二级","2", 105061501,105061201,105061301,105061401),
-                        new Option("C", "三级","2", 105061501,105061201,105061301,105061401),
-                        new Option("D", "四级","2", 105061501,105061201,105061301,105061401),
+                        new Option("A", "一级","2", "05 06", "助听器-人工耳蜗,助听器(耳背/耳内/耳道/深耳道式助听器),佩戴式（盒式）助听器"),
+                        new Option("B", "二级","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
+                        new Option("C", "三级","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
+                        new Option("D", "四级","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
                         new Option("E", "未评定或等级不准","1-1"),
                     }
                 ),
                 new Question("1-1", "在安静环境下，不带助听设备时，能听到",false,false,
                     new List<Option>{
                         //选A时，结合年龄，系统关联
-                        new Option("A", "几乎听不到任何声音（等同于一级）","2", 105061701,105061501,105061201,105061301,105061401,105060601),
-                        new Option("B", "只能听到鞭炮、敲鼓、雷声或用力击掌声（等同于二级）","2", 105061501,105061201,105061301,105061401),
-                        new Option("C", "只能听到大声说话（等同于三级）","2", 105061501,105061201,105061301,105061401),
-                        new Option("D", "能听到普通谈话声（等同于四级）","2", 105061501,105061201,105061301,105061401),
+                        new Option("A", "几乎听不到任何声音（等同于一级）","2", "05 06", "助听器-人工耳蜗,助听器(耳背/耳内/耳道/深耳道式助听器),佩戴式（盒式）助听器"),
+                        new Option("B", "只能听到鞭炮、敲鼓、雷声或用力击掌声（等同于二级）","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
+                        new Option("C", "只能听到大声说话（等同于三级）","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
+                        new Option("D", "能听到普通谈话声（等同于四级）","2", "05 06", "助听器(耳背/耳内/耳道/深耳道式助听器)"),
                         new Option("E", "听清一般言语，能分辨清楚（不配辅助器具）","2"),
                     }
                 ),
                 new Question("2", "除听声外，希望实现何种功能", false,true,
                     new List<Option>{
-                        //05 21 09对话装置(电子手写交流板/沟通板)
-                        new Option("A", "语言交流（无语言者）",null, 105210906),
-                        //05 27 03视觉信号指示器(闪光门铃)
-                        new Option("B", "门铃应答", null,1052703),
-                        //05 27 12时钟和计时器(震动闹钟)
-                        new Option("C", "叫早起床", null,105271204)
+                        new Option("A", "语言交流（无语言者）",null, "05 21 09", "对话装置(电子手写交流板/沟通板)"),
+                        new Option("B", "门铃应答", null,"05 27 03", "视觉信号指示器(闪光门铃)"),
+                        new Option("C", "叫早起床", null,"05 27 12", "时钟和计时器(震动闹钟)")
                     }
                 )
             };
             Exam exam2 = new Exam(2, "辅具上门评估", "听力", questions2);
             db.Exams.AddOrUpdate(exam2);
-
             //偏瘫
             List<Question> questions3 = new List<Question>
             {
                 new Question("1", "是否卧床", true,false,
                     new List<Option>{
-                         new Option("A", "是","1-1-1", 105271801),
+                         new Option("A", "是","1-1-1", "05 27 18", "个人紧急报警系统（呼叫器）"),
                          new Option("B", "否","1-2-1"),
                     }
                 ),
                 new Question("1-1-1", "能否翻身", false,false,
                     new List<Option>{
-                        //04家庭和家具-卧式家具（护理床）、06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）；07 33 09个人移动训练辅助器具（翻身床单）；06 33 04保护组织完整性的靠背垫和小靠背垫（体位垫）
-                        new Option("A", "不能","1-1-2", 1040801,1063306,107330905,106330401),
-                        //04家庭和家具-卧式家具（护理床）、06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）；06 33 04保护组织完整性的靠背垫和小靠背垫（体位垫）；04 10 09扶手（床旁护栏）
-                        new Option("B", "能","1-1-2", 1040801,1063306,106330401,104100901),
+                        new Option("A", "不能","1-1-2", "04,06 33 06,07 33 09,06 33 04", "家庭和家具-卧式家具（护理床）,保护组织完整性的躺卧辅助器具（防压疮床垫）,个人移动训练辅助器具（翻身床单）,保护组织完整性的靠背垫和小靠背垫（体位垫）"),
+                        new Option("B", "能","1-1-2", "04,06 33 06,06 33 04,04 10 09", "家庭和家具-卧式家具（护理床）,保护组织完整性的躺卧辅助器具（防压疮床垫）,保护组织完整性的靠背垫和小靠背垫（体位垫）,扶手（床旁护栏）"),
                     }
                 ),
                 new Question("1-1-2", "能否坐起", false,false,
                     new List<Option>{
                          new Option("A", "不能","1-1-3"),
-                         //04 10 03靠背；02 22 18护理者操纵的轮椅（高靠背轮椅）
-                         new Option("B", "能","1-1-3",1041003,102221801),
+                         new Option("B", "能","1-1-3", "04 10 03,02 22 18", "靠背,护理者操纵的轮椅（高靠背轮椅）"),
                     }
                 ),
                 new Question("1-1-3", "能否控制大小便", false,false,
                     new List<Option>{
-                         //07 09 03失禁报警器；03 30 21成人一次性尿布；03 30 18成人一次性衬垫；03 27 18尿收集系统；03 31 06阻便器（肛门插塞）
-                         new Option("A", "不能","2", 1070903,1033021,1033018,1032718,103310602),
-                         //03 24排尿装置(03 24 15女用穿戴式软尿壶/03 24 21男用穿戴式软尿壶)；03 12 33便盆（便携式充气便盆/塑料大便盆）
-                         new Option("B", "能","2",1032415,1032421,103123301,103123302),
+                         new Option("A", "不能","2", "07 09 03,03 30 21,03 30 18,03 27 18,03 31 06", "失禁报警器,成人一次性尿布,成人一次性衬垫,尿收集系统,阻便器（肛门插塞）"),
+                         new Option("B", "能","2", "03 24 15,03 24 21,03 12 33", "女用穿戴式软尿壶,男用穿戴式软尿壶,便盆（便携式充气便盆/塑料大便盆）"),
                     }
                 ),
                 new Question("1-2-1", "能否行走", false,false,
@@ -2555,83 +1553,66 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("1-2-1-1", "能否辅助下移动入厕", false,false,
                     new List<Option>{
-                        //02 22 18护理者操纵的轮椅（座便轮椅）
-                        new Option("A", "不能","1-2-1-2", 102221805),
-                        //02 22 03双手驱动轮椅车（功能轮椅）；或02 22 09单手驱动轮椅车(单手轮驱动轮椅/偏瘫轮椅)；或02 23 03电动轮椅车（室内型电动轮椅）
-                        new Option("B", "能","1-2-1-2", 102220302,102220901,102230301),
+                        new Option("A", "不能","1-2-1-2", "02 22 18", "护理者操纵的轮椅（座便轮椅）"),
+                        new Option("B", "能","1-2-1-2", "02 22 03,02 22 09,02 23 03", "双手驱动轮椅车（功能轮椅）,单手驱动轮椅车(单手轮驱动轮椅/偏瘫轮椅),电动轮椅车（室内型电动轮椅）"),
                     }
                 ),
                 new Question("1-2-1-2", "是否有压疮", false,false,
                     new List<Option>{
                          new Option("A", "无","1-2-1-3"),
-                         //06 33 03保护组织完整性的坐垫和衬垫（防压疮坐垫）
-                         new Option("B", "曾经有，已愈合","1-2-1-3", 1063303),
-                         new Option("C", "有","1-2-1-3", 1063303),
+                         new Option("B", "曾经有，已愈合","1-2-1-3", "06 33 03", "保护组织完整性的坐垫和衬垫（防压疮坐垫）"),
+                         new Option("C", "有","1-2-1-3", "06 33 03", "保护组织完整性的坐垫和衬垫（防压疮坐垫）"),
                     }
                 ),
                 new Question("1-2-1-3", "能否站立进行床-椅转移", false,false,
                     new List<Option>{
-                        //07 33 09个人移动训练辅助器具（移乘带或移乘板）
-                         new Option("A", "不能","2", 1073309),
-                         //04 10 09扶手；或02 03 03手杖（直形四脚手杖（固定/可调））
-                         new Option("B", "需要辅助","2",1041009,102030307),
+                         new Option("A", "不能","2", "07 33 09", "个人移动训练辅助器具（移乘带或移乘板）"),
+                         new Option("B", "需要辅助","2", "04 10 09,02 03 03", "扶手,手杖（直形四脚手杖（固定/可调））"),
                          new Option("C", "独立站立转移","2"),
                     }
                 ),
                 new Question("1-2-2", "行走时是否需要搀扶", false,false,
                     new List<Option>{
                          new Option("A", "全程搀扶","1-2-2-1"),
-                         //02 03 03手杖（单脚手杖）
-                         new Option("B", "部分搀扶","2", 102030301,102030302,102030303),
+                         new Option("B", "部分搀扶","2", "02 03 03", "手杖（单脚手杖）"),
                          new Option("C", "无需搀扶","2"),
                     }
                 ),
                 new Question("1-2-2-1", "行走时是否需要搀扶", false,false,
                     new List<Option>{
-                        //02 03 03手杖（S形四脚手杖（固定/可调））；或 02 38 19单侧操作助行架
-                         new Option("A", "需要","2",102030309,102381901),
-                         //02 03 03手杖（直形四脚手杖（固定/可调））
-                         new Option("B", "不需要","2",102030307),
+                         new Option("A", "需要","2", "02 03 03,0", "手杖（S形四脚手杖（固定/可调））,单侧操作助行架"),
+                         new Option("B", "不需要","2", "02 03 03", "手杖（直形四脚手杖（固定/可调））"),
                     }
                 ),
-                new Question("2", "患侧肢体畸形状况（多选）", false,true,
+                new Question("2", "患侧肢体畸形状况", false,true,
                     new List<Option>{
-                         //01 06 21肩矫形器-肩部吊带
-                         new Option("A", "肩膀下沉","3", 101062107),
-                         //01 06上肢矫形器；或01 06 07手-指矫形器-分指板
-                         new Option("B", "手指被动伸展","3", 10106,101060701),
-                         //01 12下肢矫形器
-                         new Option("C", "行走时足拖地","3", 10112),
+                         new Option("A", "肩膀下沉","3", "01 06 21", "肩矫形器-肩部吊带"),
+                         new Option("B", "手指被动伸展","3", "01 06,01 06 07", "上肢矫形器,手-指矫形器-分指板"),
+                         new Option("C", "行走时足拖地","3", "01 12", "下肢矫形器"),
                     }
                 ),
                 new Question("3", "能否自行进食", false,false,
                     new List<Option>{
-                        //04 30 垂直运送辅助器具-桌类（床用餐桌或轮椅桌）
-                         new Option("A", "不能","4",104301901),
-                         //08 18 03抓握装置（万能袖带）；10 09 18盘子和碗（普通防洒碗/底部带吸盘餐具）；10 09 21食物挡边(桌上防滑垫)；10 09食饮辅助器具-杯子（斜口杯）；10 09食饮辅助器具(叉、勺、筷子)
-                         new Option("B", "需要辅助","4", 108180301,110091801,110091803,110092102,110092502,1100922,1100923,1100924),
+                         new Option("A", "不能","4", "04 30", "垂直运送辅助器具-桌类（床用餐桌或轮椅桌）"),
+                         new Option("B", "需要辅助","4", "08 18 03,10 09 18,10 09 21,10 09", "抓握装置（万能袖带）,盘子和碗（普通防洒碗/底部带吸盘餐具）,食物挡边(桌上防滑垫),食饮辅助器具"),
                          new Option("C", "独立进食","4"),
                     }
                 ),
                 new Question("4", "能否自行洗浴", false,false,
                     new List<Option>{
-                        //03 33 12洗浴床、淋浴桌和更换尿布桌（洗浴床）；03 33清洗、盆浴和淋浴辅助器具（洗浴床单）；洗浴躺椅；03 33 15洗盆（充气式洗头池）
-                         new Option("A", "不能","5", 1033312,1033322,103330301,103331501),
+                         new Option("A", "不能","5", "03 33 12,03 33,03 33 15,1", "洗浴床、淋浴桌和更换尿布桌（洗浴床）,清洗、盆浴和淋浴辅助器具（洗浴床单）,洗盆（充气式洗头池）,洗浴躺椅"),
                          new Option("B", "能","4-1"),
                     }
                 ),
                 new Question("4-1", "是否站立洗浴", false,false,
                     new List<Option>{
-                         //03 33 06防滑的浴盆垫、淋浴垫和带子（地面防滑垫）
-                         new Option("A", "是","4-2",103330601),
-                         //03 33 03盆浴或淋浴椅、浴室坐板、凳子、靠背和座
-                         new Option("B", "否","4-2", 1033303),
+                         new Option("A", "是","4-2", "03 33 06", "防滑的浴盆垫、淋浴垫和带子（地面防滑垫）"),
+                         new Option("B", "否","4-2", "03 33 03", "盆浴或淋浴椅、浴室坐板、凳子、靠背和座"),
                     }
                 ),
                 new Question("4-2", "是否需要洗浴类自助具", false,false,
                     new List<Option>{
-                        //03 33 30带有把手、手柄和握把的洗澡布、海绵和刷子；03 36 06指甲锉和砂纸板；03 36 09指甲剪和指甲刀
-                         new Option("A", "需要","5",1033330,1033606,1033609),
+                         new Option("A", "需要","5", "03 33 30,03 36 06,03 36 09", "带有把手、手柄和握把的洗澡布、海绵和刷子,指甲锉和砂纸板,指甲剪和指甲刀"),
                          new Option("B", "不需要","5"),
                     }
                 ),
@@ -2644,26 +1625,21 @@ namespace JZKFXT.Migrations
                 new Question("5-1", "家中是否有坐便器", false,false,
                     new List<Option>{
                          new Option("A", "有，且高度合适","6"),
-                         //03 12 18安装在坐便器上加高的坐便器座；或03 12 21内置帮助起身、坐下的升降机构的坐便器座；或04 10 09扶手；03 12 12框架型加高的坐便器座
-                         new Option("B", "有，高度较低","6", 1031218,1031221,1041009,1031212),
-                         //03 12 03坐便椅
-                         new Option("C", "无","6", 1031203),
+                         new Option("B", "有，高度较低","6", "03 12 18,03 12 21,04 10 09,03 12 12", "安装在坐便器上加高的坐便器座,内置帮助起身、坐下的升降机构的坐便器座,扶手,框架型加高的坐便器座"),
+                         new Option("C", "无","6", "03 12 03", "坐便椅"),
                     }
                 ),
                 new Question("6", "能否自行穿脱衣物", false,false,
                     new List<Option>{
-                        //03 03 18夹克衫和长裤；03 03 42鞋和靴（方便穿脱鞋）
-                         new Option("A", "不能，且高度合适","7", 1030318,1030342),
-                        //03 09 12穿脱衣钩或穿脱衣棍；03 09 03穿短袜和穿连裤袜的辅助器具；03 09 06鞋拔和脱靴器（长柄鞋拔）
-                         new Option("B", "辅助下完成","7", 1030912,1030903,1030906),
+                         new Option("A", "不能，且高度合适","7", "03 03 18,03 03 42", "夹克衫和长裤,鞋和靴（方便穿脱鞋）"),
+                         new Option("B", "辅助下完成","7", "03 09 12,03 09 03,03 09 06", "穿脱衣钩或穿脱衣棍,穿短袜和穿连裤袜的辅助器具,鞋拔和脱靴器（长柄鞋拔）"),
                          new Option("C", "独立完成","7"),
                     }
                 ),
                 new Question("7", "是否经常需要够拾远处物品", false,false,
                     new List<Option>{
                          new Option("A", "否","8"),
-                         //08 21 03手动抓取钳（折叠式长柄取物器/非折叠式长柄取物器）
-                         new Option("B", "是","8",1082103),
+                         new Option("B", "是","8", "08 21 03", "手动抓取钳（折叠式长柄取物器/非折叠式长柄取物器）"),
                     }
                 ),
                 new Question("8", "是否存在其他方面残疾", false,false,
@@ -2699,7 +1675,6 @@ namespace JZKFXT.Migrations
             };
             Exam exam3 = new Exam(3, "辅具上门评估", "偏瘫", questions3);
             db.Exams.AddOrUpdate(exam3);
-
             //脑瘫
             List<Question> questions4 = new List<Question>
             {
@@ -2719,70 +1694,15 @@ namespace JZKFXT.Migrations
                 new Question("2-1-1", "能否翻身", false,false,
                     new List<Option>{
                          new Option("A", "完全不能","2-1-1-1"),
-                         //06 33 04保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)
-                         new Option("B", "需要辅助","2-2",106330402,1022218),
-                         //04 09 21特殊坐具（0-3岁为儿童三角椅，4-7岁为儿童坐姿椅）或02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)
-                         new Option("C", "无需辅助独立完成","2-2",1040921,102218),
+                         new Option("B", "需要辅助","2-2", "06 33 04,02 22 18", "保护组织完整性的靠背垫和小靠背垫(楔形垫),护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)"),
+                         new Option("C", "无需辅助独立完成","2-2", "04 09 21,02 22 18", "特殊坐具（0-3岁为儿童三角椅，4-7岁为儿童坐姿椅）,护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)"),
                     }
                 ),
                 new Question("2-1-1-1", "能否抬头", false,false,
                     new List<Option>{
-                         //06 33 04保护组织完整性的靠背垫和小靠背垫（体位变换组合垫）
-                         new Option("A", "完全不能","2-2",106330401),
-                         //06 33 04保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)
-                         new Option("B", "短暂抬头，不能维持","2-2",106330402,1022218),
-                         //06 33 04保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)
-                         new Option("C", "能抬头且能维持","2-2",106330402,1022218),
-                    }
-                ),
-                new Question("2-1-2", "能否维持坐位", false,false,
-                    new List<Option>{
-                        //04 09 21特殊坐具(0-3岁为三角椅，4-7岁为儿童坐姿椅)；02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)
-                         new Option("A", "完全不能","2-2",1040921,1022218),
-                         //04 09 21特殊坐具(0-3岁为三角椅，4-7岁为儿童坐姿椅)；02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)
-                         new Option("B", "辅助下可维持","2-2",1040921,1022218),
-                         new Option("C", "无需辅助可独坐","2-1-2-1"),
-                    }
-                ),
-                new Question("2-1-2-1", "能否爬行", false,false,
-                    new List<Option>{
-                         new Option("A", "完全不能","2-1-2-1-1"),
-                         new Option("B", "辅助下爬行 ","2-1-2-1-1"),
-                         new Option("C", "独立爬行 ","2-2"),
-                    }
-                ),
-                new Question("2-1-2-1-1", "能否进行手、肘支撑", false,false,
-                    new List<Option>{
-                         //01 06 19肘腕手矫形器；06 48爬行训练辅助器具(儿童爬行架)
-                         new Option("A", "完全不能","2-2",1010619,106483101),
-                         //01 06 19肘腕手矫形器；06 48爬行训练辅助器具(儿童爬行架)
-                         new Option("B", "短暂支撑，不能维持","2-2",1010619,106483101),
-                         new Option("C", "能支撑且能维持","2-1-2-1-1-1"),
-                    }
-                ),
-                new Question("2-1-2-1-1-1", "能否完成“站起”动作", false,false,
-                    new List<Option>{
-                         //06 48 15上肢训练器械、躯干训练器械和下肢训练器械(肋木)
-                         new Option("A", "完全不能","2-2",1064815),
-                         //02 06 03框式助行架(阶梯框式助行器)
-                         new Option("B", "需要辅助","2-2",102060303),
-                         new Option("C", "无需辅助独立完成","2-1-2-1-1-1-1"),
-                    }
-                ),
-                new Question("2-1-2-1-1-1-1", "能否维持站立", false,false,
-                    new List<Option>{
-                         //06 48 08站立架和站立支撑台(儿童用仰卧式站立架)
-                         new Option("A", "完全不能","2-2",1064808),
-                         //06 48 08站立架和站立支撑台(儿童用直立式站立架)、儿童助行架
-                         new Option("B", "需要辅助","2-2",1064808),
-                         //02 06 06轮式助行器(后置四轮助行器)
-                         new Option("C", "无需辅助可独站","2-2",102060607),
-                    }
-                ),
-                new Question("2-2", "是否存在畸形", false,false,
-                    new List<Option>{
-                         new Option("A", "不存在畸形","2-3"),
-                         new Option("B", "存在畸形","2-2-1"),
+                         new Option("A", "完全不能","2-2", "06 33 04", "保护组织完整性的靠背垫和小靠背垫（体位变换组合垫）"),
+                         new Option("B", "短暂抬头，不能维持","2-2", "06 33 04", "保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)"),
+                         new Option("C", "能抬头且能维持","2-2", "06 33 04", "保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)"),
                     }
                 ),
                 //开始 2-2-1
@@ -2790,56 +1710,14 @@ namespace JZKFXT.Migrations
             Exam exam4 = new Exam(4, "辅具上门评估", "脑瘫", questions4);
             db.Exams.AddOrUpdate(exam4);
 
-            //未完成
-
-            //脊髓
-            List<Question> questions5 = new List<Question>
+            List<ExamRecord> examRecords = new List<ExamRecord>
             {
-                new Question("1", "年龄", true,false,
-                    new List<Option>{
-
-                    }
-                ),
+                new ExamRecord(1, 1),
+                new ExamRecord(2, 2),
+                new ExamRecord(3, 3),
+                new ExamRecord(4, 4),
             };
-            Exam exam5 = new Exam(5, "辅具上门评估", "脊髓", questions5);
-            db.Exams.AddOrUpdate(exam5);
-
-            //肢体
-            List<Question> questions6 = new List<Question>
-            {
-                new Question("1", "年龄", true,false,
-                    new List<Option>{
-
-                    }
-                ),
-            };
-            Exam exam6 = new Exam(6, "辅具上门评估", "肢体", questions6);
-            db.Exams.AddOrUpdate(exam6);
-
-            //假肢
-            List<Question> questions7 = new List<Question>
-            {
-                new Question("1", "年龄", true,false,
-                    new List<Option>{
-
-                    }
-                ),
-            };
-            Exam exam7 = new Exam(7, "辅具上门评估", "假肢", questions7);
-            db.Exams.AddOrUpdate(exam7);
-
-            //无障碍家居环境
-            List<Question> questions8 = new List<Question>
-            {
-                new Question("1", "年龄", true,false,
-                    new List<Option>{
-
-                    }
-                ),
-            };
-            Exam exam8 = new Exam(8, "辅具上门评估", "无障碍环境", questions8);
-            db.Exams.AddOrUpdate(exam8);
-
+            db.ExamRecords.AddRange(examRecords);
         }
     }
 }
