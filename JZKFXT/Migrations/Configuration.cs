@@ -3419,46 +3419,75 @@ namespace JZKFXT.Migrations
             #region 无障碍试题
             List<Question> questions8 = new List<Question>
             {
-                 new Question("1", "家庭中主要活动场所？(多选)", true,true,
+                 new Question("1", "现在居住类型?", true,false,
                     new List<Option>{
-                         new Option("A", "客厅","2"),
-                         new Option("B", "卫生间","2"),
-                         new Option("C", "厨房","2"),
-                         new Option("D", "卧室","2"),
-                         new Option("E", "其他","2"),
+                         new Option("A", "城镇","2"),
+                         new Option("B", "乡村","2"),
+                         new Option("C", "其他","2"),
                     }
                 ),
-                new Question("2", "您认为在家庭生活中存在困难较多的区域（多选）", false,true,
+                 new Question("2", "现居住房屋所有情况?", false,false,
                     new List<Option>{
-                         new Option("A", "入户通道","3"),
-                         new Option("B", "客厅","4"),
-                         new Option("C", "卫生间","5"),
-                         new Option("D", "厨房","6"),
-                         new Option("E", "卧室","7"),
-                         new Option("F", "上下楼梯","8"),
-                         new Option("G", "其他","9"),
+                         new Option("A", "自有","3"),
+                         new Option("B", "租借","3"),
+                         new Option("C", "其他","3"),
+                    }
+                ),
+                 new Question("3", "现居住楼层?", false,false,
+                    new List<Option>{
+                         new Option("A", "地下室","3"),
+                         new Option("B", "一层","3"),
+                         new Option("C", "二层及以上","3"),
+                    }
+                ),
+                 new Question("4", "现居住情况?", false,false,
+                    new List<Option>{
+                         new Option("A", "独居","5"),
+                         new Option("B", "与家人同住","5"),
+                         new Option("C", "与朋友同住","5"),
+                         new Option("D", "其他","5"),
+                    }
+                ),
+                 new Question("5", "家庭中主要活动场所？(多选)", false,true,
+                    new List<Option>{
+                         new Option("A", "客厅","6"),
+                         new Option("B", "卫生间","6"),
+                         new Option("C", "厨房","6"),
+                         new Option("D", "卧室","6"),
+                         new Option("E", "其他","6"),
+                    }
+                ),
+                new Question("6", "您认为在家庭生活中存在困难较多的区域（多选）", false,true,
+                    new List<Option>{
+                         new Option("A", "入户通道","7"),
+                         new Option("B", "客厅","8"),
+                         new Option("C", "卫生间","9"),
+                         new Option("D", "厨房","10"),
+                         new Option("E", "卧室","11"),
+                         new Option("F", "上下楼梯","12"),
+                         new Option("G", "其他","13"),
                          new Option("H", "无",null),
                     }
                 ),
-                new Question("3", "您认为入户通道存在的问题（多选）", false,true,true,
+                new Question("7", "您认为入户通道存在的问题（多选）", false,true,true,
                     new List<Option>{
-                         new Option("A", "杂物堆放或空间不足","3-A"),
-                         new Option("B", "门宽不足，或有门槛或高低落差","3-B"),
-                         new Option("C", "门开启困难","3-C"),
-                         new Option("D", "光线不足","3-D"),
-                         new Option("E", "无扶手或扶手不合适","3-E"),
-                         new Option("F", "无门把手、门铃、门锁等或使用困难","3-F"),
-                         new Option("G", "其他","3-G"),
+                         new Option("A", "杂物堆放或空间不足","7-A"),
+                         new Option("B", "门宽不足，或有门槛或高低落差","7-B"),
+                         new Option("C", "门开启困难","7-C"),
+                         new Option("D", "光线不足","7-D"),
+                         new Option("E", "无扶手或扶手不合适","7-E"),
+                         new Option("F", "无门把手、门铃、门锁等或使用困难","7-F"),
+                         new Option("G", "其他","7-G"),
                     }
                 ),
-                new Question("3-A", null, false,true,
+                new Question("7-A", null, false,true,
                     new List<Option>{
                          new Option("A", "清理杂物",null),
                          new Option("B", "更换入门方式（如人车（轮椅）分离等）",null),
                          new Option("C", "门口增设平台",null),
                     }
                 ),
-                new Question("3-B", null, false,true,
+                new Question("7-B", null, false,true,
                     new List<Option>{
                          new Option("A", "改变进门方式（如更换为快拆轴轮椅（带后小轮）、教进门技巧、下轮椅进门、教过门槛技巧等）",null),
                          new Option("B", "增加门宽",null),
@@ -3466,25 +3495,25 @@ namespace JZKFXT.Migrations
                          new Option("D", "去除门槛",null),
                     }
                 ),
-                new Question("3-C", null, false,true,
+                new Question("7-C", null, false,true,
                     new List<Option>{
                          new Option("A", "更换开门方式（如请人协助等）",null),
                          new Option("B", "更换易开关门",null),
                     }
                 ),
-                new Question("3-D", null, false,true,
+                new Question("7-D", null, false,true,
                     new List<Option>{
                          new Option("A", "增加光线",null),
                          new Option("B", "改声光控灯",null),
                     }
                 ),
-                new Question("3-E", null, false,true,
+                new Question("7-E", null, false,true,
                     new List<Option>{
                          new Option("A", "增加扶手",null),
                          new Option("B", "更换扶手",null),
                     }
                 ),
-                new Question("3-F", null, false,true,
+                new Question("7-F", null, false,true,
                     new List<Option>{
                          new Option("A", "增加把手",null),
                          new Option("B", "更换把手",null),
@@ -3494,7 +3523,7 @@ namespace JZKFXT.Migrations
                          new Option("F", "增加醒目标志（视力障碍）",null),
                     }
                 ),
-                new Question("3-G", "自填",true),
+                new Question("7-G", "自填",true),
 
             };
             Exam exam8 = new Exam(8, "FuJuPingGu", "无障碍", questions8);
