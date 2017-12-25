@@ -3404,7 +3404,13 @@ namespace JZKFXT.Migrations
             #region 假肢试题
             List<Question> questions7 = new List<Question>
             {
-
+                 new Question("1", "患者有装配无假肢需求？", true,false,
+                    new List<Option>{
+                         new Option("A", "无装配需求",null),
+                         new Option("B", "有装配需求","2"),
+                    }
+                ),
+                
             };
             Exam exam7 = new Exam(7, "FuJuPingGu", "假肢", questions7);
             db.Exams.AddOrUpdate(exam7);
