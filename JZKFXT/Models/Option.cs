@@ -40,12 +40,12 @@ namespace JZKFXT.Models
             }
 
         }
-        public Option(string optionText, string contentText, string nextQuestionNo, string a, string b)
+        public Option(string optionText, string contentText, string nextQuestionNo,bool isWrite)
         {
-
-        }
-        public Option(string optionText, string contentText, int examID, string nextQuestionNo, string a,string b)
-        {
+            OptionText = optionText;
+            NextQuestionNo = nextQuestionNo;
+            ExamID = examID;
+            IsWrite = isWrite;
 
         }
         public int ID { get; set; }
@@ -86,6 +86,10 @@ namespace JZKFXT.Models
         /// 分数
         /// </summary>
         public double Score { get; set; }
+        /// <summary>
+        /// 自填
+        /// </summary>
+        public bool IsWrite { get; set; }
         /// <summary>
         /// 辅具集合
         /// </summary>

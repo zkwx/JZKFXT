@@ -33,6 +33,12 @@ namespace JZKFXT.Models
             NextMultiple = nextMultiple;
             Options = options;
         }
+        public Question(string questionNo, string questionText,bool isWrite)
+        {
+            QuestionNo = questionNo;
+            QuestionText = questionText;
+            IsWrite = isWrite;
+        }
         //[DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
         public int ID { get; set; }
         /// <summary>
@@ -55,6 +61,10 @@ namespace JZKFXT.Models
         /// 是否多选
         /// </summary>
         public bool Multiple { get; set; }
+        /// <summary>
+        /// 是否多选
+        /// </summary>
+        public bool IsWrite { get; set; }
         /// <summary>
         /// 是否进一步多选
         /// </summary>

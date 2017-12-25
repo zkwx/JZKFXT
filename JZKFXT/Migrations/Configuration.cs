@@ -3494,11 +3494,7 @@ namespace JZKFXT.Migrations
                          new Option("F", "增加醒目标志（视力障碍）",null),
                     }
                 ),
-                new Question("3-G", null, false,true,
-                    new List<Option>{
-
-                    }
-                ),
+                new Question("3-G", "自填",true),
 
             };
             Exam exam8 = new Exam(8, "FuJuPingGu", "无障碍", questions8);
