@@ -40,8 +40,8 @@ namespace JZKFXT.Controllers
                         Category = a.Category.Name,
                         Degree = a.Degree.Name,
                         CurrentExam = a.ExamRecords.FirstOrDefault(b => b.Exam.Type == name)
-                    });
-                    return Ok(result.OrderByDescending(a => a.ID));
+                    }).GroupBy(a => a.CurrentExam.Exam.Name);
+                    return Ok(result);
                 }
                 else if (examBy == "name")
                 {
@@ -237,7 +237,7 @@ namespace JZKFXT.Controllers
                 bool exist = db.ExamRecords.Count(a => a.Exam.Name == disabledInfo.TargetExamName && a.DisabledInfoID == disabledInfo.ID) > 0;
                 if (!exist)
                 {
-                    ExamRecord examRecord = new ExamRecord(exam.ID, disabledInfo.ID);
+                    ExamRecord examRecord = new ExamRecord(exam.ID, disabledInfo.ID,ExamState.待评估);
                     db.ExamRecords.Add(examRecord);
                     db.SaveChanges();
                 }

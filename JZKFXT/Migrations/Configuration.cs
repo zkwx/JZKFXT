@@ -198,7 +198,7 @@ namespace JZKFXT.Migrations
                     true,
                     3,
                     3,
-                    DateTime.Today,
+                    DateTime.Today
                 ),
                 new DisabledInfo
                 (
@@ -2362,7 +2362,7 @@ namespace JZKFXT.Migrations
 
             };
             #endregion
-            db.AssistiveDevices.AddRange(AssistiveDevices);
+            //db.AssistiveDevices.AddRange(AssistiveDevices);
             db.SaveChanges();
             //ÆÀ¹À
 
@@ -3135,10 +3135,10 @@ namespace JZKFXT.Migrations
 
             List<ExamRecord> examRecords = new List<ExamRecord>
             {
-                new ExamRecord(1, 1),
-                new ExamRecord(2, 2),
-                new ExamRecord(3, 3),
-                new ExamRecord(4, 4),
+                new ExamRecord(1, 1,ExamState.´ýÉóºË),
+                new ExamRecord(2, 2,ExamState.´ýÉóºË),
+                new ExamRecord(3, 3,ExamState.´ýÉóºË),
+                new ExamRecord(4, 4,ExamState.´ýÉóºË),
             };
             db.ExamRecords.AddRange(examRecords);
         }

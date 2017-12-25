@@ -22,6 +22,13 @@ namespace JZKFXT.Controllers.API
         public async Task<IHttpActionResult> GetExams(string targetExamName = null)
         {
             Exam exam = await db.Exams.Where(a => a.Name == targetExamName).FirstOrDefaultAsync();
+            return Ok(exam);
+        }
+
+        // GET: api/Exams/5
+        public async Task<IHttpActionResult> GetExam(int id)
+        {
+            Exam exam = await db.Exams.FindAsync(id);
             if (exam == null)
             {
                 return NotFound();
@@ -58,13 +65,6 @@ namespace JZKFXT.Controllers.API
                 )
             };
             return Ok(result);
-        }
-
-        // GET: api/Exams/5
-        public async Task<IHttpActionResult> GetExam(int id)
-        {
-            Exam exam = await db.Exams.FindAsync(id);
-            return Ok(exam);
         }
         // PUT: api/Exams/5
         [ResponseType(typeof(void))]
