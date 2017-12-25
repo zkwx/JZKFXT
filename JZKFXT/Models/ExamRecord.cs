@@ -15,10 +15,11 @@ namespace JZKFXT.Models
         {
         }
 
-        public ExamRecord(int? examID, int disabledInfoID)
+        public ExamRecord(int? examID, int disabledInfoID, ExamState state)
         {
             ExamID = examID;
             DisabledInfoID = disabledInfoID;
+            State = state;
         }
 
         public int ID { get; set; }
@@ -31,9 +32,9 @@ namespace JZKFXT.Models
         /// </summary>
         public int DisabledInfoID { get; set; }
         /// <summary>
-        /// 已完成评估
+        /// 评估状态
         /// </summary>
-        public bool Done { get; set; }
+        public ExamState State { get; set; }
         /// <summary>
         /// 已机构评估
         /// </summary>

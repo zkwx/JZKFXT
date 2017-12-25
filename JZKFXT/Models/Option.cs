@@ -70,7 +70,14 @@ namespace JZKFXT.Models
         /// 选项描述文字
         /// </summary>
         public string ContentText { get; set; }
+        /// <summary>
+        /// 转到下一问题的No
+        /// </summary>
         public string NextQuestionNo { get; set; }
+        /// <summary>
+        /// 选项下多选题的No
+        /// </summary>
+        public string OptionQuestionNo { get; set; }
         /// <summary>
         /// 转到下一问题的ID
         /// </summary>

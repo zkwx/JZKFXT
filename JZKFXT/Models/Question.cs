@@ -24,7 +24,15 @@ namespace JZKFXT.Models
             Multiple = multiple;
             Options = options;
         }
-
+        public Question(string questionNo, string questionText, bool isFirst, bool multiple, bool nextMultiple, ICollection<Option> options)
+        {
+            QuestionNo = questionNo;
+            QuestionText = questionText;
+            IsFirst = isFirst;
+            Multiple = multiple;
+            NextMultiple = nextMultiple;
+            Options = options;
+        }
         //[DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
         public int ID { get; set; }
         /// <summary>
@@ -47,6 +55,10 @@ namespace JZKFXT.Models
         /// 是否多选
         /// </summary>
         public bool Multiple { get; set; }
+        /// <summary>
+        /// 是否进一步多选
+        /// </summary>
+        public bool NextMultiple { get; set; }
         /// <summary>
         /// 选项列表
         /// </summary>
