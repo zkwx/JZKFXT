@@ -43,8 +43,8 @@ namespace JZKFXT.Models
         public Option(string optionText, string contentText, string nextQuestionNo,bool isWrite)
         {
             OptionText = optionText;
+            ContentText = contentText;
             NextQuestionNo = nextQuestionNo;
-            ExamID = examID;
             IsWrite = isWrite;
 
         }
