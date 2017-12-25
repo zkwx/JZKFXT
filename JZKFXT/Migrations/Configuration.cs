@@ -3458,6 +3458,47 @@ namespace JZKFXT.Migrations
                          new Option("C", "门口增设平台",null),
                     }
                 ),
+                new Question("3-B", null, false,true,
+                    new List<Option>{
+                         new Option("A", "改变进门方式（如更换为快拆轴轮椅（带后小轮）、教进门技巧、下轮椅进门、教过门槛技巧等）",null),
+                         new Option("B", "增加门宽",null),
+                         new Option("C", "通过固定坡道或简易坡道消除高低差",null),
+                         new Option("D", "去除门槛",null),
+                    }
+                ),
+                new Question("3-C", null, false,true,
+                    new List<Option>{
+                         new Option("A", "更换开门方式（如请人协助等）",null),
+                         new Option("B", "更换易开关门",null),
+                    }
+                ),
+                new Question("3-D", null, false,true,
+                    new List<Option>{
+                         new Option("A", "增加光线",null),
+                         new Option("B", "改声光控灯",null),
+                    }
+                ),
+                new Question("3-E", null, false,true,
+                    new List<Option>{
+                         new Option("A", "增加扶手",null),
+                         new Option("B", "更换扶手",null),
+                    }
+                ),
+                new Question("3-F", null, false,true,
+                    new List<Option>{
+                         new Option("A", "增加把手",null),
+                         new Option("B", "更换把手",null),
+                         new Option("C", "增加门铃",null),
+                         new Option("D", "更换门铃（可改声光门铃（听力障碍））",null),
+                         new Option("E", "更换门锁",null),
+                         new Option("F", "增加醒目标志（视力障碍）",null),
+                    }
+                ),
+                new Question("3-G", null, false,true,
+                    new List<Option>{
+
+                    }
+                ),
 
             };
             Exam exam8 = new Exam(8, "FuJuPingGu", "无障碍", questions8);
