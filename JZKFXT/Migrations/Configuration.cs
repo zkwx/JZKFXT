@@ -3416,6 +3416,54 @@ namespace JZKFXT.Migrations
             db.Exams.AddOrUpdate(exam7);
             #endregion
 
+            #region 无障碍试题
+            List<Question> questions8 = new List<Question>
+            {
+                 new Question("1", "家庭中主要活动场所？(多选)", true,true,
+                    new List<Option>{
+                         new Option("A", "客厅","2"),
+                         new Option("B", "卫生间","2"),
+                         new Option("C", "厨房","2"),
+                         new Option("D", "卧室","2"),
+                         new Option("E", "其他","2"),
+                    }
+                ),
+                new Question("2", "您认为在家庭生活中存在困难较多的区域（多选）", false,true,
+                    new List<Option>{
+                         new Option("A", "入户通道","3"),
+                         new Option("B", "客厅","4"),
+                         new Option("C", "卫生间","5"),
+                         new Option("D", "厨房","6"),
+                         new Option("E", "卧室","7"),
+                         new Option("F", "上下楼梯","8"),
+                         new Option("G", "其他","9"),
+                         new Option("H", "无",null),
+                    }
+                ),
+                new Question("3", "您认为入户通道存在的问题（多选）", false,true,true,
+                    new List<Option>{
+                         new Option("A", "杂物堆放或空间不足","3-A"),
+                         new Option("B", "门宽不足，或有门槛或高低落差","3-B"),
+                         new Option("C", "门开启困难","3-C"),
+                         new Option("D", "光线不足","3-D"),
+                         new Option("E", "无扶手或扶手不合适","3-E"),
+                         new Option("F", "无门把手、门铃、门锁等或使用困难","3-F"),
+                         new Option("G", "其他","3-G"),
+                    }
+                ),
+                new Question("3-A", null, false,true,
+                    new List<Option>{
+                         new Option("A", "清理杂物",null),
+                         new Option("B", "更换入门方式（如人车（轮椅）分离等）",null),
+                         new Option("C", "门口增设平台",null),
+                    }
+                ),
+
+            };
+            Exam exam8 = new Exam(8, "FuJuPingGu", "无障碍", questions8);
+            db.Exams.AddOrUpdate(exam7);
+            #endregion
+
 
             List<ExamRecord> examRecords = new List<ExamRecord>
             {
