@@ -3404,13 +3404,53 @@ namespace JZKFXT.Migrations
             #region 假肢试题
             List<Question> questions7 = new List<Question>
             {
-                 new Question("1", "患者有装配无假肢需求？", true,false,
+                new Question("1", "患者有装配无假肢需求？", true,false,
                     new List<Option>{
                          new Option("A", "无装配需求",null),
                          new Option("B", "有装配需求","2"),
                     }
                 ),
-                
+                //身体部位图片选择
+                 new Question("2", "在图中标出残肢部位（可多选）", false,false,
+                    new List<Option>{
+                         new Option("A", "正常","3"),
+                    }
+                ),
+                new Question("3", "身体状况？", false,false,
+                    new List<Option>{
+                         new Option("A", "正常","4"),
+                         new Option("B", "体质极度衰弱","4"),
+                         new Option("C", "平衡和协调功能严重障碍","4"),
+                         new Option("D", "血液病或出血性疾病","4"),
+                         new Option("E", "严重心脏病","4"),
+                         new Option("F", "严重高血压、低血压","4"),
+                         new Option("G", "意识障碍","4"),
+                         new Option("H", "视力严重障碍","4"),
+                         new Option("I", "严重的精神神经性疾病","4"),
+                         new Option("J", "无法确定","4"),
+                    }
+                ),
+                new Question("4", "残肢端状况？", false,false,
+                    new List<Option>{
+                         new Option("A", "正常","5"),
+                         new Option("B", "末梢血管循环不良","5"),
+                         new Option("C", "炎症","5"),
+                         new Option("D", "溃烂","5"),
+                         new Option("E", "疼痛","5"),
+                         new Option("F", "肿胀","5"),
+                         new Option("G", "神经瘤","5"),
+                         new Option("H", "皮肤过紧","5"),
+                         new Option("I", "关节挛缩","5"),
+                         new Option("J", "无法确定","5"),
+                    }
+                ),
+                //图片上传
+                new Question("5", "直接拍照或上传残肢部位的照片至少一张：为残缺一侧肢体的特写照片（残缺部位裸露）", false,false,
+                    new List<Option>{
+                         new Option("A", "正常",null),
+                    }
+                ),
+
             };
             Exam exam7 = new Exam(7, "FuJuPingGu", "假肢", questions7);
             db.Exams.AddOrUpdate(exam7);
