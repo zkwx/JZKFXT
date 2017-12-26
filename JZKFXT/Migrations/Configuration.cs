@@ -3527,7 +3527,7 @@ namespace JZKFXT.Migrations
 
             };
             Exam exam8 = new Exam(8, "FuJuPingGu", "Œﬁ’œ∞≠", questions8);
-            db.Exams.AddOrUpdate(exam7);
+            db.Exams.AddOrUpdate(exam8);
             #endregion
 
 
