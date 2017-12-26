@@ -40,14 +40,6 @@ namespace JZKFXT.Models
             }
 
         }
-        public Option(string optionText, string contentText, string nextQuestionNo,bool isWrite)
-        {
-            OptionText = optionText;
-            ContentText = contentText;
-            NextQuestionNo = nextQuestionNo;
-            IsWrite = isWrite;
-
-        }
         public int ID { get; set; }
         /// <summary>
         /// 试卷ID

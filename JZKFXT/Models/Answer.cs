@@ -7,7 +7,7 @@ using System.Web;
 namespace JZKFXT.Models
 {
     /// <summary>
-    /// 答案
+    /// 答案：1OptionIds 2OptionIds 3Other 4OptionIds 5OptionIds 6Options 7Others
     /// </summary>
     public class Answer
     {
@@ -15,24 +15,23 @@ namespace JZKFXT.Models
         {
         }
 
-        public Answer(int iD, int examID, int questionID, string optionIDs, int disabledInfoID, string other)
+        public Answer(int DisabledID, int examID, string questionNo, string optionIDs, string other)
         {
-            ID = iD;
+            DisabledID = DisabledID;
             ExamID = examID;
-            QuestionID = questionID;
+            QuestionNo = questionNo;
             OptionIDs = optionIDs;
-            DisabledInfoID = disabledInfoID;
             Other = other;
         }
         public int ID { get; set; }
         /// <summary>
+        /// 评估对象ID
+        /// </summary>
+        public int DisabledID { get; set; }
+        /// <summary>
         /// 评估ID
         /// </summary>
         public int ExamID { get; set; }
-        /// <summary>
-        /// 问题ID
-        /// </summary>
-        public int QuestionID { get; set; }
         /// <summary>
         /// 问题No
         /// </summary>
@@ -41,11 +40,6 @@ namespace JZKFXT.Models
         /// 选择的选项ID
         /// </summary>
         public string OptionIDs { get; set; }
-        /// <summary>
-        /// 评估对象ID
-        /// </summary>
-        public int DisabledInfoID { get; set; }
-
         /// <summary>
         /// 其他
         /// </summary>

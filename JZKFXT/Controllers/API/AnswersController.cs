@@ -19,7 +19,7 @@ namespace JZKFXT.Controllers.API
         private BaseContext db = new BaseContext();
 
         // GET: api/Answers
-        public IQueryable<Answer> GetAnswers(int ExamID, int DisabledInfoID)
+        public IQueryable<Answer> GetAnswers(int ExamID, int DisabledID)
         {
             return db.Answers;
         }
@@ -97,7 +97,7 @@ namespace JZKFXT.Controllers.API
             db.Answers.AddRange(answers);
             var answer = answers[0];
             ExamRecord record = new ExamRecord {
-                DisabledInfoID= answer.DisabledInfoID,
+                DisabledID= answer.DisabledID,
                 ExamID= answer.ExamID
             };
             db.ExamRecords.Add(record);

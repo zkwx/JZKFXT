@@ -10,7 +10,7 @@ namespace JZKFXT.Utils
 {
     public class EntityStateHelper
     {
-        public static void BindEntityState(BaseContext db, DisabledInfo_Detail entity)
+        public static void BindEntityState(BaseContext db, Disabled_Detail entity)
         {
             if (entity!=null)
             {

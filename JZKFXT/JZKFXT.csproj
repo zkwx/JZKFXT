@@ -232,8 +232,8 @@
     <Compile Include="Models\DisabilityReason.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Degree.cs" />
-    <Compile Include="Models\DisabledInfo_Detail.cs" />
-    <Compile Include="Models\DisabledInfo.cs" />
+    <Compile Include="Models\Disabled_Detail.cs" />
+    <Compile Include="Models\Disabled.cs" />
     <Compile Include="Models\Exam.cs" />
     <Compile Include="Models\Next.cs" />
     <Compile Include="Models\Answer.cs" />

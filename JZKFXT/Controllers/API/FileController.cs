@@ -26,11 +26,11 @@ namespace JZKFXT.Controllers.API
         }
 
         // POST: api/File
-        public async Task<IHttpActionResult> Post()
+        public IHttpActionResult Post()
         {
-
             try
             {
+                var fileType = HttpContext.Current.Request["fileType"];
                 string url = "";
                 string directory = "/App_Data/avatar/";
                 string root = HttpContext.Current.Server.MapPath(directory);
@@ -46,11 +46,11 @@ namespace JZKFXT.Controllers.API
 
                     if (string.IsNullOrEmpty(file.FileName) == false)
                     {
+                        Directory.CreateDirectory(root);
                         url = root + file.FileName;
-                        file.SaveAs(root);
+                        file.SaveAs(url);
                     }
                 }
-
                 return Json(url);
             }
             catch (Exception ex)

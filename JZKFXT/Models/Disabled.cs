@@ -10,13 +10,13 @@ namespace JZKFXT.Models
     /// <summary>
     /// 残疾人基本信息
     /// </summary>
-    public class DisabledInfo
+    public class Disabled
     {
-        public DisabledInfo()
+        public Disabled()
         {
         }
 
-        public DisabledInfo(string name, int? sex, string tel, string guardian, int? relationshipID, bool hasCertificate, string certificate, bool need, int? categoryID, int? degreeID, DateTime? createTime)
+        public Disabled(string name, int? sex, string tel, string guardian, int? relationshipID, bool hasCertificate, string certificate, bool need, int? categoryID, int? degreeID, DateTime? createTime)
         {
             Name = name;
             Sex = sex;
@@ -63,7 +63,7 @@ namespace JZKFXT.Models
         public int? CategoryID { get; set; }//残疾证残疾类型
         public int? DegreeID { get; set; }//残疾证残疾等级
 
-        public virtual ICollection<DisabledInfo_Detail> DisabledInfo_Details { get; set; }//残疾人康复详情
+        public virtual ICollection<Disabled_Detail> Disabled_Details { get; set; }//残疾人康复详情
 
         public int? UserID { get; set; }
 

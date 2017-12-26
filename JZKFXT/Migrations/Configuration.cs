@@ -157,8 +157,8 @@ namespace JZKFXT.Migrations
             #endregion
 
             #region 残疾人信息
-            List<DisabledInfo> disabledInfoes = new List<DisabledInfo> {
-                new DisabledInfo
+            List<Disabled> Disabledes = new List<Disabled> {
+                new Disabled
                 (
                     "权子豪",
                     1,
@@ -172,7 +172,7 @@ namespace JZKFXT.Migrations
                     1,
                     DateTime.Today
                 ),
-                new DisabledInfo
+                new Disabled
                 (
                     "唐莎莎",
                     2,
@@ -186,7 +186,7 @@ namespace JZKFXT.Migrations
                     2,
                     DateTime.Today
                 ),
-                new DisabledInfo
+                new Disabled
                 (
                     "周正一",
                     1,
@@ -200,7 +200,7 @@ namespace JZKFXT.Migrations
                     3,
                     DateTime.Today
                 ),
-                new DisabledInfo
+                new Disabled
                 (
                     "谢琦",
                     1,
@@ -214,7 +214,7 @@ namespace JZKFXT.Migrations
                     4,
                     DateTime.Today
                 ),
-                new DisabledInfo
+                new Disabled
                 (
                     "韩冰",
                     2,
@@ -228,7 +228,7 @@ namespace JZKFXT.Migrations
                     4,
                     DateTime.Today
                 ),
-                new DisabledInfo
+                new Disabled
                 (
                     "韩儒",
                     1,
@@ -242,7 +242,7 @@ namespace JZKFXT.Migrations
                     4,
                     DateTime.Today
                 ),
-                new DisabledInfo
+                new Disabled
                 (
                     "孙永",
                     1,
@@ -257,16 +257,16 @@ namespace JZKFXT.Migrations
                     DateTime.Today
                 )
             };
-            db.DisabledInfoes.AddRange(disabledInfoes);
+            db.Disabledes.AddRange(Disabledes);
             #endregion
             db.SaveChanges();
 
             //康复需求
-            List<DisabledInfo_Detail> disabledInfo_Details = new List<DisabledInfo_Detail> {
-                new DisabledInfo_Detail(1, 1, 1, 1010102, 3, "视力"),
-                new DisabledInfo_Detail(2, 2, 2, 1020102, 3, "听力"),
+            List<Disabled_Detail> Disabled_Details = new List<Disabled_Detail> {
+                new Disabled_Detail(1, 1, 1, 1010102, 3, "视力"),
+                new Disabled_Detail(2, 2, 2, 1020102, 3, "听力"),
             };
-            db.DisabledInfo_Details.AddRange(disabledInfo_Details);
+            db.Disabled_Details.AddRange(Disabled_Details);
             db.SaveChanges();
 
 
@@ -2368,7 +2368,7 @@ namespace JZKFXT.Migrations
 
             #region 视力试题
             List<Question> questions1 = new List<Question> {
-                new Question("1", "视力残疾等级", true,false,
+                new Question("1", "视力残疾等级", 1,
                     new List<Option>{
                         new Option("A","一级", "1-1-1"),
                         new Option("B","二级", "1-1-1"),
@@ -2377,19 +2377,19 @@ namespace JZKFXT.Migrations
                         new Option("E","未评定或等级不准", "附加题"),
                     }
                 ),
-                new Question("附加题", "能否看见",false,false,
+                new Question("附加题", "能否看见",1,
                     new List<Option>{
                         new Option("A", "不能（相当于一、二级）", "1-1"),
                         new Option("B", "能（相当于三、四级）", "1-2"),
                     }
                 ),
-                new Question("1-1", "能否听见",false,false,
+                new Question("1-1", "能否听见",1,
                     new List<Option>{
                         new Option("A", "能", "1-1-1"),
                         new Option("B", "不能", "1-1-2"),
                     }
                 ),
-                new Question("1-1-1", "希望实现何种功能（多选）", false,true,
+                new Question("1-1-1", "希望实现何种功能（多选）", 1,
                     new List<Option>{
                         //02 39 03盲杖
                         new Option("A", "引导出行", "2",1023903),
@@ -2405,7 +2405,7 @@ namespace JZKFXT.Migrations
                         new Option("F", "学习书写", "2", 1051203, 1051212,1051218),
                     }
                 ),
-                new Question("1-1-2", "希望实现何种功能（多选）", false,true,
+                new Question("1-1-2", "希望实现何种功能（多选）", 1,
                     new List<Option>{
                         //02 39 03盲杖
                         new Option("A", "引导出行", "2", 1023903),
@@ -2413,14 +2413,14 @@ namespace JZKFXT.Migrations
                         new Option("B", "时间提醒", "2", 105271204,105271205),
                     }
                 ),
-                new Question("1-2", "希望看近物还是看远处（多选）", false,true,
+                new Question("1-2", "希望看近物还是看远处（多选）", 1,
                     new List<Option>{
                         new Option("A", "看近", "1-2-1"),
                         //05 03 12双筒望远镜和单筒望远镜
                         new Option("B", "看远", "1-3", 1050312),
                     }
                 ),
-                new Question("1-2-1", "需要光学助视器还是电子助视器",false,false,
+                new Question("1-2-1", "需要光学助视器还是电子助视器",1,
                     new List<Option>{
                         //05 03 09具有放大功能的眼镜、镜片、助视系统（只选其中光学类）
                         new Option("A", "光学", "1-3", 105030901,105030903,105030904,105030905,105030906,105030907,105030908,105030909,105030910,105030911,105030912,105030913,105030914,105030915,105030916,105030917,105030927,105030928,105030929),
@@ -2428,7 +2428,7 @@ namespace JZKFXT.Migrations
                         new Option("B", "电子", "1-3", 105030902,105030918,105030919,105030920,105030921,105030922,105030923,105030924,105030925,105030926),
                     }
                 ),
-                new Question("1-3", "希望实现何种功能（多选）", false,true,
+                new Question("1-3", "希望实现何种功能（多选）", 1,
                     new List<Option>{
                         //05 30 21 字符阅读器；05 30 18阅读框和版面限定器；05 12 06书写板、绘图板和绘画板；05 12 15打字机
                         new Option("A", "阅读学习", "2", 1053021,1053018,1051206,1051215),
@@ -2442,20 +2442,20 @@ namespace JZKFXT.Migrations
                         new Option("E", "计算机使用", "2", 1053318),
                     }
                 ),
-                new Question("2", "是否存在眩光现象",false,false,
+                new Question("2", "是否存在眩光现象",1,
                     new List<Option>{
                         //05 03 03滤光器：低视力专用滤光镜
                         new Option("A", "是", "3", 105030301),
                         new Option("B", "否", "3"),
                     }
                 ),
-                new Question("3", "是否能正常说话", false,false,
+                new Question("3", "是否能正常说话", 1,
                     new List<Option>{
                         new Option("A", "能",null),
                         new Option("B", "不能", "3-1"),
                     }
                 ),
-                new Question("3-1", "是否会写字",false,false,
+                new Question("3-1", "是否会写字",1,
                     new List<Option>{
                         //05 12 12手写盲文书写装置；05 09 03语音发生器
                         new Option("A", "会", null,1051212,1050903),
@@ -2469,7 +2469,7 @@ namespace JZKFXT.Migrations
 
             #region 听力试题
             List<Question> questions2 = new List<Question> {
-                new Question("1", "听力残疾等级", true,false,
+                new Question("1", "听力残疾等级", 1,
                     new List<Option>{
                         ////选A时，结合年龄，系统关联
                         //6岁以下：05 06 助听器-人工耳蜗
@@ -2482,7 +2482,7 @@ namespace JZKFXT.Migrations
                         new Option("E", "未评定或等级不准","1-1"),
                     }
                 ),
-                new Question("1-1", "在安静环境下，不带助听设备时，能听到",false,false,
+                new Question("1-1", "在安静环境下，不带助听设备时，能听到",1,
                     new List<Option>{
                         //选A时，结合年龄，系统关联
                         new Option("A", "几乎听不到任何声音（等同于一级）","2", 105061701,105061501,105061201,105061301,105061401,105060601),
@@ -2492,7 +2492,7 @@ namespace JZKFXT.Migrations
                         new Option("E", "听清一般言语，能分辨清楚（不配辅助器具）","2"),
                     }
                 ),
-                new Question("2", "除听声外，希望实现何种功能", false,true,
+                new Question("2", "除听声外，希望实现何种功能", 1,
                     new List<Option>{
                         //05 21 09对话装置(电子手写交流板/沟通板)
                         new Option("A", "语言交流（无语言者）",null, 105210906),
@@ -2510,13 +2510,13 @@ namespace JZKFXT.Migrations
             #region 偏瘫试题
             List<Question> questions3 = new List<Question>
             {
-                new Question("1", "是否卧床", true,false,
+                new Question("1", "是否卧床", 1,
                     new List<Option>{
                          new Option("A", "是","1-1-1", 105271801),
                          new Option("B", "否","1-2-1"),
                     }
                 ),
-                new Question("1-1-1", "能否翻身", false,false,
+                new Question("1-1-1", "能否翻身", 1,
                     new List<Option>{
                         //04家庭和家具-卧式家具（护理床）、06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）；07 33 09个人移动训练辅助器具（翻身床单）；06 33 04保护组织完整性的靠背垫和小靠背垫（体位垫）
                         new Option("A", "不能","1-1-2", 1040801,1063306,107330905,106330401),
@@ -2524,14 +2524,14 @@ namespace JZKFXT.Migrations
                         new Option("B", "能","1-1-2", 1040801,1063306,106330401,104100901),
                     }
                 ),
-                new Question("1-1-2", "能否坐起", false,false,
+                new Question("1-1-2", "能否坐起", 1,
                     new List<Option>{
                          new Option("A", "不能","1-1-3"),
                          //04 10 03靠背；02 22 18护理者操纵的轮椅（高靠背轮椅）
                          new Option("B", "能","1-1-3",1041003,102221801),
                     }
                 ),
-                new Question("1-1-3", "能否控制大小便", false,false,
+                new Question("1-1-3", "能否控制大小便", 1,
                     new List<Option>{
                          //07 09 03失禁报警器；03 30 21成人一次性尿布；03 30 18成人一次性衬垫；03 27 18尿收集系统；03 31 06阻便器（肛门插塞）
                          new Option("A", "不能","2", 1070903,1033021,1033018,1032718,103310602),
@@ -2539,13 +2539,13 @@ namespace JZKFXT.Migrations
                          new Option("B", "能","2",1032415,1032421,103123301,103123302),
                     }
                 ),
-                new Question("1-2-1", "能否行走", false,false,
+                new Question("1-2-1", "能否行走", 1,
                     new List<Option>{
                         new Option("A", "不能","1-2-1-1"),
                         new Option("B", "能","1-2-2"),
                     }
                 ),
-                new Question("1-2-1-1", "能否辅助下移动入厕", false,false,
+                new Question("1-2-1-1", "能否辅助下移动入厕", 1,
                     new List<Option>{
                         //02 22 18护理者操纵的轮椅（座便轮椅）
                         new Option("A", "不能","1-2-1-2", 102221805),
@@ -2553,7 +2553,7 @@ namespace JZKFXT.Migrations
                         new Option("B", "能","1-2-1-2", 102220302,102220901,102230301),
                     }
                 ),
-                new Question("1-2-1-2", "是否有压疮", false,false,
+                new Question("1-2-1-2", "是否有压疮", 1,
                     new List<Option>{
                          new Option("A", "无","1-2-1-3"),
                          //06 33 03保护组织完整性的坐垫和衬垫（防压疮坐垫）
@@ -2561,7 +2561,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "有","1-2-1-3", 1063303),
                     }
                 ),
-                new Question("1-2-1-3", "能否站立进行床-椅转移", false,false,
+                new Question("1-2-1-3", "能否站立进行床-椅转移", 1,
                     new List<Option>{
                         //07 33 09个人移动训练辅助器具（移乘带或移乘板）
                          new Option("A", "不能","2", 1073309),
@@ -2570,7 +2570,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "独立站立转移","2"),
                     }
                 ),
-                new Question("1-2-2", "行走时是否需要搀扶", false,false,
+                new Question("1-2-2", "行走时是否需要搀扶", 1,
                     new List<Option>{
                          new Option("A", "全程搀扶","1-2-2-1"),
                          //02 03 03手杖（单脚手杖）
@@ -2578,7 +2578,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "无需搀扶","2"),
                     }
                 ),
-                new Question("1-2-2-1", "行走时是否需要搀扶", false,false,
+                new Question("1-2-2-1", "行走时是否需要搀扶", 1,
                     new List<Option>{
                         //02 03 03手杖（S形四脚手杖（固定/可调））；或 02 38 19单侧操作助行架
                          new Option("A", "需要","2",102030309,102381901),
@@ -2586,7 +2586,7 @@ namespace JZKFXT.Migrations
                          new Option("B", "不需要","2",102030307),
                     }
                 ),
-                new Question("2", "患侧肢体畸形状况（多选）", false,true,
+                new Question("2", "患侧肢体畸形状况（多选）", 1,
                     new List<Option>{
                          //01 06 21肩矫形器-肩部吊带
                          new Option("A", "肩膀下沉","3", 101062107),
@@ -2596,7 +2596,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "行走时足拖地","3", 10112),
                     }
                 ),
-                new Question("3", "能否自行进食", false,false,
+                new Question("3", "能否自行进食", 1,
                     new List<Option>{
                         //04 30 垂直运送辅助器具-桌类（床用餐桌或轮椅桌）
                          new Option("A", "不能","4",104301901),
@@ -2605,14 +2605,14 @@ namespace JZKFXT.Migrations
                          new Option("C", "独立进食","4"),
                     }
                 ),
-                new Question("4", "能否自行洗浴", false,false,
+                new Question("4", "能否自行洗浴", 1,
                     new List<Option>{
                         //03 33 12洗浴床、淋浴桌和更换尿布桌（洗浴床）；03 33清洗、盆浴和淋浴辅助器具（洗浴床单）；洗浴躺椅；03 33 15洗盆（充气式洗头池）
                          new Option("A", "不能","5", 1033312,1033322,103330301,103331501),
                          new Option("B", "能","4-1"),
                     }
                 ),
-                new Question("4-1", "是否站立洗浴", false,false,
+                new Question("4-1", "是否站立洗浴", 1,
                     new List<Option>{
                          //03 33 06防滑的浴盆垫、淋浴垫和带子（地面防滑垫）
                          new Option("A", "是","4-2",103330601),
@@ -2620,20 +2620,20 @@ namespace JZKFXT.Migrations
                          new Option("B", "否","4-2", 1033303),
                     }
                 ),
-                new Question("4-2", "是否需要洗浴类自助具", false,false,
+                new Question("4-2", "是否需要洗浴类自助具", 1,
                     new List<Option>{
                         //03 33 30带有把手、手柄和握把的洗澡布、海绵和刷子；03 36 06指甲锉和砂纸板；03 36 09指甲剪和指甲刀
                          new Option("A", "需要","5",1033330,1033606,1033609),
                          new Option("B", "不需要","5"),
                     }
                 ),
-                new Question("5", "自行如厕时，是否下蹲", false,false,
+                new Question("5", "自行如厕时，是否下蹲", 1,
                     new List<Option>{
                          new Option("A", "能","6"),
                          new Option("B", "不能","5-1"),
                     }
                 ),
-                new Question("5-1", "家中是否有坐便器", false,false,
+                new Question("5-1", "家中是否有坐便器", 1,
                     new List<Option>{
                          new Option("A", "有，且高度合适","6"),
                          //03 12 18安装在坐便器上加高的坐便器座；或03 12 21内置帮助起身、坐下的升降机构的坐便器座；或04 10 09扶手；03 12 12框架型加高的坐便器座
@@ -2642,7 +2642,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "无","6", 1031203),
                     }
                 ),
-                new Question("6", "能否自行穿脱衣物", false,false,
+                new Question("6", "能否自行穿脱衣物", 1,
                     new List<Option>{
                         //03 03 18夹克衫和长裤；03 03 42鞋和靴（方便穿脱鞋）
                          new Option("A", "不能，且高度合适","7", 1030318,1030342),
@@ -2651,14 +2651,14 @@ namespace JZKFXT.Migrations
                          new Option("C", "独立完成","7"),
                     }
                 ),
-                new Question("7", "是否经常需要够拾远处物品", false,false,
+                new Question("7", "是否经常需要够拾远处物品", 1,
                     new List<Option>{
                          new Option("A", "否","8"),
                          //08 21 03手动抓取钳（折叠式长柄取物器/非折叠式长柄取物器）
                          new Option("B", "是","8",108210301,108210302),
                     }
                 ),
-                new Question("8", "是否存在其他方面残疾", false,false,
+                new Question("8", "是否存在其他方面残疾", 1,
                     new List<Option>{
                          new Option("A", "无","9"),
                          new Option("B", "视力",1,"9"),
@@ -2666,7 +2666,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","9"),
                     }
                 ),
-                new Question("9", "最希望解决什么问题（最多选择三个）", false,true,
+                new Question("9", "最希望解决什么问题（最多选择三个）", 1,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -2696,21 +2696,21 @@ namespace JZKFXT.Migrations
             #region 脑瘫试题
             List<Question> questions4 = new List<Question>
             {
-                new Question("1", "年龄", true,false,
+                new Question("1", "年龄", 1,
                     new List<Option>{
                          new Option("A", "≤7岁","2-1"),
                          new Option("B", ">7岁","3-1"),
                     }
                 ),
                 #region 年龄（<= 7）岁
-                new Question("2-1", "能否完成“坐起”动作", false,false,
+                new Question("2-1", "能否完成“坐起”动作", 1,
                     new List<Option>{
                          new Option("A", "完全不能","2-1-1"),
                          new Option("B", "需要辅助完成","2-1-2"),
                          new Option("C", "无需辅助能独立完成","2-1-2"),
                     }
                 ),
-                new Question("2-1-1", "能否翻身", false,false,
+                new Question("2-1-1", "能否翻身", 1,
                     new List<Option>{
                          new Option("A", "完全不能","2-1-1-1"),
                          //06 33 04保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)
@@ -2719,7 +2719,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "无需辅助独立完成","2-2",1040921,102218),
                     }
                 ),
-                new Question("2-1-1-1", "能否抬头", false,false,
+                new Question("2-1-1-1", "能否抬头", 1,
                     new List<Option>{
                          //06 33 04保护组织完整性的靠背垫和小靠背垫（体位变换组合垫）
                          new Option("A", "完全不能","2-2",106330401),
@@ -2729,7 +2729,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "能抬头且能维持","2-2",106330402,1022218),
                     }
                 ),
-                new Question("2-1-2", "能否维持坐位", false,false,
+                new Question("2-1-2", "能否维持坐位", 1,
                     new List<Option>{
                         //04 09 21特殊坐具(0-3岁为三角椅，4-7岁为儿童坐姿椅)；02 22 18护理者操纵的轮椅车(0-3岁为儿童轮椅；4-7岁为儿童脑瘫轮椅)
                          new Option("A", "完全不能","2-2",1040921,1022218),
@@ -2738,14 +2738,14 @@ namespace JZKFXT.Migrations
                          new Option("C", "无需辅助可独坐","2-1-2-1"),
                     }
                 ),
-                new Question("2-1-2-1", "能否爬行", false,false,
+                new Question("2-1-2-1", "能否爬行", 1,
                     new List<Option>{
                          new Option("A", "完全不能","2-1-2-1-1"),
                          new Option("B", "辅助下爬行 ","2-1-2-1-1"),
                          new Option("C", "独立爬行 ","2-2"),
                     }
                 ),
-                new Question("2-1-2-1-1", "能否进行手、肘支撑", false,false,
+                new Question("2-1-2-1-1", "能否进行手、肘支撑", 1,
                     new List<Option>{
                          //01 06 19肘腕手矫形器；06 48爬行训练辅助器具(儿童爬行架)
                          new Option("A", "完全不能","2-2",1010619,106483101),
@@ -2754,7 +2754,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "能支撑且能维持","2-1-2-1-1-1"),
                     }
                 ),
-                new Question("2-1-2-1-1-1", "能否完成“站起”动作", false,false,
+                new Question("2-1-2-1-1-1", "能否完成“站起”动作", 1,
                     new List<Option>{
                          //06 48 15上肢训练器械、躯干训练器械和下肢训练器械(肋木)
                          new Option("A", "完全不能","2-2",1064815),
@@ -2763,7 +2763,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "无需辅助独立完成","2-1-2-1-1-1-1"),
                     }
                 ),
-                new Question("2-1-2-1-1-1-1", "能否维持站立", false,false,
+                new Question("2-1-2-1-1-1-1", "能否维持站立", 1,
                     new List<Option>{
                          //06 48 08站立架和站立支撑台(儿童用仰卧式站立架)
                          new Option("A", "完全不能","2-2",106480802),
@@ -2773,13 +2773,13 @@ namespace JZKFXT.Migrations
                          new Option("C", "无需辅助可独站","2-2",102060607),
                     }
                 ),
-                new Question("2-2", "是否存在畸形", false,false,
+                new Question("2-2", "是否存在畸形", 1,
                     new List<Option>{
                          new Option("A", "不存在畸形","2-3"),
                          new Option("B", "存在畸形","2-2-1"),
                     }
                 ),
-                new Question("2-2-1", "存在畸形部位（多选）", false,true,
+                new Question("2-2-1", "存在畸形部位（多选）", 1,
                     new List<Option>{
                          //上肢矫形器
                          new Option("A", "上肢畸形","2-3",10106),
@@ -2789,13 +2789,13 @@ namespace JZKFXT.Migrations
                          new Option("C", "下肢畸形","2-3",10112,10133),
                     }
                 ),
-                new Question("2-3", "能否够独立进食、饮水", false,false,
+                new Question("2-3", "能否够独立进食、饮水", 1,
                     new List<Option>{
                          new Option("A", "不能","2-3-1"),
                          new Option("B", "能","2-4"),
                     }
                 ),
-                new Question("2-3-1", "双手是否能够抓握", false,false,
+                new Question("2-3-1", "双手是否能够抓握", 1,
                     new List<Option>{
                          //08 18 03抓握装置(万能袖带)；10 09杯子(大耳杯，改为大耳杯架)；10 09 18碗(防洒碗)；10 09 21食物挡边(桌上防滑垫)；10 09叉（粗柄叉）、勺(粗柄勺)
                          new Option("A", "完全不能","2-4",108180301,110092503,1100918,110092102,110092201,110092303),
@@ -2804,7 +2804,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "能抓握且维持","2-4"),
                     }
                 ),
-                new Question("2-4", "能否独立上厕所", false,false,
+                new Question("2-4", "能否独立上厕所", 1,
                     new List<Option>{
                          //03 30 12儿童用一次性失禁用品(儿童尿不湿)；03 12 33便盆
                          new Option("A", "不能","6",103301201,1031233),
@@ -2813,14 +2813,14 @@ namespace JZKFXT.Migrations
                 ),
                 #endregion
                 #region 年龄（>7）岁
-                new Question("3-1", "能否完成“坐起”动作", false,false,
+                new Question("3-1", "能否完成“坐起”动作", 1,
                     new List<Option>{
                          new Option("A", "完全不能","3-1-1"),
                          new Option("B", "需要辅助完成","3-1-2"),
                          new Option("C", "无需辅助能独立完成","3-1-2"),
                     }
                 ),
-                new Question("3-1-1", "能否翻身", false,false,
+                new Question("3-1-1", "能否翻身", 1,
                     new List<Option>{
                          new Option("A", "完全不能","3-1-1-1"),
                          //06 33 04保护组织完整性的靠背垫和小靠背垫(楔形垫)；02 22 18护理者操纵的轮椅车(脑瘫轮椅)；04家庭和家具-卧式家具（护理床）；06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）
@@ -2829,7 +2829,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "无需辅助独立完成","3-2",102221801),
                     }
                 ),
-                new Question("3-1-1-1", "是否能抬头", false,false,
+                new Question("3-1-1-1", "是否能抬头", 1,
                     new List<Option>{
                          //06 33 04保护组织完整性的靠背垫和小靠背垫（体位变换组合垫）；04家庭和家具-卧式家具（护理床）；06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）
                          new Option("A", "完全不能","3-2",106330401,1040801,1063306),
@@ -2839,7 +2839,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "能抬头且能维持","3-2",106330402,1022218,1040801,1063306,104100901),
                     }
                 ),
-                new Question("3-1-2", "能否维持坐位", false,false,
+                new Question("3-1-2", "能否维持坐位", 1,
                     new List<Option>{
                          //02 22 18护理者操纵的轮椅车(脑瘫轮椅)；04 10 03靠背（可调靠背）
                          new Option("A", "完全不能","3-2",1022218,104100301),
@@ -2848,7 +2848,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "无需辅助可独坐","3-1-2-1"),
                     }
                 ),
-                new Question("3-1-2-1", "能否完成“站起”动作", false,false,
+                new Question("3-1-2-1", "能否完成“站起”动作", 1,
                     new List<Option>{
                         //02 22 03双手驱动轮椅车(普通轮椅)；07 33 09个人移动训练辅助器具（转移腰带、移乘带，改为移乘带）
                          new Option("A", "完全不能","3-2",102220301,1073309),
@@ -2857,7 +2857,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "无需辅助独立完成","3-1-2-1-1"),
                     }
                 ),
-                new Question("3-1-2-1-1", "能否维持站立", false,false,
+                new Question("3-1-2-1-1", "能否维持站立", 1,
                     new List<Option>{
                         //06 48 08站立架和站立支撑台(站立架)
                          new Option("A", "完全不能","3-2",1064808),
@@ -2866,7 +2866,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "无需辅助可独站","3-1-2-1-1-1"),
                     }
                 ),
-                new Question("3-1-2-1-1-1", "能否行走", false,false,
+                new Question("3-1-2-1-1-1", "能否行走", 1,
                     new List<Option>{
                          new Option("A", "完全不能","3-2"),
                          //02 06 06轮式助行器(后置四轮助行器)
@@ -2876,13 +2876,13 @@ namespace JZKFXT.Migrations
                          new Option("D", "无需辅助独立行走","3-2"),
                     }
                 ),
-                new Question("3-2", "是否存在畸形", false,false,
+                new Question("3-2", "是否存在畸形", 1,
                     new List<Option>{
                          new Option("A", "不存在畸形","3-3"),
                          new Option("B", "存在畸形","3-2-1"),
                     }
                 ),
-                new Question("3-2-1", "存在畸形部位（多选）", false,true,
+                new Question("3-2-1", "存在畸形部位（多选）", 1,
                     new List<Option>{
                          //上肢矫形器
                          new Option("A", "上肢畸形","3-3",10106),
@@ -2892,13 +2892,13 @@ namespace JZKFXT.Migrations
                          new Option("B", "下肢畸形","3-3",10112,10133),
                     }
                 ),
-                new Question("3-3", "能否够独立进食、饮水", false,false,
+                new Question("3-3", "能否够独立进食、饮水", 1,
                     new List<Option>{
                          new Option("A", "不能","3-3-1"),
                          new Option("B", "能","3-4"),
                     }
                 ),
-                new Question("3-3-1", "双手是否能够抓握（单选）", false,false,
+                new Question("3-3-1", "双手是否能够抓握（单选）", 1,
                     new List<Option>{
                         //08 18 03抓握装置(万能袖带)；10 09杯子(大耳杯，改为大耳杯架)；10 09 18碗(防洒碗)；10 09 21食物挡边(桌上防滑垫)；10 09叉（粗柄叉）、勺(粗柄勺)
                          new Option("A", "完全不能","3-4",108180301,110092503,1100918,110092102,110092201,110092303),
@@ -2907,14 +2907,14 @@ namespace JZKFXT.Migrations
                          new Option("C", "能抓握且维持","3-4"),
                     }
                 ),
-                new Question("3-4", "能否独立上厕所", false,false,
+                new Question("3-4", "能否独立上厕所", 1,
                     new List<Option>{
                         //03 30 21成人一次性尿布(成人纸尿裤)；03 30 18成人一次性衬垫(纸质尿衬垫)；03 12 33便盆；
                          new Option("A", "不能","3-5",103302101,103301801,1031233),
                          new Option("B", "能","3-5"),
                     }
                 ),
-                new Question("3-5", "洗浴时是否能站立", false,false,
+                new Question("3-5", "洗浴时是否能站立", 1,
                     new List<Option>{
                         //03 33 03盆浴或淋浴椅（有轮和无轮)-洗浴椅
                          new Option("A", "不能","6",103330302,103330303,103330304,103330305),
@@ -2922,7 +2922,7 @@ namespace JZKFXT.Migrations
                     }
                 ),
                 #endregion
-                new Question("6", "是否存在其他方面残疾", false,false,
+                new Question("6", "是否存在其他方面残疾", 1,
                     new List<Option>{
                          new Option("A", "无","7"),
                          new Option("B", "视力",1,"7"),
@@ -2930,7 +2930,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","7"),
                     }
                 ),
-                 new Question("7", "最希望解决什么问题（最多选择三个）", false,true,
+                 new Question("7", "最希望解决什么问题（最多选择三个）", 1,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -2960,7 +2960,7 @@ namespace JZKFXT.Migrations
             #region 脊髓试题
             List<Question> questions5 = new List<Question>
             {
-                new Question("1", "是否卧床", true,false,
+                new Question("1", "是否卧床", 1,
                     new List<Option>{
                         //04家庭和家具-卧式家具（护理床）、06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）；06 33 04保护组织完整性的靠背垫和小靠背垫（体位垫）；07 33 09个人移动训练辅助器具（翻身床单）；05 27 18 个人紧急报警系统（呼叫器）；03 03 18夹克衫和长裤
                          new Option("A", "是","1-1",1040801,1063306,106330401,107330905,105271801,1030318),
@@ -2968,21 +2968,21 @@ namespace JZKFXT.Migrations
                          new Option("B", "否","1-4",102220302,102230304,1063303,108210301,108210302),
                     }
                 ),
-                new Question("1-1", "双手是否具有抓握能力", false,false,
+                new Question("1-1", "双手是否具有抓握能力", 1,
                     new List<Option>{
                         //04 10 09扶手（床护栏杆/床旁护栏）；07 33 09个人移动训练辅助器具（起身绳梯）；08 21 03手动抓取钳（折叠式长柄取物器/非折叠式长柄取物器）
                          new Option("A", "是","1-2",104100901,107330907,108210301,108210302),
                          new Option("B", "否","1-2"),
                     }
                 ),
-                new Question("1-2", "能否保持坐位", false,false,
+                new Question("1-2", "能否保持坐位", 1,
                     new List<Option>{
                         //02 22 18护理者操纵的轮椅车-高靠背轮椅（带坐便/带轮椅桌）；选配（不选床的情况下）：04 10 03靠背（可调靠背/架）；04 30 垂直运送辅助器具-桌类（床用餐桌）
                          new Option("A", "能","1-3",102221801,104100301,104301901),
                          new Option("B", "不能","1-3"),
                     }
                 ),
-                new Question("1-3", "能否控制大小便", false,false,
+                new Question("1-3", "能否控制大小便", 1,
                     new List<Option>{
                         //03 24排尿装置(03 24 15女用穿戴式软尿壶/03 24 21男用穿戴式软尿壶)；03 12 33便盆
                          new Option("A", "能","2",1032415,1032421,1031233),
@@ -2990,28 +2990,28 @@ namespace JZKFXT.Migrations
                          new Option("B", "不能","2",1070903,1033021,1033018,1032718,103310602),
                     }
                 ),
-                new Question("1-4", "双手支撑能否使臀部离开椅面", false,false,
+                new Question("1-4", "双手支撑能否使臀部离开椅面", 1,
                     new List<Option>{
                          new Option("A", "能","1-5"),
                          //07 33 09个人移动训练辅助器具（移乘板或移乘带）
                          new Option("B", "不能","1-5",1073309),
                     }
                 ),
-               new Question("1-5", "能否经常自行远距离出行", false,false,
+               new Question("1-5", "能否经常自行远距离出行", 1,
                     new List<Option>{
                          //02 18 09手摇三轮车，选配02 23 09机动轮椅车
                          new Option("A", "能","1-6",1021809,1022309),
                          new Option("B", "不能","1-6"),
                     }
                 ),
-               new Question("1-6", "是否有站立需求", false,false,
+               new Question("1-6", "是否有站立需求", 1,
                     new List<Option>{
                         //脊柱矫形器
                          new Option("A", "有","1-6-1",1010327),
                          new Option("B", "无","1-7"),
                     }
                 ),
-               new Question("1-6-1", "能否自行站立", false,false,
+               new Question("1-6-1", "能否自行站立", 1,
                     new List<Option>{
                         //下肢矫形器
                          new Option("A", "是","1-6-1-1",10112),
@@ -3019,7 +3019,7 @@ namespace JZKFXT.Migrations
                          new Option("B", "否","1-7",102230305),
                     }
                 ),
-               new Question("1-6-1-1", "是否能行走", false,false,
+               new Question("1-6-1-1", "是否能行走", 1,
                     new List<Option>{
                         //02 06 03框式助行架；或02 03 12腋拐，选配02 03 06肘拐
                          new Option("A", "能","1-7",1020603,1020312,1020306),
@@ -3027,28 +3027,28 @@ namespace JZKFXT.Migrations
                          new Option("B", "不能","1-7",1020603),
                     }
                 ),
-               new Question("1-7", "能否控制大小便", false,false,
+               new Question("1-7", "能否控制大小便", 1,
                     new List<Option>{
                          new Option("A", "能","1-7-1"),
                          //03 30 21成人一次性尿布(成人纸尿裤)；03 27 18尿收集系统
                          new Option("B", "不能","2",103302101,1032718),
                     }
                 ),
-               new Question("1-7-1", "能否自行如厕", false,false,
+               new Question("1-7-1", "能否自行如厕", 1,
                     new List<Option>{
                          new Option("A", "能","1-7-1-1"),
                          //03 12 03坐便椅
                          new Option("B", "不能","2",1031203),
                     }
                 ),
-               new Question("1-7-1-1", "家中是否有坐便器（单选）", false,false,
+               new Question("1-7-1-1", "家中是否有坐便器（单选）", 1,
                     new List<Option>{
                          new Option("A", "有","2"),
                          //03 12 03坐便椅
                          new Option("B", "无","2",1031203),
                     }
                 ),
-               new Question("2", "能否自主进食", false,false,
+               new Question("2", "能否自主进食", 1,
                     new List<Option>{
                         //选配10 09 27喂食器械（电动喂食机）
                          new Option("A", "不能","3",110092701),
@@ -3057,14 +3057,14 @@ namespace JZKFXT.Migrations
                          new Option("C", "独立完成","3"),
                     }
                 ),
-               new Question("2-1", "手部是否有畸形", false,false,
+               new Question("2-1", "手部是否有畸形", 1,
                     new List<Option>{
                         //上肢矫形器
                          new Option("A", "有","3",10106),
                          new Option("B", "无","3"),
                     }
                 ),
-               new Question("3", "能否自主洗浴", false,false,
+               new Question("3", "能否自主洗浴", 1,
                     new List<Option>{
                         //03 33 03盆浴或淋浴椅（有轮和无轮）-洗浴躺椅，选配03 33 12洗浴床（洗浴床）或03 33清洗、盆浴和淋浴辅助器具-洗浴床单（洗浴床单）；03 33 15洗盆（充气式洗头池）
                          new Option("A", "不能","4",103330301,1033312,103332201,103331501),
@@ -3074,7 +3074,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "独立完成","4",103330302,103330303,103330304,103330305,103330601),
                     }
                 ),
-               new Question("4", "能否自行穿脱衣物", false,false,
+               new Question("4", "能否自行穿脱衣物", 1,
                     new List<Option>{
                         //选配03 03 18夹克衫和长裤
                          new Option("A", "不能","5",1030318),
@@ -3083,7 +3083,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "独立完成","5"),
                     }
                 ),
-                new Question("5", "是否存在其他方面残疾", false,false,
+                new Question("5", "是否存在其他方面残疾", 1,
                     new List<Option>{
                          new Option("A", "无","6"),
                          new Option("B", "视力",1,"6"),
@@ -3091,7 +3091,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","6"),
                     }
                 ),
-                 new Question("6", "最希望解决什么问题（最多选择三个）", false,true,
+                 new Question("6", "最希望解决什么问题（最多选择三个）", 1,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -3121,32 +3121,32 @@ namespace JZKFXT.Migrations
             #region 肢体试题
             List<Question> questions6 = new List<Question>
             {
-                new Question("1", "肢体是否有残缺", true,false,
+                new Question("1", "肢体是否有残缺", 1,
                     new List<Option>{
                          new Option("A", "有","2"),
                          new Option("B", "无","2"),
                     }
                 ),
-                new Question("2", "是否存在畸形", false,false,
+                new Question("2", "是否存在畸形", 1,
                     new List<Option>{
                          new Option("A", "有","2-1"),
                          new Option("B", "无","3"),
                     }
                 ),
-               new Question("2-1", "畸形能否用手矫正", false,false,
+               new Question("2-1", "畸形能否用手矫正", 1,
                     new List<Option>{
                          new Option("A", "能","3"),
                          new Option("B", "不能","3"),
                     }
                 ),
-               new Question("3", "是否卧床", false,false,
+               new Question("3", "是否卧床", 1,
                     new List<Option>{
                         //04家庭和家具-卧式家具（护理床）、06 33 06保护组织完整性的躺卧辅助器具（防压疮床垫）；06 33 04保护组织完整性的靠背垫和小靠背垫（体位垫）；07 33 09个人移动训练辅助器具（翻身床单）；05 27 18 个人紧急报警系统（呼叫器）；03 03 18夹克衫和长裤
                          new Option("A", "是","3-1"),
                          new Option("B", "否","3-4"),
                     }
                 ),
-               new Question("3-1", "手能否抓握", false,false,
+               new Question("3-1", "手能否抓握", 1,
                     new List<Option>{
                          new Option("A", "双手均无","3-2"),
                          //04 10 09扶手（床旁护栏）；08 21 03手动抓取钳（长柄取物器）
@@ -3155,7 +3155,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "双手均有","3-2",104100901,107330907,108210301,108210302),
                     }
                 ),
-               new Question("3-2", "能否保持坐位", false,false,
+               new Question("3-2", "能否保持坐位", 1,
                     new List<Option>{
                         //02 22 18护理者操纵的轮椅车-高靠背轮椅（带坐便/带轮椅桌）；选配（不选床的情况下）：04 10 03靠背（可调靠架）；04 30 垂直运送辅助器具-桌类（床用餐桌）；03 33 03洗浴躺椅
                          new Option("A", "能","3-3",102221801,104100301,104301901,1033303),
@@ -3166,7 +3166,7 @@ namespace JZKFXT.Migrations
 
                //3-1选A并3-2选A，问3-2-1
                //3-1选B并3-2选A：10 09 18盘子和碗（1100918）；10 09 21食物挡边(桌上防滑垫)（110092102）
-                new Question("3-2-1", "能否完成手到嘴的动作", false,false,
+                new Question("3-2-1", "能否完成手到嘴的动作", 1,
                     new List<Option>{
                         //08 18 03抓握装置（万能袖带），选配10 09食饮辅助器具(叉、勺、筷子)；10 09 18盘子和碗；10 09食饮辅助器具-杯子(斜口杯/吸管杯/大耳杯)；10 09 21食物挡边(桌上防滑垫)
                          new Option("A", "能","3-3",108180301,1100922,1100923,1100924,1100918,110092502,110092503,110092504,110092102),
@@ -3174,7 +3174,7 @@ namespace JZKFXT.Migrations
                     }
                 ),
 
-                new Question("3-3", "能否控制大小便", false,false,
+                new Question("3-3", "能否控制大小便", 1,
                     new List<Option>{
                         //03 24排尿装置(03 24 15女用穿戴式软尿壶/03 24 21男用穿戴式软尿壶)；03 12 33便盆
                          new Option("A", "能","4",1032415,1032421,1031233),
@@ -3182,34 +3182,34 @@ namespace JZKFXT.Migrations
                          new Option("B", "不能","4",1070903,1033021,1033018,10327,103310602),
                     }
                 ),
-                new Question("3-4", "能否行走", false,false,
+                new Question("3-4", "能否行走", 1,
                     new List<Option>{
                         //02 22 03双手驱动轮椅车（功能轮椅），选配02 23 03电动轮椅车（普通电动轮椅）；06 33 03保护组织完整性的座垫和衬垫（防压疮坐垫）；03 33 03盆浴或淋浴椅（有轮和无轮)-洗浴椅
                          new Option("A", "不能","3-4-1",102220302,102230304,1063303,103330302,103330303,103330304,103330305),
                          new Option("B", "能","3-4-7"),
                     }
                 ),
-                new Question("3-4-1", "双手能否将臀部支撑离开椅面", false,false,
+                new Question("3-4-1", "双手能否将臀部支撑离开椅面", 1,
                     new List<Option>{
                          new Option("A", "能","3-4-2"),
                          //07 33 09个人移动训练辅助器具（移乘板或移乘带）
                          new Option("B", "不能","3-4-2",107330902,107330903),
                     }
                 ),
-                new Question("3-4-2", "是否经常自行远距离出行", false,false,
+                new Question("3-4-2", "是否经常自行远距离出行", 1,
                     new List<Option>{
                         //02 18 09手摇三轮车，选配02 23 09机动轮椅车
                          new Option("A", "是","3-4-3",1021809,1022309),
                          new Option("B", "否","3-4-3"),
                     }
                 ),
-                new Question("3-4-3", "是否有站立需求", false,false,
+                new Question("3-4-3", "是否有站立需求", 1,
                     new List<Option>{
                          new Option("A", "有","3-4-3-1"),
                          new Option("B", "无","3-4-4"),
                     }
                 ),
-                new Question("3-4-3-1", "能否自行站立", false,false,
+                new Question("3-4-3-1", "能否自行站立", 1,
                     new List<Option>{
                         //并3-4-1选A：02 06 03框式助行架（阶梯框式助行架）
                         //并3-4-1选B：选配02 23 03电动轮椅车（站立电动轮椅）
@@ -3217,28 +3217,28 @@ namespace JZKFXT.Migrations
                          new Option("B", "是","3-4-4"),
                     }
                 ),
-                new Question("3-4-4", "能否控制大小便", false,false,
+                new Question("3-4-4", "能否控制大小便", 1,
                     new List<Option>{
                         //03 30 21成人一次性尿布(成人纸尿裤)；03 27 18尿收集系统
                          new Option("A", "不能","3-4-5",103302101,1032718),
                          new Option("B", "能","3-4-4-1"),
                     }
                 ),
-                new Question("3-4-4-1", "能否自行如厕", false,false,
+                new Question("3-4-4-1", "能否自行如厕", 1,
                     new List<Option>{
                          new Option("A", "能","3-4-4-1-1"),
                          //03 12 03坐便椅
                          new Option("B", "不能","3-4-5",1031203),
                     }
                 ),
-                new Question("3-4-4-1-1", "家中是否有坐便器", false,false,
+                new Question("3-4-4-1-1", "家中是否有坐便器", 1,
                     new List<Option>{
                          new Option("A", "有","3-4-5"),
                          //03 12 03坐便椅
                          new Option("B", "无","3-4-5",1031203),
                     }
                 ),
-                new Question("3-4-5", "手能否抓握", false,false,
+                new Question("3-4-5", "手能否抓握", 1,
                     new List<Option>{
                          new Option("A", "双手均无","3-4-5-1"),
                          //10 09 18盘子和碗；10 09 21食物挡边(桌上防滑垫)；08 21 03手动抓取钳（长柄取物器）；03 33 30带有把手、手柄和握把的洗澡布、海绵和刷子
@@ -3247,14 +3247,14 @@ namespace JZKFXT.Migrations
                          new Option("C", "双手均有","3-4-6",108210301),
                     }
                 ),
-                new Question("3-4-5-1", "能否完成手到嘴的动作", false,false,
+                new Question("3-4-5-1", "能否完成手到嘴的动作", 1,
                     new List<Option>{
                         //08 18 03抓握装置（万能袖带），选配10 09食饮辅助器具(叉、勺、筷子)；10 09 18盘子和碗；10 09食饮辅助器具-杯子(斜口杯/吸管杯/大耳杯)；10 09 21食物挡边(桌上防滑垫)；03 33 30带有把手、手柄和握把的洗澡布、海绵和刷子
                          new Option("A", "能","3-4-6",108180301,1100922,1100923,1100924,1100918,110092502,110092503,110092504,110092102,1033330),
                          new Option("B", "不能","3-4-6"),
                     }
                 ),
-                new Question("3-4-6", "能否自行穿脱衣物", false,false,
+                new Question("3-4-6", "能否自行穿脱衣物", 1,
                     new List<Option>{
                         //选配03 03 18夹克衫和长裤
                          new Option("A", "不能","4",1030318),
@@ -3263,13 +3263,13 @@ namespace JZKFXT.Migrations
                          new Option("C", "独立完成","4"),
                     }
                 ),
-                new Question("3-4-7", "能否长时间行走", false,false,
+                new Question("3-4-7", "能否长时间行走", 1,
                     new List<Option>{
                          new Option("A", "否","3-4-7-1"),
                          new Option("B", "是","3-4-7-3"),
                     }
                 ),
-                new Question("3-4-7-1", "手能否抓握", false,false,
+                new Question("3-4-7-1", "手能否抓握", 1,
                     new List<Option>{
                         //07 33 09个人移动训练辅助器具（移乘带）
                          new Option("A", "双手均无","3-4-7-2",1073309),
@@ -3279,7 +3279,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "双手均有","3-4-7-2",1020603),
                     }
                 ),
-                new Question("3-4-7-2", "是否需要经常出门", false,false,
+                new Question("3-4-7-2", "是否需要经常出门", 1,
                     new List<Option>{
                         //02 22 18护理者操纵的轮椅车（护理轮椅）
                          new Option("A", "否","3-4-8",102221802),
@@ -3287,7 +3287,7 @@ namespace JZKFXT.Migrations
                          new Option("B", "是","3-4-8",102220301,102230304),
                     }
                 ),
-                new Question("3-4-7-3", "行走时是否需要人搀扶", false,false,
+                new Question("3-4-7-3", "行走时是否需要人搀扶", 1,
                     new List<Option>{
                          new Option("A", "全程搀扶","3-4-7-3-1"),
                          //02 03单臂操作助行器（单脚手杖，选配肘拐，国内少用）
@@ -3295,7 +3295,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "无需搀扶","3-4-7-3-2"),
                     }
                 ),
-                new Question("3-4-7-3-1", "手的抓握能力", false,false,
+                new Question("3-4-7-3-1", "手的抓握能力", 1,
                     new List<Option>{
                         //02 06 12台式助行器
                          new Option("A", "双手均无","3-4-8",1020612),
@@ -3305,7 +3305,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "双手均有","3-4-8",1020603,1020312),
                     }
                 ),
-                new Question("3-4-7-3-2", "户外行走是否需要支撑", false,false,
+                new Question("3-4-7-3-2", "户外行走是否需要支撑", 1,
                     new List<Option>{
                         //02 06 06轮式助行器
                          new Option("A", "较多支撑","3-4-8",1020606),
@@ -3314,27 +3314,27 @@ namespace JZKFXT.Migrations
                          new Option("C", "无需支撑","3-4-8"),
                     }
                 ),
-                new Question("3-4-8", "家中是否有坐便器", false,false,
+                new Question("3-4-8", "家中是否有坐便器", 1,
                     new List<Option>{
                          new Option("A", "无","3-4-8-1"),
                          new Option("B", "有","3-4-8-2"),
                     }
                 ),
-                new Question("3-4-8-1", "如厕时能否蹲下", false,false,
+                new Question("3-4-8-1", "如厕时能否蹲下", 1,
                     new List<Option>{
                         //03 12 03坐便椅
                          new Option("A", "不能","3-4-9",1031203),
                          new Option("B", "能","3-4-9"),
                     }
                 ),
-                new Question("3-4-8-2", "如厕时起坐是否困难", false,false,
+                new Question("3-4-8-2", "如厕时起坐是否困难", 1,
                     new List<Option>{
                         //04 10 09扶手（上翻式前臂扶手、固定式前臂扶手）；选配03 12 12框架型加高的坐便器座，或03 12 18安装在坐便器上加高的坐便器座
                          new Option("A", "困难","3-4-9",104100902,104100903,1031212,1031218),
                          new Option("B", "不困难","3-4-9"),
                     }
                 ),
-                new Question("3-4-9", "洗浴时，能否长时间站立", false,false,
+                new Question("3-4-9", "洗浴时，能否长时间站立", 1,
                     new List<Option>{
                         //03 33 06防滑的浴盆垫、淋浴垫和带子（地面防滑垫）；04 10 09扶手（上翻式前臂扶手、固定式前臂扶手）
                          new Option("A", "能","3-4-10",103330601,104100902,104100903),
@@ -3342,21 +3342,21 @@ namespace JZKFXT.Migrations
                          new Option("B", "不能","3-4-10",1033303,103330601),
                     }
                 ),
-                new Question("3-4-10", "进食时，能否双手协调共同进食", false,false,
+                new Question("3-4-10", "进食时，能否双手协调共同进食", 1,
                     new List<Option>{
                          new Option("A", "能","3-4-10-1"),
                          //10 09 18盘子和碗；10 09 21食物挡边(桌上防滑垫)
                          new Option("B", "不能","3-4-11",1100918,110092102),
                     }
                 ),
-                new Question("3-4-10-1", "双手能否握紧勺子", false,false,
+                new Question("3-4-10-1", "双手能否握紧勺子", 1,
                     new List<Option>{
                          new Option("A", "能","3-4-11"),
                          //08 18 03抓握装置（万能袖带），选配10 09食饮辅助器具(叉、勺、筷子)；10 09 18盘子和碗；10 09食饮辅助器具-杯子(斜口杯/吸管杯/大耳杯)；10 09 21食物挡边(桌上防滑垫)
                          new Option("B", "不能","3-4-11",108180301,1100922,1100923,1100924,1100918,110092502,110092503,110092504,110092102),
                     }
                 ),
-                new Question("3-4-11", "能否自行穿脱衣物", false,false,
+                new Question("3-4-11", "能否自行穿脱衣物", 1,
                     new List<Option>{
                         //选配03 03 18夹克衫和长裤
                          new Option("A", "不能","4",1030318),
@@ -3365,7 +3365,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "独立完成","4"),
                     }
                 ),
-                new Question("4", "是否存在其他方面残疾", false,false,
+                new Question("4", "是否存在其他方面残疾", 1,
                     new List<Option>{
                          new Option("A", "无","5"),
                          new Option("B", "视力",1,"5"),
@@ -3373,7 +3373,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","5"),
                     }
                 ),
-                 new Question("5", "最希望解决什么问题（最多选择三个）", false,true,
+                 new Question("5", "最希望解决什么问题（最多选择三个）", 1,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -3404,19 +3404,15 @@ namespace JZKFXT.Migrations
             #region 假肢试题
             List<Question> questions7 = new List<Question>
             {
-                new Question("1", "患者有装配无假肢需求？", true,false,
+                new Question("1", "患者有装配无假肢需求？", 1,
                     new List<Option>{
                          new Option("A", "无装配需求",null),
                          new Option("B", "有装配需求","2"),
                     }
                 ),
                 //身体部位图片选择
-                 new Question("2", "在图中标出残肢部位（可多选）", false,false,
-                    new List<Option>{
-                         new Option("A", "正常","3"),
-                    }
-                ),
-                new Question("3", "身体状况？", false,false,
+                new Question("2", "在图中标出残肢部位（可多选）", 6),
+                new Question("3", "身体状况？", 1,
                     new List<Option>{
                          new Option("A", "正常","4"),
                          new Option("B", "体质极度衰弱","4"),
@@ -3430,7 +3426,7 @@ namespace JZKFXT.Migrations
                          new Option("J", "无法确定","4"),
                     }
                 ),
-                new Question("4", "残肢端状况？", false,false,
+                new Question("4", "残肢端状况？", 1,
                     new List<Option>{
                          new Option("A", "正常","5"),
                          new Option("B", "末梢血管循环不良","5"),
@@ -3445,11 +3441,7 @@ namespace JZKFXT.Migrations
                     }
                 ),
                 //图片上传
-                new Question("5", "直接拍照或上传残肢部位的照片至少一张：为残缺一侧肢体的特写照片（残缺部位裸露）", false,false,
-                    new List<Option>{
-                         new Option("A", "正常",null),
-                    }
-                ),
+                new Question("5", "直接拍照或上传残肢部位的照片至少一张：为残缺一侧肢体的特写照片（残缺部位裸露）", 7),
 
             };
             Exam exam7 = new Exam(7, "FuJuPingGu", "假肢", questions7);
@@ -3459,28 +3451,28 @@ namespace JZKFXT.Migrations
             #region 无障碍试题
             List<Question> questions8 = new List<Question>
             {
-                 new Question("1", "现在居住类型?", true,false,
+                 new Question("1", "现在居住类型?", 1,
                     new List<Option>{
                          new Option("A", "城镇","2"),
                          new Option("B", "乡村","2"),
                          new Option("C", "其他","2"),
                     }
                 ),
-                 new Question("2", "现居住房屋所有情况?", false,false,
+                 new Question("2", "现居住房屋所有情况?", 1,
                     new List<Option>{
                          new Option("A", "自有","3"),
                          new Option("B", "租借","3"),
                          new Option("C", "其他","3"),
                     }
                 ),
-                 new Question("3", "现居住楼层?", false,false,
+                 new Question("3", "现居住楼层?", 1,
                     new List<Option>{
                          new Option("A", "地下室","3"),
                          new Option("B", "一层","3"),
                          new Option("C", "二层及以上","3"),
                     }
                 ),
-                 new Question("4", "现居住情况?", false,false,
+                 new Question("4", "现居住情况?", 1,
                     new List<Option>{
                          new Option("A", "独居","5"),
                          new Option("B", "与家人同住","5"),
@@ -3488,7 +3480,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其他","5"),
                     }
                 ),
-                 new Question("5", "家庭中主要活动场所？(多选)", false,true,
+                 new Question("5", "家庭中主要活动场所？(多选)", 2,
                     new List<Option>{
                          new Option("A", "客厅","6"),
                          new Option("B", "卫生间","6"),
@@ -3497,7 +3489,7 @@ namespace JZKFXT.Migrations
                          new Option("E", "其他","6"),
                     }
                 ),
-                new Question("6", "您认为在家庭生活中存在困难较多的区域（多选）", false,true,
+                new Question("6", "您认为在家庭生活中存在困难较多的区域（多选）", 2,
                     new List<Option>{
                          new Option("A", "入户通道","7"),
                          new Option("B", "客厅","8"),
@@ -3509,7 +3501,7 @@ namespace JZKFXT.Migrations
                          new Option("H", "无",null),
                     }
                 ),
-                new Question("7", "您认为入户通道存在的问题（多选）", false,true,true,
+                new Question("7", "您认为入户通道存在的问题（多选）", 5,
                     new List<Option>{
                          new Option("A", "杂物堆放或空间不足","7-A"),
                          new Option("B", "门宽不足，或有门槛或高低落差","7-B"),
@@ -3520,14 +3512,14 @@ namespace JZKFXT.Migrations
                          new Option("G", "其他","7-G"),
                     }
                 ),
-                new Question("7-A", null, false,true,
+                new Question("7-A", null, 2,
                     new List<Option>{
                          new Option("A", "清理杂物",null),
                          new Option("B", "更换入门方式（如人车（轮椅）分离等）",null),
                          new Option("C", "门口增设平台",null),
                     }
                 ),
-                new Question("7-B", null, false,true,
+                new Question("7-B", null, 2,
                     new List<Option>{
                          new Option("A", "改变进门方式（如更换为快拆轴轮椅（带后小轮）、教进门技巧、下轮椅进门、教过门槛技巧等）",null),
                          new Option("B", "增加门宽",null),
@@ -3535,25 +3527,25 @@ namespace JZKFXT.Migrations
                          new Option("D", "去除门槛",null),
                     }
                 ),
-                new Question("7-C", null, false,true,
+                new Question("7-C", null, 2,
                     new List<Option>{
                          new Option("A", "更换开门方式（如请人协助等）",null),
                          new Option("B", "更换易开关门",null),
                     }
                 ),
-                new Question("7-D", null, false,true,
+                new Question("7-D", null, 2,
                     new List<Option>{
                          new Option("A", "增加光线",null),
                          new Option("B", "改声光控灯",null),
                     }
                 ),
-                new Question("7-E", null, false,true,
+                new Question("7-E", null, 2,
                     new List<Option>{
                          new Option("A", "增加扶手",null),
                          new Option("B", "更换扶手",null),
                     }
                 ),
-                new Question("7-F", null, false,true,
+                new Question("7-F", null, 2,
                     new List<Option>{
                          new Option("A", "增加把手",null),
                          new Option("B", "更换把手",null),
@@ -3563,7 +3555,7 @@ namespace JZKFXT.Migrations
                          new Option("F", "增加醒目标志（视力障碍）",null),
                     }
                 ),
-                new Question("7-G", "自填",true),
+                new Question("7-G", "自填",3),
 
             };
             Exam exam8 = new Exam(8, "FuJuPingGu", "无障碍", questions8);

@@ -9,6 +9,10 @@ namespace JZKFXT.Models
 {
     /// <summary>
     /// 测试题目
+    /// type：1单选 2多选 3填空 4单选下的选择 5多选下的选择 6身体部位图片选择 7上传图片
+    /// 题目：1Options 2Options 3无 4Options 5Options 6前台js 7前台input
+    /// 答案：1OptionIds 2OptionIds 3Other 4OptionIds 5OptionIds 6Options 7Others
+    /// 
     /// </summary>
     public class Question
     {
@@ -16,28 +20,18 @@ namespace JZKFXT.Models
         {
         }
 
-        public Question(string questionNo, string questionText, bool isFirst, bool multiple, ICollection<Option> options)
+        public Question(string questionNo, string questionText, int type, ICollection<Option> options)
         {
             QuestionNo = questionNo;
             QuestionText = questionText;
-            IsFirst = isFirst;
-            Multiple = multiple;
+            Type = type;
             Options = options;
         }
-        public Question(string questionNo, string questionText, bool isFirst, bool multiple, bool nextMultiple, ICollection<Option> options)
+        public Question(string questionNo, string questionText, int type)
         {
             QuestionNo = questionNo;
             QuestionText = questionText;
-            IsFirst = isFirst;
-            Multiple = multiple;
-            NextMultiple = nextMultiple;
-            Options = options;
-        }
-        public Question(string questionNo, string questionText,bool isWrite)
-        {
-            QuestionNo = questionNo;
-            QuestionText = questionText;
-            IsWrite = isWrite;
+            Type = type;
         }
         //[DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
         public int ID { get; set; }
@@ -54,21 +48,9 @@ namespace JZKFXT.Models
         /// </summary>
         public string QuestionText { get; set; }
         /// <summary>
-        /// 是否第一个问题
+        /// 题目类型编号
         /// </summary>
-        public bool IsFirst { get; set; }
-        /// <summary>
-        /// 是否多选
-        /// </summary>
-        public bool Multiple { get; set; }
-        /// <summary>
-        /// 是否多选
-        /// </summary>
-        public bool IsWrite { get; set; }
-        /// <summary>
-        /// 是否进一步多选
-        /// </summary>
-        public bool NextMultiple { get; set; }
+        public int Type { get; set; }
         /// <summary>
         /// 选项列表
         /// </summary>

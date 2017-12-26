@@ -15,10 +15,10 @@ namespace JZKFXT.Models
         {
         }
 
-        public ExamRecord(int? examID, int disabledInfoID, ExamState state)
+        public ExamRecord(int? examID, int disabledID, ExamState state)
         {
             ExamID = examID;
-            DisabledInfoID = disabledInfoID;
+            DisabledID = disabledID;
             State = state;
         }
 
@@ -30,7 +30,7 @@ namespace JZKFXT.Models
         /// <summary>
         /// 评估对象ID
         /// </summary>
-        public int DisabledInfoID { get; set; }
+        public int DisabledID { get; set; }
         /// <summary>
         /// 评估状态
         /// </summary>
@@ -42,7 +42,7 @@ namespace JZKFXT.Models
         //[JsonIgnore]
         public virtual Exam Exam { get; set; }
         [JsonIgnore]
-        public virtual DisabledInfo DisabledInfo { get; set; }
+        public virtual Disabled Disabled { get; set; }
 
     }
 }
