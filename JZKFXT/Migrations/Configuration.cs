@@ -3501,7 +3501,7 @@ namespace JZKFXT.Migrations
                          new Option("H", "无",null),
                     }
                 ),
-                new Question("7", "您认为入户通道存在的问题（多选）", 5,
+                new Question("7", "您认为入户通道存在的问题（多选）", 4,
                     new List<Option>{
                          new Option("A", "杂物堆放或空间不足","7-A"),
                          new Option("B", "门宽不足，或有门槛或高低落差","7-B"),
@@ -3555,7 +3555,7 @@ namespace JZKFXT.Migrations
                          new Option("F", "增加醒目标志（视力障碍）",null),
                     }
                 ),
-                new Question("7-G", "自填",3),
+                new Question("7-G", "自填",5),
 
             };
             Exam exam8 = new Exam(8, "FuJuPingGu", "无障碍", questions8);

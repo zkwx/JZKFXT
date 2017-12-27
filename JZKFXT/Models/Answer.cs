@@ -7,7 +7,7 @@ using System.Web;
 namespace JZKFXT.Models
 {
     /// <summary>
-    /// 答案：1OptionIds 2OptionIds 3Other 4OptionIds 5OptionIds 6Options 7Others
+    /// 答案：1OptionIds 2OptionIds 3OptionIds 4OptionIds 5Other 6Options 7Others
     /// </summary>
     public class Answer
     {

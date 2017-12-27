@@ -9,9 +9,9 @@ namespace JZKFXT.Models
 {
     /// <summary>
     /// 测试题目
-    /// type：1单选 2多选 3填空 4单选下的选择 5多选下的选择 6身体部位图片选择 7上传图片
-    /// 题目：1Options 2Options 3无 4Options 5Options 6前台js 7前台input
-    /// 答案：1OptionIds 2OptionIds 3Other 4OptionIds 5OptionIds 6Options 7Others
+    /// type：1单选 2多选 3单选下的选择 4多选下的选择 5填空  6身体部位图片选择 7上传图片
+    /// 题目：1Options 2Options 3Options 4Options 5无  6前台js 7前台input
+    /// 答案：1OptionIds 2OptionIds 3OptionIds 4OptionIds 5Other 6Options 7Others
     /// 
     /// </summary>
     public class Question
