@@ -3569,8 +3569,8 @@ namespace JZKFXT.Migrations
                 new ExamRecord(2, 2,ExamState.´ýÆÀ¹À),
                 new ExamRecord(3, 3,ExamState.´ýÆÀ¹À),
                 new ExamRecord(4, 4,ExamState.´ýÆÀ¹À),
-                new ExamRecord(1, 7,ExamState.´ýÆÀ¹À),
-                new ExamRecord(1, 8,ExamState.´ýÆÀ¹À),
+                new ExamRecord(7, 1,ExamState.´ýÆÀ¹À),
+                new ExamRecord(8, 1,ExamState.´ýÆÀ¹À),
             };
             db.ExamRecords.AddRange(examRecords);
         }
