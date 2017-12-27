@@ -208,6 +208,7 @@
     <Compile Include="Controllers\API\AnswersController.cs" />
     <Compile Include="Controllers\API\AssistiveDevicesController.cs" />
     <Compile Include="Controllers\API\DisabilityReasonsController.cs" />
+    <Compile Include="Controllers\API\ExamRecordsController.cs" />
     <Compile Include="Controllers\API\ExamsController.cs" />
     <Compile Include="Controllers\API\FileController.cs" />
     <Compile Include="Controllers\API\OptionsController.cs" />
@@ -215,7 +216,7 @@
     <Compile Include="Controllers\API\QuestionsController.cs" />
     <Compile Include="Controllers\API\CategoriesController.cs" />
     <Compile Include="Controllers\API\DegreesController.cs" />
-    <Compile Include="Controllers\API\DisabledInfoesController.cs" />
+    <Compile Include="Controllers\API\DisabledsController.cs" />
     <Compile Include="Controllers\API\NextsController.cs" />
     <Compile Include="Controllers\API\RehabilitationsController.cs" />
     <Compile Include="Controllers\API\RolesController.cs" />

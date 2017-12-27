@@ -16,14 +16,13 @@ namespace JZKFXT.Models
         {
         }
 
-        public Disabled_Detail(int disabledID, int categoryID, int degreeID, int? rehabilitationID, int? nextID, string targetExamName)
+        public Disabled_Detail(int disabledID, int categoryID, int degreeID, int? rehabilitationID, int? nextID)
         {
             DisabledID = disabledID;
             CategoryID = categoryID;
             DegreeID = degreeID;
             RehabilitationID = rehabilitationID;
             NextID = nextID;
-            TargetExamName = targetExamName;
         }
 
         public int ID { get; set; }
@@ -31,7 +30,6 @@ namespace JZKFXT.Models
         public int DegreeID { get; set; }//残疾等级
         public int? RehabilitationID { get; set; }//康复需求ID
         public int? NextID { get; set; }//服务走向
-        public string TargetExamName { get; set; }//目标评估题目
 
         public int DisabledID { get; set; }//残疾人基本信息ID
 

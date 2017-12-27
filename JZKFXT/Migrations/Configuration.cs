@@ -157,7 +157,7 @@ namespace JZKFXT.Migrations
             #endregion
 
             #region ²Ð¼²ÈËÐÅÏ¢
-            List<Disabled> Disabledes = new List<Disabled> {
+            List<Disabled> Disableds = new List<Disabled> {
                 new Disabled
                 (
                     "È¨×ÓºÀ",
@@ -257,14 +257,14 @@ namespace JZKFXT.Migrations
                     DateTime.Today
                 )
             };
-            db.Disabledes.AddRange(Disabledes);
+            db.Disableds.AddRange(Disableds);
             #endregion
             db.SaveChanges();
 
             //¿µ¸´ÐèÇó
             List<Disabled_Detail> Disabled_Details = new List<Disabled_Detail> {
-                new Disabled_Detail(1, 1, 1, 1010102, 3, "ÊÓÁ¦"),
-                new Disabled_Detail(2, 2, 2, 1020102, 3, "ÌýÁ¦"),
+                new Disabled_Detail(1, 1, 1, 1010102, 3),
+                new Disabled_Detail(2, 2, 2, 1020102, 3),
             };
             db.Disabled_Details.AddRange(Disabled_Details);
             db.SaveChanges();
@@ -3565,10 +3565,12 @@ namespace JZKFXT.Migrations
 
             List<ExamRecord> examRecords = new List<ExamRecord>
             {
-                new ExamRecord(1, 1,ExamState.´ýÉóºË),
-                new ExamRecord(2, 2,ExamState.´ýÉóºË),
-                new ExamRecord(3, 3,ExamState.´ýÉóºË),
-                new ExamRecord(4, 4,ExamState.´ýÉóºË),
+                new ExamRecord(1, 1,ExamState.´ýÆÀ¹À),
+                new ExamRecord(2, 2,ExamState.´ýÆÀ¹À),
+                new ExamRecord(3, 3,ExamState.´ýÆÀ¹À),
+                new ExamRecord(4, 4,ExamState.´ýÆÀ¹À),
+                new ExamRecord(1, 7,ExamState.´ýÆÀ¹À),
+                new ExamRecord(1, 8,ExamState.´ýÆÀ¹À),
             };
             db.ExamRecords.AddRange(examRecords);
         }

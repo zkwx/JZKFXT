@@ -44,7 +44,7 @@ namespace JZKFXT.Controllers.API
                         ID = a.ID,
                         QuestionNo = a.QuestionNo,
                         QuestionText = a.QuestionText,
-                        Answers = new List<Answer>(),
+                        Answers = new List<int>(),
                         //根据选项查询下一题 键值对
                         QueryOptions = a.Options.ToDictionary(
                             b => b.ID,
@@ -60,7 +60,8 @@ namespace JZKFXT.Controllers.API
                             value = b.OptionText + "." + b.ContentText,
                         })
                     }
-                )
+                ),
+                QuestionsFlow=new List<int>()
             };
             return Ok(result);
         }

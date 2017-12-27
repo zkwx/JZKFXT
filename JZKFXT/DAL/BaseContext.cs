@@ -26,7 +26,7 @@ namespace JZKFXT.DAL
         public DbSet<Degree> Degrees { get; set; }
         public DbSet<Next> Nexts { get; set; }
         public DbSet<Rehabilitation> Rehabilitations { get; set; }
-        public DbSet<Disabled> Disabledes { get; set; }
+        public DbSet<Disabled> Disableds { get; set; }
         public DbSet<Disabled_Detail> Disabled_Details { get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<Question> Questions { get; set; }

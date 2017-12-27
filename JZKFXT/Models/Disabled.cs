@@ -50,13 +50,9 @@ namespace JZKFXT.Models
         public int Weight { get; set; }//体重
         public string Email { get; set; }//Email
         public string Address { get; set; }//地址
-        public string TargetExamName { get; set; }//目标评估名称
 
-
-
-
+        public string DisabledSignUrl { get; set; }//残疾人或监护人签字
         public string UserSignUrl { get; set; }//精准康复服务小组人员签字
-        public string PatientSignUrl { get; set; }//残疾人或监护人签字
         public DateTime? UpdateTime { get; set; }//修改时间
         public DateTime? CreateTime { get; set; }//创建时间
 

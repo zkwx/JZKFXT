@@ -93,14 +93,16 @@ namespace JZKFXT.Controllers.API
             {
                 return BadRequest(ModelState);
             }
-
-            db.Answers.AddRange(answers);
             var answer = answers[0];
-            ExamRecord record = new ExamRecord {
-                DisabledID= answer.DisabledID,
-                ExamID= answer.ExamID
-            };
-            db.ExamRecords.Add(record);
+            var delAnswers = db.Answers.Where(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
+            db.Answers.RemoveRange(delAnswers);
+            db.Answers.AddRange(answers);
+
+            var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
+            if (examRecord!=null)
+            {
+                examRecord.State = ExamState.待审核;
+            }
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);

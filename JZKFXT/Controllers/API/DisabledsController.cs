@@ -17,16 +17,16 @@ using System.Linq.Expressions;
 
 namespace JZKFXT.Controllers
 {
-    public class DisabledesController : ApiController
+    public class DisabledsController : ApiController
     {
         private BaseContext db = new BaseContext();
 
-        // GET: api/Disabledes
-        public IHttpActionResult GetDisabledes(string examBy = null, string name = null, string listType = null)
+        // GET: api/Disableds
+        public IHttpActionResult GetDisableds(string examBy = null, string name = null, string listType = null)
         {
             try
             {
-                var list = db.Disabledes.AsQueryable();
+                var list = db.Disableds.AsQueryable();
                 if (examBy == "type")
                 {
                     var DisabledIds = db.ExamRecords.Where(a => a.Exam.Type == name && a.Evaluated == false).Select(a => a.DisabledID);
@@ -77,11 +77,11 @@ namespace JZKFXT.Controllers
             }
         }
 
-        // GET: api/Disabledes/5
+        // GET: api/Disableds/5
         [ResponseType(typeof(Disabled))]
         public async Task<IHttpActionResult> GetDisabled(int id)
         {
-            Disabled Disabled = await db.Disabledes.FindAsync(id);
+            Disabled Disabled = await db.Disableds.FindAsync(id);
             if (Disabled == null)
             {
                 return NotFound();
@@ -90,7 +90,7 @@ namespace JZKFXT.Controllers
             return Ok(Disabled);
         }
 
-        // PUT: api/Disabledes/5
+        // PUT: api/Disableds/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutDisabled(int id, Disabled Disabled)
         {
@@ -105,23 +105,31 @@ namespace JZKFXT.Controllers
             }
             try
             {
-                if (Disabled.Disabled_Details != null)
+                string ExamName = null;
+                //康复入户修改
+                if (Disabled.Need)
                 {
                     foreach (var item in Disabled.Disabled_Details)
                     {
                         if (item == null) continue;
-                        //条件1：功能障碍者在“精准康复入户”模块中康复需求选择“辅助器具适配及服务”、“辅助器具适配及适应训练”选项，且服务走向为“上门评估”的，其全部数据自动转到“辅具上门评估与适配模块”；
-                        if (string.IsNullOrEmpty(item.TargetExamName) && item.Rehabilitation.FuJu && item.NextID == 3)
-                        {
-                            var categoryName = db.Categories.Find(item.CategoryID).Name;
-                            Disabled.TargetExamName = categoryName;
-                        }
-                        EntityStateHelper.BindEntityState(db, item);
                         item.DisabledID = Disabled.ID;
+                        EntityStateHelper.BindEntityState(db, item);
+
+                        var r = db.Rehabilitations.Find(item.RehabilitationID);
+                        //条件1：功能障碍者在“精准康复入户”模块中康复需求选择“辅助器具适配及服务”、“辅助器具适配及适应训练”选项，且服务走向为“上门评估”的，其全部数据自动转到“辅具上门评估与适配模块”；
+                        if (r.FuJu && item.NextID == 3)
+                        {
+                            //优先做肢体试题
+                            if (ExamName != "肢体")
+                            {
+                                ExamName = db.Categories.Find(item.CategoryID).Name;
+                            }
+                        }
                     }
                 }
                 db.Entry(Disabled).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                SaveTargetExam(Disabled.ID, ExamName, ExamState.待评估);
             }
             catch (Exception ex)
             {
@@ -138,7 +146,7 @@ namespace JZKFXT.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Disabledes
+        // POST: api/Disableds
         [ResponseType(typeof(Disabled))]
         public async Task<IHttpActionResult> PostDisabled(Disabled Disabled)
         {
@@ -148,6 +156,7 @@ namespace JZKFXT.Controllers
                 {
                     return BadRequest(ModelState);
                 }
+                string ExamName=null;
                 //康复入户添加
                 if (Disabled.Need)
                 {
@@ -155,17 +164,20 @@ namespace JZKFXT.Controllers
                     {
                         if (item == null) continue;
                         var r = db.Rehabilitations.Find(item.RehabilitationID);
-                        if (string.IsNullOrEmpty(item.TargetExamName) && r.FuJu && item.NextID == 3)
+                        if (r.FuJu && item.NextID == 3)
                         {
-                            var categoryName = db.Categories.Find(item.CategoryID).Name;
-                            Disabled.TargetExamName = categoryName;
+                            //优先做肢体试题
+                            if (ExamName != "肢体")
+                            {
+                                ExamName = db.Categories.Find(item.CategoryID).Name;
+                            }
                         }
                     }
                 }
                 //更新到下一评估试卷
-                db.Disabledes.Add(Disabled);
+                db.Disableds.Add(Disabled);
                 await db.SaveChangesAsync();
-                SaveTargetExam(Disabled);
+                SaveTargetExam(Disabled.ID, ExamName,ExamState.待评估);
             }
             catch (Exception ex)
             {
@@ -174,17 +186,17 @@ namespace JZKFXT.Controllers
             return CreatedAtRoute("DefaultApi", new { id = Disabled.ID }, Disabled);
         }
 
-        // DELETE: api/Disabledes/5
+        // DELETE: api/Disableds/5
         [ResponseType(typeof(Disabled))]
         public async Task<IHttpActionResult> DeleteDisabled(int id)
         {
-            Disabled Disabled = await db.Disabledes.FindAsync(id);
+            Disabled Disabled = await db.Disableds.FindAsync(id);
             if (Disabled == null)
             {
                 return NotFound();
             }
 
-            db.Disabledes.Remove(Disabled);
+            db.Disableds.Remove(Disabled);
             await db.SaveChangesAsync();
 
             return Ok(Disabled);
@@ -201,7 +213,7 @@ namespace JZKFXT.Controllers
 
         private bool DisabledExists(int id)
         {
-            return db.Disabledes.Count(e => e.ID == id) > 0;
+            return db.Disableds.Count(e => e.ID == id) > 0;
         }
 
         private string BindDesc(Disabled d)
@@ -228,16 +240,16 @@ namespace JZKFXT.Controllers
                 throw ex;
             }
         }
-        private void SaveTargetExam(Disabled Disabled)
+        private void SaveTargetExam(int disabledID, string ExamName,ExamState state)
         {
 
-            if (string.IsNullOrEmpty(Disabled.TargetExamName))
+            if (!string.IsNullOrEmpty(ExamName))
             {
-                Exam exam = db.Exams.Single(a => a.Name == Disabled.TargetExamName);
-                bool exist = db.ExamRecords.Count(a => a.Exam.Name == Disabled.TargetExamName && a.DisabledID == Disabled.ID) > 0;
+                Exam exam = db.Exams.Single(a => a.Name == ExamName);
+                bool exist = db.ExamRecords.Count(a => a.Exam.Name == ExamName && a.DisabledID == disabledID) > 0;
                 if (!exist)
                 {
-                    ExamRecord examRecord = new ExamRecord(exam.ID, Disabled.ID,ExamState.待评估);
+                    ExamRecord examRecord = new ExamRecord(exam.ID, disabledID, state);
                     db.ExamRecords.Add(examRecord);
                     db.SaveChanges();
                 }

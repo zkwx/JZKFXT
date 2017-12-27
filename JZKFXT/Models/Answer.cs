@@ -15,9 +15,9 @@ namespace JZKFXT.Models
         {
         }
 
-        public Answer(int DisabledID, int examID, string questionNo, string optionIDs, string other)
+        public Answer(int disabledID, int examID, string questionNo, string optionIDs, string other)
         {
-            DisabledID = DisabledID;
+            DisabledID = disabledID;
             ExamID = examID;
             QuestionNo = questionNo;
             OptionIDs = optionIDs;
