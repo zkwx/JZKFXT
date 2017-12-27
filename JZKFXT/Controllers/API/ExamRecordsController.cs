@@ -28,15 +28,15 @@ namespace JZKFXT.Controllers.API
                 var result = list.Select(
                 a => new
                 {
-                    id = a.Disabled.ID,
-                    name = a.Disabled.Name,
-                    sex = a.Disabled.Sex,
-                    category = a.Disabled.Category.Name,
-                    degree = a.Disabled.Degree.Name,
-                    exam = a.Exam,
-                    state = a.State,
-                }).GroupBy(a => a.exam.Name);
-                return Ok(result.OrderByDescending(a => a.FirstOrDefault().id));
+                    ID = a.Disabled.ID,
+                    Name = a.Disabled.Name,
+                    Sex = a.Disabled.Sex,
+                    Category = a.Disabled.Category.Name,
+                    Degree = a.Disabled.Degree.Name,
+                    Exam = a.Exam,
+                    State = a.State,
+                }).GroupBy(a => a.Exam.Name);
+                return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
             }
             else if (examBy == "name")
             {
@@ -44,15 +44,15 @@ namespace JZKFXT.Controllers.API
                 var result = list.Select(
                 a => new
                 {
-                    id = a.Disabled.ID,
-                    name = a.Disabled.Name,
-                    sex = a.Disabled.Sex,
-                    category = a.Disabled.Category.Name,
-                    degree = a.Disabled.Degree.Name,
-                    exam = a.Exam,
-                    state = a.State,
+                    ID = a.Disabled.ID,
+                    Name = a.Disabled.Name,
+                    Sex = a.Disabled.Sex,
+                    Category = a.Disabled.Category.Name,
+                    Degree = a.Disabled.Degree.Name,
+                    Exam = a.Exam,
+                    State = a.State,
                 });
-                return Ok(result.OrderByDescending(a => a.id));
+                return Ok(result.OrderByDescending(a => a.ID));
             }
             return Ok(list);
         }

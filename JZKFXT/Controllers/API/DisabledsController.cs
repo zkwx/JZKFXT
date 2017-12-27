@@ -27,38 +27,6 @@ namespace JZKFXT.Controllers
             try
             {
                 var list = db.Disableds.AsQueryable();
-                if (examBy == "type")
-                {
-                    var DisabledIds = db.ExamRecords.Where(a => a.Exam.Type == name && a.Evaluated == false).Select(a => a.DisabledID);
-                    list = list.Where(a => DisabledIds.Contains(a.ID));
-                    var result = list.Select(
-                    a => new
-                    {
-                        ID = a.ID,
-                        Name = a.Name,
-                        Sex = a.Sex,
-                        Category = a.Category.Name,
-                        Degree = a.Degree.Name,
-                        CurrentExam = a.ExamRecords.FirstOrDefault(b => b.Exam.Type == name)
-                    }).GroupBy(a => a.CurrentExam.Exam.Name);
-                    return Ok(result);
-                }
-                else if (examBy == "name")
-                {
-                    var DisabledIds = db.ExamRecords.Where(a => a.Exam.Name == name && a.Evaluated == false).Select(a => a.DisabledID);
-                    list = list.Where(a => DisabledIds.Contains(a.ID));
-                    var result = list.Select(
-                    a => new
-                    {
-                        ID = a.ID,
-                        Name = a.Name,
-                        Sex = a.Sex,
-                        Category = a.Category.Name,
-                        Degree = a.Degree.Name,
-                        CurrentExam = a.ExamRecords.FirstOrDefault(b => b.Exam.Name == name)
-                    });
-                    return Ok(result.OrderByDescending(a => a.ID));
-                }
                 var result2 = list.Select(
                     a => new
                     {
