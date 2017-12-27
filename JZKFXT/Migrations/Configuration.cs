@@ -3467,9 +3467,9 @@ namespace JZKFXT.Migrations
                 ),
                  new Question("3", "现居住楼层?", 1,
                     new List<Option>{
-                         new Option("A", "地下室","3"),
-                         new Option("B", "一层","3"),
-                         new Option("C", "二层及以上","3"),
+                         new Option("A", "地下室","4"),
+                         new Option("B", "一层","4"),
+                         new Option("C", "二层及以上","4"),
                     }
                 ),
                  new Question("4", "现居住情况?", 1,

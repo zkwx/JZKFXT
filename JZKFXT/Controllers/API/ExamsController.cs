@@ -44,6 +44,7 @@ namespace JZKFXT.Controllers.API
                         ID = a.ID,
                         QuestionNo = a.QuestionNo,
                         QuestionText = a.QuestionText,
+                        Type = a.Type,
                         Answers = new List<int>(),
                         //根据选项查询下一题 键值对
                         QueryOptions = a.Options.ToDictionary(
