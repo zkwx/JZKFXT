@@ -2586,7 +2586,7 @@ namespace JZKFXT.Migrations
                          new Option("B", "不需要","2",102030307),
                     }
                 ),
-                new Question("2", "患侧肢体畸形状况（多选）", 1,
+                new Question("2", "患侧肢体畸形状况（多选）", 2,
                     new List<Option>{
                          //01 06 21肩矫形器-肩部吊带
                          new Option("A", "肩膀下沉","3", 101062107),
@@ -2666,7 +2666,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","9"),
                     }
                 ),
-                new Question("9", "最希望解决什么问题（最多选择三个）", 1,
+                new Question("9", "最希望解决什么问题（最多选择三个）", 2,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -2779,7 +2779,7 @@ namespace JZKFXT.Migrations
                          new Option("B", "存在畸形","2-2-1"),
                     }
                 ),
-                new Question("2-2-1", "存在畸形部位（多选）", 1,
+                new Question("2-2-1", "存在畸形部位（多选）", 2,
                     new List<Option>{
                          //上肢矫形器
                          new Option("A", "上肢畸形","2-3",10106),
@@ -2882,7 +2882,7 @@ namespace JZKFXT.Migrations
                          new Option("B", "存在畸形","3-2-1"),
                     }
                 ),
-                new Question("3-2-1", "存在畸形部位（多选）", 1,
+                new Question("3-2-1", "存在畸形部位（多选）", 2,
                     new List<Option>{
                          //上肢矫形器
                          new Option("A", "上肢畸形","3-3",10106),
@@ -2930,7 +2930,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","7"),
                     }
                 ),
-                 new Question("7", "最希望解决什么问题（最多选择三个）", 1,
+                 new Question("7", "最希望解决什么问题（最多选择三个）",2,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -3091,7 +3091,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","6"),
                     }
                 ),
-                 new Question("6", "最希望解决什么问题（最多选择三个）", 1,
+                 new Question("6", "最希望解决什么问题（最多选择三个）", 2,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -3373,7 +3373,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","5"),
                     }
                 ),
-                 new Question("5", "最希望解决什么问题（最多选择三个）", 1,
+                 new Question("5", "最希望解决什么问题（最多选择三个）", 2,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
