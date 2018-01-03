@@ -2389,7 +2389,7 @@ namespace JZKFXT.Migrations
                         new Option("B", "不能", "1-1-2"),
                     }
                 ),
-                new Question("1-1-1", "希望实现何种功能（多选）", 1,
+                new Question("1-1-1", "希望实现何种功能（多选）", 2,
                     new List<Option>{
                         //02 39 03盲杖
                         new Option("A", "引导出行", "2",1023903),
@@ -2405,7 +2405,7 @@ namespace JZKFXT.Migrations
                         new Option("F", "学习书写", "2", 1051203, 1051212,1051218),
                     }
                 ),
-                new Question("1-1-2", "希望实现何种功能（多选）", 1,
+                new Question("1-1-2", "希望实现何种功能（多选）", 2,
                     new List<Option>{
                         //02 39 03盲杖
                         new Option("A", "引导出行", "2", 1023903),
@@ -2413,7 +2413,7 @@ namespace JZKFXT.Migrations
                         new Option("B", "时间提醒", "2", 105271204,105271205),
                     }
                 ),
-                new Question("1-2", "希望看近物还是看远处（多选）", 1,
+                new Question("1-2", "希望看近物还是看远处（多选）", 2,
                     new List<Option>{
                         new Option("A", "看近", "1-2-1"),
                         //05 03 12双筒望远镜和单筒望远镜
@@ -2428,7 +2428,7 @@ namespace JZKFXT.Migrations
                         new Option("B", "电子", "1-3", 105030902,105030918,105030919,105030920,105030921,105030922,105030923,105030924,105030925,105030926),
                     }
                 ),
-                new Question("1-3", "希望实现何种功能（多选）", 1,
+                new Question("1-3", "希望实现何种功能（多选）", 2,
                     new List<Option>{
                         //05 30 21 字符阅读器；05 30 18阅读框和版面限定器；05 12 06书写板、绘图板和绘画板；05 12 15打字机
                         new Option("A", "阅读学习", "2", 1053021,1053018,1051206,1051215),
