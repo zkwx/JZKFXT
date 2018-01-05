@@ -3557,6 +3557,265 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("7-G", "自填",5),
 
+                new Question("8", "您认为客厅存在的问题（多选）", 4,
+                    new List<Option>{
+                         new Option("A", "地面杂乱、家具摆放不当或空间不足","8-A"),
+                         new Option("B", "地面不平整或不防滑","8-B"),
+                         new Option("C", "光线不足","8-C"),
+                         new Option("D", "使用开关/插座困难","8-D"),
+                         new Option("E", "无扶手或扶手不合适","8-E"),
+                         new Option("F", "其他","8-F"),
+                    }
+                ),
+
+                 new Question("8-A", null, 2,
+                    new List<Option>{
+                         new Option("A", "清理地面物品",null),
+                         new Option("B", "家具和物品重新摆放",null),
+                    }
+                ),
+                 new Question("8-B", null, 2,
+                    new List<Option>{
+                         new Option("A", "平整地面（如有地毯去除地毯）",null),
+                         new Option("B", "使用防滑垫",null),
+                         new Option("C", "地面防滑处理",null),
+                    }
+                ),
+                 new Question("8-C", null, 2,
+                    new List<Option>{
+                         new Option("A", "加灯光",null),
+                         new Option("B", "对重要物品加醒目标志",null),
+                    }
+                ),
+                 new Question("8-D", null, 2,
+                    new List<Option>{
+                         new Option("A", "更改开关/插座位置",null),
+                         new Option("B", "改变使用开关/插座方式（如用长柄取物器开关等）",null),
+                         new Option("C", "增加醒目标志",null),
+                    }
+                ),
+                 new Question("8-E", null, 2,
+                    new List<Option>{
+                         new Option("A", "增加扶手",null),
+                         new Option("B", "更换扶手",null),
+                         new Option("C", "配助行架或拐杖类辅具",null),
+                    }
+                ),
+                new Question("8-F", "自填",5),
+
+                new Question("9", "您认为卫生间存在的问题（多选）", 4,
+                    new List<Option>{
+                         new Option("A", "地面杂乱，或空间不足","9-A"),
+                         new Option("B", "门宽不足，或有门槛或高低落差","9-B"),
+                         new Option("C", "门开启困难","9-C"),
+                         new Option("D", "地面或浴缸不防滑","9-D"),
+                         new Option("E", "使用开关/插座困难","9-E"),
+                         new Option("F", "行走、站立、或使用便器困难","9-F"),
+                         new Option("G", "洗浴不便","9-G"),
+                         new Option("H", "其他","9-H"),
+                    }
+                ),
+                new Question("9-A", null, 2,
+                    new List<Option>{
+                         new Option("A", "清理地面物品",null),
+                         new Option("B", "调整物品摆放空间和位置",null),
+                         new Option("C", "轮椅无法出入时，可掌握人车（轮椅）分离出入，或使用座厕椅",null),
+                    }
+                ),
+                 new Question("9-B", null, 2,
+                    new List<Option>{
+                         new Option("A", "改变进门方式（如更换为快拆轴轮椅（带后小轮）、教进门技巧、下轮椅进门、教过门槛技巧等）",null),
+                         new Option("B", "增加门宽",null),
+                         new Option("C", "通过固定坡道或简易坡道消除高低差",null),
+                         new Option("D", "去除门槛",null),
+                    }
+                ),
+                new Question("9-C", null, 2,
+                    new List<Option>{
+                         new Option("A", "更换开门方式，如请人协助",null),
+                         new Option("B", "去除门，改为门帘等遮蔽",null),
+                         new Option("C", "更换易开关门",null),
+                    }
+                ),
+                new Question("9-D", null, 2,
+                    new List<Option>{
+                         new Option("A", "防滑垫",null),
+                         new Option("B", "地面防滑处理",null),
+                    }
+                ),
+                new Question("9-E", null, 2,
+                    new List<Option>{
+                         new Option("A", "改变使用开关/插座方式（如用长柄取物器开关等）",null),
+                         new Option("B", "增加醒目标志",null),
+                         new Option("C", "更改开关/插座位置",null),
+                    }
+                ),
+                new Question("9-F", null, 2,
+                    new List<Option>{
+                         new Option("A", "增加扶手",null),
+                         new Option("B", "用阶梯助行架或拐杖类辅具",null),
+                         new Option("C", "增加座厕椅或洗浴椅",null),
+                    }
+                ),
+                new Question("9-G", null, 2,
+                    new List<Option>{
+                         new Option("A", "洗浴类自助具",null),
+                    }
+                ),
+                new Question("9-H", "自填",5),
+
+                new Question("10", "您认为厨房存在的问题（多选）", 4,
+                    new List<Option>{
+                         new Option("A", "地面杂乱或家具摆放不当","10-A"),
+                         new Option("B", "门宽不足，或有门槛或高低落差","10-B"),
+                         new Option("C", "门开启困难","10-C"),
+                         new Option("D", "地面不平整或不防滑","10-D"),
+                         new Option("E", "光线不足","10-E"),
+                         new Option("F", "使用开关/插座困难","10-F"),
+                         new Option("G", "操作台（包括储物柜、炉台、水池）使用困难","10-G"),
+                         new Option("H", "其他","10-H"),
+                    }
+                ),
+                new Question("10-A", null, 2,
+                    new List<Option>{
+                         new Option("A", "清理地面物品",null),
+                         new Option("B", "整理家庭物品摆放空间和位置",null),
+                    }
+                ),
+                new Question("10-B", null, 2,
+                    new List<Option>{
+                         new Option("A", "改变进门方式（如更换为快拆轴轮椅（带后小轮）、教进门技巧、下轮椅进门、教过门槛技巧等）",null),
+                         new Option("B", "增加门宽",null),
+                         new Option("C", "通过固定坡道或简易坡道消除高低差",null),
+                         new Option("D", "去除门槛",null),
+                    }
+                ),
+                new Question("10-C", null, 2,
+                    new List<Option>{
+                         new Option("A", "更换开门方式，如请人协助",null),
+                         new Option("B", "去除门，改为门帘等遮蔽",null),
+                         new Option("C", "更换易开关门",null),
+                    }
+                ),
+                new Question("10-D", null, 2,
+                    new List<Option>{
+                         new Option("A", "平整地面（如有地毯去除地毯）",null),
+                         new Option("B", "使用防滑垫",null),
+                         new Option("C", "地面防滑",null),
+                    }
+                ),
+                new Question("10-E", null, 2,
+                    new List<Option>{
+                         new Option("A", "加灯光",null),
+                         new Option("B", "对重要物品加醒目标志",null),
+                    }
+                ),
+                new Question("10-F", null, 2,
+                    new List<Option>{
+                         new Option("A", "改变使用开关/插座方式（如用长柄取物器开关等）",null),
+                         new Option("B", "增加醒目标志",null),
+                         new Option("C", "更改开关/插座位置",null),
+                    }
+                ),
+                new Question("10-G", null, 2,
+                    new List<Option>{
+                         new Option("A", "整理操作台杂物或重新摆放",null),
+                         new Option("B", "配备生活自助具",null),
+                         new Option("C", "增加醒目标志",null),
+                         new Option("D", "更换操作台（包括储物柜、炉台、水池）",null),
+                    }
+                ),
+                new Question("10-H", "自填",5),
+
+                new Question("11", "您认为卧室存在的问题（多选）", 4,
+                    new List<Option>{
+                         new Option("A", "地面杂乱或家具摆放不当","11-A"),
+                         new Option("B", "门宽不足，或有门槛或有高低落差","11-B"),
+                         new Option("C", "门开启困难","11-C"),
+                         new Option("D", "地面不平整或不防滑","11-D"),
+                         new Option("E", "光线不足","11-E"),
+                         new Option("F", "使用开关/插座困难","11-F"),
+                         new Option("G", "行走、起卧困难","11-G"),
+                         new Option("H", "其他","11-H"),
+                    }
+                ),
+                new Question("11-A", null, 2,
+                    new List<Option>{
+                         new Option("A", "清理地面物品",null),
+                         new Option("B", "调整家庭物品摆放空间和位置",null),
+                    }
+                ),
+                new Question("11-B", null, 2,
+                    new List<Option>{
+                         new Option("A", "改变进门方式（如更换为快拆轴轮椅（带后小轮）、教进门技巧、下轮椅进门、教过门槛技巧等）",null),
+                         new Option("B", "增加门宽",null),
+                         new Option("C", "通过固定坡道或简易坡道消除高低差",null),
+                         new Option("D", "去除门槛",null),
+                    }
+                ),
+                new Question("11-C", null, 2,
+                    new List<Option>{
+                         new Option("A", "更换开门方式，如请人协助",null),
+                         new Option("B", "去除门，改为门帘等遮蔽",null),
+                         new Option("C", "更换易开关门",null),
+                    }
+                ),
+                new Question("11-D", null, 2,
+                    new List<Option>{
+                         new Option("A", "平整地面（如有地毯去除地毯）",null),
+                         new Option("B", "使用防滑垫",null),
+                         new Option("C", "地面防滑",null),
+                    }
+                ),
+                new Question("11-E", null, 2,
+                    new List<Option>{
+                         new Option("A", "加灯光",null),
+                         new Option("B", "重要物品加醒目标志",null),
+                    }
+                ),
+                new Question("11-F", null, 2,
+                    new List<Option>{
+                         new Option("A", "更改开关/插座位置",null),
+                         new Option("B", "改变使用开关/插座方式（如用长柄取物器开关等）",null),
+                         new Option("C", "增加醒目标志",null),
+                    }
+                ),
+                new Question("11-G", null, 2,
+                    new List<Option>{
+                         new Option("A", "增加扶手",null),
+                         new Option("B", "可配助行架或拐杖类辅具，或其他卧室类自助具",null),
+                    }
+                ),
+                new Question("11-H", "自填",5),
+
+                new Question("12", "您认为上下楼梯存在的问题（多选）", 4,
+                    new List<Option>{
+                         new Option("A", "无扶手或扶手不合适","12-A"),
+                         new Option("B", "无法通过扶手上下楼梯","12-B"),
+                         new Option("C", "轮椅无法上下","12-C"),
+                         new Option("D", "其他","12-D"),
+                    }
+                ),
+                new Question("12-A", null, 2,
+                    new List<Option>{
+                         new Option("A", "增加扶手",null),
+                         new Option("B", "更换扶手",null),
+                    }
+                ),
+                new Question("12-B", null, 2,
+                    new List<Option>{
+                         new Option("A", "使用座椅式爬楼机",null),
+                    }
+                ),
+                new Question("12-C", null, 2,
+                    new List<Option>{
+                         new Option("A", "使用轮椅用爬楼机",null),
+                         new Option("B", "学习轮椅上下楼技巧",null),
+                    }
+                ),
+                new Question("12-D", "自填",5),
+
+               new Question("13", "自填",5),
             };
             Exam exam8 = new Exam(8, "FuJuPingGu", "无障碍", questions8);
             db.Exams.AddOrUpdate(exam8);
