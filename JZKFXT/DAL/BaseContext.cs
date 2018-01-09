@@ -33,16 +33,16 @@ namespace JZKFXT.DAL
         public DbSet<Option> Options { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<ExamRecord> ExamRecords { get; set; }
-        public System.Data.Entity.DbSet<JZKFXT.Models.DisabilityReason> DisabilityReasons { get; set; }
+        public DbSet<DisabilityReason> DisabilityReasons { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<AssistiveDevice> AssistiveDevices { get; set; }
 
 
-        public System.Data.Entity.DbSet<JZKFXT.Models.Role> Roles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();//防止生成复数表名
         }
 
-        public System.Data.Entity.DbSet<JZKFXT.Models.AssistiveDevice> AssistiveDevices { get; set; }
     }
 }

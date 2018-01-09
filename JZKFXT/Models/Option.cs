@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using JZKFXT.DAL;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,12 +21,7 @@ namespace JZKFXT.Models
             OptionText = optionText;
             ContentText = contentText;
             NextQuestionNo = nextQuestionNo;
-            AssistiveDevices = new List<AssistiveDevice>();
-            foreach (var item in assistiveDeviceIds)
-            {
-                AssistiveDevices.Add(new AssistiveDevice(item));
-            }
-            
+            AssistiveDevices = String.Join(",", assistiveDeviceIds);
         }
         public Option(string optionText, string contentText, int examID, string nextQuestionNo, params int[] assistiveDeviceIds)
         {
@@ -33,12 +29,7 @@ namespace JZKFXT.Models
             ContentText = contentText;
             NextQuestionNo = nextQuestionNo;
             ExamID = examID;
-            AssistiveDevices = new List<AssistiveDevice>();
-            foreach (var item in assistiveDeviceIds)
-            {
-                AssistiveDevices.Add(new AssistiveDevice(item));
-            }
-
+            AssistiveDevices = String.Join(",", assistiveDeviceIds);
         }
         public int ID { get; set; }
         /// <summary>
@@ -85,7 +76,7 @@ namespace JZKFXT.Models
         /// <summary>
         /// 辅具集合
         /// </summary>
-        public virtual ICollection<AssistiveDevice> AssistiveDevices { get; set; }
+        public string AssistiveDevices { get; set; }
 
     }
 }

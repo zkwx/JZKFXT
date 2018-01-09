@@ -352,7 +352,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(102230901,"三轮机动轮椅车","轮椅代步"),
                 new AssistiveDevice(102230902,"四轮机动轮椅车","轮椅代步"),
                 #endregion
-
+                
                 #region 辅助行走
                 new AssistiveDevice(10203,"单臂操作助行器","辅助行走"),
                 new AssistiveDevice(10206,"双臂操作助行器","辅助行走"),
@@ -482,7 +482,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(102390309,"盲聋杖","辅助行走"),
                 new AssistiveDevice(102390601,"电子导盲器","辅助行走"),
                 #endregion
-
+                
                 #region 饮食
                 new AssistiveDevice(11003,"准备食物和饮料的辅助器具","饮食"),
                 new AssistiveDevice(11006,"清洗餐具辅助器具","饮食"),
@@ -563,7 +563,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(110093001, "喂食泵", "饮食"),
                 new AssistiveDevice(110093101, "生活自助具", "饮食"),
                 #endregion
-
+                
                 #region 个人护理
                 new AssistiveDevice(10315,"气管造口护理辅助器具","个人护理"),
                 new AssistiveDevice(10318,"肠造口护理辅助器具","个人护理"),
@@ -603,11 +603,10 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(1032118,"护肤剂","个人护理"),
                 new AssistiveDevice(1033603,"指甲刷","个人护理"),
                 new AssistiveDevice(1033606,"指甲锉和砂纸板","个人护理"),
-                new AssistiveDevice(1033609,"指甲剪","个人护理"),
-                new AssistiveDevice(1033609,"指甲刀","个人护理"),
+                new AssistiveDevice(1033609,"指甲剪和指甲刀","个人护理"),
                 new AssistiveDevice(1033612,"磨茧锉","个人护理"),
                 new AssistiveDevice(1033903,"用洗发剂洗头发的辅助器具","个人护理"),
-                new AssistiveDevice(1033906,"梳子","个人护理"),
+                new AssistiveDevice(1033907,"梳子","个人护理"),
                 new AssistiveDevice(1033906,"头发刷","个人护理"),
                 new AssistiveDevice(1033909,"吹风机","个人护理"),
                 new AssistiveDevice(1034203,"无动力（手动）牙刷","个人护理"),
@@ -671,10 +670,10 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(103360602, "带吸盘砂纸板", "个人护理"),
                 new AssistiveDevice(103360901, "带放大镜指甲剪", "个人护理"),
                 new AssistiveDevice(103360902, "带吸盘指甲剪", "个人护理"),
-                new AssistiveDevice(103360901, "放大镜指甲刀", "个人护理"),
+                new AssistiveDevice(103360903, "放大镜指甲刀", "个人护理"),
                 new AssistiveDevice(103361201, "手动茧皮修剪器", "个人护理"),
                 new AssistiveDevice(103390301,"用洗发剂洗头发的辅助器具","个人护理"),
-                new AssistiveDevice(103390601, "长柄头梳", "个人护理"),
+                new AssistiveDevice(103390701, "长柄头梳", "个人护理"),
                 new AssistiveDevice(103390601, "长柄发刷", "个人护理"),
                 new AssistiveDevice(103390602, "粗柄发刷", "个人护理"),
                 new AssistiveDevice(103390603, "弯柄发刷", "个人护理"),
@@ -726,7 +725,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(104101801, "椅座上骨盆托", "个人护理"),
                 new AssistiveDevice(104101802, "椅座上躯干托", "个人护理"),
                 #endregion
-
+                
                 #region 如厕
                 new AssistiveDevice(10312,"如厕辅助器具","如厕"),
                 new AssistiveDevice(10324,"排尿装置","如厕"),
@@ -836,7 +835,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(103310601, "肛门插闩", "如厕"),
                 new AssistiveDevice(103310602, "肛门插塞", "如厕"),
                 #endregion
-
+                
                 #region 信息交流
                 new AssistiveDevice(10527,"报警、指示、提醒和讯号辅助器具","信息交流"),
                 new AssistiveDevice(10509,"发声辅助器具","信息交流"),
@@ -844,7 +843,6 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(10518,"记录、播放和显示视听信息的辅助器具","信息交流"),
                 new AssistiveDevice(10521,"面对面沟通辅助器具","信息交流"),
                 new AssistiveDevice(10524,"电话传送（信息）和远程信息处理辅助器具","信息交流"),
-                new AssistiveDevice(10527,"报警、指示、提醒和讯号辅助器具","信息交流"),
                 new AssistiveDevice(10530,"阅读辅助器具","信息交流"),
                 new AssistiveDevice(10533,"计算机和终端设备","信息交流"),
                 new AssistiveDevice(10536,"计算机输入设备","信息交流"),
@@ -883,7 +881,6 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(1052715,"日历和时间表","信息交流"),
                 new AssistiveDevice(1052716,"帮助记忆的产品","信息交流"),
                 new AssistiveDevice(1052718,"个人紧急报警系统","信息交流"),
-                new AssistiveDevice(1052721,"环境紧急报警系统","信息交流"),
                 new AssistiveDevice(1052724,"监测和定位系统","信息交流"),
                 new AssistiveDevice(1052727,"标识材料和标记工具","信息交流"),
                 new AssistiveDevice(1053003,"带语音输出的阅读材料","信息交流"),
@@ -984,7 +981,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(105271501, "盲文日历板", "信息交流"),
                 new AssistiveDevice(105271601, "帮助记忆的产品", "信息交流"),
                 new AssistiveDevice(105271801, "呼叫器", "信息交流"),
-                new AssistiveDevice(105272101, "水报警器", "信息交流"),
+                new AssistiveDevice(105272103, "水报警器", "信息交流"),
                 new AssistiveDevice(105272401, "监测和定位系统", "信息交流"),
                 new AssistiveDevice(105272701, "标识材料和标记工具", "信息交流"),
                 new AssistiveDevice(105300301, "带语音输出的阅读材料", "信息交流"),
@@ -1034,7 +1031,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(105390701, "可听计算机显示器", "信息交流"),
                 new AssistiveDevice(105391201, "光标定位的屏幕放大程序", "信息交流"),
                 #endregion
-
+                
                 #region 康复训练
                 new AssistiveDevice(10636,"知觉训练辅助器具","康复训练"),
                 new AssistiveDevice(10645,"脊柱牵引辅助器具","康复训练"),
@@ -1261,7 +1258,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(107331203,"清扫用具使用训练器具","康复训练"),
                 new AssistiveDevice(107331204, "家庭缝纫使用训练器具", "康复训练"),
                 #endregion
-
+                
                 #region 防护功能
                 new AssistiveDevice(10603,"呼吸辅助器具","防护功能"),
                 new AssistiveDevice(10606,"循环治疗辅助器具","防护功能"),
@@ -1379,7 +1376,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(106330901, "压力测量床垫", "防护功能"),
                 new AssistiveDevice(106330902, "防褥疮喷气床垫", "防护功能"),
                 #endregion
-
+                
                 #region 无障碍环境
                 new AssistiveDevice(10420,"无障碍改造","无障碍环境"),
                 new AssistiveDevice(10433,"家庭和其他场所的安全设施","无障碍环境"),
@@ -1583,11 +1580,10 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(112181507, "镇纸", "操作和使用"),
                 new AssistiveDevice(112181801,"其它材料的手工工艺的工具、材料和设备","操作和使用"),
                 #endregion
-
+                
                 #region 位置转移
                 new AssistiveDevice(10236,"升降人的辅助器具","位置转移"),
                 new AssistiveDevice(10430,"垂直运送辅助器具","位置转移"),
-                new AssistiveDevice(10733,"日常生活活动训练的辅助器具","位置转移"),
 
                 new AssistiveDevice(1023603,"带吊兜的移位机","位置转移"),
                 new AssistiveDevice(1023606,"带硬座的移位机","位置转移"),
@@ -1638,7 +1634,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(107330906, "移乘板", "位置转移"),
                 new AssistiveDevice(107330907, "起身绳梯", "位置转移"),
                 #endregion
-
+                
                 #region 纠正姿势
                 new AssistiveDevice(10409,"坐式家具","纠正姿势"),
 
@@ -1879,7 +1875,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(1010624,"肩肘矫形器","矫形器"),
                 new AssistiveDevice(1010625,"上臂矫形器","矫形器"),
                 new AssistiveDevice(1010630,"肩肘腕手矫形器","矫形器"),
-                new AssistiveDevice(1010630,"手-指关节铰链","矫形器"),
+                new AssistiveDevice(1010631,"手-指关节铰链","矫形器"),
                 new AssistiveDevice(1010633,"腕铰链","矫形器"),
                 new AssistiveDevice(1010636,"肘铰链","矫形器"),
                 new AssistiveDevice(1010639,"肩铰链","矫形器"),
@@ -2012,7 +2008,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(101062502,"模塑成型上臂固定托","矫形器"),
                 new AssistiveDevice(101063001,"功能性上肢矫形器","矫形器"),
                 new AssistiveDevice(101063002,"平衡式前臂矫形器(BFO)","矫形器"),
-                new AssistiveDevice(101063001,"手-指关节铰链","矫形器"),
+                new AssistiveDevice(101063101,"手-指关节铰链","矫形器"),
                 new AssistiveDevice(101063301,"腕铰链","矫形器"),
                 new AssistiveDevice(101063601,"单轴肘关节铰链","矫形器"),
                 new AssistiveDevice(101063602,"定位盘锁定式肘关节铰链","矫形器"),
@@ -2218,22 +2214,16 @@ namespace JZKFXT.Migrations
                 #region 洗漱类
                 new AssistiveDevice(10333,"清洗、盆浴和淋浴辅助器具","洗漱类"),
 
-                new AssistiveDevice(1033303,"盆浴或淋浴椅（有轮和无轮）","洗漱类"),
-                new AssistiveDevice(1033303,"浴室坐板","洗漱类"),
-                new AssistiveDevice(1033303,"洗浴凳子、靠背和座","洗漱类"),
-                new AssistiveDevice(1033306,"防滑的淋浴垫和带子","洗漱类"),
-                new AssistiveDevice(1033306,"防滑的浴盆垫","洗漱类"),
+                new AssistiveDevice(1033303,"盆浴或淋浴椅、浴室坐板、凳子、靠背和座","洗漱类"),
+                new AssistiveDevice(1033306,"防滑的浴盆垫、淋浴垫和带子","洗漱类"),
                 new AssistiveDevice(1033309,"淋浴器及其元件","洗漱类"),
-                new AssistiveDevice(1033312,"洗浴床","洗漱类"),
-                new AssistiveDevice(1033312,"淋浴桌和更换尿布桌","洗漱类"),
+                new AssistiveDevice(1033312,"洗浴床、淋浴桌和更换尿布桌","洗漱类"),
                 new AssistiveDevice(1033315,"洗盆","洗漱类"),
                 new AssistiveDevice(1033318,"坐浴盆","洗漱类"),
                 new AssistiveDevice(1033321,"浴缸","洗漱类"),
                 new AssistiveDevice(1033322,"洗浴床单","洗漱类"),
                 new AssistiveDevice(1033327,"用于减少浴缸的长度或深度的辅助器具","洗漱类"),
-                new AssistiveDevice(1033330,"带有把手、手柄和握把的海绵","洗漱类"),
-                new AssistiveDevice(1033330,"带有把手、手柄和握把的刷子","洗漱类"),
-                new AssistiveDevice(1033330,"带有把手、手柄和握把的洗澡布","洗漱类"),
+                new AssistiveDevice(1033330,"带有把手、手柄和握把的洗澡布、海绵和刷子","洗漱类"),
                 new AssistiveDevice(1033345,"浴缸温度计","洗漱类"),
 
                 new AssistiveDevice(103330301,"洗浴躺椅","洗漱类"),
@@ -2247,8 +2237,8 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(103330601,"地面防滑垫","洗漱类"),
                 new AssistiveDevice(103330701,"浴缸防滑垫","洗漱类"),
                 new AssistiveDevice(103330901,"调节淋浴头位置的固定元件","洗漱类"),
-                new AssistiveDevice(103331101,"洗浴床","洗漱类"),
-                new AssistiveDevice(103331201,"洗浴台","洗漱类"),
+                new AssistiveDevice(103331201,"洗浴床","洗漱类"),
+                new AssistiveDevice(103331202,"洗浴台","洗漱类"),
                 new AssistiveDevice(103331501,"充气式洗头池","洗漱类"),
                 new AssistiveDevice(103331502,"固定式洗盆","洗漱类"),
                 new AssistiveDevice(103331503,"便携式洗盆","洗漱类"),
@@ -2262,10 +2252,10 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(103332702, "浴缸用二级踏板", "洗漱类"),
                 new AssistiveDevice(103333001, "带有把手的海绵", "洗漱类"),
                 new AssistiveDevice(103333002, "掌套式洗浴海绵", "洗漱类"),
-                new AssistiveDevice(103333101, "长柄洗澡刷", "洗漱类"),
-                new AssistiveDevice(103333102, "弯柄擦背刷", "洗漱类"),
-                new AssistiveDevice(103333103, "带吸盘浴刷", "洗漱类"),
-                new AssistiveDevice(103333201, "带有把手的洗澡布", "洗漱类"),
+                new AssistiveDevice(103333003, "长柄洗澡刷", "洗漱类"),
+                new AssistiveDevice(103333004, "弯柄擦背刷", "洗漱类"),
+                new AssistiveDevice(103333005, "带吸盘浴刷", "洗漱类"),
+                new AssistiveDevice(103333006, "带有把手的洗澡布", "洗漱类"),
                 new AssistiveDevice(103334501, "浴缸温度计", "洗漱类"),
                 #endregion
 
@@ -2359,13 +2349,13 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(103091501, "拉链器", "穿衣类"),
                 new AssistiveDevice(103091801, "系扣器", "穿衣类"),
                 #endregion
-
+                
             };
             #endregion
-            //db.AssistiveDevices.AddRange(AssistiveDevices);
+            db.AssistiveDevices.AddRange(AssistiveDevices);
             db.SaveChanges();
             //评估
-
+           
             #region 视力试题
             List<Question> questions1 = new List<Question> {
                 new Question("1", "视力残疾等级", 1,
@@ -2402,7 +2392,7 @@ namespace JZKFXT.Migrations
                         //05 27 06声信号指示器
                         new Option("E", "生活便捷", "2", 1052706),
                         //03手动式绘画和书写器具；05 12 12手写盲文书写装置；05 12 18特制书写纸（塑膜）
-                        new Option("F", "学习书写", "2", 1051203, 1051212,1051218),
+                        new Option("F", "学习书写", "2", 1051203, 1051212,105121801),
                     }
                 ),
                 new Question("1-1-2", "希望实现何种功能（多选）", 2,
@@ -2415,9 +2405,9 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("1-2", "希望看近物还是看远处（多选）", 2,
                     new List<Option>{
-                        new Option("A", "看近", "1-2-1"),
                         //05 03 12双筒望远镜和单筒望远镜
-                        new Option("B", "看远", "1-3", 1050312),
+                        new Option("A", "看远", "1-3",1050312),
+                        new Option("B", "看近", "1-2-1"),
                     }
                 ),
                 new Question("1-2-1", "需要光学助视器还是电子助视器",1,
@@ -2466,7 +2456,7 @@ namespace JZKFXT.Migrations
             Exam exam1 = new Exam(1, "FuJuPingGu", "视力", questions1);
             db.Exams.AddOrUpdate(exam1);
             #endregion
-
+            
             #region 听力试题
             List<Question> questions2 = new List<Question> {
                 new Question("1", "听力残疾等级", 1,
@@ -2607,8 +2597,8 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("4", "能否自行洗浴", 1,
                     new List<Option>{
-                        //03 33 12洗浴床、淋浴桌和更换尿布桌（洗浴床）；03 33清洗、盆浴和淋浴辅助器具（洗浴床单）；洗浴躺椅；03 33 15洗盆（充气式洗头池）
-                         new Option("A", "不能","5", 1033312,1033322,103330301,103331501),
+                        //03 33 12洗浴床、淋浴桌和更换尿布桌（洗浴床）；03 33 22清洗、盆浴和淋浴辅助器具（洗浴床单）；洗浴躺椅；03 33 15洗盆（充气式洗头池）
+                         new Option("A", "不能","5", 103331201,103332201,103330301,103331501),
                          new Option("B", "能","4-1"),
                     }
                 ),
@@ -2647,7 +2637,7 @@ namespace JZKFXT.Migrations
                         //03 03 18夹克衫和长裤；03 03 42鞋和靴（方便穿脱鞋）
                          new Option("A", "不能，且高度合适","7", 1030318,1030342),
                         //03 09 12穿脱衣钩或穿脱衣棍；03 09 03穿短袜和穿连裤袜的辅助器具；03 09 06鞋拔和脱靴器（长柄鞋拔）
-                         new Option("B", "辅助下完成","7", 1030912,1030903,1030906),
+                         new Option("B", "辅助下完成","7", 1030912,1030903,103090602),
                          new Option("C", "独立完成","7"),
                     }
                 ),
@@ -3067,7 +3057,7 @@ namespace JZKFXT.Migrations
                new Question("3", "能否自主洗浴", 1,
                     new List<Option>{
                         //03 33 03盆浴或淋浴椅（有轮和无轮）-洗浴躺椅，选配03 33 12洗浴床（洗浴床）或03 33清洗、盆浴和淋浴辅助器具-洗浴床单（洗浴床单）；03 33 15洗盆（充气式洗头池）
-                         new Option("A", "不能","4",103330301,1033312,103332201,103331501),
+                         new Option("A", "不能","4",103330301,103331201,103332201,103331501),
                          //03 33 03盆浴或淋浴椅（有轮和无轮)-洗浴椅；选配03 33 06防滑的淋浴垫和带子（地面防滑垫）；03 33 30带有把手、手柄和握把的洗澡布、海绵和刷子
                          new Option("B", "辅助下完成","4",103330302,103330303,103330304,103330305,103330601,1033330),
                          //03 33 03盆浴或淋浴椅（有轮和无轮)-洗浴椅；选配03 33 06防滑的淋浴垫和带子（地面防滑垫）
@@ -3160,7 +3150,7 @@ namespace JZKFXT.Migrations
                         //02 22 18护理者操纵的轮椅车-高靠背轮椅（带坐便/带轮椅桌）；选配（不选床的情况下）：04 10 03靠背（可调靠架）；04 30 垂直运送辅助器具-桌类（床用餐桌）；03 33 03洗浴躺椅
                          new Option("A", "能","3-3",102221801,104100301,104301901,1033303),
                          //03 33 12洗浴床、淋浴桌和更换尿布桌（洗浴床）或03 33清洗、盆浴和淋浴辅助器具（洗浴床单）；03 33 15洗盆（充气式洗头池）
-                         new Option("B", "不能","3-3",1033312,1033322,103331501),
+                         new Option("B", "不能","3-3",103331201,103332201,103331501),
                     }
                 ),
 
@@ -3815,12 +3805,17 @@ namespace JZKFXT.Migrations
                 ),
                 new Question("12-D", "自填",5),
 
-               new Question("13", "自填",5),
+               new Question("13", "您认为其他区域存在的问题", 4,
+                    new List<Option>{
+                         new Option("A", "其他","13-A"),
+                    }
+                ),
+               new Question("13-A", "自填",5),
             };
             Exam exam8 = new Exam(8, "FuJuPingGu", "无障碍", questions8);
             db.Exams.AddOrUpdate(exam8);
             #endregion
-
+    
 
             List<ExamRecord> examRecords = new List<ExamRecord>
             {
@@ -3832,6 +3827,7 @@ namespace JZKFXT.Migrations
                 new ExamRecord(8, 1,ExamState.待评估),
             };
             db.ExamRecords.AddRange(examRecords);
+            db.SaveChanges();
         }
     }
 }

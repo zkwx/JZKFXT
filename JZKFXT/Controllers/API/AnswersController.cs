@@ -21,7 +21,7 @@ namespace JZKFXT.Controllers.API
         // GET: api/Answers
         public IQueryable<Answer> GetAnswers(int ExamID, int DisabledID)
         {
-            return db.Answers;
+            return db.Answers.Where(a => a.ExamID == ExamID && a.DisabledID == DisabledID);
         }
 
         // GET: api/Answers/5
