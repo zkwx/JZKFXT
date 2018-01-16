@@ -32,13 +32,15 @@ namespace JZKFXT.Controllers.API
             {
                 var fileType = HttpContext.Current.Request["fileType"];
                 string url = "";
-                string directory = "/App_Data/avatar/";
+                string directory = "/Files/avatar/";
                 string root = HttpContext.Current.Server.MapPath(directory);
                 //获取客户端文件
+                string fileName = "";
                 HttpFileCollection files = HttpContext.Current.Request.Files;
                 foreach (string f in files.AllKeys)
                 {
                     HttpPostedFile file = files[f];
+                    fileName = file.FileName;
                     if (file.ContentLength >= 1024 * 1024 * 20)
                     {
                         throw new Exception("上传文件大小不能超过 20 MB！");
@@ -51,7 +53,8 @@ namespace JZKFXT.Controllers.API
                         file.SaveAs(url);
                     }
                 }
-                return Json(url);
+                var outUrl = HttpContext.Current.Request.Url.Scheme+"://" + HttpContext.Current.Request.Url.Authority + directory + fileName;
+                return Json(outUrl);
             }
             catch (Exception ex)
             {

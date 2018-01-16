@@ -31,6 +31,14 @@ namespace JZKFXT.Models
             ExamID = examID;
             AssistiveDevices = String.Join(",", assistiveDeviceIds);
         }
+        public Option(string optionText, string contentText, string nextQuestionNo,int grade, params int[] assistiveDeviceIds)
+        {
+            OptionText = optionText;
+            ContentText = contentText;
+            NextQuestionNo = nextQuestionNo;
+            Grade = grade;
+            AssistiveDevices = String.Join(",", assistiveDeviceIds);
+        }
         public int ID { get; set; }
         /// <summary>
         /// 试卷ID
@@ -73,6 +81,10 @@ namespace JZKFXT.Models
         /// 自填
         /// </summary>
         public bool IsWrite { get; set; }
+        /// <summary>
+        /// 残疾等级
+        /// </summary>
+        public int? Grade { get; set; }
         /// <summary>
         /// 辅具集合
         /// </summary>

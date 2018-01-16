@@ -2355,7 +2355,7 @@ namespace JZKFXT.Migrations
             db.AssistiveDevices.AddRange(AssistiveDevices);
             db.SaveChanges();
             //评估
-           
+
             #region 视力试题
             List<Question> questions1 = new List<Question> {
                 new Question("1", "视力残疾等级", 1,
@@ -2456,7 +2456,7 @@ namespace JZKFXT.Migrations
             Exam exam1 = new Exam(1, "FuJuPingGu", "视力", questions1);
             db.Exams.AddOrUpdate(exam1);
             #endregion
-            
+
             #region 听力试题
             List<Question> questions2 = new List<Question> {
                 new Question("1", "听力残疾等级", 1,
@@ -2656,7 +2656,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","9"),
                     }
                 ),
-                new Question("9", "最希望解决什么问题（最多选择三个）", 2,
+                new Question("9", "最希望解决什么问题", 2,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -2920,7 +2920,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","7"),
                     }
                 ),
-                 new Question("7", "最希望解决什么问题（最多选择三个）",2,
+                 new Question("7", "最希望解决什么问题",2,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -3081,7 +3081,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","6"),
                     }
                 ),
-                 new Question("6", "最希望解决什么问题（最多选择三个）", 2,
+                 new Question("6", "最希望解决什么问题", 2,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -3363,7 +3363,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","5"),
                     }
                 ),
-                 new Question("5", "最希望解决什么问题（最多选择三个）", 2,
+                 new Question("5", "最希望解决什么问题", 2,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -3400,8 +3400,24 @@ namespace JZKFXT.Migrations
                          new Option("B", "有装配需求","2"),
                     }
                 ),
-                //身体部位图片选择
-                new Question("2", "在图中标出残肢部位（可多选）", 6),
+                //身体部位选择
+                 new Question("2", "在图中标出残肢部位（可多选）", 6,
+                    new List<Option>{
+                         //上肢部分（100-60）
+                         new Option("A", "肩关节","3",100),
+                         new Option("B", "上臂中间","3",90),
+                         new Option("C", "肘关节","3",80),
+                         new Option("D", "前臂中间","3",70),
+                         new Option("E", "腕关节","3",60),
+                         //下肢部分（50-10）
+                         new Option("F", "髋关节","3",50),
+                         new Option("G", "大腿中间","3",40),
+                         new Option("H", "膝关节","3",30),
+                         new Option("I", "小腿中间","3",20),
+                         new Option("J", "踝关节","3",10),
+                    }
+                ),
+
                 new Question("3", "身体状况？", 1,
                     new List<Option>{
                          new Option("A", "正常","4"),
@@ -3431,7 +3447,7 @@ namespace JZKFXT.Migrations
                     }
                 ),
                 //图片上传
-                new Question("5", "直接拍照或上传残肢部位的照片至少一张：为残缺一侧肢体的特写照片（残缺部位裸露）", 7),
+                new Question("5", "直接拍照或上传残肢部位的照片至少一张：为残缺一侧肢体的特写照片（残缺部位裸露）", 7,null),
 
             };
             Exam exam7 = new Exam(7, "FuJuPingGu", "假肢", questions7);
@@ -3545,7 +3561,7 @@ namespace JZKFXT.Migrations
                          new Option("F", "增加醒目标志（视力障碍）",null),
                     }
                 ),
-                new Question("7-G", "自填",5),
+                new Question("7-G", "自填",5,null),
 
                 new Question("8", "您认为客厅存在的问题（多选）", 4,
                     new List<Option>{
@@ -3591,7 +3607,7 @@ namespace JZKFXT.Migrations
                          new Option("C", "配助行架或拐杖类辅具",null),
                     }
                 ),
-                new Question("8-F", "自填",5),
+                new Question("8-F", "自填",5,null),
 
                 new Question("9", "您认为卫生间存在的问题（多选）", 4,
                     new List<Option>{
@@ -3652,7 +3668,7 @@ namespace JZKFXT.Migrations
                          new Option("A", "洗浴类自助具",null),
                     }
                 ),
-                new Question("9-H", "自填",5),
+                new Question("9-H", "自填",5,null),
 
                 new Question("10", "您认为厨房存在的问题（多选）", 4,
                     new List<Option>{
@@ -3715,7 +3731,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "更换操作台（包括储物柜、炉台、水池）",null),
                     }
                 ),
-                new Question("10-H", "自填",5),
+                new Question("10-H", "自填",5,null),
 
                 new Question("11", "您认为卧室存在的问题（多选）", 4,
                     new List<Option>{
@@ -3776,7 +3792,7 @@ namespace JZKFXT.Migrations
                          new Option("B", "可配助行架或拐杖类辅具，或其他卧室类自助具",null),
                     }
                 ),
-                new Question("11-H", "自填",5),
+                new Question("11-H", "自填",5,null),
 
                 new Question("12", "您认为上下楼梯存在的问题（多选）", 4,
                     new List<Option>{
@@ -3803,19 +3819,14 @@ namespace JZKFXT.Migrations
                          new Option("B", "学习轮椅上下楼技巧",null),
                     }
                 ),
-                new Question("12-D", "自填",5),
+                new Question("12-D", "自填",5,null),
 
-               new Question("13", "您认为其他区域存在的问题", 4,
-                    new List<Option>{
-                         new Option("A", "其他","13-A"),
-                    }
-                ),
-               new Question("13-A", "自填",5),
+               new Question("13", "自填",5,null),
             };
             Exam exam8 = new Exam(8, "FuJuPingGu", "无障碍", questions8);
             db.Exams.AddOrUpdate(exam8);
             #endregion
-    
+
 
             List<ExamRecord> examRecords = new List<ExamRecord>
             {

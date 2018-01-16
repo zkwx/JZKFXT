@@ -55,12 +55,14 @@ namespace JZKFXT.Controllers.API
                                 NextQuestionNo = b.NextQuestionNo,
                                 AssistiveDevices = b.AssistiveDevices,
                                 NextExamID = b.ExamID,
+                                Grade = b.Grade,
                             }),
                         //checklist显示数组 不支持对象数组
                         Options = a.Options.Select(b => new
                         {
                             key = b.ID,
                             value = b.OptionText + "." + b.ContentText,
+                            show = true,
                         })
                     }
                 ),
