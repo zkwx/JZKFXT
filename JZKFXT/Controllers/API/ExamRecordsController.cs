@@ -24,19 +24,69 @@ namespace JZKFXT.Controllers.API
             var list = db.ExamRecords.AsQueryable();
             if (examBy == "type")
             {
-                list = list.Where(a => a.Exam.Type == name && a.Evaluated == false);
-                var result = list.Select(
-                a => new
+                if (name == "FuJuPingGu")
                 {
-                    ID = a.Disabled.ID,
-                    Name = a.Disabled.Name,
-                    Sex = a.Disabled.Sex,
-                    Category = a.Disabled.Category.Name,
-                    Degree = a.Disabled.Degree.Name,
-                    Exam = a.Exam,
-                    State = a.State,
-                }).GroupBy(a => a.Exam.Name);
-                return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
+                    list = list.Where(a => a.Exam.Type == name && a.Evaluated == false);
+                    var result = list.Select(
+                    a => new
+                    {
+                        ID = a.Disabled.ID,
+                        Name = a.Disabled.Name,
+                        Sex = a.Disabled.Sex,
+                        Category = a.Disabled.Category.Name,
+                        Degree = a.Disabled.Degree.Name,
+                        Exam = a.Exam,
+                        State = a.State,
+                    }).GroupBy(a => a.Exam.Name);
+                    return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
+                }
+                else if (name == "FuJuShenHe")
+                {
+                    list = list.Where(a => (a.State == ExamState.待审核 || a.State == ExamState.已审核) && a.Evaluated == false);
+                    var result = list.Select(
+                    a => new
+                    {
+                        ID = a.Disabled.ID,
+                        Name = a.Disabled.Name,
+                        Sex = a.Disabled.Sex,
+                        Category = a.Disabled.Category.Name,
+                        Degree = a.Disabled.Degree.Name,
+                        Exam = a.Exam,
+                        State = a.State,
+                    }).GroupBy(a => a.Exam.Name);
+                    return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
+                }
+                else if (name == "FuJuFuWu")
+                {
+                    list = list.Where(a => (a.State == ExamState.已审核 || a.State == ExamState.已完成) && a.Evaluated == false);
+                    var result = list.Select(
+                     a => new
+                     {
+                         ID = a.Disabled.ID,
+                         Name = a.Disabled.Name,
+                         Sex = a.Disabled.Sex,
+                         Category = a.Disabled.Category.Name,
+                         Degree = a.Disabled.Degree.Name,
+                         Exam = a.Exam,
+                         State = a.State,
+                     }).GroupBy(a => a.Exam.Name);
+                    return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
+                }
+                else if (name == "FuJuFuWuHuiFang") {
+                    list = list.Where(a => a.State == ExamState.已完成 && a.Evaluated == false);
+                    var result = list.Select(
+                     a => new
+                     {
+                         ID = a.Disabled.ID,
+                         Name = a.Disabled.Name,
+                         Sex = a.Disabled.Sex,
+                         Category = a.Disabled.Category.Name,
+                         Degree = a.Disabled.Degree.Name,
+                         Exam = a.Exam,
+                         State = a.State,
+                     }).GroupBy(a => a.Exam.Name);
+                    return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
+                }
             }
             else if (examBy == "name")
             {
@@ -103,6 +153,49 @@ namespace JZKFXT.Controllers.API
             }
 
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        //审核通过修改状态
+        [HttpPut]
+        [Route("api/ExamRecords/Modify")]
+        public async Task<IHttpActionResult> ModifyExamRecords(IList<ExamRecord> record)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var answer = record[0];
+
+            ExamRecord examRecord = await db.ExamRecords.Where(e => e.ExamID == answer.ExamID && e.DisabledID == answer.DisabledID).FirstOrDefaultAsync();
+            if (examRecord == null)
+            {
+                return NotFound();
+            }
+            if (examRecord.State == ExamState.待审核)
+            {
+                examRecord.State = ExamState.已审核;
+            }
+            else if (examRecord.State == ExamState.已审核)
+            {
+                examRecord.State = ExamState.已完成;
+                examRecord.FinishTime = DateTime.Today;
+            }
+            await db.SaveChangesAsync();
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [HttpGet]
+        [Route("api/ExamRecords/Select")]
+        public async Task<IHttpActionResult> GetExamRecord(int ExamID,int DisabledID)
+        {
+            ExamRecord examRecord = await db.ExamRecords.Where(e => e.ExamID==ExamID && e.DisabledID==DisabledID).FirstOrDefaultAsync();
+            if (examRecord == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(examRecord);
         }
 
         // POST: api/ExamRecords

@@ -261,14 +261,14 @@ namespace JZKFXT.Migrations
             #endregion
             db.SaveChanges();
 
-            //康复需求
+            #region 康复需求
             List<Disabled_Detail> Disabled_Details = new List<Disabled_Detail> {
                 new Disabled_Detail(1, 1, 1, 1010102, 3),
                 new Disabled_Detail(2, 2, 2, 1020102, 3),
             };
             db.Disabled_Details.AddRange(Disabled_Details);
+            #endregion
             db.SaveChanges();
-
 
             #region 辅具列表
             List<AssistiveDevice> AssistiveDevices = new List<AssistiveDevice>
@@ -2656,7 +2656,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","9"),
                     }
                 ),
-                new Question("9", "最希望解决什么问题", 2,
+                new Question("9", "最希望解决什么问题（最多选择三个）", 8,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -2920,7 +2920,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","7"),
                     }
                 ),
-                 new Question("7", "最希望解决什么问题",2,
+                 new Question("7", "最希望解决什么问题（最多选择三个）",8,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -3081,7 +3081,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","6"),
                     }
                 ),
-                 new Question("6", "最希望解决什么问题", 2,
+                 new Question("6", "最希望解决什么问题（最多选择三个）", 8,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -3363,7 +3363,7 @@ namespace JZKFXT.Migrations
                          new Option("D", "其它","5"),
                     }
                 ),
-                 new Question("5", "最希望解决什么问题", 2,
+                 new Question("5", "最希望解决什么问题（最多选择三个）", 8,
                     new List<Option>{
                          new Option("A", "轮椅代步",null),
                          new Option("B", "辅助行走",null),
@@ -3827,7 +3827,102 @@ namespace JZKFXT.Migrations
             db.Exams.AddOrUpdate(exam8);
             #endregion
 
+            #region 辅具回访1
+            List<Question> questions9 = new List<Question>
+            {
+                new Question("1", "是否收到辅具", 1,
+                    new List<Option>{
+                         new Option("A", "收到","2"),
+                         new Option("B", "未收到","5"),
+                    }
+                ),
+                new Question("2", "辅具使用情况", 1,
+                    new List<Option>{
+                         new Option("A", "还未使用","3"),
+                         new Option("B", "已经使用","3"),
+                    }
+                ),
+                new Question("3", "对收到辅具是否满意", 1,
+                    new List<Option>{
+                         new Option("A", "满意","4"),
+                         new Option("B", "较满意","4"),
+                         new Option("C", "不满意","4"),
+                    }
+                ),
+                new Question("4", "是否需要辅具使用培训", 1,
+                    new List<Option>{
+                         new Option("A", "需要","5"),
+                         new Option("B", "不需要","5"),
+                    }
+                ),
+                new Question("5", "回访方式", 1,
+                    new List<Option>{
+                         new Option("A", "入户",null),
+                         new Option("B", "电话",null),
+                         new Option("C", "微信",null),
+                         new Option("D", "QQ",null),
+                         new Option("E", "其他",null),
+                    }
+                ),
+            };
+            Exam exam9 = new Exam(9, "FuJuFuWuHuiFang", "辅具服务回访1", questions9);
+            db.Exams.AddOrUpdate(exam9);
+            #endregion
 
+
+            #region 辅具回访2
+            List<Question> questions10 = new List<Question>
+            {
+                 new Question("1", "辅具使用情况", 1,
+                    new List<Option>{
+                         new Option("A", "从不","2"),
+                         new Option("B", "偶尔","2"),
+                         new Option("C", "经常","2"),
+                    }
+                ),
+                new Question("2", "对辅具是否满意", 1,
+                    new List<Option>{
+                         new Option("A", "满意","4"),
+                         new Option("B", "较满意","4"),
+                         new Option("C", "不满意","3"),
+                    }
+                ),
+                new Question("3", "对辅具不满意的原因", 1,
+                    new List<Option>{
+                         new Option("A", "不会用","4"),
+                         new Option("B", "不好用","4"),
+                         new Option("C", "不需要","4"),
+                         new Option("D", "已损坏","4"),
+                    }
+                ),
+                new Question("4", "是否需要辅具服务机构提供指导", 1,
+                    new List<Option>{
+                         new Option("A", "需要","5"),
+                         new Option("B", "不需要","5"),
+                    }
+                ),
+                new Question("5", "是否需要对辅具进行维修", 1,
+                    new List<Option>{
+                         new Option("A", "需要","6"),
+                         new Option("B", "不需要","6"),
+                    }
+                ),
+                new Question("6", "回访方式", 3,
+                    new List<Option>{
+                         new Option("A", "入户",null),
+                         new Option("B", "电话",null),
+                         new Option("C", "微信",null),
+                         new Option("D", "QQ",null),
+                         new Option("E", "其他","6-A"),
+                    }
+                ),
+                new Question("6-A", "自填",5,null),
+            };
+            Exam exam10 = new Exam(10, "FuJuFuWuHuiFang", "辅具服务回访2", questions10);
+            db.Exams.AddOrUpdate(exam10);
+            #endregion
+
+            #region 评估记录
             List<ExamRecord> examRecords = new List<ExamRecord>
             {
                 new ExamRecord(1, 1,ExamState.待评估),
@@ -3838,6 +3933,7 @@ namespace JZKFXT.Migrations
                 new ExamRecord(8, 1,ExamState.待评估),
             };
             db.ExamRecords.AddRange(examRecords);
+            #endregion
             db.SaveChanges();
         }
     }

@@ -36,6 +36,7 @@ namespace JZKFXT.DAL
         public DbSet<DisabilityReason> DisabilityReasons { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<AssistiveDevice> AssistiveDevices { get; set; }
+        public DbSet<AssistiveAnswer> AssistiveAnswer { get; set; }
 
 
 

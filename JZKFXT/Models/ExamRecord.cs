@@ -36,6 +36,10 @@ namespace JZKFXT.Models
         /// </summary>
         public ExamState State { get; set; }
         /// <summary>
+        /// 完成时间
+        /// </summary>
+        public DateTime? FinishTime { get; set; }
+        /// <summary>
         /// 已机构评估
         /// </summary>
         public bool Evaluated { get; set; }

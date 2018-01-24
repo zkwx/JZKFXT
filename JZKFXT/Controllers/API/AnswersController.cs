@@ -99,9 +99,16 @@ namespace JZKFXT.Controllers.API
             db.Answers.AddRange(answers);
 
             var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
-            if (examRecord!=null)
+            if (examRecord != null)
             {
-                examRecord.State = ExamState.待审核;
+                if (examRecord.ExamID == 9 || examRecord.ExamID == 10)
+                {
+                    examRecord.State = ExamState.已完成;
+                }
+                else
+                {
+                    examRecord.State = ExamState.已评估;
+                }
             }
             await db.SaveChangesAsync();
 

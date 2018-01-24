@@ -9,7 +9,9 @@ namespace JZKFXT.Models
     public enum ExamState
     {
         待评估,
+        已评估,
         待审核,
         已审核,
+        已完成,
     }
 }
