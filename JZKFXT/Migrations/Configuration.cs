@@ -152,7 +152,7 @@ namespace JZKFXT.Migrations
             db.SaveChanges();
 
             #region 用户
-            var user = new User("", "", "管理员", 1, DateTime.Today);
+            var user = new User("admin", "admin", "管理员", 1, DateTime.Today);
             db.Users.AddOrUpdate(user);
             #endregion
 
