@@ -22,7 +22,7 @@ namespace JZKFXT.Controllers
         private BaseContext db = new BaseContext();
 
         // GET: api/Disableds
-        public IHttpActionResult GetDisableds(string examBy = null, string name = null, string listType = null)
+        public IHttpActionResult GetDisableds(string examBy = null, string name = null, string listType = null, int userID = 0)
         {
             try
             {
@@ -35,8 +35,13 @@ namespace JZKFXT.Controllers
                         Sex = a.Sex,
                         Category = a.Category.Name,
                         Degree = a.Degree.Name,
-                        ExamRecords = a.ExamRecords
+                        ExamRecords = a.ExamRecords,
+                        UserID = a.UserID,
                     });
+                if (userID != 0)
+                {
+                    result2 = result2.Where(x => x.UserID == userID);
+                }
                 return Ok(result2.OrderByDescending(a => a.ID));
             }
             catch (Exception ex)
@@ -124,7 +129,7 @@ namespace JZKFXT.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-                string ExamName=null;
+                string ExamName = null;
                 //康复入户添加
                 if (Disabled.Need)
                 {
@@ -143,9 +148,10 @@ namespace JZKFXT.Controllers
                     }
                 }
                 //更新到下一评估试卷
+                Disabled.CreateTime = DateTime.Now;
                 db.Disableds.Add(Disabled);
                 await db.SaveChangesAsync();
-                SaveTargetExam(Disabled.ID, ExamName,ExamState.待评估);
+                SaveTargetExam(Disabled.ID, ExamName, ExamState.待评估);
             }
             catch (Exception ex)
             {
@@ -208,7 +214,7 @@ namespace JZKFXT.Controllers
                 throw ex;
             }
         }
-        private void SaveTargetExam(int disabledID, string ExamName,ExamState state)
+        private void SaveTargetExam(int disabledID, string ExamName, ExamState state)
         {
 
             if (!string.IsNullOrEmpty(ExamName))
@@ -222,6 +228,63 @@ namespace JZKFXT.Controllers
                     db.SaveChanges();
                 }
             }
+        }
+
+        //登录用户所负责的患者(进行中)
+        [HttpGet]
+        [Route("api/Disabled/Conduct")]
+        public int Conduct(int id)
+        {
+            var list = db.Disableds.Where(a => a.UserID == id).ToList();
+            List<ExamRecord> records = new List<ExamRecord>();
+            foreach (var item in list)
+            {
+                var rec = db.ExamRecords.Where(x => x.DisabledID == item.ID).ToList();
+                if (rec.Count() > 0)
+                {
+                    foreach (var i in rec)
+                    {
+                        if (i.State != ExamState.已完成)
+                        {
+                            if (i.Evaluated != true)
+                            {
+                                records.Add(i);
+                            }
+                        }
+                    }
+                }
+            }
+            return records.Count();
+        }
+        //登录用户所负责的患者(完成)
+        [HttpGet]
+        [Route("api/Disabled/Finish")]
+        public int Finish(int id)
+        {
+            var list = db.Disableds.Where(a => a.UserID == id).ToList();
+            List<ExamRecord> records = new List<ExamRecord>();
+            foreach (var item in list)
+            {
+                var rec = db.ExamRecords.Where(x => x.DisabledID == item.ID);
+                if (rec.Count() > 0)
+                {
+                    foreach (var i in rec)
+                    {
+                        if (i.State == ExamState.已完成)
+                        {
+                            records.Add(i);
+                        }
+                        else
+                        {
+                            if (i.Evaluated == true)
+                            {
+                                records.Add(i);
+                            }
+                        }
+                    }
+                }
+            }
+            return records.Count();
         }
     }
 }

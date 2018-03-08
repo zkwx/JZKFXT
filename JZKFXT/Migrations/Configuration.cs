@@ -152,7 +152,7 @@ namespace JZKFXT.Migrations
             db.SaveChanges();
 
             #region 用户
-            var user = new User("admin", "admin", "管理员", 1, DateTime.Today);
+            var user = new User("admin", "admin", "管理员", "1320000000", 1, DateTime.Now,"");
             db.Users.AddOrUpdate(user);
             #endregion
 
@@ -170,7 +170,7 @@ namespace JZKFXT.Migrations
                     true,
                     1,
                     1,
-                    DateTime.Today
+                    DateTime.Now
                 ),
                 new Disabled
                 (
@@ -184,7 +184,7 @@ namespace JZKFXT.Migrations
                     true,
                     2,
                     2,
-                    DateTime.Today
+                    DateTime.Now
                 ),
                 new Disabled
                 (
@@ -198,7 +198,7 @@ namespace JZKFXT.Migrations
                     true,
                     3,
                     3,
-                    DateTime.Today
+                    DateTime.Now
                 ),
                 new Disabled
                 (
@@ -212,7 +212,7 @@ namespace JZKFXT.Migrations
                     true,
                     4,
                     4,
-                    DateTime.Today
+                    DateTime.Now
                 ),
                 new Disabled
                 (
@@ -226,7 +226,7 @@ namespace JZKFXT.Migrations
                     true,
                     5,
                     4,
-                    DateTime.Today
+                    DateTime.Now
                 ),
                 new Disabled
                 (
@@ -240,7 +240,7 @@ namespace JZKFXT.Migrations
                     true,
                     6,
                     4,
-                    DateTime.Today
+                    DateTime.Now
                 ),
                 new Disabled
                 (
@@ -254,7 +254,7 @@ namespace JZKFXT.Migrations
                     true,
                     7,
                     4,
-                    DateTime.Today
+                    DateTime.Now
                 )
             };
             db.Disableds.AddRange(Disableds);

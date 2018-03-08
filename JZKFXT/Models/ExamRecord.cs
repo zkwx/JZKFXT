@@ -43,6 +43,10 @@ namespace JZKFXT.Models
         /// 已机构评估
         /// </summary>
         public bool Evaluated { get; set; }
+        /// <summary>
+        /// 展示区域
+        /// </summary>
+        public string showArea { get; set; }
         //[JsonIgnore]
         public virtual Exam Exam { get; set; }
         [JsonIgnore]

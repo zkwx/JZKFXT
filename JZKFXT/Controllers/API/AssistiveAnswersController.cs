@@ -79,14 +79,23 @@ namespace JZKFXT.Controllers.API
             {
                 return BadRequest(ModelState);
             }
-
+            bool flag = false;
+            foreach (var a in answers)
+            {
+                if (a.ID != 0)
+                {
+                    flag = true;
+                }
+            }
             var answer = answers[0];
-            
-            var delAnswers = db.AssistiveAnswer.Where(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
-            db.AssistiveAnswer.RemoveRange(delAnswers);
-            db.AssistiveAnswer.AddRange(answers);
+            if (flag)
+            {
+                var delAnswers = db.AssistiveAnswer.Where(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
+                db.AssistiveAnswer.RemoveRange(delAnswers);
+                db.AssistiveAnswer.AddRange(answers);
+            }
+            var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID && a.State == ExamState.已评估);
 
-            var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
             if (examRecord != null)
             {
                 examRecord.State = ExamState.待审核;
@@ -144,7 +153,8 @@ namespace JZKFXT.Controllers.API
 
         [HttpPost]
         [Route("api/AssistiveAnswers/DeleteAnswers")]
-        public async Task<IHttpActionResult> DeleteAnswers(IList<AssistiveAnswer> assistive) {
+        public async Task<IHttpActionResult> DeleteAnswers(IList<AssistiveAnswer> assistive)
+        {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

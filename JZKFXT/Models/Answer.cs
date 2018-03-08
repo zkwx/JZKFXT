@@ -15,13 +15,14 @@ namespace JZKFXT.Models
         {
         }
 
-        public Answer(int disabledID, int examID, string questionNo, string optionIDs, string other)
+        public Answer(int disabledID, int examID, string questionNo, string optionIDs, string other, string area)
         {
             DisabledID = disabledID;
             ExamID = examID;
             QuestionNo = questionNo;
             OptionIDs = optionIDs;
             Other = other;
+            Area = area;
         }
         public int ID { get; set; }
         /// <summary>
@@ -44,5 +45,9 @@ namespace JZKFXT.Models
         /// 其他
         /// </summary>
         public string Other { get; set; }
+        /// <summary>
+        /// 转存
+        /// </summary>
+        public string Area { get; set; }
     }
 }

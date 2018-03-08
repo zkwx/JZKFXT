@@ -60,7 +60,36 @@ namespace JZKFXT.Controllers
                 return Ok(loginuser);
             }
         }
-
+        //修改
+        [HttpPut]
+        [Route("api/ChangeUser")]
+        public async Task<IHttpActionResult> ChangeUser(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            User u = await db.Users.FirstOrDefaultAsync(x => x.ID == user.ID);
+            if (u == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                u.RealName = user.RealName;
+                u.Phone = user.Phone;
+                u.Other = user.Other;
+                try
+                {
+                    await db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    throw;
+                }
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+        }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]

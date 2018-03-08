@@ -94,6 +94,14 @@ namespace JZKFXT.Controllers.API
                 return BadRequest(ModelState);
             }
             var answer = answers[0];
+            foreach (var item in answers)
+            {
+                if (item.Area != null)
+                {
+                    answer = item;
+                    break;
+                }
+            }
             var delAnswers = db.Answers.Where(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
             db.Answers.RemoveRange(delAnswers);
             db.Answers.AddRange(answers);
@@ -108,6 +116,11 @@ namespace JZKFXT.Controllers.API
                 else
                 {
                     examRecord.State = ExamState.已评估;
+                }
+                examRecord.State = ExamState.已评估;
+                if (answer.Area != null)
+                {
+                    examRecord.showArea = answer.Area;
                 }
             }
             await db.SaveChangesAsync();
