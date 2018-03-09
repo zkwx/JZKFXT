@@ -26,7 +26,7 @@ namespace JZKFXT.Controllers.API
             {
                 if (name == "FuJuPingGu")
                 {
-                    list = list.Where(a => a.Exam.Type == name && a.Evaluated == false && a.showArea == null);
+                    list = list.Where(a => a.Exam.Type == name && a.Evaluated == false && a.ShowArea == null);
                     var result = list.Select(
                     a => new
                     {
@@ -43,7 +43,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "JiaZhiJiaoXingQi")
                 {
-                    list = list.Where(a => a.showArea != null && a.State != ExamState.待评估);
+                    list = list.Where(a => a.ShowArea != null && a.State != ExamState.待评估 && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -54,7 +54,7 @@ namespace JZKFXT.Controllers.API
                         Degree = a.Disabled.Degree.Name,
                         Exam = a.Exam,
                         State = a.State,
-                        showArea = a.showArea,
+                        ShowArea = a.ShowArea,
                         UserID = a.Disabled.UserID,
                     }).Where(x => x.UserID == userID).GroupBy(a => a.Exam.Name);
                     return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
@@ -73,12 +73,12 @@ namespace JZKFXT.Controllers.API
                         Exam = a.Exam,
                         State = a.State,
                         UserID = a.Disabled.UserID,
-                    }).Where(x => x.UserID == userID).GroupBy(a => a.Exam.Name);
+                    }).GroupBy(a => a.Exam.Name);
                     return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
                 }
                 else if (name == "JiaZhiJiaoXingQiShenHe")
                 {
-                    list = list.Where(a => a.showArea != null && (a.State == ExamState.待审核 || a.State == ExamState.已审核) && a.Evaluated == false);
+                    list = list.Where(a => a.ShowArea != null && (a.State == ExamState.待审核 || a.State == ExamState.已审核) && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -89,9 +89,9 @@ namespace JZKFXT.Controllers.API
                         Degree = a.Disabled.Degree.Name,
                         Exam = a.Exam,
                         State = a.State,
-                        showArea = a.showArea,
+                        ShowArea = a.ShowArea,
                         UserID = a.Disabled.UserID,
-                    }).Where(x => x.UserID == userID).GroupBy(a => a.Exam.Name);
+                    }).GroupBy(a => a.Exam.Name);
                     return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
                 }
                 else if (name == "FuJuFuWu")
@@ -108,7 +108,7 @@ namespace JZKFXT.Controllers.API
                          Exam = a.Exam,
                          State = a.State,
                          UserID = a.Disabled.UserID,
-                     }).Where(x => x.UserID == userID).GroupBy(a => a.Exam.Name);
+                     }).GroupBy(a => a.Exam.Name);
                     return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
                 }
                 else if (name == "FuJuFuWuHuiFang")
@@ -130,7 +130,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "JiGouPingGu")
                 {
-                    //list = list.Where(a => a.Evaluated == false && a.showArea == null);
+                    //list = list.Where(a => a.Evaluated == false && a.ShowArea == null);
                     //var result = list.Select(
                     //a => new
                     //{
@@ -142,16 +142,16 @@ namespace JZKFXT.Controllers.API
                     //    Exam = a.Exam,
                     //    State = a.State,
                     //    UserID = a.Disabled.UserID,
-                    //}).Where(x => x.UserID == userID).GroupBy(a => a.Exam.Name);
+                    //}).GroupBy(a => a.Exam.Name);
                     //return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
-
+         
                 }
             }
             else if (examBy == "name")
             {
                 if (name == "WuZhangAiGaiZao")
                 {
-                    list = list.Where(a => a.showArea != null && a.State != ExamState.待评估);
+                    list = list.Where(a => a.ShowArea != null && a.State != ExamState.待评估 && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -162,13 +162,13 @@ namespace JZKFXT.Controllers.API
                         Degree = a.Disabled.Degree.Name,
                         Exam = a.Exam,
                         State = a.State,
-                        showArea = a.showArea,
-                    }).GroupBy(a => a.showArea);
+                        ShowArea = a.ShowArea,
+                    }).GroupBy(a => a.ShowArea);
                     return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
                 }
                 else if (name == "WuZhangAiShenHe")
                 {
-                    list = list.Where(a => a.showArea != null && (a.State == ExamState.待审核 || a.State == ExamState.已审核) && a.Evaluated == false);
+                    list = list.Where(a => a.ShowArea != null && (a.State == ExamState.待审核 || a.State == ExamState.已审核) && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -179,8 +179,8 @@ namespace JZKFXT.Controllers.API
                         Degree = a.Disabled.Degree.Name,
                         Exam = a.Exam,
                         State = a.State,
-                        showArea = a.showArea,
-                    }).GroupBy(a => a.showArea);
+                        ShowArea = a.ShowArea,
+                    }).GroupBy(a => a.ShowArea);
                     return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
                 }
             }
@@ -255,10 +255,12 @@ namespace JZKFXT.Controllers.API
             if (examRecord.State == ExamState.待审核)
             {
                 examRecord.State = ExamState.已审核;
+                examRecord.Auditor = answer.Auditor;
             }
             else if (examRecord.State == ExamState.已审核)
             {
                 examRecord.State = ExamState.已完成;
+                examRecord.Complete = answer.Complete;
                 examRecord.FinishTime = DateTime.Now;
             }
             await db.SaveChangesAsync();

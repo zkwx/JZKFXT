@@ -31,7 +31,7 @@ namespace JZKFXT.Models
             ExamID = examID;
             AssistiveDevices = String.Join(",", assistiveDeviceIds);
         }
-        public Option(string optionText, string contentText, string nextQuestionNo,int grade, params int[] assistiveDeviceIds)
+        public Option(string optionText, string contentText, string nextQuestionNo, int grade, params int[] assistiveDeviceIds)
         {
             OptionText = optionText;
             ContentText = contentText;

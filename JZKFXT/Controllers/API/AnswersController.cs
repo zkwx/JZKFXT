@@ -93,40 +93,78 @@ namespace JZKFXT.Controllers.API
             {
                 return BadRequest(ModelState);
             }
-            var answer = answers[0];
-            foreach (var item in answers)
+            //试卷编号
+            var ans = new List<int>();
+            //试卷的第一题
+            var ansList = new List<Answer>();
+            foreach (var a in answers)
             {
-                if (item.Area != null)
+                if (ans.IndexOf(a.ExamID) == -1)
                 {
-                    answer = item;
-                    break;
+                    ans.Add(a.ExamID);
+                    ansList.Add(a);
                 }
             }
-            var delAnswers = db.Answers.Where(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
-            db.Answers.RemoveRange(delAnswers);
-            db.Answers.AddRange(answers);
 
-            var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
-            if (examRecord != null)
+            foreach (var item in ansList)
             {
-                if (examRecord.ExamID == 9 || examRecord.ExamID == 10)
+                var answer = item;
+                foreach (var it in answers)
                 {
-                    examRecord.State = ExamState.已完成;
+                    if (it.Area != null && it.ExamID == item.ExamID && it.DisabledID == item.DisabledID)
+                    {
+                        answer = it;
+                    }
+                }
+                var delAnswers = db.Answers.Where(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
+                db.Answers.RemoveRange(delAnswers);
+                foreach (var addAns in answers)
+                {
+                    if (answer.DisabledID == addAns.DisabledID && answer.ExamID == addAns.ExamID)
+                    {
+                        db.Answers.Add(addAns);
+                    }
+                }
+
+                var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
+                if (examRecord != null)
+                {
+                    if (examRecord.ExamID == 9 || examRecord.ExamID == 10)
+                    {
+                        examRecord.State = ExamState.已完成;
+                    }
+                    else
+                    {
+                        examRecord.State = ExamState.已评估;
+                    }
+                    if (answer.Area != null)
+                    {
+                        examRecord.ShowArea = answer.Area;
+                    }
                 }
                 else
                 {
-                    examRecord.State = ExamState.已评估;
-                }
-                examRecord.State = ExamState.已评估;
-                if (answer.Area != null)
-                {
-                    examRecord.showArea = answer.Area;
+                    var newRecord = new ExamRecord(answer.ExamID, answer.DisabledID, 0);
+                    db.ExamRecords.Add(newRecord);
+                    db.SaveChanges();
+                    var record = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
+                    if (record.ExamID == 9 || record.ExamID == 10)
+                    {
+                        record.State = ExamState.已完成;
+                    }
+                    else
+                    {
+                        record.State = ExamState.已评估;
+                    }
+                    if (answer.Area != null)
+                    {
+                        record.ShowArea = answer.Area;
+                    }
                 }
             }
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
-
         }
 
         // DELETE: api/Answers/5

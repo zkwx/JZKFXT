@@ -233,57 +233,114 @@ namespace JZKFXT.Controllers
         //登录用户所负责的患者(进行中)
         [HttpGet]
         [Route("api/Disabled/Conduct")]
-        public int Conduct(int id)
+        public int Conduct(int id, int role)
         {
             var list = db.Disableds.Where(a => a.UserID == id).ToList();
             List<ExamRecord> records = new List<ExamRecord>();
-            foreach (var item in list)
+            if (list.Count() > 0)
             {
-                var rec = db.ExamRecords.Where(x => x.DisabledID == item.ID).ToList();
-                if (rec.Count() > 0)
+                if (role < 3)
                 {
-                    foreach (var i in rec)
+                    foreach (var item in list)
                     {
-                        if (i.State != ExamState.已完成)
+                        var rec = db.ExamRecords.Where(x => x.DisabledID == item.ID).ToList();
+                        if (rec.Count() > 0)
                         {
-                            if (i.Evaluated != true)
+                            foreach (var i in rec)
                             {
-                                records.Add(i);
+                                if (i.State != ExamState.已完成)
+                                {
+                                    if (i.Evaluated != true)
+                                    {
+                                        records.Add(i);
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
+            else
+            {
+                if (role > 2 && role < 10)
+                {
+                    var li = db.ExamRecords.Where(x => x.Evaluated == false && x.State == ExamState.待审核).ToList();
+                    if (li.Count() > 0)
+                    {
+                        foreach (var t in li)
+                        {
+                            records.Add(t);
+                        }
+                    }
+                }
+                else if (role > 10)
+                {
+                    var li = db.ExamRecords.Where(x => x.State == ExamState.已审核 && x.Evaluated == false).ToList();
+                    if (li.Count() > 0)
+                    {
+                        foreach (var t in li)
+                        {
+                            records.Add(t);
+                        }
+                    }
+                }
+            }
+
             return records.Count();
         }
         //登录用户所负责的患者(完成)
         [HttpGet]
         [Route("api/Disabled/Finish")]
-        public int Finish(int id)
+        public int Finish(int id, int role)
         {
             var list = db.Disableds.Where(a => a.UserID == id).ToList();
             List<ExamRecord> records = new List<ExamRecord>();
-            foreach (var item in list)
+            if (list.Count() > 0)
             {
-                var rec = db.ExamRecords.Where(x => x.DisabledID == item.ID);
-                if (rec.Count() > 0)
+                if (role < 3)
                 {
-                    foreach (var i in rec)
+                    foreach (var item in list)
                     {
-                        if (i.State == ExamState.已完成)
+                        var rec = db.ExamRecords.Where(x => x.DisabledID == item.ID);
+                        if (rec.Count() > 0)
                         {
-                            records.Add(i);
-                        }
-                        else
-                        {
-                            if (i.Evaluated == true)
+                            foreach (var i in rec)
                             {
-                                records.Add(i);
+                                if (i.State == ExamState.已完成 || i.Evaluated == true)
+                                {
+                                    records.Add(i);
+                                }
                             }
                         }
                     }
                 }
             }
+            else
+            {
+                if (role > 2 && role < 10)
+                {
+                    var li = db.ExamRecords.Where(x => x.Auditor == id && x.Evaluated == false).ToList();
+                    if (li.Count() > 0)
+                    {
+                        foreach (var t in li)
+                        {
+                            records.Add(t);
+                        }
+                    }
+                }
+                else if (role > 9)
+                {
+                    var li = db.ExamRecords.Where(x => x.Complete == id && x.Evaluated == false).ToList();
+                    if (li.Count() > 0)
+                    {
+                        foreach (var t in li)
+                        {
+                            records.Add(t);
+                        }
+                    }
+                }
+            }
+
             return records.Count();
         }
     }

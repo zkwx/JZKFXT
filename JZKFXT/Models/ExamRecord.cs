@@ -46,7 +46,15 @@ namespace JZKFXT.Models
         /// <summary>
         /// 展示区域
         /// </summary>
-        public string showArea { get; set; }
+        public string ShowArea { get; set; }
+        /// <summary>
+        /// 审核人
+        /// </summary>
+        public int Auditor { get; set; }
+        /// <summary>
+        /// 完成人
+        /// </summary>
+        public int Complete { get; set; }
         //[JsonIgnore]
         public virtual Exam Exam { get; set; }
         [JsonIgnore]
