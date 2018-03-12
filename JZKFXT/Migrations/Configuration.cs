@@ -31,7 +31,8 @@ namespace JZKFXT.Migrations
                 new Role( 8, "辅具技术人员（无障碍方向）","本地区开展辅具适配的权威机构（如辅具中心）人员，涉及无障碍方向方向。", "在“机构评估与审核”模块，对“无障碍改造”模块数据进行评估和审核。",""),
                 new Role( 9, "评估机构（除辅具外）","本地区开展除辅具评估适配业务以外的评估机构，涉及康复治疗与训练、手术、支持性服务，等的评估。", "在“机构评估与审核”模块，对辖区指定或全部功能障碍者涉及康复治疗与训练、手术、支持性服务的需求进行评估。","")   ,
                 new Role( 10, "康复服务机构","本地区开展除辅具评估适配业务以外的服务机构，涉及康复治疗与训练、手术、支持性服务，等的服务。", "在“综合康复服务”模块的“康复服务”子模块，对功能障碍者开展康复治疗与训练、手术、支持性服务，等的服务。",""),
-                new Role( 11, "辅具服务机构","本地区开展辅具服务的机构。", "在“综合康复服务”模块的“辅具服务”子模块，对功能障碍者开展辅具配发、假肢矫形器和无障碍等的服务。","")
+                new Role( 11, "辅具服务机构","本地区开展辅具服务的机构。", "在“综合康复服务”模块的“辅具服务”子模块，对功能障碍者开展辅具配发、假肢矫形器和无障碍等的服务。",""),
+                new Role( 12, "All","All","All","")
             };
             db.Roles.AddRange(Roles);
             #endregion
@@ -156,6 +157,7 @@ namespace JZKFXT.Migrations
                 new User("user","user","普通用户","1320000000", 1, DateTime.Now,""),
                 new User("admin","admin","管理员","1320000000", 3, DateTime.Now,""),
                 new User("system","system","机构","1320000000", 10, DateTime.Now,""),
+                new User("all","all","所有","1320000000", 12, DateTime.Now,""),
             };
             db.Users.AddRange(users);
             #endregion
@@ -190,76 +192,6 @@ namespace JZKFXT.Migrations
                     2,
                     DateTime.Now
                 ),
-                new Disabled
-                (
-                    "周正一",
-                    1,
-                    "13800000000",
-                   "周正一妈",
-                    2,
-                    true,
-                    "32030219911010101033",
-                    true,
-                    3,
-                    3,
-                    DateTime.Now
-                ),
-                new Disabled
-                (
-                    "谢琦",
-                    1,
-                    "13800000000",
-                   "谢琦妈",
-                    2,
-                    true,
-                    "32030219911010101044",
-                    true,
-                    4,
-                    4,
-                    DateTime.Now
-                ),
-                new Disabled
-                (
-                    "韩冰",
-                    2,
-                    "13800000000",
-                   "韩冰妈",
-                    2,
-                    true,
-                    "32030219911010101054",
-                    true,
-                    5,
-                    4,
-                    DateTime.Now
-                ),
-                new Disabled
-                (
-                    "韩儒",
-                    1,
-                    "13800000000",
-                   "韩儒妈",
-                    2,
-                    true,
-                    "32030219911010101064",
-                    true,
-                    6,
-                    4,
-                    DateTime.Now
-                ),
-                new Disabled
-                (
-                    "孙永",
-                    1,
-                    "13800000000",
-                   "孙永妈",
-                    2,
-                    true,
-                    "32030219911010101074",
-                    true,
-                    7,
-                    4,
-                    DateTime.Now
-                )
             };
             db.Disableds.AddRange(Disableds);
             #endregion

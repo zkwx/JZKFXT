@@ -12,7 +12,7 @@ namespace JZKFXT.Models
         {
         }
 
-        public User(string userName, string password, string realName, string phone, int roleID, DateTime? createTime, string other)
+        public User(string userName, string password, string realName, string phone, int roleID, DateTime? createTime, string img)
         {
             UserName = userName;
             Password = password;
@@ -20,7 +20,7 @@ namespace JZKFXT.Models
             Phone = phone;
             RoleID = roleID;
             CreateTime = createTime;
-            Other = other;
+            Img = img;
         }
 
         public int ID { get; set; }
@@ -34,6 +34,6 @@ namespace JZKFXT.Models
         public virtual Role Role { get; set; }//残疾人康复详情
         public DateTime? CreateTime { get; set; }
         public DateTime? LastLoginTime { get; set; }
-        public string Other { get; set; }//图片
+        public string Img { get; set; }//图片
     }
 }

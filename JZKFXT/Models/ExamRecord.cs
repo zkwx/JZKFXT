@@ -21,7 +21,21 @@ namespace JZKFXT.Models
             DisabledID = disabledID;
             State = state;
         }
-
+        public ExamRecord(int? examID, int disabledID, ExamState state, bool evaluated)
+        {
+            ExamID = examID;
+            DisabledID = disabledID;
+            State = state;
+            Evaluated = evaluated;
+        }
+        public ExamRecord(int? examID, int disabledID, ExamState state, bool evaluated, int? nextID)
+        {
+            ExamID = examID;
+            DisabledID = disabledID;
+            State = state;
+            Evaluated = evaluated;
+            NextID = nextID;
+        }
         public int ID { get; set; }
         /// <summary>
         /// 评估ID
@@ -47,6 +61,10 @@ namespace JZKFXT.Models
         /// 展示区域
         /// </summary>
         public string ShowArea { get; set; }
+        /// <summary>
+        /// 服务走向
+        /// </summary>
+        public int? NextID { get; set; }
         /// <summary>
         /// 审核人
         /// </summary>

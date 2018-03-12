@@ -78,7 +78,7 @@ namespace JZKFXT.Controllers
             {
                 u.RealName = user.RealName;
                 u.Phone = user.Phone;
-                u.Other = user.Other;
+                u.Img = user.Img;
                 try
                 {
                     await db.SaveChangesAsync();
@@ -147,7 +147,7 @@ namespace JZKFXT.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            user.CreateTime = DateTime.Now;
             db.Users.Add(user);
             await db.SaveChangesAsync();
 
