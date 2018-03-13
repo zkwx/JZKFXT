@@ -154,10 +154,10 @@ namespace JZKFXT.Migrations
 
             #region 用户
             List<User> users = new List<User>{
-                new User("user","user","普通用户","1320000000", 1, DateTime.Now,""),
-                new User("admin","admin","管理员","1320000000", 3, DateTime.Now,""),
-                new User("system","system","机构","1320000000", 10, DateTime.Now,""),
-                new User("all","all","所有","1320000000", 12, DateTime.Now,""),
+                new User("user","ySZJ","普通用户","1320000000", 1, DateTime.Now,""),
+                new User("admin","ySZJ","管理员","1320000000", 3, DateTime.Now,""),
+                new User("system","ySZJ","机构","1320000000", 10, DateTime.Now,""),
+                new User("all","ySZJ","所有","1320000000", 12, DateTime.Now,""),
             };
             db.Users.AddRange(users);
             #endregion

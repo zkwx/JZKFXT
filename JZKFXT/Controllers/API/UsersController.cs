@@ -47,7 +47,8 @@ namespace JZKFXT.Controllers
         [Route("api/User")]
         public async Task<IHttpActionResult> GetUser(string UserName, string Password)
         {
-            User loginuser = await db.Users.FirstOrDefaultAsync(u => u.UserName == UserName && u.Password == Password);
+            string pw = Pub.Security.CreateDbPassword(Password);
+            User loginuser = await db.Users.FirstOrDefaultAsync(u => u.UserName == UserName && u.Password == pw);
             if (loginuser == null)
             {
                 return NotFound();
@@ -148,6 +149,7 @@ namespace JZKFXT.Controllers
                 return BadRequest(ModelState);
             }
             user.CreateTime = DateTime.Now;
+            user.Password = Pub.Security.CreateDbPassword(user.Password);
             db.Users.Add(user);
             await db.SaveChangesAsync();
 
