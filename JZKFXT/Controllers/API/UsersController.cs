@@ -79,6 +79,9 @@ namespace JZKFXT.Controllers
             {
                 u.RealName = user.RealName;
                 u.Phone = user.Phone;
+                u.IDNumber = user.IDNumber;
+                u.RoleID = user.RoleID;
+                u.Sex = user.Sex;
                 u.Img = user.Img;
                 try
                 {

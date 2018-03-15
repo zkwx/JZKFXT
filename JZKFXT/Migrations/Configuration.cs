@@ -32,7 +32,7 @@ namespace JZKFXT.Migrations
                 new Role( 9, "评估机构（除辅具外）","本地区开展除辅具评估适配业务以外的评估机构，涉及康复治疗与训练、手术、支持性服务，等的评估。", "在“机构评估与审核”模块，对辖区指定或全部功能障碍者涉及康复治疗与训练、手术、支持性服务的需求进行评估。","")   ,
                 new Role( 10, "康复服务机构","本地区开展除辅具评估适配业务以外的服务机构，涉及康复治疗与训练、手术、支持性服务，等的服务。", "在“综合康复服务”模块的“康复服务”子模块，对功能障碍者开展康复治疗与训练、手术、支持性服务，等的服务。",""),
                 new Role( 11, "辅具服务机构","本地区开展辅具服务的机构。", "在“综合康复服务”模块的“辅具服务”子模块，对功能障碍者开展辅具配发、假肢矫形器和无障碍等的服务。",""),
-                new Role( 12, "All","All","All","")
+                new Role( 12, "管理员","管理员","所有权限","")
             };
             db.Roles.AddRange(Roles);
             #endregion
@@ -154,10 +154,10 @@ namespace JZKFXT.Migrations
 
             #region 用户
             List<User> users = new List<User>{
-                new User("user","ySZJ","普通用户","1320000000", 1, DateTime.Now,""),
-                new User("admin","ySZJ","管理员","1320000000", 3, DateTime.Now,""),
-                new User("system","ySZJ","机构","1320000000", 10, DateTime.Now,""),
-                new User("all","ySZJ","所有","1320000000", 12, DateTime.Now,""),
+                new User("user","ySZJ","普通用户",1,"13200000000","", 1, DateTime.Now,""),
+                new User("admin","ySZJ","管理员",1,"13200000000","", 3, DateTime.Now,""),
+                new User("system","ySZJ","机构",1,"13200000000","", 10, DateTime.Now,""),
+                new User("all","ySZJ","所有",1,"13200000000","", 12, DateTime.Now,""),
             };
             db.Users.AddRange(users);
             #endregion
