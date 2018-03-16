@@ -3805,7 +3805,6 @@ namespace JZKFXT.Migrations
             db.Exams.AddOrUpdate(exam9);
             #endregion
 
-
             #region 辅具回访2
             List<Question> questions10 = new List<Question>
             {
@@ -3856,6 +3855,35 @@ namespace JZKFXT.Migrations
             };
             Exam exam10 = new Exam(10, "FuJuFuWuHuiFang", "辅具服务回访2", questions10);
             db.Exams.AddOrUpdate(exam10);
+            #endregion
+
+            #region 康复回访
+            List<Question> questions11 = new List<Question>
+            {
+                new Question("1", "是否接受了康复服务？", 1,
+                    new List<Option>{
+                         new Option("A", "已接受","2"),
+                         new Option("B", "未接受","3"),
+                    }
+                ),
+                new Question("2", "对提供的康复服务是否满意", 1,
+                    new List<Option>{
+                         new Option("A", "满意","3"),
+                         new Option("B", "较满意","3"),
+                         new Option("C", "不满意","3"),
+                    }
+                ),
+                new Question("3", "回访方式", 1,
+                    new List<Option>{
+                         new Option("A", "入户",null),
+                         new Option("B", "电话",null),
+                         new Option("C", "微信或QQ",null),
+                         new Option("D", "其他",null),
+                    }
+                ),
+            };
+            Exam exam11 = new Exam(11, "KangFuFuWuHuiFang", "康复服务回访", questions11);
+            db.Exams.AddOrUpdate(exam11);
             #endregion
 
             #region 评估记录

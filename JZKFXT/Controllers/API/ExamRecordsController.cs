@@ -130,7 +130,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "JiGouPingGu")
                 {
-                    list = list.Where(a => a.Evaluated == true && a.State == ExamState.待评估 && a.NextID == 1);
+                    list = list.Where(a => a.Evaluated == true && a.NextID == 1);
                     var result = list.Select(
                     a => new
                     {
@@ -147,7 +147,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "KangFuFuWu")
                 {
-                    list = list.Where(a => a.Evaluated == true && (a.State == ExamState.待评估 || a.State == ExamState.待完成) && a.NextID == 2);
+                    list = list.Where(a => a.Evaluated == true && a.NextID == 2);
                     var result = list.Select(
                     a => new
                     {
@@ -289,6 +289,7 @@ namespace JZKFXT.Controllers.API
         public async Task<IHttpActionResult> GetExamRecord(int ExamID, int DisabledID)
         {
             ExamRecord examRecord = await db.ExamRecords.Where(e => e.ExamID == ExamID && e.DisabledID == DisabledID).FirstOrDefaultAsync();
+
             if (examRecord == null)
             {
                 return NotFound();
@@ -297,6 +298,29 @@ namespace JZKFXT.Controllers.API
             return Ok(examRecord);
         }
 
+        //康复服务完成,改变试卷记录状态
+        [HttpPost]
+        [Route("api/ExamRecords/Change")]
+        public async Task<IHttpActionResult> ChangeRecord(int ExamID, int DisabledID, int UserID)
+        {
+            ExamRecord examRecord = await db.ExamRecords.Where(e => e.ExamID == ExamID && e.DisabledID == DisabledID).FirstOrDefaultAsync();
+
+            if (examRecord == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                if (examRecord.NextID == 2 && examRecord.State == ExamState.待完成)
+                {
+                    examRecord.State = ExamState.已完成;
+                    examRecord.Complete = UserID;
+                    db.SaveChanges();
+                }
+            }
+
+            return Ok(examRecord);
+        }
         // POST: api/ExamRecords
         [ResponseType(typeof(ExamRecord))]
         public async Task<IHttpActionResult> PostExamRecord(ExamRecord examRecord)

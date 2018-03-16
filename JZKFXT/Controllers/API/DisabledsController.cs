@@ -82,6 +82,7 @@ namespace JZKFXT.Controllers
                 string ExamName = null;
                 Boolean flag = false;
                 int? nextID = 0;
+                var state = ExamState.待评估;
                 //康复入户修改
                 if (Disabled.Need)
                 {
@@ -100,23 +101,26 @@ namespace JZKFXT.Controllers
                             if (ExamName != "肢体")
                             {
                                 ExamName = db.Categories.Find(item.CategoryID).Name;
+                                state = ExamState.待评估;
                             }
                         }
                         else if (item.NextID == 1)
                         {
                             ExamName = db.Categories.Find(item.CategoryID).Name;
                             flag = true;
+                            state = ExamState.待审核;
                         }
                         else if (item.NextID == 2)
                         {
                             ExamName = db.Categories.Find(item.CategoryID).Name;
                             flag = true;
+                            state = ExamState.待完成;
                         }
                     }
                 }
                 db.Entry(Disabled).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                SaveTargetExam(Disabled.ID, ExamName, ExamState.待评估, flag, nextID);
+                SaveTargetExam(Disabled.ID, ExamName, state, flag, nextID);
             }
             catch (Exception ex)
             {
@@ -146,6 +150,7 @@ namespace JZKFXT.Controllers
                 string ExamName = null;
                 Boolean flag = false;
                 int? nextID = 0;
+                var state = ExamState.待评估;
                 //康复入户添加
                 if (Disabled.Need)
                 {
@@ -161,17 +166,20 @@ namespace JZKFXT.Controllers
                             if (ExamName != "肢体")
                             {
                                 ExamName = db.Categories.Find(item.CategoryID).Name;
+                                state = ExamState.待评估;
                             }
                         }
                         else if (item.NextID == 1)
                         {
                             ExamName = db.Categories.Find(item.CategoryID).Name;
                             flag = true;
+                            state = ExamState.待审核;
                         }
                         else if (item.NextID == 2)
                         {
                             ExamName = db.Categories.Find(item.CategoryID).Name;
                             flag = true;
+                            state = ExamState.待完成;
                         }
                     }
                 }
@@ -179,7 +187,7 @@ namespace JZKFXT.Controllers
                 Disabled.CreateTime = DateTime.Now;
                 db.Disableds.Add(Disabled);
                 await db.SaveChangesAsync();
-                SaveTargetExam(Disabled.ID, ExamName, ExamState.待评估, flag, nextID);
+                SaveTargetExam(Disabled.ID, ExamName, state, flag, nextID);
             }
             catch (Exception ex)
             {
@@ -257,14 +265,29 @@ namespace JZKFXT.Controllers
                 else
                 {
                     var examRecord = db.ExamRecords.FirstOrDefault(x => x.DisabledID == disabledID && x.ExamID == exam.ID);
-                    if (examRecord.State == ExamState.待评估)
+                    if (nextID == 1)
                     {
-                        examRecord.DisabledID = disabledID;
-                        examRecord.ExamID = exam.ID;
-                        examRecord.State = state;
-                        examRecord.Evaluated = flag;
-                        examRecord.NextID = nextID;
+                        if (examRecord.State == ExamState.待评估)
+                        {
+                            examRecord.DisabledID = disabledID;
+                            examRecord.ExamID = exam.ID;
+                            examRecord.State = state;
+                            examRecord.Evaluated = flag;
+                            examRecord.NextID = nextID;
+                        }
                     }
+                    else if (nextID == 2)
+                    {
+                        if (examRecord.State == ExamState.待审核 && examRecord.NextID == 1)
+                        {
+                            examRecord.DisabledID = disabledID;
+                            examRecord.ExamID = exam.ID;
+                            examRecord.State = state;
+                            examRecord.Evaluated = flag;
+                            examRecord.NextID = nextID;
+                        }
+                    }
+
                 }
                 db.SaveChanges();
             }
