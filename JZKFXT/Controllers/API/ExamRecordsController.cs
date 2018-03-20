@@ -96,7 +96,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "FuJuFuWu")
                 {
-                    list = list.Where(a => (a.State == ExamState.待完成 || a.State == ExamState.已完成) && a.Evaluated == false);
+                    list = list.Where(a => (a.State == ExamState.待完成 || a.State == ExamState.待回访) && a.Evaluated == false);
                     var result = list.Select(
                      a => new
                      {
@@ -113,7 +113,24 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "FuJuFuWuHuiFang")
                 {
-                    list = list.Where(a => a.State == ExamState.已完成 && a.Evaluated == false);
+                    list = list.Where(a => a.State == ExamState.待回访 && a.Evaluated == false);
+                    var result = list.Select(
+                     a => new
+                     {
+                         ID = a.Disabled.ID,
+                         Name = a.Disabled.Name,
+                         Sex = a.Disabled.Sex,
+                         Category = a.Disabled.Category.Name,
+                         Degree = a.Disabled.Degree.Name,
+                         Exam = a.Exam,
+                         State = a.State,
+                         UserID = a.Disabled.UserID,
+                     }).Where(x => x.UserID == userID).GroupBy(a => a.Exam.Name);
+                    return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
+                }
+                else if (name == "KangFuFuWuHuiFang")
+                {
+                    list = list.Where(a => a.State == ExamState.待回访 && a.Evaluated == true && a.FinishTime != null && a.NextID == 2);
                     var result = list.Select(
                      a => new
                      {
@@ -251,6 +268,36 @@ namespace JZKFXT.Controllers.API
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        //回访完成修改原试卷状态
+        [HttpPost]
+        [Route("api/ExamRecords/ChangeState")]
+        public async Task<IHttpActionResult> ChangeExamState(ExamRecord record)
+        {
+            ExamRecord exam = await db.ExamRecords.Where(x => x.ExamID == record.ExamID && x.DisabledID == record.DisabledID).FirstOrDefaultAsync();
+            if (exam == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var er = db.ExamRecords.Where(x => x.DisabledID == record.DisabledID);
+                var flag = false;
+                foreach (var item in er)
+                {
+                    if (item.ExamID == 10 || item.ExamID == 11)
+                    {
+                        flag = true;
+                    }
+                }
+                if (flag)
+                {
+                    exam.State = ExamState.已完成;
+                }
+                db.SaveChanges();
+            }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
         //审核通过修改状态
         [HttpPut]
         [Route("api/ExamRecords/Modify")]
@@ -276,7 +323,7 @@ namespace JZKFXT.Controllers.API
             }
             else if (examRecord.State == ExamState.待完成)
             {
-                examRecord.State = ExamState.已完成;
+                examRecord.State = ExamState.待回访;
                 examRecord.Complete = answer.Complete;
                 examRecord.FinishTime = DateTime.Now;
             }
@@ -292,9 +339,18 @@ namespace JZKFXT.Controllers.API
 
             if (examRecord == null)
             {
-                return NotFound();
+                if (ExamID == 9 || ExamID == 10 || ExamID == 11)
+                {
+                    ExamRecord record = new ExamRecord(ExamID, DisabledID, 0);
+                    db.ExamRecords.Add(record);
+                    db.SaveChanges();
+                    return Ok(record);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
-
             return Ok(examRecord);
         }
 
@@ -313,8 +369,9 @@ namespace JZKFXT.Controllers.API
             {
                 if (examRecord.NextID == 2 && examRecord.State == ExamState.待完成)
                 {
-                    examRecord.State = ExamState.已完成;
+                    examRecord.State = ExamState.待回访;
                     examRecord.Complete = UserID;
+                    examRecord.FinishTime = DateTime.Now;
                     db.SaveChanges();
                 }
             }

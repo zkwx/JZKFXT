@@ -41,12 +41,47 @@ namespace JZKFXT.Controllers
                     });
                 if (userID != 0)
                 {
-                    result2 = result2.Where(x => x.UserID == userID && x.Disabled_Details.FirstOrDefault().NextID == 3);
+                    result2 = result2.Where(x => x.UserID == userID);
                 }
                 return Ok(result2.OrderByDescending(a => a.ID));
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Disableds/Exam")]
+        public IHttpActionResult GetDisExamRecords(string ExamName = null, int DisabledID = 0, int userID = 0)
+        {
+            try
+            {
+                var list = db.ExamRecords.AsQueryable();
+                var result2 = list.Select(a => new
+                {
+                    ID = a.ID,
+                    Exam = a.Exam,
+                    ExamID = a.ExamID,
+                    Disabled = a.Disabled,
+                    DisabledID = a.DisabledID,
+                    Auditor = a.Auditor,
+                    Complete = a.Complete,
+                    FinishTime = a.FinishTime,
+                    NextID = a.NextID,
+                    ShowArea = a.ShowArea,
+                    State = a.State,
+                });
+                Exam exam = db.Exams.Single(a => a.Name == ExamName);
+                if (exam != null && ExamName != null && DisabledID != 0 && userID != 0)
+                {
+                    result2 = result2.Where(x => x.ExamID == exam.ID && x.DisabledID == DisabledID && x.Disabled.UserID == userID);
+                }
+                return Ok(result2);
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
         }
@@ -81,7 +116,7 @@ namespace JZKFXT.Controllers
             {
                 string ExamName = null;
                 Boolean flag = false;
-                int? nextID = 0;
+                int? nextID = null;
                 var state = ExamState.待评估;
                 //康复入户修改
                 if (Disabled.Need)
@@ -302,7 +337,7 @@ namespace JZKFXT.Controllers
             List<ExamRecord> records = new List<ExamRecord>();
             if (list.Count() > 0)
             {
-                if (role < 3)
+                if (role > 0 && role < 3)
                 {
                     foreach (var item in list)
                     {
@@ -311,7 +346,7 @@ namespace JZKFXT.Controllers
                         {
                             foreach (var i in rec)
                             {
-                                if (i.State != ExamState.已完成 && i.Evaluated == false)
+                                if (i.State != ExamState.已完成)
                                 {
                                     records.Add(i);
                                 }
@@ -322,7 +357,7 @@ namespace JZKFXT.Controllers
             }
             else
             {
-                if (role > 2 && role < 10)
+                if (role > 2 && role < 9)
                 {
                     var li = db.ExamRecords.Where(x => x.Evaluated == false && x.State == ExamState.待审核).ToList();
                     if (li.Count() > 0)
@@ -333,7 +368,29 @@ namespace JZKFXT.Controllers
                         }
                     }
                 }
-                else if (role > 10)
+                else if (role == 9)
+                {
+                    var li = db.ExamRecords.Where(x => x.Evaluated == true && x.State == ExamState.待审核).ToList();
+                    if (li.Count() > 0)
+                    {
+                        foreach (var t in li)
+                        {
+                            records.Add(t);
+                        }
+                    }
+                }
+                else if (role == 10)
+                {
+                    var li = db.ExamRecords.Where(x => x.State == ExamState.待完成 && x.Evaluated == true).ToList();
+                    if (li.Count() > 0)
+                    {
+                        foreach (var t in li)
+                        {
+                            records.Add(t);
+                        }
+                    }
+                }
+                else if (role == 11)
                 {
                     var li = db.ExamRecords.Where(x => x.State == ExamState.待完成 && x.Evaluated == false).ToList();
                     if (li.Count() > 0)
@@ -357,7 +414,7 @@ namespace JZKFXT.Controllers
             List<ExamRecord> records = new List<ExamRecord>();
             if (list.Count() > 0)
             {
-                if (role < 3)
+                if (role > 0 && role < 3)
                 {
                     foreach (var item in list)
                     {
@@ -366,7 +423,7 @@ namespace JZKFXT.Controllers
                         {
                             foreach (var i in rec)
                             {
-                                if (i.State == ExamState.已完成 && i.Evaluated == false)
+                                if (i.State == ExamState.已完成 && (i.ExamID == 10 || i.ExamID == 11))
                                 {
                                     records.Add(i);
                                 }
@@ -379,7 +436,7 @@ namespace JZKFXT.Controllers
             {
                 if (role > 2 && role < 10)
                 {
-                    var li = db.ExamRecords.Where(x => x.Auditor == id && x.Evaluated == false).ToList();
+                    var li = db.ExamRecords.Where(x => x.Auditor == id).ToList();
                     if (li.Count() > 0)
                     {
                         foreach (var t in li)
@@ -390,7 +447,7 @@ namespace JZKFXT.Controllers
                 }
                 else if (role > 9)
                 {
-                    var li = db.ExamRecords.Where(x => x.Complete == id && x.Evaluated == false).ToList();
+                    var li = db.ExamRecords.Where(x => x.Complete == id).ToList();
                     if (li.Count() > 0)
                     {
                         foreach (var t in li)

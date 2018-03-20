@@ -13,6 +13,8 @@ namespace JZKFXT.Models
         待审核,
         //已审核,
         待完成,
+        //已完成,
+        待回访,
         已完成,
     }
 }

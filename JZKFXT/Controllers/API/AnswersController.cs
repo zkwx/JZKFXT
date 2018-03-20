@@ -129,9 +129,14 @@ namespace JZKFXT.Controllers.API
                 var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
                 if (examRecord != null)
                 {
-                    if (examRecord.ExamID == 9 || examRecord.ExamID == 10)
+                    if (examRecord.ExamID == 9)
+                    {
+                        examRecord.State = ExamState.待回访;
+                    }
+                    else if (examRecord.ExamID == 10 || examRecord.ExamID == 11)
                     {
                         examRecord.State = ExamState.已完成;
+                        examRecord.FinishTime = DateTime.Now;
                     }
                     else
                     {
@@ -148,9 +153,14 @@ namespace JZKFXT.Controllers.API
                     db.ExamRecords.Add(newRecord);
                     db.SaveChanges();
                     var record = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
-                    if (record.ExamID == 9 || record.ExamID == 10)
+                    if (record.ExamID == 9)
+                    {
+                        record.State = ExamState.待回访;
+                    }
+                    else if (record.ExamID == 10 || record.ExamID == 11)
                     {
                         record.State = ExamState.已完成;
+                        examRecord.FinishTime = DateTime.Now;
                     }
                     else
                     {
