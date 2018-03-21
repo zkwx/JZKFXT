@@ -147,7 +147,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "JiGouPingGu")
                 {
-                    list = list.Where(a => a.Evaluated == true && a.NextID == 1);
+                    list = list.Where(a => a.State == ExamState.待审核 && a.Evaluated == true && a.NextID == 1);
                     var result = list.Select(
                     a => new
                     {
@@ -164,7 +164,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "KangFuFuWu")
                 {
-                    list = list.Where(a => a.Evaluated == true && a.NextID == 2);
+                    list = list.Where(a => a.State == ExamState.待完成 && a.Evaluated == true && a.NextID == 2);
                     var result = list.Select(
                     a => new
                     {
