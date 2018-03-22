@@ -42,6 +42,23 @@ namespace JZKFXT.Controllers
             var result = db.Users;
             return Ok(result);
         }
+
+        //根据用户名查询用户
+        [HttpGet]
+        [Route("api/User/Name")]
+        public async Task<IHttpActionResult> GetUserName(string UserName)
+        {
+            User user = await db.Users.FirstOrDefaultAsync(u => u.UserName == UserName);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(user.UserName);
+            }
+        }
+
         //登录
         [HttpGet]
         [Route("api/User")]

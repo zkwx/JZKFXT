@@ -154,44 +154,14 @@ namespace JZKFXT.Migrations
 
             #region 用户
             List<User> users = new List<User>{
-                new User("user","ySZJ","普通用户",1,"13200000000","", 1, DateTime.Now,""),
-                new User("admin","ySZJ","管理员",1,"13200000000","", 3, DateTime.Now,""),
-                new User("system","ySZJ","机构",1,"13200000000","", 10, DateTime.Now,""),
-                new User("all","ySZJ","所有",1,"13200000000","", 12, DateTime.Now,""),
+                new User("admin","ySZJqoX9n","所有",1,"13200000000","", 12, DateTime.Now,""),
             };
             db.Users.AddRange(users);
             #endregion
 
             #region 残疾人信息
             List<Disabled> Disableds = new List<Disabled> {
-                new Disabled
-                (
-                    "权子豪",
-                    1,
-                    "13800000000",
-                   "权子豪爸",
-                    1,
-                    true,
-                    "32030219911010101011",
-                    true,
-                    1,
-                    1,
-                    DateTime.Now
-                ),
-                new Disabled
-                (
-                    "唐莎莎",
-                    2,
-                    "13800000000",
-                   "莎莎妈",
-                    2,
-                    true,
-                    "32030219911010101022",
-                    true,
-                    2,
-                    2,
-                    DateTime.Now
-                ),
+               
             };
             db.Disableds.AddRange(Disableds);
             #endregion
@@ -199,8 +169,7 @@ namespace JZKFXT.Migrations
 
             #region 康复需求
             List<Disabled_Detail> Disabled_Details = new List<Disabled_Detail> {
-                new Disabled_Detail(1, 1, 1, 1010102, 3),
-                new Disabled_Detail(2, 2, 2, 1020102, 3),
+               
             };
             db.Disabled_Details.AddRange(Disabled_Details);
             #endregion
@@ -3889,8 +3858,7 @@ namespace JZKFXT.Migrations
             #region 评估记录
             List<ExamRecord> examRecords = new List<ExamRecord>
             {
-                new ExamRecord(1, 1,ExamState.待评估),
-                new ExamRecord(2, 2,ExamState.待评估),
+              
             };
             db.ExamRecords.AddRange(examRecords);
             #endregion
