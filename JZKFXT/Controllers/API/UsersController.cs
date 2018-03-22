@@ -103,12 +103,12 @@ namespace JZKFXT.Controllers
                 try
                 {
                     await db.SaveChangesAsync();
+                    return StatusCode(HttpStatusCode.NoContent);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     throw;
                 }
-                return StatusCode(HttpStatusCode.NoContent);
             }
         }
 
