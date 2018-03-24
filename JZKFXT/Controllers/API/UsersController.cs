@@ -51,7 +51,8 @@ namespace JZKFXT.Controllers
             User user = await db.Users.FirstOrDefaultAsync(u => u.UserName == UserName);
             if (user == null)
             {
-                return NotFound();
+                UserName = "true";
+                return Ok(UserName);
             }
             else
             {

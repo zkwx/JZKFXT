@@ -300,9 +300,10 @@ namespace JZKFXT.Controllers
                 else
                 {
                     var examRecord = db.ExamRecords.FirstOrDefault(x => x.DisabledID == disabledID && x.ExamID == exam.ID);
+                    //转存机构审核
                     if (nextID == 1)
                     {
-                        if (examRecord.State == ExamState.待评估)
+                        if ((examRecord.State == ExamState.待评估 && examRecord.NextID == 3) || (examRecord.State == ExamState.待完成 && examRecord.NextID == 2))
                         {
                             examRecord.DisabledID = disabledID;
                             examRecord.ExamID = exam.ID;
@@ -311,9 +312,10 @@ namespace JZKFXT.Controllers
                             examRecord.NextID = nextID;
                         }
                     }
+                    //转存康复服务机构
                     else if (nextID == 2)
                     {
-                        if (examRecord.State == ExamState.待审核 && examRecord.NextID == 1)
+                        if ((examRecord.State == ExamState.待评估 && examRecord.NextID == 3) || (examRecord.State == ExamState.待审核 && examRecord.NextID == 1))
                         {
                             examRecord.DisabledID = disabledID;
                             examRecord.ExamID = exam.ID;
@@ -322,7 +324,18 @@ namespace JZKFXT.Controllers
                             examRecord.NextID = nextID;
                         }
                     }
-
+                    //转存上门评估
+                    else if (nextID == 3)
+                    {
+                        if ((examRecord.State == ExamState.待审核 && examRecord.NextID == 1) || (examRecord.State == ExamState.待完成 && examRecord.NextID == 2))
+                        {
+                            examRecord.DisabledID = disabledID;
+                            examRecord.ExamID = exam.ID;
+                            examRecord.State = state;
+                            examRecord.Evaluated = flag;
+                            examRecord.NextID = nextID;
+                        }
+                    }
                 }
                 db.SaveChanges();
             }
