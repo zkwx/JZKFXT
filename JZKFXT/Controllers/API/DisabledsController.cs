@@ -186,7 +186,7 @@ namespace JZKFXT.Controllers
                 Boolean flag = false;
                 int? nextID = 0;
                 var state = ExamState.待评估;
-                //康复入户添加 
+                //康复入户添加
                 if (Disabled.Need)
                 {
                     foreach (var item in Disabled.Disabled_Details)
