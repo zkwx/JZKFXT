@@ -15,9 +15,17 @@ namespace JZKFXT.Models
         public AssistiveDevice(int iD, string name, string type)
         {
             ID = iD;
-            ParentAssistiveDeviceID = iD/100;
+            ParentAssistiveDeviceID = iD / 100;
             Name = name;
             Type = type;
+        }
+        public AssistiveDevice(int iD, string name, string type,int number)
+        {
+            ID = iD;
+            ParentAssistiveDeviceID = iD / 100;
+            Name = name;
+            Type = type;
+            Number = number;
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
@@ -25,6 +33,7 @@ namespace JZKFXT.Models
         public int ParentAssistiveDeviceID { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        
+        //图片编号 图片名 = 图片编号 + Name
+        public int Number { get; set; }
     }
 }

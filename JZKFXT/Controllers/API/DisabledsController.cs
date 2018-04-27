@@ -121,9 +121,17 @@ namespace JZKFXT.Controllers
                 //康复入户修改
                 if (Disabled.Need)
                 {
+
                     foreach (var item in Disabled.Disabled_Details)
                     {
                         if (item == null) continue;
+                        var detail = db.Disabled_Details.Where(x => x.DisabledID == Disabled.ID).FirstOrDefault();
+                        db.Disabled_Details.Remove(detail);
+                        await db.SaveChangesAsync();
+                        if (detail.NextID != item.NextID)
+                        {
+                            item.ID = 0;
+                        }
                         item.DisabledID = Disabled.ID;
                         EntityStateHelper.BindEntityState(db, item);
                         var r = db.Rehabilitations.Find(item.RehabilitationID);
@@ -155,7 +163,19 @@ namespace JZKFXT.Controllers
                 }
                 db.Entry(Disabled).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                SaveTargetExam(Disabled.ID, ExamName, state, flag, nextID);
+                if (ExamName == "肢体")
+                {
+                    //3、偏瘫  4、脑瘫  5、脊髓  6、肢体综合  
+                    string[] list = { "偏瘫", "脑瘫", "脊髓", "肢体" };
+                    foreach (var item in list)
+                    {
+                        SaveTargetExam(Disabled.ID, item, state, flag, nextID);
+                    }
+                }
+                else
+                {
+                    SaveTargetExam(Disabled.ID, ExamName, state, flag, nextID);
+                }
             }
             catch (Exception ex)
             {
@@ -222,7 +242,19 @@ namespace JZKFXT.Controllers
                 Disabled.CreateTime = DateTime.Now;
                 db.Disableds.Add(Disabled);
                 await db.SaveChangesAsync();
-                SaveTargetExam(Disabled.ID, ExamName, state, flag, nextID);
+                if (ExamName == "肢体")
+                {
+                    //3、偏瘫  4、脑瘫  5、脊髓  6、肢体综合  
+                    string[] list = { "偏瘫", "脑瘫", "脊髓", "肢体" };
+                    foreach (var item in list)
+                    {
+                        SaveTargetExam(Disabled.ID, item, state, flag, nextID);
+                    }
+                }
+                else
+                {
+                    SaveTargetExam(Disabled.ID, ExamName, state, flag, nextID);
+                }
             }
             catch (Exception ex)
             {
@@ -235,16 +267,33 @@ namespace JZKFXT.Controllers
         [ResponseType(typeof(Disabled))]
         public async Task<IHttpActionResult> DeleteDisabled(int id)
         {
+            var flag = true;
             Disabled Disabled = await db.Disableds.FindAsync(id);
             if (Disabled == null)
             {
                 return NotFound();
             }
-
-            db.Disableds.Remove(Disabled);
-            await db.SaveChangesAsync();
-
-            return Ok(Disabled);
+            var list = db.ExamRecords.Where(x => x.DisabledID == id);
+            foreach (var item in list)
+            {
+                if (item.State != 0)
+                {
+                    flag = false;
+                }
+            }
+            if (flag)
+            {
+                db.ExamRecords.RemoveRange(list);
+                var li = db.Disabled_Details.Where(x => x.DisabledID == id);
+                db.Disabled_Details.RemoveRange(li);
+                db.Disableds.Remove(Disabled);
+                await db.SaveChangesAsync();
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            else
+            {
+                return Ok(Disabled.ID);
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -293,9 +342,50 @@ namespace JZKFXT.Controllers
                 bool exist = db.ExamRecords.Count(a => a.Exam.Name == ExamName && a.DisabledID == disabledID) > 0;
                 if (!exist)
                 {
-                    var examRecord = db.ExamRecords.FirstOrDefault(x => x.DisabledID == disabledID && x.ExamID == exam.ID);
-                    examRecord = new ExamRecord(exam.ID, disabledID, state, flag, nextID);
-                    db.ExamRecords.Add(examRecord);
+                    bool f = true;
+                    string[] list = { "偏瘫", "脑瘫", "脊髓", "肢体" };
+                    foreach (var item in list)
+                    {
+                        if (exam.Name == item)
+                        {
+                            f = false;
+                        }
+                    }
+                    if (f)
+                    {
+                        var num = db.ExamRecords.Count(x => x.DisabledID == disabledID && x.State == ExamState.待评估);
+                        var record = db.ExamRecords.Where(x => x.DisabledID == disabledID && x.State == ExamState.待评估);
+                        if (num == 1 || num == 4)
+                        {
+                            db.ExamRecords.RemoveRange(record);
+                        }
+                        var examRecord = new ExamRecord(exam.ID, disabledID, state, flag, nextID);
+                        db.ExamRecords.Add(examRecord);
+                    }
+                    else
+                    {
+                        var num = db.ExamRecords.Count(x => x.DisabledID == disabledID && x.State == ExamState.待评估);
+                        var record = db.ExamRecords.Where(x => x.DisabledID == disabledID && x.State == ExamState.待评估);
+                        if (num == 1)
+                        {
+                            bool t = false;
+                            foreach (var item in list)
+                            {
+                                if (record.FirstOrDefault().Exam.Name == item)
+                                {
+                                    t = true;
+                                }
+                            }
+                            if (!t)
+                            {
+                                db.ExamRecords.RemoveRange(record);
+                            }
+                        }
+                        var examRecord = new ExamRecord(exam.ID, disabledID, state, flag, nextID);
+                        var user = db.Disableds.Where(x => x.ID == disabledID).FirstOrDefault();
+                        db.ExamRecords.Add(examRecord);
+                    }
+
                 }
                 else
                 {

@@ -160,13 +160,14 @@ namespace JZKFXT.Controllers.API
                 return BadRequest(ModelState);
             }
             var answer = assistive[0];
+
             var assAnswers = db.AssistiveAnswer.Where(a => a.ExamID == answer.ExamID && a.DisabledID == answer.DisabledID);
             db.AssistiveAnswer.RemoveRange(assAnswers);
 
             var answers = db.Answers.Where(b => b.ExamID == answer.ExamID && b.DisabledID == answer.DisabledID);
             db.Answers.RemoveRange(answers);
 
-            var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.ExamID && a.ExamID == answer.DisabledID);
+            var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
             if (examRecord != null)
             {
                 examRecord.State = ExamState.待评估;

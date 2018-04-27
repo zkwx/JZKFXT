@@ -25,7 +25,16 @@ namespace JZKFXT.Models
             ExamID = examID;
             OptionIDs = optionIDs;
         }
-
+        public AssistiveAnswer(int iD, string name, string type, int disabledID, int examID, string optionIDs,int number)
+        {
+            ID = iD;
+            Name = name;
+            Type = type;
+            DisabledID = disabledID;
+            ExamID = examID;
+            OptionIDs = optionIDs;
+            Number = number;
+        }
         [DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
         /// <summary>
         /// 辅具ID
@@ -47,6 +56,10 @@ namespace JZKFXT.Models
         /// 评估ID
         /// </summary>
         public int ExamID { get; set; }
+        /// <summary>
+        /// 数量
+        /// </summary>
+        public int Number { get; set; }
         /// <summary>
         /// 选择的选项ID
         /// </summary>

@@ -348,7 +348,12 @@ namespace JZKFXT.Controllers.API
                 }
                 else
                 {
-                    return NotFound();
+                    var ExamName = db.Categories.Find(ExamID).Name;
+                    examRecord = await db.ExamRecords.Where(a => a.Exam.Name == ExamName && a.DisabledID == DisabledID).FirstOrDefaultAsync();
+                    if (examRecord == null)
+                    {
+                        return NotFound();
+                    }
                 }
             }
             return Ok(examRecord);
