@@ -3091,7 +3091,7 @@ namespace JZKFXT.Migrations
                          new Option("B", "不能","3-4-2",0,107330902,107330903),
                     }
                 ),
-                new Question("3-4-2", "是否经常自行远距离出行", 1,
+                new Question("3-4-2", "是否经常独自远距离出行", 1,
                     new List<Option>{
                         //02 18 09手摇三轮车，选配02 23 09机动轮椅车
                          new Option("A", "是","3-4-3",0,1021809,1022309),

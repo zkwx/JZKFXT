@@ -267,7 +267,30 @@ namespace JZKFXT.Controllers.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        //审核撤回
+        [HttpPost]
+        [Route("api/ExamRecords/BackExam")]
+        public async Task<IHttpActionResult> BackExam(ExamRecord record)
+        {
+            ExamRecord exam = await db.ExamRecords.Where(x => x.ExamID == record.ExamID && x.DisabledID == record.DisabledID).FirstOrDefaultAsync();
+            if (exam == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                if (exam.State > ExamState.待审核)
+                {
+                    return StatusCode(HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    exam.State = ExamState.已评估;
+                    db.SaveChanges();
+                }
+            }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
         //回访完成修改原试卷状态
         [HttpPost]
         [Route("api/ExamRecords/ChangeState")]
