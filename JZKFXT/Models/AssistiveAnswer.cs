@@ -16,7 +16,7 @@ namespace JZKFXT.Models
         {
         }
 
-        public AssistiveAnswer(int iD, string name, string type,int disabledID,int examID,string optionIDs)
+        public AssistiveAnswer(int iD, string name, string type, int disabledID, int examID, string optionIDs)
         {
             ID = iD;
             Name = name;
@@ -25,7 +25,7 @@ namespace JZKFXT.Models
             ExamID = examID;
             OptionIDs = optionIDs;
         }
-        public AssistiveAnswer(int iD, string name, string type, int disabledID, int examID, string optionIDs,int number)
+        public AssistiveAnswer(int iD, string name, string type, int disabledID, int examID, string optionIDs, int number)
         {
             ID = iD;
             Name = name;
@@ -60,6 +60,10 @@ namespace JZKFXT.Models
         /// 数量
         /// </summary>
         public int Number { get; set; }
+        /// <summary>
+        /// 总价
+        /// </summary>
+        public double Total { get; set; }
         /// <summary>
         /// 选择的选项ID
         /// </summary>
