@@ -86,6 +86,8 @@ namespace JZKFXT.Controllers.API
 
             return CreatedAtRoute("DefaultApi", new { id = answer.ID }, answer);
         }
+
+        [HttpPost]
         [Route("api/Answers/SaveAnswers")]
         public async Task<IHttpActionResult> PostAnswers(IList<Answer> answers)
         {

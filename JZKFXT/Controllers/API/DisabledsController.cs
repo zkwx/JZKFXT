@@ -99,6 +99,27 @@ namespace JZKFXT.Controllers
             return Ok(Disabled);
         }
 
+        [HttpGet]
+        [Route("api/Disableds/SaveUserSign")]
+        public async Task<IHttpActionResult> SaveUserSignUrl(int disabledID, string userSignUrl)
+        {
+            Disabled Disabled = await db.Disableds.FindAsync(disabledID);
+            if (Disabled == null)
+            {
+                return NotFound();
+            }
+            try
+            {
+                Disabled.UserSignUrl = userSignUrl;
+                db.SaveChanges();
+                return Ok(disabledID);
+            }
+            catch (Exception e)
+            {
+                return Ok(e);
+            }
+        }
+
         // PUT: api/Disableds/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutDisabled(int id, Disabled Disabled)

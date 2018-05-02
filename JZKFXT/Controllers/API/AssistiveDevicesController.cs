@@ -32,13 +32,13 @@ namespace JZKFXT.Controllers.API
         public String picAddress(int id, string name, string type)
         {
             AssistiveDevice assistiveDevice = db.AssistiveDevices.Where(x => x.ID == id && x.Name == name && x.Type == type).FirstOrDefault();
-            string imgName = assistiveDevice.Number + assistiveDevice.Name;
+            string imgName = assistiveDevice.PicNumber + assistiveDevice.Name;
             var home = "~/Image/";
             var imgPath = "";
             var directory = "/Image/";
             string imgHome = HttpContext.Current.Server.MapPath(home);
             var ls = Directory.GetFiles(imgHome).ToList();
-            if (assistiveDevice.Number != 0)
+            if (assistiveDevice.PicNumber != 0)
             {
                 foreach (var l in ls)
                 {
