@@ -154,22 +154,24 @@ namespace JZKFXT.Migrations
 
             #region 用户
             List<User> users = new List<User>{
-                new User("admin","ySZJqoX9n","所有",1,"13200000000","", 12, DateTime.Now,""),
+                new User("admin","ySZJqoX9n","所有",1,"13200000000","","", 12, DateTime.Now,""),
             };
             db.Users.AddRange(users);
             #endregion
 
             #region 残疾人信息
-            List<Disabled> Disableds = new List<Disabled> {
-               
+            List<Disabled> Disableds = new List<Disabled>
+            {
+
             };
             db.Disableds.AddRange(Disableds);
             #endregion
             db.SaveChanges();
 
             #region 康复需求
-            List<Disabled_Detail> Disabled_Details = new List<Disabled_Detail> {
-               
+            List<Disabled_Detail> Disabled_Details = new List<Disabled_Detail>
+            {
+
             };
             db.Disabled_Details.AddRange(Disabled_Details);
             #endregion
@@ -3858,7 +3860,7 @@ namespace JZKFXT.Migrations
             #region 评估记录
             List<ExamRecord> examRecords = new List<ExamRecord>
             {
-              
+
             };
             db.ExamRecords.AddRange(examRecords);
             #endregion

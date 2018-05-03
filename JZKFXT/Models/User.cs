@@ -12,13 +12,14 @@ namespace JZKFXT.Models
         {
         }
 
-        public User(string userName, string password, string realName, int? sex, string phone, string idNumber, int roleID, DateTime? createTime, string img)
+        public User(string userName, string password, string realName, int? sex, string phone, string address, string idNumber, int roleID, DateTime? createTime, string img)
         {
             UserName = userName;
             Password = password;
             RealName = realName;
             Sex = sex;
             Phone = phone;
+            Address = address;
             IDNumber = idNumber;
             RoleID = roleID;
             CreateTime = createTime;
@@ -32,6 +33,7 @@ namespace JZKFXT.Models
         public string Phone { get; set; }
         public int RoleID { get; set; }
         public int? Sex { get; set; }//性别
+        public string Address { get; set; }//地址
         public string IDNumber { get; set; }//身份证
 
         [JsonIgnore]
