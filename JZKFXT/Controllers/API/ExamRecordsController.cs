@@ -179,6 +179,23 @@ namespace JZKFXT.Controllers.API
                     }).GroupBy(a => a.Exam.Name);
                     return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
                 }
+                else if (name == "KangFuRuHuHome")
+                {
+                    var result = list.Select(
+                    a => new
+                    {
+                        ID = a.Disabled.ID,
+                        Name = a.Disabled.Name,
+                        Sex = a.Disabled.Sex,
+                        Category = a.Disabled.Category.Name,
+                        Degree = a.Disabled.Degree.Name,
+                        Exam = a.Exam,
+                        State = a.State,
+                        UserID = a.Disabled.UserID,
+                        FinishTime = a.FinishTime,
+                    }).GroupBy(a => a.ID);
+                    return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
+                }
             }
             else if (examBy == "name")
             {

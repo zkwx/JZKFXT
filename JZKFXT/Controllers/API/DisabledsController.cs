@@ -73,9 +73,21 @@ namespace JZKFXT.Controllers
                     State = a.State,
                 });
                 Exam exam = db.Exams.Single(a => a.Name == ExamName);
-                if (exam != null && ExamName != null && DisabledID != 0 && userID != 0)
+                //if (exam != null && ExamName != null && DisabledID != 0 && userID != 0)
+                //{
+                //    result2 = result2.Where(x => x.ExamID == exam.ID && x.DisabledID == DisabledID && x.Disabled.UserID == userID);
+                //}
+                if (exam != null)
                 {
-                    result2 = result2.Where(x => x.ExamID == exam.ID && x.DisabledID == DisabledID && x.Disabled.UserID == userID);
+                    result2 = result2.Where(x => x.ExamID == exam.ID);
+                }
+                if (DisabledID != 0)
+                {
+                    result2 = result2.Where(x => x.DisabledID == DisabledID);
+                }
+                if (userID != 0)
+                {
+                    result2 = result2.Where(x => x.Disabled.UserID == userID);
                 }
                 return Ok(result2);
             }
@@ -182,6 +194,7 @@ namespace JZKFXT.Controllers
                         }
                     }
                 }
+                Disabled.UpdateTime = DateTime.Now;
                 db.Entry(Disabled).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 if (ExamName == "肢体")
