@@ -284,6 +284,33 @@ namespace JZKFXT.Controllers.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+
+        //评估机构提交，改变状态
+        [HttpPut]
+        [Route("api/ExamRecords/ChangeExamNext")]
+        public async Task<IHttpActionResult> ChangeExamNext(int examID, int disabledID, int nextID)
+        {
+            ExamRecord exam = await db.ExamRecords.Where(x => x.ExamID == examID && x.DisabledID == disabledID).FirstOrDefaultAsync();
+            if (exam == null)
+            {
+                return NotFound();
+            }
+            try
+            {
+                exam.NextID = nextID;
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+
         //审核撤回
         [HttpPost]
         [Route("api/ExamRecords/BackExam")]

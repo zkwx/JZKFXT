@@ -96,23 +96,18 @@ namespace JZKFXT.Controllers.API
             }
             var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
 
-            var disabled = await db.Disableds.FirstOrDefaultAsync(a => a.ID == answer.DisabledID);
-
             if (examRecord != null)
             {
                 if (examRecord.State == ExamState.已评估)
                 {
-                    examRecord.NextID = disabled.Disabled_Details.FirstOrDefault().NextID;
                     examRecord.State = ExamState.待审核;
                 }
                 else if (examRecord.State == ExamState.待审核)
                 {
-                    examRecord.NextID = disabled.Disabled_Details.FirstOrDefault().NextID;
                     examRecord.State = ExamState.待完成;
                 }
                 else if (examRecord.State == ExamState.待完成)
                 {
-                    examRecord.NextID = disabled.Disabled_Details.FirstOrDefault().NextID;
                     examRecord.State = ExamState.待回访;
                 }
             }
