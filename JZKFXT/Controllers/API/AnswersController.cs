@@ -24,7 +24,7 @@ namespace JZKFXT.Controllers.API
             return db.Answers.Where(a => a.ExamID == ExamID && a.DisabledID == DisabledID);
         }
 
-        // GET: api/Answers/5 
+        // GET: api/Answers/5
         [ResponseType(typeof(Answer))]
         public async Task<IHttpActionResult> GetAnswer(int id)
         {
