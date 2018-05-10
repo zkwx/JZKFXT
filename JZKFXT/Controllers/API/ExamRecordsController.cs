@@ -334,7 +334,7 @@ namespace JZKFXT.Controllers.API
                     exam.State = ExamState.待评估;
                     if (exam.ShowExam != 0)
                     {
-                        ExamRecord nextExam = await db.ExamRecords.Where(x => x.ShowExam == exam.ShowExam && x.DisabledID == exam.DisabledID).FirstOrDefaultAsync();
+                        ExamRecord nextExam = await db.ExamRecords.Where(x => x.ExamID == exam.ShowExam && x.DisabledID == exam.DisabledID).FirstOrDefaultAsync();
                         if (nextExam == null)
                         {
                             return NotFound();
