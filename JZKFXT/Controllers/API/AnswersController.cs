@@ -113,7 +113,7 @@ namespace JZKFXT.Controllers.API
                 var answer = item;
                 foreach (var it in answers)
                 {
-                    if (it.Area != null && it.ExamID == item.ExamID && it.DisabledID == item.DisabledID)
+                    if (it.ShowExam != 0 && it.Area != null && it.ExamID == item.ExamID && it.DisabledID == item.DisabledID)
                     {
                         answer = it;
                     }
@@ -148,6 +148,10 @@ namespace JZKFXT.Controllers.API
                     {
                         examRecord.ShowArea = answer.Area;
                     }
+                    if (answer.ShowExam != 0)
+                    {
+                        examRecord.ShowExam = answer.ShowExam;
+                    }
                 }
                 else
                 {
@@ -171,6 +175,10 @@ namespace JZKFXT.Controllers.API
                     if (answer.Area != null)
                     {
                         record.ShowArea = answer.Area;
+                    }
+                    if (answer.ShowExam != 0)
+                    {
+                        examRecord.ShowExam = answer.ShowExam;
                     }
                 }
             }

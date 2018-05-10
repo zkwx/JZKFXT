@@ -43,7 +43,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "JiaZhiJiaoXingQi")
                 {
-                    list = list.Where(a => a.ShowArea != null && a.State != ExamState.待评估 && a.Evaluated == false);
+                    list = list.Where(a => a.ShowExam != 0 && a.ShowArea != null && a.State != ExamState.待评估 && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -55,6 +55,7 @@ namespace JZKFXT.Controllers.API
                         Exam = a.Exam,
                         State = a.State,
                         ShowArea = a.ShowArea,
+                        ShowExam = a.ShowExam,
                         UserID = a.Disabled.UserID,
                     }).Where(x => x.UserID == userID).GroupBy(a => a.Exam.Name);
                     return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
@@ -78,7 +79,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "JiaZhiJiaoXingQiShenHe")
                 {
-                    list = list.Where(a => a.ShowArea != null && (a.State == ExamState.待审核 || a.State == ExamState.待完成) && a.Evaluated == false);
+                    list = list.Where(a => a.ShowExam != 0 && a.ShowArea != null && (a.State == ExamState.待审核 || a.State == ExamState.待完成) && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -90,6 +91,7 @@ namespace JZKFXT.Controllers.API
                         Exam = a.Exam,
                         State = a.State,
                         ShowArea = a.ShowArea,
+                        ShowExam = a.ShowExam,
                         UserID = a.Disabled.UserID,
                     }).GroupBy(a => a.Exam.Name);
                     return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
@@ -201,7 +203,7 @@ namespace JZKFXT.Controllers.API
             {
                 if (name == "WuZhangAiGaiZao")
                 {
-                    list = list.Where(a => a.ShowArea != null && a.State != ExamState.待评估 && a.Evaluated == false);
+                    list = list.Where(a => a.ShowExam != 0 && a.ShowArea != null && a.State != ExamState.待评估 && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -213,12 +215,13 @@ namespace JZKFXT.Controllers.API
                         Exam = a.Exam,
                         State = a.State,
                         ShowArea = a.ShowArea,
+                        ShowExam = a.ShowExam,
                     }).GroupBy(a => a.ShowArea);
                     return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
                 }
                 else if (name == "WuZhangAiShenHe")
                 {
-                    list = list.Where(a => a.ShowArea != null && (a.State == ExamState.待审核 || a.State == ExamState.待完成) && a.Evaluated == false);
+                    list = list.Where(a => a.ShowExam != 0 && a.ShowArea != null && (a.State == ExamState.待审核 || a.State == ExamState.待完成) && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -230,6 +233,7 @@ namespace JZKFXT.Controllers.API
                         Exam = a.Exam,
                         State = a.State,
                         ShowArea = a.ShowArea,
+                        ShowExam = a.ShowExam,
                     }).GroupBy(a => a.ShowArea);
                     return Ok(result.OrderByDescending(a => a.FirstOrDefault().ID));
                 }
@@ -309,8 +313,41 @@ namespace JZKFXT.Controllers.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-
+        //重新评估
+        [HttpPost]
+        [Route("api/ExamRecords/BackState")]
+        public async Task<IHttpActionResult> BackState(ExamRecord record)
+        {
+            ExamRecord exam = await db.ExamRecords.Where(x => x.ExamID == record.ExamID && x.DisabledID == record.DisabledID).FirstOrDefaultAsync();
+            if (exam == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                if (exam.State > ExamState.已评估)
+                {
+                    return StatusCode(HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    exam.State = ExamState.待评估;
+                    if (exam.ShowExam != 0)
+                    {
+                        ExamRecord nextExam = await db.ExamRecords.Where(x => x.ShowExam == exam.ShowExam && x.DisabledID == exam.DisabledID).FirstOrDefaultAsync();
+                        if (nextExam == null)
+                        {
+                            return NotFound();
+                        }
+                        db.ExamRecords.Remove(nextExam);
+                    }
+                    exam.ShowExam = 0;
+                    exam.ShowArea = null;
+                    db.SaveChanges();
+                }
+            }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
         //审核撤回
         [HttpPost]
         [Route("api/ExamRecords/BackExam")]

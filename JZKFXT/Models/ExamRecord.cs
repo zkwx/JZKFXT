@@ -62,6 +62,10 @@ namespace JZKFXT.Models
         /// </summary>
         public string ShowArea { get; set; }
         /// <summary>
+        /// 展示试卷
+        /// </summary>
+        public int ShowExam { get; set; }
+        /// <summary>
         /// 服务走向
         /// </summary>
         public int? NextID { get; set; }

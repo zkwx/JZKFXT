@@ -1668,7 +1668,6 @@
     <Content Include="App_Data\精准康复系统\附件4-“综合康复服务”模块.docx" />
     <Content Include="App_Data\精准康复系统\附件5-“综合服务回访”模块.docx" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
