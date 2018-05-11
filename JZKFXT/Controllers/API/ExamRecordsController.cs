@@ -43,7 +43,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "JiaZhiJiaoXingQi")
                 {
-                    list = list.Where(a => a.ShowExam != 0 && a.ShowArea != null && a.State != ExamState.待评估 && a.Evaluated == false);
+                    list = list.Where(a => a.ShowArea != null && a.State != ExamState.待评估 && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -79,7 +79,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "JiaZhiJiaoXingQiShenHe")
                 {
-                    list = list.Where(a => a.ShowExam != 0 && a.ShowArea != null && (a.State == ExamState.待审核 || a.State == ExamState.待完成) && a.Evaluated == false);
+                    list = list.Where(a => a.ShowArea != null && (a.State == ExamState.待审核 || a.State == ExamState.待完成) && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -203,7 +203,7 @@ namespace JZKFXT.Controllers.API
             {
                 if (name == "WuZhangAiGaiZao")
                 {
-                    list = list.Where(a => a.ShowExam != 0 && a.ShowArea != null && a.State != ExamState.待评估 && a.Evaluated == false);
+                    list = list.Where(a => a.ShowArea != null && a.State != ExamState.待评估 && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -221,7 +221,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "WuZhangAiShenHe")
                 {
-                    list = list.Where(a => a.ShowExam != 0 && a.ShowArea != null && (a.State == ExamState.待审核 || a.State == ExamState.待完成) && a.Evaluated == false);
+                    list = list.Where(a => a.ShowArea != null && (a.State == ExamState.待审核 || a.State == ExamState.待完成) && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -335,11 +335,10 @@ namespace JZKFXT.Controllers.API
                     if (exam.ShowExam != 0)
                     {
                         ExamRecord nextExam = await db.ExamRecords.Where(x => x.ExamID == exam.ShowExam && x.DisabledID == exam.DisabledID).FirstOrDefaultAsync();
-                        if (nextExam == null)
+                        if (nextExam != null)
                         {
-                            return NotFound();
+                            db.ExamRecords.Remove(nextExam);
                         }
-                        db.ExamRecords.Remove(nextExam);
                     }
                     exam.ShowExam = 0;
                     exam.ShowArea = null;
