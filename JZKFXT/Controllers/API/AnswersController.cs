@@ -21,7 +21,14 @@ namespace JZKFXT.Controllers.API
         // GET: api/Answers
         public IQueryable<Answer> GetAnswers(int ExamID, int DisabledID)
         {
-            return db.Answers.Where(a => a.ExamID == ExamID && a.DisabledID == DisabledID);
+            if (ExamID == 9 || ExamID == 10 || ExamID == 11)
+            {
+                return db.Answers.Where(a => a.ExamID == ExamID && a.DisabledID == DisabledID);
+            }
+            else
+            {
+                return db.Answers.Where(a => a.FirstExam == ExamID && a.DisabledID == DisabledID);
+            }
         }
 
         // GET: api/Answers/5
@@ -113,12 +120,13 @@ namespace JZKFXT.Controllers.API
                 var answer = item;
                 foreach (var it in answers)
                 {
-                    if (it.ShowExam != 0 && it.Area != null && it.ExamID == item.ExamID && it.DisabledID == item.DisabledID)
+                    if (it.Area != null && it.ExamID == item.ExamID && it.DisabledID == item.DisabledID)
                     {
                         answer = it;
                     }
                 }
-                var delAnswers = db.Answers.Where(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
+
+                var delAnswers = db.Answers.Where(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID && a.FirstExam == answer.FirstExam);
                 db.Answers.RemoveRange(delAnswers);
                 foreach (var addAns in answers)
                 {
@@ -143,14 +151,14 @@ namespace JZKFXT.Controllers.API
                     else
                     {
                         examRecord.State = ExamState.已评估;
-                    }
-                    if (answer.Area != null)
-                    {
-                        examRecord.ShowArea = answer.Area;
-                    }
-                    if (answer.ShowExam != 0)
-                    {
-                        examRecord.ShowExam = answer.ShowExam;
+                        if (answer.Area != null)
+                        {
+                            examRecord.ShowArea = answer.Area;
+                        }
+                        if (answer.ShowExam != 0)
+                        {
+                            examRecord.ShowExam = answer.ShowExam;
+                        }
                     }
                 }
                 else
@@ -171,15 +179,19 @@ namespace JZKFXT.Controllers.API
                     else
                     {
                         record.State = ExamState.已评估;
+                        record.NextID = 3;
+                        record.First = answer.FirstExam;
                     }
+                    var fisExam = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.FirstExam);
                     if (answer.Area != null)
                     {
-                        record.ShowArea = answer.Area;
+                        fisExam.ShowArea = answer.Area;
                     }
                     if (answer.ShowExam != 0)
                     {
-                        examRecord.ShowExam = answer.ShowExam;
+                        fisExam.ShowExam = answer.ShowExam;
                     }
+
                 }
             }
             await db.SaveChangesAsync();

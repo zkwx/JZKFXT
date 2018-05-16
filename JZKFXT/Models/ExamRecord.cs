@@ -77,6 +77,10 @@ namespace JZKFXT.Models
         /// 完成人
         /// </summary>
         public int Complete { get; set; }
+        /// <summary>
+        /// 原本试卷id
+        /// </summary>
+        public int First { get; set; }
         //[JsonIgnore]
         public virtual Exam Exam { get; set; }
         [JsonIgnore]

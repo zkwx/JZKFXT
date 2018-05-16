@@ -26,7 +26,7 @@ namespace JZKFXT.Controllers.API
             {
                 if (name == "FuJuPingGu")
                 {
-                    list = list.Where(a => a.Exam.Type == name && a.Evaluated == false && a.ShowArea == null);
+                    list = list.Where(a => a.Exam.Type == name && a.Evaluated == false && a.ShowArea == null && a.First == 0);
                     var result = list.Select(
                     a => new
                     {
@@ -290,7 +290,7 @@ namespace JZKFXT.Controllers.API
         }
 
 
-        //评估机构提交，改变状态
+        //评估机构、康复服务，改变状态
         [HttpPut]
         [Route("api/ExamRecords/ChangeExamNext")]
         public async Task<IHttpActionResult> ChangeExamNext(int examID, int disabledID, int nextID)
@@ -302,7 +302,24 @@ namespace JZKFXT.Controllers.API
             }
             try
             {
-                exam.NextID = nextID;
+                if (nextID == 3)
+                {
+                    exam.State = ExamState.待评估;
+                    exam.NextID = nextID;
+                    exam.Evaluated = false;
+                }
+                else
+                {
+                    if (nextID == 1)
+                    {
+                        exam.State = ExamState.待审核;
+                    }
+                    else if (nextID == 2)
+                    {
+                        exam.State = ExamState.待完成;
+                    }
+                    exam.NextID = nextID;
+                }
                 db.SaveChanges();
             }
             catch (Exception)
@@ -339,6 +356,11 @@ namespace JZKFXT.Controllers.API
                         {
                             db.ExamRecords.Remove(nextExam);
                         }
+                    }
+                    var exList = db.ExamRecords.Where(x => x.First == exam.ExamID && x.DisabledID == exam.DisabledID);
+                    if (exList.Count() > 0)
+                    {
+                        db.ExamRecords.RemoveRange(exList);
                     }
                     exam.ShowExam = 0;
                     exam.ShowArea = null;
@@ -420,7 +442,6 @@ namespace JZKFXT.Controllers.API
             }
             if (examRecord.State == ExamState.待审核)
             {
-                //examRecord.State = ExamState.已审核;
                 examRecord.State = ExamState.待完成;
                 examRecord.Auditor = answer.Auditor;
             }
