@@ -302,11 +302,13 @@ namespace JZKFXT.Controllers.API
             }
             try
             {
+                var item = await db.Disabled_Details.FirstOrDefaultAsync(x => x.DisabledID == disabledID);
                 if (nextID == 3)
                 {
                     exam.State = ExamState.待评估;
                     exam.NextID = nextID;
                     exam.Evaluated = false;
+                    item.NextID = nextID;
                 }
                 else
                 {
@@ -349,6 +351,8 @@ namespace JZKFXT.Controllers.API
                 else
                 {
                     exam.State = ExamState.待评估;
+                    exam.Evaluated = false;
+                    exam.NextID = 3;
                     if (exam.ShowExam != 0)
                     {
                         ExamRecord nextExam = await db.ExamRecords.Where(x => x.ExamID == exam.ShowExam && x.DisabledID == exam.DisabledID).FirstOrDefaultAsync();
