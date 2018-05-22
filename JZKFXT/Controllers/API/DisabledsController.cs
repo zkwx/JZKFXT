@@ -128,6 +128,32 @@ namespace JZKFXT.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/Disableds/SaveUserAddress")]
+        public async Task<IHttpActionResult> SaveUserAddress(int disabledID, string address)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Disabled disabled = await db.Disableds.Where(x => x.ID == disabledID).FirstOrDefaultAsync();
+            if (disabled == null)
+            {
+                return NotFound();
+            }
+            try
+            {
+                disabled.Address = address;
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
         // PUT: api/Disableds/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutDisabled(int id, Disabled Disabled)

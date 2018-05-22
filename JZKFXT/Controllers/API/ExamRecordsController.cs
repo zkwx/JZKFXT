@@ -115,7 +115,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "FuJuFuWuHuiFang")
                 {
-                    list = list.Where(a => a.State == ExamState.待回访 && a.Evaluated == false);
+                    list = list.Where(a => (a.State == ExamState.待回访 || a.State == ExamState.已完成) && a.Evaluated == false);
                     var result = list.Select(
                      a => new
                      {
@@ -132,7 +132,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "KangFuFuWuHuiFang")
                 {
-                    list = list.Where(a => a.State == ExamState.待回访 && a.Evaluated == true && a.FinishTime != null && a.NextID == 2);
+                    list = list.Where(a => (a.State == ExamState.待回访 || a.State == ExamState.已完成) && a.Evaluated == true && a.FinishTime != null && a.NextID == 2);
                     var result = list.Select(
                      a => new
                      {
@@ -302,13 +302,11 @@ namespace JZKFXT.Controllers.API
             }
             try
             {
-                var item = await db.Disabled_Details.FirstOrDefaultAsync(x => x.DisabledID == disabledID);
                 if (nextID == 3)
                 {
                     exam.State = ExamState.待评估;
                     exam.NextID = nextID;
                     exam.Evaluated = false;
-                    item.NextID = nextID;
                 }
                 else
                 {
@@ -463,15 +461,18 @@ namespace JZKFXT.Controllers.API
 
         [HttpGet]
         [Route("api/ExamRecords/Select")]
-        public async Task<IHttpActionResult> GetExamRecord(int ExamID, int DisabledID)
+        public async Task<IHttpActionResult> GetExamRecord(int ExamID, int DisabledID, int First)
         {
             ExamRecord examRecord = await db.ExamRecords.Where(e => e.ExamID == ExamID && e.DisabledID == DisabledID).FirstOrDefaultAsync();
-
+            if (First != 0)
+            {
+                examRecord = await db.ExamRecords.Where(e => e.First == First && e.DisabledID == DisabledID && e.ExamID == ExamID).FirstOrDefaultAsync();
+            }
             if (examRecord == null)
             {
                 if (ExamID == 9 || ExamID == 10 || ExamID == 11)
                 {
-                    ExamRecord record = new ExamRecord(ExamID, DisabledID, 0);
+                    ExamRecord record = new ExamRecord(ExamID, DisabledID, 0, First);
                     db.ExamRecords.Add(record);
                     db.SaveChanges();
                     return Ok(record);

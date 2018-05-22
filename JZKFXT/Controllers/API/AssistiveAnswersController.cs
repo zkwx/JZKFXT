@@ -102,10 +102,10 @@ namespace JZKFXT.Controllers.API
                 {
                     examRecord.State = ExamState.待审核;
                 }
-                else if (examRecord.State == ExamState.待审核)
-                {
-                    examRecord.State = ExamState.待完成;
-                }
+                //else if (examRecord.State == ExamState.待审核)
+                //{
+                //    examRecord.State = ExamState.待完成;
+                //}
                 //else if (examRecord.State == ExamState.待完成)
                 //{
                 //    examRecord.State = ExamState.待回访;

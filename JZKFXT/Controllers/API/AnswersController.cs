@@ -19,11 +19,11 @@ namespace JZKFXT.Controllers.API
         private BaseContext db = new BaseContext();
 
         // GET: api/Answers
-        public IQueryable<Answer> GetAnswers(int ExamID, int DisabledID)
+        public IQueryable<Answer> GetAnswers(int ExamID, int DisabledID, int FirstExam = 0)
         {
             if (ExamID == 9 || ExamID == 10 || ExamID == 11)
             {
-                return db.Answers.Where(a => a.ExamID == ExamID && a.DisabledID == DisabledID);
+                return db.Answers.Where(a => a.ExamID == ExamID && a.DisabledID == DisabledID && a.FirstExam == FirstExam);
             }
             else
             {
@@ -139,18 +139,25 @@ namespace JZKFXT.Controllers.API
                 var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
                 if (examRecord != null)
                 {
-                    if (examRecord.ExamID == 9)
+                    if (examRecord.ExamID == 9 || examRecord.ExamID == 10 || examRecord.ExamID == 11)
                     {
-                        examRecord.State = ExamState.待回访;
-                    }
-                    else if (examRecord.ExamID == 10 || examRecord.ExamID == 11)
-                    {
-                        examRecord.State = ExamState.已完成;
-                        examRecord.FinishTime = DateTime.Now;
+                        examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID && a.First == answer.FirstExam);
+                        if (examRecord.ExamID == 9)
+                        {
+                            examRecord.State = ExamState.待回访;
+                        }
+                        else if (examRecord.ExamID == 10 || examRecord.ExamID == 11)
+                        {
+                            examRecord.State = ExamState.已完成;
+                            examRecord.FinishTime = DateTime.Now;
+                            examRecord = await db.ExamRecords.FirstOrDefaultAsync(b => b.DisabledID == answer.DisabledID && b.ExamID == examRecord.First);
+                            examRecord.State = ExamState.已完成;
+                        }
                     }
                     else
                     {
                         examRecord.State = ExamState.已评估;
+                        examRecord.Evaluated = false;
                         if (answer.Area != null)
                         {
                             examRecord.ShowArea = answer.Area;
@@ -179,6 +186,7 @@ namespace JZKFXT.Controllers.API
                     else
                     {
                         record.State = ExamState.已评估;
+                        record.Evaluated = false;
                         record.NextID = 3;
                         record.First = answer.FirstExam;
                     }

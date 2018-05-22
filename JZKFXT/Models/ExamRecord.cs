@@ -21,6 +21,13 @@ namespace JZKFXT.Models
             DisabledID = disabledID;
             State = state;
         }
+        public ExamRecord(int? examID, int disabledID, ExamState state, int first)
+        {
+            ExamID = examID;
+            DisabledID = disabledID;
+            State = state;
+            First = first;
+        }
         public ExamRecord(int? examID, int disabledID, ExamState state, bool evaluated)
         {
             ExamID = examID;
