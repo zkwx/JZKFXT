@@ -62,7 +62,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "FuJuShenHe")
                 {
-                    list = list.Where(a => (a.State == ExamState.待审核 || a.State == ExamState.待完成) && a.Evaluated == false);
+                    list = list.Where(a => a.State == ExamState.待审核 && a.Evaluated == false && a.ShowArea == null);
                     var result = list.Select(
                     a => new
                     {
@@ -79,7 +79,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "JiaZhiJiaoXingQiShenHe")
                 {
-                    list = list.Where(a => a.ShowArea != null && (a.State == ExamState.待审核 || a.State == ExamState.待完成) && a.Evaluated == false);
+                    list = list.Where(a => a.ShowArea != null && a.State == ExamState.待审核 && a.Evaluated == false);
                     var result = list.Select(
                     a => new
                     {
@@ -98,7 +98,7 @@ namespace JZKFXT.Controllers.API
                 }
                 else if (name == "FuJuFuWu")
                 {
-                    list = list.Where(a => (a.State == ExamState.待完成 || a.State == ExamState.待回访) && a.Evaluated == false);
+                    list = list.Where(a => a.State == ExamState.待完成 && a.Evaluated == false);
                     var result = list.Select(
                      a => new
                      {
@@ -373,7 +373,8 @@ namespace JZKFXT.Controllers.API
             }
             return StatusCode(HttpStatusCode.NoContent);
         }
-        //审核撤回
+
+        //审核撤回,重新审核
         [HttpPost]
         [Route("api/ExamRecords/BackExam")]
         public async Task<IHttpActionResult> BackExam(ExamRecord record)
@@ -385,15 +386,16 @@ namespace JZKFXT.Controllers.API
             }
             else
             {
-                if (exam.State > ExamState.待审核)
+                if (exam.State == ExamState.待完成)
                 {
-                    return StatusCode(HttpStatusCode.BadRequest);
+                    exam.State = ExamState.待审核;
+                    exam.FinishTime = null;
                 }
-                else
+                else if (exam.State == ExamState.待审核)
                 {
                     exam.State = ExamState.已评估;
-                    db.SaveChanges();
                 }
+                db.SaveChanges();
             }
             return StatusCode(HttpStatusCode.NoContent);
         }

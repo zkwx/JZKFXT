@@ -71,7 +71,7 @@ namespace JZKFXT.Controllers.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        
         [Route("api/AssistiveAnswers/SaveAnswers")]
         public async Task<IHttpActionResult> PostAnswers(IList<AssistiveAnswer> answers)
         {
@@ -106,10 +106,10 @@ namespace JZKFXT.Controllers.API
                 {
                     examRecord.State = ExamState.待完成;
                 }
-                else if (examRecord.State == ExamState.待完成)
-                {
-                    examRecord.State = ExamState.待回访;
-                }
+                //else if (examRecord.State == ExamState.待完成)
+                //{
+                //    examRecord.State = ExamState.待回访;
+                //}
             }
             await db.SaveChangesAsync();
 
@@ -161,7 +161,7 @@ namespace JZKFXT.Controllers.API
 
             return Ok(assistiveAnswer);
         }
-
+        //审核未通过、完成页面重新评估
         [HttpPost]
         [Route("api/AssistiveAnswers/DeleteAnswers")]
         public async Task<IHttpActionResult> DeleteAnswers(IList<AssistiveAnswer> assistive)
@@ -175,15 +175,24 @@ namespace JZKFXT.Controllers.API
             var assAnswers = db.AssistiveAnswer.Where(a => a.ExamID == answer.ExamID && a.DisabledID == answer.DisabledID);
             db.AssistiveAnswer.RemoveRange(assAnswers);
 
-            var answers = db.Answers.Where(b => b.ExamID == answer.ExamID && b.DisabledID == answer.DisabledID);
+            var answers = db.Answers.Where(b => b.FirstExam == answer.ExamID && b.DisabledID == answer.DisabledID);
             db.Answers.RemoveRange(answers);
 
             var examRecord = await db.ExamRecords.FirstOrDefaultAsync(a => a.DisabledID == answer.DisabledID && a.ExamID == answer.ExamID);
             if (examRecord != null)
             {
                 examRecord.State = ExamState.待评估;
+                examRecord.FinishTime = null;
+                examRecord.ShowArea = null;
+                examRecord.ShowExam = 0;
+                examRecord.Complete = 0;
+                examRecord.Auditor = 0;
             }
-
+            var examRecords = db.ExamRecords.Where(a => a.DisabledID == answer.DisabledID && a.First == answer.ExamID);
+            if (examRecords.Count() > 0)
+            {
+                db.ExamRecords.RemoveRange(examRecords);
+            }
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
