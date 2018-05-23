@@ -461,7 +461,7 @@ namespace JZKFXT.Controllers.API
 
         [HttpGet]
         [Route("api/ExamRecords/Select")]
-        public async Task<IHttpActionResult> GetExamRecord(int ExamID, int DisabledID, int First)
+        public async Task<IHttpActionResult> GetExamRecord(int ExamID, int DisabledID, int First = 0)
         {
             ExamRecord examRecord = await db.ExamRecords.Where(e => e.ExamID == ExamID && e.DisabledID == DisabledID).FirstOrDefaultAsync();
             if (First != 0)
