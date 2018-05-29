@@ -50,7 +50,6 @@ namespace JZKFXT.Controllers.API
             }
             if (imgPath != "")
             {
-
                 var fileName = imgPath.Split('\\').Last();
                 var outUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + directory + fileName;
                 return outUrl;
@@ -59,6 +58,39 @@ namespace JZKFXT.Controllers.API
             {
                 return imgPath;
             }
+        }
+
+        //获取当前图片地址
+        [HttpGet]
+        [Route("api/AssistiveDevices/ShowImageUrl")]
+        public List<String> ShowImageUrl()
+        {
+            var list = db.AssistiveDevices.ToList();
+            var home = "~/Image/";
+            string imgHome = HttpContext.Current.Server.MapPath(home);
+            var ls = Directory.GetFiles(imgHome).ToList();
+            var imgList = new List<String>();
+            foreach (var a in list)
+            {
+                if (a.PicNumber != 0)
+                {
+                    string imgName = a.PicNumber + a.Name;
+                    foreach (var b in ls)
+                    {
+                        if (b.IndexOf(imgName) > -1)
+                        {
+                            var picName = b.Split('\\').Last();
+                            var assist = "new AssistiveDevice(" + a.ID + "," + "\"" + a.Name + "\"" + "," + "\"" + a.Type + "\"" + "," + "\"" + picName + "\"" + "," + "\"" + "\"" + ")";
+                            imgList.Add(assist);
+                        }
+                    }
+                }
+            }
+
+
+            //var directory = System.Configuration.ConfigurationManager.AppSettings["imageSrc"];
+            //var outUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + "/" + directory + "/";
+            return imgList;
         }
 
 
