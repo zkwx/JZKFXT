@@ -199,8 +199,8 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(1022303,"电动轮椅车","轮椅代步"),
                 new AssistiveDevice(1022315,"爬楼梯轮椅车","轮椅代步"),
                 new AssistiveDevice(1022309,"机动轮椅车","轮椅代步"),
-                new AssistiveDevice(102170301,"爬楼梯座椅","轮椅代步",440),
 
+                new AssistiveDevice(102170301,"爬楼梯座椅","轮椅代步",440),
                 new AssistiveDevice(102170302,"爬楼梯轮椅运载工具","轮椅代步",441),
                 new AssistiveDevice(102170601,"站驾式机动车","轮椅代步",442),
                 new AssistiveDevice(102180601,"手摇脚踏驱动式三轮车","轮椅代步",443),

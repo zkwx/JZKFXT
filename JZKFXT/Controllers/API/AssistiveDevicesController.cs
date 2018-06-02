@@ -74,19 +74,26 @@ namespace JZKFXT.Controllers.API
             {
                 if (a.PicNumber != 0)
                 {
-                    string imgName = a.PicNumber + a.Name;
+                    var imgName = a.PicNumber + a.Name;
+                    var picName = "暂无图片";
                     foreach (var b in ls)
                     {
-                        if (b.IndexOf(imgName) > -1)
+                        if (b.IndexOf(a.PicNumber.ToString()) > -1)
                         {
-                            var picName = b.Split('\\').Last();
-                            var assist = "new AssistiveDevice(" + a.ID + "," + "\"" + a.Name + "\"" + "," + "\"" + a.Type + "\"" + "," + "\"" + picName + "\"" + "," + "\"" + "\"" + ")";
-                            imgList.Add(assist);
+                            if (b.IndexOf(a.Name) > -1)
+                            {
+                                picName = b.Split('\\').Last();
+                            }
                         }
+                    }
+
+                    if (a.Type == "饮食")
+                    {
+                        var one = "new AssistiveDevice(" + a.ID + "," + '"' + a.Name + '"' + "," + '"' + a.Type + '"' + "," + '"' + picName + '"' + "," + 0 + "," + '"' + '"' + ")";
+                        imgList.Add(one);
                     }
                 }
             }
-
 
             //var directory = System.Configuration.ConfigurationManager.AppSettings["imageSrc"];
             //var outUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + "/" + directory + "/";
