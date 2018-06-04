@@ -26,78 +26,14 @@ namespace JZKFXT.Controllers.API
             return db.AssistiveDevices;
         }
 
-        //根据辅具信息查询图片地址
-        [HttpGet]
-        [Route("api/AssistiveDevices/ShowImagePath")]
-        public String picAddress(int id, string name, string type)
-        {
-            AssistiveDevice assistiveDevice = db.AssistiveDevices.Where(x => x.ID == id && x.Name == name && x.Type == type).FirstOrDefault();
-            string imgName = assistiveDevice.PicNumber + assistiveDevice.Name;
-            var home = "~/Image/";
-            var imgPath = "";
-            var directory = "/Image/";
-            string imgHome = HttpContext.Current.Server.MapPath(home);
-            var ls = Directory.GetFiles(imgHome).ToList();
-            if (assistiveDevice.PicNumber != 0)
-            {
-                foreach (var l in ls)
-                {
-                    if (l.IndexOf(imgName) > -1)
-                    {
-                        imgPath = l;
-                    }
-                }
-            }
-            if (imgPath != "")
-            {
-                var fileName = imgPath.Split('\\').Last();
-                var outUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + directory + fileName;
-                return outUrl;
-            }
-            else
-            {
-                return imgPath;
-            }
-        }
-
-        //获取当前图片地址
+        //获取当前辅具图片地址(网址+文件夹名)
         [HttpGet]
         [Route("api/AssistiveDevices/ShowImageUrl")]
-        public List<String> ShowImageUrl()
+        public String ShowImageUrl()
         {
-            var list = db.AssistiveDevices.ToList();
-            var home = "~/Image/";
-            string imgHome = HttpContext.Current.Server.MapPath(home);
-            var ls = Directory.GetFiles(imgHome).ToList();
-            var imgList = new List<String>();
-            foreach (var a in list)
-            {
-                if (a.PicNumber != 0)
-                {
-                    var imgName = a.PicNumber + a.Name;
-                    var picName = "暂无图片";
-                    foreach (var b in ls)
-                    {
-                        if (b.IndexOf(a.PicNumber.ToString()) > -1)
-                        {
-                            if (b.IndexOf(a.Name) > -1)
-                            {
-                                picName = b.Split('\\').Last();
-                            }
-                        }
-                    }
-
-                    if (a.Type == "饮食")
-                    {
-                        var one = "new AssistiveDevice(" + a.ID + "," + '"' + a.Name + '"' + "," + '"' + a.Type + '"' + "," + '"' + picName + '"' + "," + 0 + "," + '"' + '"' + ")";
-                        imgList.Add(one);
-                    }
-                }
-            }
-
-            //var directory = System.Configuration.ConfigurationManager.AppSettings["imageSrc"];
-            //var outUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + "/" + directory + "/";
-            return imgList;
+            var directory = System.Configuration.ConfigurationManager.AppSettings["imageSrc"];
+            var outUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + "/" + directory + "/";
+            return outUrl;
         }
 
 

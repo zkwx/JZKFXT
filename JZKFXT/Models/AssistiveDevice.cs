@@ -19,31 +19,34 @@ namespace JZKFXT.Models
             Name = name;
             Type = type;
         }
-        public AssistiveDevice(int iD, string name, string type, int picNumber)
+        public AssistiveDevice(int iD, string name, string type, string picName)
         {
             ID = iD;
             ParentAssistiveDeviceID = iD / 100;
             Name = name;
             Type = type;
-            PicNumber = picNumber;
+            PicName = picName;
         }
-        public AssistiveDevice(int iD, string name, string type, int picNumber, double price)
+        public AssistiveDevice(int iD, string name, string type, string picName, double price, string comments)
         {
             ID = iD;
             ParentAssistiveDeviceID = iD / 100;
             Name = name;
             Type = type;
-            PicNumber = picNumber;
+            PicName = picName;
             Price = price;
+            Comments = comments;
         }
         [DatabaseGenerated(DatabaseGeneratedOption.None)] //去掉自增标识
         public int ID { get; set; }
         public int ParentAssistiveDeviceID { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        //图片编号 图片名 = 图片编号 + Name
-        public int PicNumber { get; set; }
+        //图片名称
+        public string PicName { get; set; }
         //单价
         public double Price { get; set; }
+        //简介
+        public string Comments { get; set; }
     }
 }
