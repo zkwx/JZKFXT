@@ -50,6 +50,15 @@ namespace JZKFXT.Controllers.API
             return Ok(assistiveDevice);
         }
 
+        //根据FID获取辅具信息
+        [HttpGet]
+        [Route("api/AssistiveDevices/fid")]
+        public IQueryable<AssistiveDevice> GetAssistiveDeviceByPid(int id)
+        {
+            var list =  db.AssistiveDevices.Where(x => x.ParentAssistiveDeviceID == id);
+
+            return list;
+        }
         // PUT: api/AssistiveDevices/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutAssistiveDevice(int id, AssistiveDevice assistiveDevice)
