@@ -2006,7 +2006,7 @@ namespace JZKFXT.Migrations
                 new AssistiveDevice(101330705,"内（外）翻足矫正鞋","矫形器","198内（外）翻足矫正鞋.jpg",0,""),
                 new AssistiveDevice(101330706,"马蹄足矫正鞋","矫形器","199马蹄足矫正鞋.jpg",0,""),
                 new AssistiveDevice(101331801,"矫形鞋（单鞋）","矫形器","200矫形鞋（单鞋）.jpg",0,""),
-                new AssistiveDevice(101331802,"矫形鞋（棉鞋）","矫形器","201矫形鞋（棉鞋)jpg",0,""),
+                new AssistiveDevice(101331802,"矫形鞋（棉鞋）","矫形器","201矫形鞋（棉鞋).jpg",0,""),
                 new AssistiveDevice(101332101,"低腰补缺鞋","矫形器","202低腰补缺鞋.jpg",0,""),
                 new AssistiveDevice(101332102,"中腰不缺鞋","矫形器","203中腰补缺鞋.jpg",0,""),
                 new AssistiveDevice(101333001,"跖骨小头免荷鞋","矫形器","204跖骨小头免荷鞋.jpg",0,""),
